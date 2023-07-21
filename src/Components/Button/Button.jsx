@@ -1,4 +1,4 @@
 function Button() {
-  return null;
+  return Button;
 }
 export default Button;
