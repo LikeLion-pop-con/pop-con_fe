@@ -1,0 +1,32 @@
+[33mcommit 5129d6fcbddfbbbccc0aae8885bce5de0213abea[m[33m ([m[1;36mHEAD -> [m[1;32mjo[m[33m)[m
+Author: makeum <jo_god_da@inha.edu>
+Date:   Fri Jul 21 18:43:55 2023 +0900
+
+    button name change
+
+[33mcommit 8dea3881780d1c95b8ae4f3e200aed4ed529c2fd[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 40cc1cb 63e512f
+Author: wuzoo <121484561+wuzoo@users.noreply.github.com>
+Date:   Fri Jul 21 18:34:45 2023 +0900
+
+    Merge pull request #1 from LikeLion-pop-con/wuzoo
+    
+    branch test
+
+[33mcommit 63e512f23e8927e8c3ab2d395088ae1b27b41142[m[33m ([m[1;31morigin/wuzoo[m[33m)[m
+Author: wuzoo <wndyd9911@gmail.com>
+Date:   Fri Jul 21 18:31:41 2023 +0900
+
+    branch test
+
+[33mcommit 40cc1cbe8ac73205c79553b1e697af6e61039364[m
+Author: wuzoo <wndyd9911@gmail.com>
+Date:   Fri Jul 21 18:29:08 2023 +0900
+
+    first commit
+
+[33mcommit 12fbace404360a0820bc4a6651413d4a33499ba6[m
+Author: wuzoo <wndyd9911@gmail.com>
+Date:   Thu Jul 20 20:22:37 2023 +0900
+
+    Initialize project using Create React App
