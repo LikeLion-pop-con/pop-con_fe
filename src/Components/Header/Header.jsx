@@ -18,15 +18,6 @@ const Col = styled.div`
 `;
 
 function Header() {
-  return (
-    <Wrapper>
-      <Col></Col>
-      <Col>
-        <p>로그인</p>
-        <p>내 정보</p>
-        <p>검색</p>
-      </Col>
-    </Wrapper>
-  );
+  return <Wrapper></Wrapper>;
 }
 export default Header;
