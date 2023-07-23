@@ -5,6 +5,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <p>hi my name is hong seongjun</p>
       <Router />
     </>
   );
