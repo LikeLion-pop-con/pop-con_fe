@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import GlobalStyle from "./Global";
 import Router from "./Router";
 
 import Layout from "./Components/Layout/Layout";
@@ -7,7 +6,7 @@ import Main from "./pages/MainPage/Main";
 import Welcome from "./pages/Welcome/Welcome";
 
 function App() {
-  <GlobalStyle/>
+
   return (
     
     <BrowserRouter>
