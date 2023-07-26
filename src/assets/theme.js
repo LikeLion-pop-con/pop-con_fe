@@ -6,6 +6,7 @@ const colors = {
   lightgray: "#e7e7e7",
   darkgray: "dcdde1",
 };
+
 const font = {
   title: `
       font-size: 18px;
