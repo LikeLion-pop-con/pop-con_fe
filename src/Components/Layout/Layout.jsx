@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const Background = styled.div`
   width: 768px;
-  background-color: white;
+  background-color: #d9d9d9;
   display: flex;
   justify-content: center;
   align-items: center;
