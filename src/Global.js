@@ -10,16 +10,17 @@ const GlobalStyle = createGlobalStyle`
       background-color: ${({ theme }) => theme.colors.lightgray};
       justify-content: center;
       display: flex;
+      font-family: 'Noto Sans KR', 'sans-serif';
   }
 
   @font-face {
-    font-family: 'Pretendard-regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-family: 'Noto Sans KR', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
     font-weight: 400;
   }
 
   * {
-    font-family: 'Pretendard-regular';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     margin: 0;
     padding: 0;

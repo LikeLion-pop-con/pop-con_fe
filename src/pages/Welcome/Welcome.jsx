@@ -17,6 +17,7 @@ const Welcome = () => {
     <>
     
       <Typo size= "2rem" weight= "bold" >Hi my name is </Typo>
+      <p>Hi my name is jun</p>
 
     </>
   );
