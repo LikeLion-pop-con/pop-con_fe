@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
       background-color: ${({ theme }) => theme.colors.lightgray};
       justify-content: center;
       display: flex;
-      font-family: 'Noto Sans KR', 'sans-serif';
+      font-family: 'Noto Sans KR', sans-serif;
   }
 
   @font-face {
@@ -19,9 +19,11 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
-  * {
+
+
+  * {//우선순위 1로 변경하는법 찾기, 로컬이랑 우선순위가 같은것 같다. 그래서 오버라이딩돼지않았을까
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
+    font-size: 100px;
     margin: 0;
     padding: 0;
   }

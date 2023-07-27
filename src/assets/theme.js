@@ -1,10 +1,10 @@
 const colors = {
   white: "#ffffff",
   black: "#1B1313",
-  green: "547272",
+  green: "#547272",
   main: "#ec7538",
   lightgray: "#e7e7e7",
-  darkgray: "dcdde1",
+  darkgray: "#dcdde1",
 };
 
 const font = {
@@ -20,7 +20,7 @@ const font = {
       font-weight: 700;
     `,
   large: `
-      font-size: 22px;
+      font-size:  22px;
       font-weight: 600;
       line-height: 26px;
     `,
