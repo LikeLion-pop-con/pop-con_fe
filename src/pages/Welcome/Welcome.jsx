@@ -28,10 +28,10 @@ const Welcome = () => {
       <Typo color= 'green'>모든 인류 구성원의</Typo>
       <Card/>
       <LargeCard/>
-      
-      <img name='cardrose' src='cardrose.jpg' width="100px" height="100px"></img>
+      <Wrapper>
+       <img name='cardrose' src='cardrose.jpg' width="100px" height="100px"></img>
        
-      
+      </Wrapper>
     
 
 
