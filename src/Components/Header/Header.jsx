@@ -1,12 +1,11 @@
 import logo from '../../assets/Icons/Header/logo.svg'
 import login from '../../assets/Icons/Header/login.svg'
 import search from '../../assets/Icons/Header/search.svg'
-import Typo from '../../assets/Typo'
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const Icon = styled.img`
-  cursor: pointer;
+  cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 
 `;
 
 const iconType = (navigate, type) => {
@@ -20,7 +19,7 @@ const iconType = (navigate, type) => {
 };
 
 const HeaderWrapper = styled.div`
-  margin-top: 16px;
+  margin-top: 10px;
   width: 100%;
   height: 40px;
   display: flex;
@@ -29,36 +28,39 @@ const HeaderWrapper = styled.div`
 `;
 
 const IconsContainer = styled.div`
-  width: 90%;
+  width: 75%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+`;
+
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > :not(:last-child) {
+    margin-right: 10px;
+  }
 `;
 
 const EmptyIcon = styled.div`
   width: 16px;
   height: 16px;
 `;
-/**
- * header 컴포넌트!
- * @left {'cancel' | 'home' | 'back'} 왼쪽에 들어갈 아이콘 이름. 없으면 쓰지마세요. (형태: left='back')
- * @right {'cancel' | 'home' | 'back'} 왼쪽에 들어갈 아이콘 이름. 없으면 쓰지마세요. (형태: right='back')
- * @title {string} 가운데에 들어갈 제목. (형태: title='견적 요청서')
- * @titleSize {'large' | 'medium' | 'small'} 가운데에 들어갈 제목의 폰트 크기 (형태: titleSize='large')
- * @underLine {boolean} header아래에 밑줄이 있으면 사용합니다. (형태: underLine)
- * @returns
- */
-export default function Header({ left, title, right, titleSize, underLine }) {
+
+export default function Header({ left = "", right = [] }) {
   const navigate = useNavigate();
 
   return (
     <>
       <HeaderWrapper>
-        <IconsContainer>
-          {left ? iconType(navigate, left) : <EmptyIcon />}
-          {title ? <Typo fontType={titleSize}>{title}</Typo> : <EmptyIcon />}
-          {right ? iconType(navigate, right) : <EmptyIcon />}
-        </IconsContainer>
+          <IconsContainer>
+            {left ? iconType(navigate, left) : <EmptyIcon />}
+          </IconsContainer>
+          <IconWrapper>
+            {right.map((iconTypeItem) => (
+              iconTypeItem ? iconType(navigate, iconTypeItem) : <EmptyIcon />))}
+          </IconWrapper>
       </HeaderWrapper>
     </>
   );

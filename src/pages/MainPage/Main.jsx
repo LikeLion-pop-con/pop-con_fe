@@ -23,7 +23,7 @@ const Main = () => {
       <Margin height="5"/>
       <p>Hi my name is jo</p>
       <Margin height="10"/> 
-      <Horizon width="50%" color="darkgray"/>
+      <Horizon width="50%" color="green"/>
     </Wrapper>
     </>
   );

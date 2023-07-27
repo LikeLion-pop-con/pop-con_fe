@@ -21,8 +21,8 @@ const Welcome = () => {
   return (
     <>
     <Wrapper>
-      <Header/>
-      <Typo height="10px" size="2rem" weight="bold">Hi my name is jo</Typo>
+      <Header left='logo' right={['login', 'search']} />
+      <Typo color="green" height="10px" size="2rem" weight="bold">Hi my name is jo</Typo>
       <Margin height="10"/>
       <p>글꼴이 어떻게 나올까</p>
       <NavigationBar/>
