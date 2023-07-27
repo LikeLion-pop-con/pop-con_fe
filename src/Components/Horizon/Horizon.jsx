@@ -9,7 +9,7 @@ const HorizonEach = styled.div`
 const Horizon = (props) => {
   return (
     <>
-    <HorizonEach width={props.width} color={props.color}/>
+    <HorizonEach width={props.width} color={props.color} />
     </>
   );
 };
