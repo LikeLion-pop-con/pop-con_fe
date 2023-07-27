@@ -16,7 +16,7 @@ const Main = () => {
     <>
     <Wrapper>
       <p>Hi my name is jun</p>
-      <Horizon width = '100px' color = 'black'/>
+      <Horizon width = '40%'/>
     </Wrapper>
     </>
   );
