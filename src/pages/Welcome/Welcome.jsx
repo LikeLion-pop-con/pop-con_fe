@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Typo from "../../assets/Typo";
 import Header from "../../Components/Header/Header";
 import Margin from "../../Components/Margin/Margin";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -23,6 +24,7 @@ const Welcome = () => {
       <Typo height="10px" size="2rem" weight="bold">Hi my name is jo</Typo>
       <Margin height="10"/>
       <p>글꼴이 어떻게 나올까</p>
+      <NavigationBar/>
     </Wrapper>
     </>
   );

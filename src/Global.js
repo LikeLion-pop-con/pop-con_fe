@@ -4,13 +4,21 @@ import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  * {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+  }
+
   html, body, #root {
       width: 100%;
       min-height: 100vh;
-      background-color: ${({ theme }) => theme.colors.lightgray};
+      background-color: ${({ theme }) => theme.colors.black};
       justify-content: center;
       display: flex;
-      font-family: 'Noto Sans KR', 'sans-serif';
+      font-family: 'Noto Sans KR', sans-serif;
+
   }
 
   @font-face {
@@ -19,12 +27,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
   
-  * {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
-  } //* 선택자가 안 먹혀요 이유가 뭘까요 ? - 1시간 정도 고민함 
+ //* 선택자가 안 먹혀요 이유가 뭘까요 ? - 1시간 정도 고민함 
 `;
 
 export default GlobalStyle;

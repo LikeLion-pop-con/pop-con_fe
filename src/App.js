@@ -4,12 +4,13 @@ import Router from "./Router";
 import Layout from "./Components/Layout/Layout";
 import Main from "./pages/MainPage/Main";
 import Welcome from "./pages/Welcome/Welcome";
+import GlobalStyle from "./Global";
 
 function App() {
 
   return (
-    
     <BrowserRouter>
+      <GlobalStyle/>
       <Routes>
        <Route element={<Layout />}>
         <Route path='/' element={<Main />} />
