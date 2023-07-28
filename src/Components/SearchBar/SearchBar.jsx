@@ -12,8 +12,7 @@ const SearchBar = () => {
   const clearSearch = () => {
     setSearchText('');
   };
-
-  //코드에 대한 이해 필요
+  
   const hasText = searchText.trim().length > 0;
 
   const searchBarStyle = {
