@@ -18,7 +18,7 @@ const SearchBar = () => {
   const searchBarStyle = {
     backgroundColor: '#E9E9E9',
     borderRadius: '8px',
-    width: '400px',
+    width: '80%',
     height: '34px',
     display: 'flex',
     alignItems: 'center',
