@@ -9,8 +9,8 @@ import my from '../../assets/Icons/NavigationBar/my.svg'
 import { useNavigate } from 'react-router-dom';
 
 const MainWrapper = styled.div`
-  height: 60px;
   width: 450px;
+  height: 60px;
   background-color: #EC7538;
   position: fixed;
   bottom: 0;
@@ -21,12 +21,11 @@ const MainWrapper = styled.div`
 `;
 
 const IconsContainer = styled.div`
+  top: 10px;
+  height: 60px;
   display: flex;
   justify-content: space-around;
   position: relative;
-  top: 10px;
-  height: 60px;
-
 `;
 
 const IconWrapper = styled.div`
@@ -39,7 +38,6 @@ const IconWrapper = styled.div`
   justify-content: space-between;
 `;
 
-
 const Icon = ({ img, children, onClick }) => {
   return (
     <IconWrapper onClick={onClick}>
@@ -48,8 +46,8 @@ const Icon = ({ img, children, onClick }) => {
         {children}
       </Typo>
     </IconWrapper>
-  );
-};
+    );
+  };
 
 export default function NavigationBar() {
   const navigate = useNavigate();
