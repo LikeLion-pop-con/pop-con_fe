@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 import Typo from '../../assets/Typo';
 import Margin from '../Margin/Margin';
 
@@ -7,7 +8,7 @@ const CardBlock = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-`   
+`   // page에서 사용
 
 const CardEach = styled.div`
     display:flex;
@@ -28,9 +29,13 @@ const Thumbnail = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-image: url('../../assets/icons/Card/cardrose.png');
+    //background-image: url('/Cardrose.jpg');
+    background-image: url(' ${(props) => props.image} ');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: none;
     border-radius: 16px;
-    color: white;
+
     height: 180px;
     width: 100%;
     
@@ -50,10 +55,10 @@ const TextWrapper = styled.div`
 
 
 const Card = () => {
+    const navigate = useNavigate();
     return (
-        <CardBlock>
-            <CardEach>
-                <Thumbnail>Thumbnail</Thumbnail>
+            <CardEach onClick={() => navigate('/')}>
+                <Thumbnail image='Cardrose.jpg'/>
                 <TextWrapper>
                     <Typo fontType='title'>Rose</Typo>
                     <Margin height='4'/>
@@ -62,38 +67,8 @@ const Card = () => {
                     <Typo size='small' color='darkgray'>그녀만의 색깔을 <br/> 담고 있는 목소리</Typo>
                 </TextWrapper>
             </CardEach>
-            <CardEach>
-                <Thumbnail>Thumbnail</Thumbnail>
-                <TextWrapper>
-                    <Typo fontType='title'>Rose</Typo>
-                    <Margin height='4'/>
-                    <Typo size='small' color='darkgray'>뮤직 아티스트</Typo>
-                    <Margin height='6'/>
-                    <Typo size='small' color='darkgray'>그녀만의 색깔을 <br/> 담고 있는 목소리</Typo>
-                </TextWrapper>
-            </CardEach>
-            <CardEach>
-                <Thumbnail>Thumbnail</Thumbnail>
-                <TextWrapper>
-                    <Typo fontType='title'>Rose</Typo>
-                    <Margin height='4'/>
-                    <Typo size='small' color='darkgray'>뮤직 아티스트</Typo>
-                    <Margin height='6'/>
-                    <Typo size='small' color='darkgray'>그녀만의 색깔을 <br/> 담고 있는 목소리</Typo>
-                </TextWrapper>
-            </CardEach>
-            <CardEach>
-                <Thumbnail>Thumbnail</Thumbnail>
-                <TextWrapper>
-                    <Typo fontType='title'>Rose</Typo>
-                    <Margin height='4'/>
-                    <Typo size='small' color='darkgray'>뮤직 아티스트</Typo>
-                    <Margin height='6'/>
-                    <Typo size='small' color='darkgray'>그녀만의 색깔을 <br/> 담고 있는 목소리</Typo>
-                </TextWrapper>
-            </CardEach>    
-        </CardBlock>
     );
+
 };
 
 export default Card;

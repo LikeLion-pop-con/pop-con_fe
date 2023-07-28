@@ -15,8 +15,8 @@ const CardEach = styled.div`
     flex-direction:column;
     background-color: white;
 
-    height: 300px;
-    min-width: 400px;
+    height: 220px;
+    min-width: 140px;
 
     border-radius: 12px;
     cursor: pointer;
@@ -33,11 +33,9 @@ const Thumbnail = styled.div`
     background-image: url(' ${(props) => props.image} ');
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: none;
     border-radius: 16px;
-    //margin-bottom: 15px;
 
-    height: 200px;
+    height: 180px;
     width: 100%;
     
 `
@@ -46,66 +44,42 @@ const TextWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: left;
+    margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 15px;
     margin-right: 15px;
-    line-height: 18px;
-`
-const TitleWrapper = styled.div`
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-`
-const TextBox = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 30px;
-    margin-right: 7px;
-
 `
 
 
 
-const Card = () => {
+
+const SmallCard = () => {
     const navigate = useNavigate();
     return (
             <CardEach onClick={() => navigate('/')}>
-                <Thumbnail image='NewJeans.jpg'/>
-                <TitleWrapper>
-                    <Typo fontType='title'>NEWJEANS의 Hype맑음</Typo>
-                </TitleWrapper>
-                <TextBox>
-                    <TextWrapper>
-                        <Margin height='12'/>
-                        <Typo size='small'>팝업 스토어</Typo>
-                        <Typo size='small'>창작예술</Typo>
-                    </TextWrapper>
-                  
+                <Thumbnail image='SmallCard 심금.jpg'/>
+                <TextWrapper>
+                    <Typo size='0.8rem'>심금</Typo>
+                    <Margin height='3'/>
+                    <Typo size='0.7rem' color='darkgray'>캐릭터</Typo>
+                    <Margin height='4'/>
+                    <Typo size='0.7rem' color='darkgray'>체고다 멋지다</Typo>
+                    <Typo size='0.7rem' color='darkgray'>우리 심금이🫶🏻</Typo>
 
-                    <TextWrapper>
-                    <Margin height='6'/>
-                    <Typo size='small' > 하텍 해동 스룸G</Typo>
-                    <Typo size='small' > 인하대학교</Typo>
-                    <Typo size='small' color='darkgray'> 2023.07.21~ 2023.08.19</Typo>
-                    </TextWrapper>
-                </TextBox>
-
+                </TextWrapper>
             </CardEach>
     );
 
 };
 
-export default Card;
+export default SmallCard;
 
   
 
 
-const SmallCard = styled.div`
+const SmaldlCard = styled.div`
   height: 270px;
-  min-width: 400px;
+  min-width: 200px;
   border-radius: 7px;
   background-color: ${(props) => props.color && props.theme.colors[props.color]};
   border: none;

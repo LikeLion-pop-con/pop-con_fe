@@ -6,6 +6,7 @@ import Typo from "../../assets/Typo";
 import Header from "../../Components/Header/Header";
 import Card from "../../Components/Card/Card";
 import LargeCard from "../../Components/Card/LargeCard";
+import SmallCard from "../../Components/Card/SmallCard";
 
 
 const Wrapper = styled.div`
@@ -17,6 +18,12 @@ const Wrapper = styled.div`
   justify-items: center;
  
 `;
+const CardBlock = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`   
+
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -26,12 +33,21 @@ const Welcome = () => {
       <Typo size= "2rem" weight= "bold" > Hi my name is jo </Typo>
       <Typo>글꼴이 어떻게 나올까</Typo>
       <Typo color= 'green'>모든 인류 구성원의</Typo>
-      <Card/>
-      <LargeCard/>
-      <Wrapper>
-       <img name='cardrose' src='cardrose.jpg' width="100px" height="100px"></img>
-       
-      </Wrapper>
+      <CardBlock>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <SmallCard/>
+
+        <LargeCard/>
+        <LargeCard/>
+        <LargeCard/>
+        <LargeCard/>
+      </CardBlock>
+    
+
+  
     
 
 
