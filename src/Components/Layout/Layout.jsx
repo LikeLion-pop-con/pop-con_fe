@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   width: 100%;
 
   position: relative;
-`;
+`; 
 
 function Layout() {
   return (
@@ -28,7 +28,7 @@ function Layout() {
       <Background>
         <Wrapper>
          <Outlet />
-        </Wrapper>
+         </Wrapper>
       </Background>
     </>
   );
