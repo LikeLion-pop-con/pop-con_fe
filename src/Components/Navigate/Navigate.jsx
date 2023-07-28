@@ -25,7 +25,7 @@ const IconsContainer = styled.div`
   height: 60px;
   display: flex;
   justify-content: space-around;
-  position: relative;
+  align-items: center;
 `;
 
 const IconWrapper = styled.div`
