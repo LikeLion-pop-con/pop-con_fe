@@ -10,7 +10,7 @@ const Icon = styled.img`
 
 const iconType = (navigate, type) => {
   const icon = {
-    logo: <Icon src={logo} alt='logo' onClick={() => navigate(-1)} />,
+    logo: <Icon src={logo} alt='logo' onClick={() => navigate('/')} />,
     login: <Icon src={login} alt='login' onClick={() => navigate('/login')} />,
     search: <Icon src={search} alt='search' onClick={() => navigate('/search')} />,
   };

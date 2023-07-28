@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import PopupButton from "../../Components/PopupButton/PopupButton";
 import Header from "../../Components/Header/Header";
