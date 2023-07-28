@@ -6,6 +6,7 @@ import Typo from "../../assets/Typo";
 import Header from "../../Components/Header/Header";
 import Margin from "../../Components/Margin/Margin";
 import NavigationBar from "../../Components/Navigate/Navigate";
+import SearchBar from "../../Components/SearchBar/SearchBar";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -16,19 +17,20 @@ const Wrapper = styled.div`
   line-height: 38px;
 `;
 
-const Welcome = () => {
+const Search = () => {
   const navigate = useNavigate();
   return (
     <>
     <Wrapper>
-      <Header left='logo' right={['login', 'search']} />
-      <Typo color="green" height="10px" size="2rem" weight="bold">Hi my name is jo</Typo>
+      <SearchBar/>
       <Margin height="10"/>
-      <p>글꼴이 어떻게 나올까</p>
+      <Typo color="green" height="10px" size="2rem" weight="bold">검색 화면</Typo>
+      <Margin height="10"/>
+      <p>검색 목록 띄울 예정</p>
       <NavigationBar/>
     </Wrapper>
     </>
   );
 };
 
-export default Welcome;
+export default Search;
