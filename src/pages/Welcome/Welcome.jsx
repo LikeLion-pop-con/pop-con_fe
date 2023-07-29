@@ -7,6 +7,7 @@ import Header from "../../Components/Header/Header";
 import Card from "../../Components/Card/Card";
 import LargeCard from "../../Components/Card/LargeCard";
 import SmallCard from "../../Components/Card/SmallCard";
+import PostCard from "../../Components/Card/PostCard";
 
 
 const Wrapper = styled.div`
@@ -39,11 +40,11 @@ const Welcome = () => {
         <Card/>
         <Card/>
         <SmallCard/>
-
         <LargeCard/>
         <LargeCard/>
         <LargeCard/>
         <LargeCard/>
+        <PostCard/>
       </CardBlock>
     
 
