@@ -6,7 +6,7 @@ import Main from "./pages/MainPage/Main";
 import Welcome from "./pages/Welcome/Welcome";
 import Search from "./pages/Search/Search"
 import GlobalStyle from "./Global";
-
+import Test from "./pages/Test/Test";
 function App() {
 
   return (
@@ -17,6 +17,7 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route path='/welcome' element={<Welcome/>} />
         <Route path="/search" element={<Search/>}/>
+        <Route path="/test" element={<Test/>}/>
         <Route path='*' element={<div>없는페이지임</div>} />
        </Route>
       </Routes>
