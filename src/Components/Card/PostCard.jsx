@@ -14,11 +14,7 @@ const CardEach = styled.div`
     display:flex;
     flex-direction:column;
     background-color: white;
-
-
-    //height: 470px;
     min-width: 400px;
-
     border-radius: 16px;
     border: 1px solid lightgray;
     cursor: pointer;
@@ -31,14 +27,11 @@ const Thumbnail = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    //background-image: url('/Cardrose.jpg');
     background-image: url(' ${(props) => props.image} ');
     background-size: cover;
     background-repeat: no-repeat;
     background-color: none;
     border-radius: 16px;
-    //margin-bottom: 15px;
-
     height: 230px;
     width: 95%;
     
@@ -52,7 +45,6 @@ const TextWrapper = styled.div`
     margin-left: 20px;
     margin-right: 15px;
     line-height: 18px;
-    
 `
 const TitleWrapper = styled.div`
     display: flex;
@@ -69,7 +61,6 @@ const TextBox = styled.div`
     justify-content: space-between;
     margin-left: 30px;
     margin-right: 7px;
-
 `
 const ThumbnailWrapper = styled.div`
     display: flex;
