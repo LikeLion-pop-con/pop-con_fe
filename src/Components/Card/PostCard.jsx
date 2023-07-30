@@ -52,6 +52,7 @@ const TextWrapper = styled.div`
     margin-left: 20px;
     margin-right: 15px;
     line-height: 18px;
+    
 `
 const TitleWrapper = styled.div`
     display: flex;
@@ -104,6 +105,7 @@ const PostCard = () => {
                 <TextWrapper>
                     <Typo weight='300'>크렘드마롱(Crème de Marrons)은 클레망포지에사의<br/>140년 전통 프랑스산 밤잼 브랜드 입니다.<br/>크렘드마롱은 프랑스 남부 리옹 지역에서 수확하는<br/>야생밤을 원료로 깊은 밤의 풍미를 선사합니다.</Typo>
                 </TextWrapper>
+                <Margin height='10'/>
                   
                 
                 

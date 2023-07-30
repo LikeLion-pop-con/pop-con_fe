@@ -15,12 +15,12 @@ const CardEach = styled.div`
     flex-direction:column;
     background-color: white;
 
-    height: 300px;
-    min-width: 400px;
+    min-width: 300px;
+    border: 0.5px solid lightgray;
 
     border-radius: 16px;
     cursor: pointer;
-    margin: 9px;
+    margin: 15px;
     box-shadow: 8px 8px 8px 5px rgba(67, 0, 209, 0.05);
     
 `
@@ -37,7 +37,7 @@ const Thumbnail = styled.div`
     border-radius: 16px;
     //margin-bottom: 15px;
 
-    height: 200px;
+    height: 300px;
     width: 100%;
     
 `
@@ -45,59 +45,59 @@ const Thumbnail = styled.div`
 const TextWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: center;
     margin-bottom: 5px;
     margin-left: 15px;
     margin-right: 15px;
-    line-height: 18px;
+    line-height: 25px;
 `
 const TitleWrapper = styled.div`
     display: flex;
     flex-direction:column;
     justify-content: center;
     align-items: center;
-    margin-top: 15px;
+    margin: 15px;
 `
 const TextBox = styled.div`
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+`
+const UnderWapper = styled.div`
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-left: 30px;
-    margin-right: 7px;
-
+    margin: 25px;
 `
 
 
 
-const Card = () => {
+const PopupCard = () => {
     const navigate = useNavigate();
     return (
             <CardEach onClick={() => navigate('/')}>
-                <Thumbnail image='NewJeans.jpg'/>
-                <TitleWrapper>
-                    <Typo fontType='title'>NEWJEANS의 Hype맑음</Typo>
-                </TitleWrapper>
+                <Thumbnail image='PopupCardimg1.png'/>
                 <TextBox>
+                    <TitleWrapper>
+                        <Typo >IAB studio 팝업이 요청되었습니다!</Typo>
+                    </TitleWrapper>
                     <TextWrapper>
-                        <Margin height='12'/>
-                        <Typo size='small'>팝업 스토어</Typo>
-                        <Typo size='small'>창작예술</Typo>
-                    </TextWrapper>
-                  
-                    <TextWrapper>
-                    <Margin height='6'/>
-                    <Typo size='small' > 하텍 해동 스룸G</Typo>
-                    <Typo size='small' > 인하대학교</Typo>
-                    <Typo size='small' color='darkgray'> 2023.07.21~ 2023.08.19</Typo>
+                        <Typo weight='300' size='0.9rem'>팝업 장소와 일정이 확정되면 알려드릴게요.<br/>  이 팝업 정보를 공유해보세요!  </Typo>
                     </TextWrapper>
                 </TextBox>
+                <UnderWapper>
+                    <Typo> dkssud</Typo>
+                    <Typo fontType='medium'> 확인</Typo>
+                    <Typo> dkssud</Typo>
+                </UnderWapper>
 
             </CardEach>
     );
 
 };
 
-export default Card;
+export default PopupCard;
 
   
 

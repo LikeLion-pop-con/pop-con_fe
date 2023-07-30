@@ -8,6 +8,7 @@ import Card from "../../Components/Card/Card";
 import LargeCard from "../../Components/Card/LargeCard";
 import SmallCard from "../../Components/Card/SmallCard";
 import PostCard from "../../Components/Card/PostCard";
+import PopupCard from "../../Components/Card/PopupCard";
 
 
 const Wrapper = styled.div`
@@ -45,6 +46,7 @@ const Welcome = () => {
         <LargeCard/>
         <LargeCard/>
         <PostCard/>
+        <PopupCard/>
       </CardBlock>
     
 
