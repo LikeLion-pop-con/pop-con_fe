@@ -4,12 +4,14 @@ import theme from "../../assets/theme";
 import { RiKakaoTalkFill } from 'react-icons/ri';
 import { AiOutlineTwitter } from 'react-icons/ai';
 import { AiOutlineInstagram } from 'react-icons/ai';
-
+import Horizon from "../Horizon/Horizon";
 const FooterWrapper = styled.div`
   background-color: ${theme.colors.lightgray};
   padding: 1rem;
 `;
-const LogoTitlebox = styled.div``;
+const LogoTitlebox = styled.div`
+  padding: 10px;
+`;
 const Secondbox = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -47,7 +49,7 @@ const Snsbox = styled.div`
 function Footer() {
   return (
     <FooterWrapper>
-      <Typo size="2rem" weight="600">POPCON</Typo>
+      <LogoTitlebox><Typo size="2rem" weight="600">POPCON</Typo></LogoTitlebox>
       <Typo size="1rem" weight="200">
       <Secondbox>
         <Label>팝업 시작</Label>
@@ -58,13 +60,15 @@ function Footer() {
         <Label>이용약관</Label>
         <Label>개인정보 처리방침</Label>
         <Label>커뮤니티 운영방침</Label>
+        <Horizon width="100%" color="lightgrey"/>
       </Secondbox>
       </Typo>
       <Typo size="1.2rem" weight="600">
       <Thirdbox>
         <Label>고객지원</Label>
         <Label>평일 10:00~17:00 (13:00~15:00 제외)</Label>
-        <AskButton>PopCon에 문의</AskButton>      
+        <AskButton>PopCon에 문의</AskButton>
+      <Horizon width="100%" color="lightgrey"/>      
       </Thirdbox>
       </Typo>
       <Fourthbox>

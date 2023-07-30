@@ -6,7 +6,9 @@ import Main from "./pages/MainPage/Main";
 import Welcome from "./pages/Welcome/Welcome";
 import Search from "./pages/Search/Search"
 import GlobalStyle from "./Global";
-
+import Test from "./pages/Test/Test";
+import Login from "./pages/Login/Login";
+import Resister from "./pages/Login/Resister";
 function App() {
 
   return (
@@ -17,6 +19,9 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route path='/welcome' element={<Welcome/>} />
         <Route path="/search" element={<Search/>}/>
+        <Route path="/test" element={<Test/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/resister" element={<Resister/>}/>
         <Route path='*' element={<div>없는페이지임</div>} />
        </Route>
       </Routes>
