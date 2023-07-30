@@ -8,6 +8,7 @@ import Footer from "../../Components/Footer/Footer";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import Horizon from "../../Components/Horizon/Horizon";
 import Margin from "../../Components/Margin/Margin";
+
 import Button from "../../Components/Button/Button";
 import Headerline from "../../Components/Headerline/Headerline";
 import SmallButton from "../../Components/Button/SmallButton";
@@ -15,6 +16,8 @@ import SliderX from "../../Components/WrapperX/SliderX";
 import CircleButton from "../../Components/Button/CircleButton";
 import Category from "../../Components/PopupCategory/PopupCategory";
 import PageTabs from "../../Components/PageTitle/PageTabs";
+=======
+import Logout from "../Login/Logout";
 
 const Wrapper = styled.div`
   width: 100%;
