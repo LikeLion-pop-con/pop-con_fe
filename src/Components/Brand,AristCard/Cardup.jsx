@@ -8,12 +8,12 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const Imgbox = styled.div`
-  min-width: 450px;
+  width: 450px;
   height: 202px;
   background-image: url(${(props) => props.backimageUrl});
   background-size: cover;
   @media (max-width: 768px) {
-    width: 100%;
+    width: 110%;
   }
 `;
 
