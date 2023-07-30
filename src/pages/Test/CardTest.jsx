@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import Header from "../../Components/Header/Header";
-import Margin from "../../Components/Margin/Margin";
-import NavigationBar from "../../Components/Navigate/Navigate";
 
 import Typo from "../../assets/Typo";
 import Card from "../../Components/Card/Card";
@@ -16,8 +13,8 @@ import PopupCard from "../../Components/Card/PopupCard";
 const Wrapper = styled.div`
   display: flex; 
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
   align-items: center;
   justify-items: center;
 `;
@@ -30,16 +27,14 @@ const CardBlock = styled.div`
     white-space: pre-line;// \n를 css에 적용시키려면 필요한 코드
 `   
 
-const Welcome = () => {
+
+
+const CardTest = () => {
   const navigate = useNavigate();
   return (
     <>
-    <Wrapper>
-       <Header left='logo' right={['login', 'search']} />
-       <Margin height="10"/>
-       <NavigationBar/>
+    
       <Typo size= "2rem" weight= "bold" > Hi my name is jo </Typo>
-      <Margin height="10"/>
       <Typo>글꼴이 어떻게 나올까</Typo>
       <Typo color= 'green'>모든 인류 구성원의</Typo>
       <CardBlock>
@@ -57,13 +52,13 @@ const Welcome = () => {
         
         <PopupCard image='PopupCardimg1.png' title='IAB studio 팝업 요청되었습니다!' main={'팝업 장소와 일정이 확정되면 알려드릴게요.\n이 팝업 정보를 공유해보세요!'}/>
 
+       
       </CardBlock>
-      </Wrapper>
     </>
   );
 };
 
-export default Welcome;
+export default CardTest;
 //크렘드마롱(Crème de Marrons)은 클레망포지에사의<br/>140년 전통 프랑스산 밤잼 브랜드 입니다.<br/>크렘드마롱은 프랑스 남부 리옹 지역에서 수확하는<br/>야생밤을 원료로 깊은 밤의 풍미를 선사합니다.</Typo>
 //<PopupCard/>
 //
