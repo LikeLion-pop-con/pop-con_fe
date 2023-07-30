@@ -16,7 +16,6 @@ const Imgbox = styled.div`
     width: 100%;
   }
 `;
-
 const Circle = styled.div`
   width: 90px;
   height: 90px;

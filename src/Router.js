@@ -11,8 +11,8 @@ function Router() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Main />}>
-            <Route path=""></Route>
-            <Route path="ing"></Route>
+            <Route path="" element={<Main />}></Route>
+            <Route path="ing" element={<Main />}></Route>
           </Route>
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/search" element={<Search />} />
