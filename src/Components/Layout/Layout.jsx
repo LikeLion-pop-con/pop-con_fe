@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
+import Footer from "../../Components/Footer/Footer";
 
 const Background = styled.div`
   width: 450px;
@@ -19,15 +20,16 @@ const Wrapper = styled.div`
   width: 100%;
 
   position: relative;
-`; 
+`;
 
 function Layout() {
   return (
     <>
       <Background>
         <Wrapper>
-         <Outlet />
-         </Wrapper>
+          <Outlet />
+          <Footer />
+        </Wrapper>
       </Background>
     </>
   );
