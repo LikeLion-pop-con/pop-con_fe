@@ -28,7 +28,7 @@ const Bodytext = styled.p`
 const ButtonWrapper = styled.div`
   position: absolute;
   top: -70%;
-  right: -5%;
+  right: 0%;
   display: flex;
   flex-direction: row;
 `;

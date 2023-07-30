@@ -13,7 +13,7 @@ const Imgbox = styled.div`
   background-image: url(${(props) => props.backimageUrl});
   background-size: cover;
   @media (max-width: 768px) {
-    width: 110%;
+    width: 100%;
   }
 `;
 
