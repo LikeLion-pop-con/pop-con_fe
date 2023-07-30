@@ -42,7 +42,6 @@ const GlobalStyle = createGlobalStyle`
     src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
     font-weight: 400;
   }
-<<<<<<< HEAD
 
 
 
@@ -52,13 +51,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-`;
-=======
+
+
   a{
     text-decoration: none;
     color: ${(props) => props.theme.colors.black}
   }
- `;
->>>>>>> d644d91b7601ee0cce884071dc2d1b88ef0d17da
+`;
 
 export default GlobalStyle;

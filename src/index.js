@@ -9,13 +9,8 @@ import { RecoilRoot } from "recoil";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider theme={theme}>
-<<<<<<< HEAD
-    <GlobalStyle/>
-     <App />
-=======
     <RecoilRoot>
       <App />
     </RecoilRoot>
->>>>>>> d644d91b7601ee0cce884071dc2d1b88ef0d17da
   </ThemeProvider>
 );

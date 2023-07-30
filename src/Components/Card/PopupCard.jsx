@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/Icons/Header/logo.svg'
+import logo from '../../assets/Icons/Header/logo.png'
 import Button from '../../assets/Icons/Card/Button.svg'
 import Typo from '../../assets/Typo';
 import Margin from '../Margin/Margin';
@@ -18,7 +18,7 @@ const CardEach = styled.div`
     flex-direction:column;
     background-color: white;
 
-    min-width: 300px;
+    width: 300px;
     border: 0.5px solid lightgray;
 
     border-radius: 16px;
@@ -92,7 +92,7 @@ const PopupCard = ({image, title, main }) => {
                     </TextWrapper>
                 </TextBox>
                 <UnderWapper>
-                    <Icon src={logo} alt='logo' onClick={() => navigate('/main')} />
+                    <Icon src={logo} width='10%' height='10%' alt='logo' onClick={() => navigate('/main')} />
                     <Typo fontType='medium'> 확인</Typo>
                     <Icon src={Button} alt='Button' onClick={() => navigate('/')} />
                 </UnderWapper>
