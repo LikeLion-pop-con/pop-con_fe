@@ -4,16 +4,20 @@ import Router from "./Router";
 import Layout from "./Components/Layout/Layout";
 import Main from "./pages/MainPage/Main";
 import Welcome from "./pages/Welcome/Welcome";
-
+import Search from "./pages/Search/Search"
+import GlobalStyle from "./Global";
+import Test from "./pages/Test/Test";
 function App() {
 
   return (
-    
     <BrowserRouter>
+      <GlobalStyle/>
       <Routes>
        <Route element={<Layout />}>
         <Route path='/' element={<Main />} />
-        <Route path='/Welcome' element={<Welcome/>} />
+        <Route path='/welcome' element={<Welcome/>} />
+        <Route path="/search" element={<Search/>}/>
+        <Route path="/test" element={<Test/>}/>
         <Route path='*' element={<div>없는페이지임</div>} />
        </Route>
       </Routes>

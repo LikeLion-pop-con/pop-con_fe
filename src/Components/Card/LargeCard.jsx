@@ -69,35 +69,33 @@ const TextBox = styled.div`
 
 
 
-const Card = () => {
+const LargeCard = ({image, title, popcategory, detail, space, date}) => {
     const navigate = useNavigate();
     return (
             <CardEach onClick={() => navigate('/')}>
-                <Thumbnail image='NewJeans.jpg'/>
+                <Thumbnail image={image}/>
                 <TitleWrapper>
-                    <Typo fontType='title'>NEWJEANS의 Hype맑음</Typo>
+                    <Typo fontType='title'>{title}</Typo>
                 </TitleWrapper>
                 <TextBox>
                     <TextWrapper>
                         <Margin height='12'/>
-                        <Typo size='small'>팝업 스토어</Typo>
-                        <Typo size='small'>창작예술</Typo>
+                        <Typo size='small'>{popcategory}</Typo>
+                        <Typo size='small'>{detail}</Typo>
                     </TextWrapper>
                   
                     <TextWrapper>
                     <Margin height='6'/>
-                    <Typo size='small' > 하텍 해동 스룸G</Typo>
-                    <Typo size='small' > 인하대학교</Typo>
-                    <Typo size='small' color='darkgray'> 2023.07.21~ 2023.08.19</Typo>
+                    <Typo size='small' >{space}</Typo>
+                    <Typo size='small' color='darkgray'> {date}</Typo>
                     </TextWrapper>
                 </TextBox>
-
             </CardEach>
     );
 
 };
 
-export default Card;
+export default LargeCard;
 
   
 

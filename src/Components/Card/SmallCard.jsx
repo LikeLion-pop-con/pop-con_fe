@@ -53,46 +53,20 @@ const TextWrapper = styled.div`
 
 
 
-const SmallCard = () => {
+const SmallCard = ({image, title, category, main}) => {
     const navigate = useNavigate();
     return (
             <CardBlock>
                 <CardEach onClick={() => navigate('/')}>
-                    <Thumbnail image='SmallCard 심금.jpg'/>
+                    <Thumbnail image={image}/>
                     <TextWrapper>
-                        <Typo size='1rem'>심금이가 좋다</Typo>
+                        <Typo size='1rem'>{title}</Typo>
                         <Margin height='8'/>
-                        <Typo size='0.7rem' color='darkgray'>캐릭터 전시 팝업</Typo>
+                        <Typo size='0.7rem' color='darkgray'>{category}</Typo>
                         <Margin height='6'/>
-                        <Typo size='0.7rem' color='darkgray'>체고다 멋지다</Typo>
-                        <Typo size='0.7rem' color='darkgray'>우리 심금이🫶🏻</Typo>
+                        <Typo size='0.7rem' color='darkgray'>{main}</Typo>
 
                     </TextWrapper>
-                </CardEach>
-                <CardEach onClick={() => navigate('/')}>
-                <Thumbnail image='SmallCardimg2.png'/>
-                <TextWrapper>
-                    <Typo size='1rem'>심금이가 좋다</Typo>
-                    <Margin height='8'/>
-                    <Typo size='0.7rem' color='darkgray'>캐릭터 전시 팝업</Typo>
-                    <Margin height='6'/>
-                    <Typo size='0.7rem' color='darkgray'>체고다 멋지다</Typo>
-                    <Typo size='0.7rem' color='darkgray'>우리 심금이🫶🏻</Typo>
-
-                </TextWrapper>
-                </CardEach>
-
-                
-                <CardEach onClick={() => navigate('/')}>
-                <Thumbnail image='SmallCardimg3.png'/>
-                <TextWrapper>
-                    <Typo size='1rem'> 주용이의 생일파티</Typo>
-                    <Margin height='8'/>
-                    <Typo size='0.7rem' color='darkgray'>예술 전시</Typo>
-                    <Margin height='6'/>
-                    <Typo size='0.7rem' color='darkgray'>나 이제 23짤</Typo>
-
-                </TextWrapper>
                 </CardEach>
             </CardBlock>
     );

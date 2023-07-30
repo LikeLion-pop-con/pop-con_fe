@@ -24,13 +24,16 @@ const CardEach = styled.div`
     box-shadow: 8px 8px 8px 5px rgba(67, 0, 209, 0.05);
     
 `
+//url(${(props) => props.backimageUrl});
+//  background-size: cover;
+
 const Thumbnail = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     //background-image: url('/Cardrose.jpg');
-    background-image: url(' ${(props) => props.image} ');
+    background-image: url(${(props) => props.image});
     background-size: cover;
     background-repeat: no-repeat;
     background-color: none;
@@ -54,21 +57,20 @@ const TextWrapper = styled.div`
 
 
 
-const Card = () => {
+const Card = ({image, title, category, main}) => {// image, title, category, main을 props로 받습니다.
     const navigate = useNavigate();
     return (
             <CardEach onClick={() => navigate('/')}>
-                <Thumbnail image='Cardrose.jpg'/>
+                <Thumbnail image={image}/>
                 <TextWrapper>
-                    <Typo fontType='title'>Rose</Typo>
+                    <Typo fontType='title'>{title}</Typo>
                     <Margin height='4'/>
-                    <Typo size='small' color='darkgray'>뮤직 아티스트</Typo>
+                    <Typo size='small' color='darkgray'> {category} </Typo>
                     <Margin height='6'/>
-                    <Typo size='small' color='darkgray'>그녀만의 색깔을 <br/> 담고 있는 목소리</Typo>
+                    <Typo size='small' color='darkgray'> {main} </Typo>
                 </TextWrapper>
             </CardEach>
     );
-
 };
 
 export default Card;

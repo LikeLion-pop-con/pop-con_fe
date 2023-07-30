@@ -85,25 +85,25 @@ const Horizon = styled.div`
 `;
 
 
-const PostCard = () => {
+const PostCard = ({image, type, title, color, main}) => {
     const navigate = useNavigate();
     return (
             <CardEach onClick={() => navigate('/')}>
                 <ThumbnailWrapper>
-                 <Thumbnail image='PostCardimg1.png'/>
+                 <Thumbnail image={image}/>
                 </ThumbnailWrapper>
                 <Margin height='15'/>
                 <TextWrapper>
-                    <Typo weight='350' size='0.9rem' color='green'>추천 포스트</Typo>
+                    <Typo weight='350' size='0.9rem' color='green'>{type}</Typo>
                 </TextWrapper>
                 <TitleWrapper>
-                    <Typo size= '1.3rem' weight='350'>프랑스 밤잼 크렘드 마롱 <br/> 팝업 스토어 현장</Typo>
+                    <Typo size= '1.3rem' weight='350'>{title}</Typo>
                 </TitleWrapper>
                 <Margin height= '8'/>
-                <Horizon/>
+                <Horizon color={color}/>
                 <Margin height='16'/>
                 <TextWrapper>
-                    <Typo weight='300'>크렘드마롱(Crème de Marrons)은 클레망포지에사의<br/>140년 전통 프랑스산 밤잼 브랜드 입니다.<br/>크렘드마롱은 프랑스 남부 리옹 지역에서 수확하는<br/>야생밤을 원료로 깊은 밤의 풍미를 선사합니다.</Typo>
+                    <Typo weight='300'>{main}</Typo>
                 </TextWrapper>
                 <Margin height='10'/>
                   
@@ -116,19 +116,3 @@ const PostCard = () => {
 };
 
 export default PostCard;
-
-  
-
-
-const tCard = styled.div`
-  height: 270px;
-  min-width: 400px;
-  border-radius: 7px;
-  background-color: ${(props) => props.color && props.theme.colors[props.color]};
-  border: none;
-  color: ${(props) => props.color && props.theme.colors.white};
-  cursor: pointer;
-  ${(props) => props.theme.font[props.fontType]};
-`;
-
-

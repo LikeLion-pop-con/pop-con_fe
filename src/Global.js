@@ -4,6 +4,13 @@ import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  * {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+  }
+
   html, body, #root {
       width: 100%;
       min-height: 100vh;
@@ -11,6 +18,8 @@ const GlobalStyle = createGlobalStyle`
       justify-content: center;
       display: flex;
       font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
   }
 
   @font-face {

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/Icons/Header/logo.svg'
+import Button from '../../assets/Icons/Card/Button.svg'
 import Typo from '../../assets/Typo';
 import Margin from '../Margin/Margin';
 
@@ -9,6 +11,7 @@ const CardBlock = styled.div`
     flex-wrap: wrap;
     justify-content: center;
 `   // page에서 사용
+
 
 const CardEach = styled.div`
     display:flex;
@@ -53,7 +56,7 @@ const TextWrapper = styled.div`
 `
 const TitleWrapper = styled.div`
     display: flex;
-    flex-direction:column;
+    flex-direction:row;
     justify-content: center;
     align-items: center;
     margin: 15px;
@@ -68,10 +71,12 @@ const UnderWapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 25px;
+    align-items: center;
+    margin: 10px;
 `
-
-
+const Icon = styled.img`
+  cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 
+`;
 
 const PopupCard = () => {
     const navigate = useNavigate();
@@ -80,16 +85,16 @@ const PopupCard = () => {
                 <Thumbnail image='PopupCardimg1.png'/>
                 <TextBox>
                     <TitleWrapper>
-                        <Typo >IAB studio 팝업이 요청되었습니다!</Typo>
+                        <Typo >IAB studio 팝업 요청되었습니다!</Typo>
                     </TitleWrapper>
                     <TextWrapper>
                         <Typo weight='300' size='0.9rem'>팝업 장소와 일정이 확정되면 알려드릴게요.<br/>  이 팝업 정보를 공유해보세요!  </Typo>
                     </TextWrapper>
                 </TextBox>
                 <UnderWapper>
-                    <Typo> dkssud</Typo>
+                    <Icon src={logo} alt='logo' onClick={() => navigate('/main')} />
                     <Typo fontType='medium'> 확인</Typo>
-                    <Typo> dkssud</Typo>
+                    <Icon src={Button} alt='Button' onClick={() => navigate('/')} />
                 </UnderWapper>
 
             </CardEach>
@@ -98,19 +103,3 @@ const PopupCard = () => {
 };
 
 export default PopupCard;
-
-  
-
-
-const SmallCard = styled.div`
-  height: 270px;
-  min-width: 400px;
-  border-radius: 7px;
-  background-color: ${(props) => props.color && props.theme.colors[props.color]};
-  border: none;
-  color: ${(props) => props.color && props.theme.colors.white};
-  cursor: pointer;
-  ${(props) => props.theme.font[props.fontType]};
-`;
-
-
