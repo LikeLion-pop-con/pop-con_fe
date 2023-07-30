@@ -1,4 +1,4 @@
-import logo from '../../assets/Icons/Header/logo.svg'
+import logo from '../../assets/Icons/Header/logo.png'
 import login from '../../assets/Icons/Header/login.svg'
 import search from '../../assets/Icons/Header/search.svg'
 import { styled } from 'styled-components';
@@ -10,25 +10,26 @@ const Icon = styled.img`
 
 const iconType = (navigate, type) => {
   const icon = {
-    logo: <Icon src={logo} alt='logo' onClick={() => navigate('/')} />,
+    logo: <Icon src={logo} alt='logo' width='23%' onClick={() => navigate('/')} />,
     login: <Icon src={login} alt='login' onClick={() => navigate('/login')} />,
     search: <Icon src={search} alt='search' onClick={() => navigate('/search')} />,
   };
 
-  return icon[type];
+  return icon[type]; //return icon[type]: type에 따라 적절한 아이콘을 반환
 };
 
 const HeaderWrapper = styled.div`
   margin-top: 10px;
-  width: 100%;
+  width: 95%;
   height: 40px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 `;
 
 const IconsContainer = styled.div`
-  width: 75%;
+  width: 70%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
