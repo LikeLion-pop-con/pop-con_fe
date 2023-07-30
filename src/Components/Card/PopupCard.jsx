@@ -78,17 +78,17 @@ const Icon = styled.img`
   cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 
 `;
 
-const PopupCard = () => {
+const PopupCard = ({image, title, main }) => {
     const navigate = useNavigate();
     return (
             <CardEach onClick={() => navigate('/')}>
-                <Thumbnail image='PopupCardimg1.png'/>
+                <Thumbnail image={image}/>
                 <TextBox>
                     <TitleWrapper>
-                        <Typo >IAB studio 팝업 요청되었습니다!</Typo>
+                        <Typo >{title}</Typo>
                     </TitleWrapper>
                     <TextWrapper>
-                        <Typo weight='300' size='0.9rem'>팝업 장소와 일정이 확정되면 알려드릴게요.<br/>  이 팝업 정보를 공유해보세요!  </Typo>
+                        <Typo weight='300' size='0.9rem'>{main}</Typo>
                     </TextWrapper>
                 </TextBox>
                 <UnderWapper>

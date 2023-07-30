@@ -76,17 +76,3 @@ const Card = ({image, title, category, main}) => {// image, title, category, mai
 export default Card;
 
   
-
-
-const SmallCard = styled.div`
-  height: 270px;
-  min-width: 200px;
-  border-radius: 7px;
-  background-color: ${(props) => props.color && props.theme.colors[props.color]};
-  border: none;
-  color: ${(props) => props.color && props.theme.colors.white};
-  cursor: pointer;
-  ${(props) => props.theme.font[props.fontType]};
-`;
-
-

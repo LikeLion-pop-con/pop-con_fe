@@ -7,7 +7,6 @@ const Background = styled.div`
 
   display: flex;
   justify-content: center;
-
   @media (max-width: 768px) {
     width: 100%;
   }
