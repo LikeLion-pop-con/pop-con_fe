@@ -10,8 +10,11 @@
     "framer-motion": "^10.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
+=======
     "react-hook-form": "^7.45.2",
     "react-icon": "^1.0.0",
+>>>>>>> d644d91b7601ee0cce884071dc2d1b88ef0d17da
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",

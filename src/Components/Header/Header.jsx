@@ -3,6 +3,7 @@ import login from '../../assets/Icons/Header/login.svg'
 import search from '../../assets/Icons/Header/search.svg'
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 const Icon = styled.img`
   cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 

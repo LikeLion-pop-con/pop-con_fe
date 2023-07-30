@@ -20,7 +20,7 @@ const font = {
       font-weight: 700;
     `,
   large: `
-      font-size: 22px;
+      font-size:  22px;
       font-weight: 600;
       line-height: 26px;
     `,
