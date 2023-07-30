@@ -12,8 +12,8 @@ const SearchBar = () => {
   const clearSearch = () => {
     setSearchText('');
   };
-  
-  const hasText = searchText.trim().length > 0;
+
+  const hasText = searchText.trim().length > 0; //trim()는 문자열의 앞과 뒤의 공백을 제거 
 
   const searchBarStyle = {
     backgroundColor: '#E9E9E9',
@@ -22,7 +22,6 @@ const SearchBar = () => {
     height: '34px',
     display: 'flex',
     alignItems: 'center',
-    position: 'relative',
     margin: '7px'
   };
 
@@ -32,25 +31,25 @@ const SearchBar = () => {
     border: 'none',
     outline: 'none',
     backgroundColor: 'transparent',
-    padding: '5px 10px',
+    padding: '5px 10px', //상하, 좌우 여백 
     fontSize: '14px',
   };
 
   const iconStyle = {
     position: 'absolute',
     top: '50%',
-    transform: 'translateY(-50%)',
-    cursor: 'pointer',
+    transform: 'translateY(-50%)', //요소를 수직 방향으로 이동, -50% (자기 자신 높이의 50% 위로 이동)
+    cursor: 'pointer', //마우스 커서를 올려놓을 때 손바닥 모양으로 변경 
   };
 
   const searchIconStyle = {
-    ...iconStyle,
+    ...iconStyle, // icon 스타일 속성 상속 
     right: '10px',
     top: '20px'
   };
 
   const cancelIconStyle = {
-    ...iconStyle,
+    ...iconStyle, // icon 스타일 속성 상속 
     right: '38px',
     top: '18px'
   };

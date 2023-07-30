@@ -15,7 +15,7 @@ const iconType = (navigate, type) => {
     search: <Icon src={search} alt='search' onClick={() => navigate('/search')} />,
   };
 
-  return icon[type];
+  return icon[type]; //return icon[type]: type에 따라 적절한 아이콘을 반환
 };
 
 const HeaderWrapper = styled.div`
