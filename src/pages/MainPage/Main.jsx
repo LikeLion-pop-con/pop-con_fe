@@ -8,6 +8,7 @@ import Footer from "../../Components/Footer/Footer";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import Horizon from "../../Components/Horizon/Horizon";
 import Margin from "../../Components/Margin/Margin";
+import Logout from "../Login/Logout";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -26,6 +27,7 @@ const Main = () => {
   return (
     <>
     <Wrapper>
+      <Logout></Logout>
       <PageTitle
         topTitle="팝업 스토어"
         inProgressLabel="진행 중인 팝업"
