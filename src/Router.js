@@ -4,6 +4,7 @@ import Main from "./pages/MainPage/Main";
 import Welcome from "./pages/Welcome/Welcome";
 import Search from "./pages/Search/Search";
 import Test from "./pages/Test/Test";
+import CardTest from "./pages/Test/CardTest";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
             <Route path=""></Route>
             <Route path="ing"></Route>
           </Route>
+          <Route path="/CardTest" element={<CardTest/>} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/search" element={<Search />} />
           <Route path="/test" element={<Test />} />

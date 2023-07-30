@@ -16,7 +16,6 @@ import SliderX from "../../Components/WrapperX/SliderX";
 import CircleButton from "../../Components/Button/CircleButton";
 import Category from "../../Components/PopupCategory/PopupCategory";
 import PageTabs from "../../Components/PageTitle/PageTabs";
-=======
 import Logout from "../Login/Logout";
 
 const Wrapper = styled.div`
