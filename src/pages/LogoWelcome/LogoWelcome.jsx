@@ -25,6 +25,7 @@ export default function LogoWelcome() {
     };
   }, []);
 
+  
   return (
     <Back>
       <img src={"logo.png"} height='100' />
