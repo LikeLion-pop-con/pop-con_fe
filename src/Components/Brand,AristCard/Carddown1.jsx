@@ -37,7 +37,7 @@ const Button1 = styled.button`
     width: auto;
     height: 45px;
     border: 1px solid lightgray;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 15px ;
     background-color: transparent;
     display: flex;
@@ -81,7 +81,8 @@ const Carddown1 = ({ subcribeNum, popNum, introduceText }) => {
           </PopText>
         </FirstBox>
         <IntroduceText><Typo size="1rem" weight="200">{introduceText}</Typo></IntroduceText>
-        <SecondBox><Button1>+ 구독</Button1>
+        <SecondBox>
+          <Button1>+ 구독</Button1>
                     <Button2><BsFillShareFill/></Button2></SecondBox>
       </Wrapper>
     </>

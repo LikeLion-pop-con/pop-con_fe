@@ -50,12 +50,14 @@ const TextWrapper = styled.div`
   line-height: 18px;
 `;
 const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-`;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+
+`
 const TextBox = styled.div`
   display: flex;
   flex-direction: row;
