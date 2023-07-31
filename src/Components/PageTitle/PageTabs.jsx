@@ -8,6 +8,11 @@ import { useEffect, useState } from "react";
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
+`;
+const TabsContainer = styled.div`
+  width: 100%;
+  display: flex;
   justify-content: flex-start;
 `;
 const Tabs = styled.div`
@@ -16,59 +21,88 @@ const Tabs = styled.div`
   margin: 20px 20px;
 `;
 const Tab = styled.div`
+  width: 7rem;
   height: 20px;
-  margin: 0px 10px;
   position: relative;
   a {
-    font-size: 14px;
+    font-size: 16px;
     display: block;
     width: 100%;
     color: ${(props) =>
       props.match ? props.theme.colors.main : props.theme.colors.black};
+    opacity: ${(props) => (props.match ? 1 : 0.5)};
   }
 `;
 const StatusBar = styled(motion.div)`
   position: absolute;
   background-color: ${(props) => props.theme.colors.main};
-  width: 100%;
+  width: 90%;
   height: 2px;
-  bottom: 0;
+  bottom: -3px;
 `;
 
-function PageTabs({ page1, page2, page3, page1link, page2link, page3link }) {
-  const allowdMatch = useMatch("/");
-  const ingMatch = useMatch("/ing");
-  const otherMatch = useMatch(`/${page3link}`);
+function PageTabs({
+  page1,
+  page2,
+  page3,
+  page1link,
+  page2link,
+  page3link,
+  cateId,
+}) {
+  const allowdMatch = useMatch(`/${cateId}${page1link}`);
+  const ingMatch = useMatch(`/${cateId}${page2link}`);
+  const otherMatch = useMatch(`/${cateId}${page3link}`);
 
   const [page, setPages] = useState([]);
 
   useEffect(() => {
-    setPages([page1, page2 || null, page3 || null]);
+    if (page1) {
+      setPages((obj) => {
+        return [...obj, page1];
+      });
+    }
+    if (page2) {
+      setPages((obj) => {
+        return [...obj, page2];
+      });
+    }
+    if (page3) {
+      setPages((obj) => {
+        return [...obj, page3];
+      });
+    }
   }, [page1, page2, page3]);
 
   return (
     <Wrapper>
-      <Tabs tabs={page.length}>
-        {page1 && (
-          <Tab match={allowdMatch?.pathname === `/${page1link}`}>
-            <Link to={`/${page1link}`}>{page1}</Link>
-            {allowdMatch && <StatusBar layoutId="bar" />}
-          </Tab>
-        )}
-        {page2 && (
-          <Tab match={ingMatch?.pathname === `/${page2link}`}>
-            <Link to={`/${page2link}`}>{page2}</Link>
-            {ingMatch && <StatusBar layoutId="bar" />}
-          </Tab>
-        )}
-        {page3 && (
-          <Tab match={otherMatch?.pathname === `/${page3link}`}>
-            <Link to={`/${page3link}`}>{page3}</Link>
-            {otherMatch && <StatusBar layoutId="bar" />}
-          </Tab>
-        )}
-      </Tabs>
-      <Outlet />
+      <TabsContainer>
+        <Tabs tabs={page.length}>
+          {page1 && (
+            <Tab match={allowdMatch !== null}>
+              <Link to={`/${cateId}${page1link}`}>{page1}</Link>
+              {allowdMatch && <StatusBar layoutId="bar" />}
+            </Tab>
+          )}
+          {page2 && (
+            <Tab match={ingMatch !== null}>
+              <Link to={`/${cateId}${page2link}`}>{page2}</Link>
+              {ingMatch && <StatusBar layoutId="bar" />}
+            </Tab>
+          )}
+          {page3 && (
+            <Tab match={otherMatch !== null}>
+              <Link to={`/${cateId}${page3link}`}>{page3}</Link>
+              {otherMatch && <StatusBar layoutId="bar" />}
+            </Tab>
+          )}
+        </Tabs>
+      </TabsContainer>
+      <Outlet
+        context={{
+          cateId,
+        }}
+      />
     </Wrapper>
   );
 }

@@ -16,7 +16,7 @@ const CardEach = styled.div`
   background-color: white;
 
   //height: 470px;
-  min-width: 400px;
+  width: 95%;
 
   border-radius: 16px;
   border: 1px solid lightgray;
@@ -74,7 +74,7 @@ const ThumbnailWrapper = styled.div`
 `;
 const Horizon = styled.div`
   margin-left: 20px;
-  width: 15%;
+  width: 15%;0
   height: 2px;
   background-color: green;
 `;

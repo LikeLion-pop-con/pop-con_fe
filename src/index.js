@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "./assets/theme";
 import { RecoilRoot } from "recoil";
 import GlobalStyle from "./Global";
+import ShowCate from "./pages/CategoryPage/ShowCate";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

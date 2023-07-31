@@ -5,6 +5,10 @@ import Welcome from "./pages/Welcome/Welcome";
 import Search from "./pages/Search/Search";
 import Test from "./pages/Test/Test";
 import CardTest from "./pages/Test/CardTest";
+import Cate from "./pages/ShowPopupCardPage/Cate";
+import Ing from "./pages/ShowPopupCardPage/Ing";
+import Requesting from "./pages/ShowPopupCardPage/Requesting";
+import ShowCate from "./pages/CategoryPage/ShowCate";
 
 function Router() {
   return (
@@ -12,14 +16,21 @@ function Router() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Main />}>
-            <Route path="" element={<Main />}></Route>
-            <Route path="ing" element={<Main />}></Route>
+            <Route path="art" element={<Main />}></Route>
+            <Route path="lit" element={<Main />}></Route>
+            <Route path="video" element={<Main />}></Route>
+            <Route path="music" element={<Main />}></Route>
           </Route>
-          <Route path="/CardTest" element={<CardTest/>} />
+          <Route path="/category" element={<ShowCate />}></Route>
+          <Route path="/CardTest" element={<CardTest />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/search" element={<Search />} />
           <Route path="/test" element={<Test />} />
           <Route path="*" element={<div>없는페이지임</div>} />
+          <Route path="/:cateId" element={<Cate />}>
+            <Route path="" element={<Ing />}></Route>
+            <Route path="ing" element={<Requesting />}></Route>
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
