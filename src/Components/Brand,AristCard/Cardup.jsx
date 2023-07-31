@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const Imgbox = styled.div`
-  width: 450px;
+  min-width: 450px;
   height: 202px;
   background-image: url(${(props) => props.backimageUrl});
   background-size: cover;
@@ -16,7 +16,6 @@ const Imgbox = styled.div`
     width: 100%;
   }
 `;
-
 const Circle = styled.div`
   width: 90px;
   height: 90px;

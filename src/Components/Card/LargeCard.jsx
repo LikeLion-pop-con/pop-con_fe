@@ -57,6 +57,8 @@ const TitleWrapper = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 15px;
+    margin-bottom: 5px;
+
 `
 const TextBox = styled.div`
     display: flex;

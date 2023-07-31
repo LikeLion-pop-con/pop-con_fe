@@ -1,46 +1,117 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import Typo from '../../assets/Typo';
+import { BiArrowBack } from 'react-icons/bi';
+import styled from 'styled-components';
+
+const Top = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 3%;
+`;
 
 const LoginBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
   flex-direction: column;
+  gap: 2%;
+  padding-bottom: 30px;
 `;
+
 const Title = styled.div`
   font-size: 29px;
+  padding: 40px;
 `;
+
 const ResisterBox = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  margin: 5%;
+  select:nth-child(2) {
+    margin-left: 30px;
+  }
+  select:nth-child(3) {
+    margin-left: 10px;
+  }
 `;
+
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10px;
-  text-align: left; /* Align text to the left */
+  text-align: left; 
+  label {
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
 `;
+
 const Input = styled.input`
-    width: 326px;
-    height: 49px;
-    border-radius: 8px;
-    border: 2px solid rgba(0, 0, 0, 0.1);
+  padding-left: 10px;
+  width: 326px;
+  height: 49px;
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: #555;
+  }
+
+  &:focus {
+    border-color: #ec7538;
+    box-shadow: 0 0 0 2px rgba(236, 117, 56, 0.2);
+  }
 `;
-    
+
+const BackText = styled.p`
+  margin: 5px;
+`;
+
 const LoginButton = styled.button`
-width:326px;
-height:48px;
-background-color: #EC7538;
-border: none;
-border-radius: 8px;
+  width: 326px;
+  height: 48px;
+  background-color: #ec7538;
+  border: none;
+  border-radius: 8px;
 `;
-    
+
+const StyledSelect = styled.select`
+  padding-left: 10px;
+  width: 326px;
+  height: 49px;
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: #555;
+  }
+
+  &:focus {
+    border-color: #ec7538;
+    box-shadow: 0 0 0 2px rgba(236, 117, 56, 0.2);
+  }
+
+  appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+`;
+
 const Resister = () => {
   const navigate = useNavigate();
   const {
@@ -56,7 +127,6 @@ const Resister = () => {
   password.current = watch("password", "");
   const [isEmailError, setIsEmailError] = useState(false);
 
-  
   const onRegisterFormSubmit = (data) => {
     const genderValue = data.gender === "Male" ? "1" : "2";
     const userTypeValue = data.userType === "Personal" ? "1" : "2";
@@ -71,7 +141,7 @@ const Resister = () => {
     };
     console.log(requestData);
     axios
-          .post("http://43.200.175.239:8000/signup/", requestData)
+          .post("https://heartgold.store/signup/", requestData)
           .then((response) => {
             console.log(response); // 응답 데이터를 콘솔에 출력
             if (parseInt(response.status / 100) === 2) {
@@ -85,9 +155,10 @@ const Resister = () => {
             console.log(err); // 오류 정보를 콘솔에 출력
             alert("이메일이 중복되었습니다. 다시 시도해주세요.");
           });
-      };
+  };
+
   const provinces = [
-    "시/도 선택",
+    "도/광역시 선택",
     "서울특별시",
     "인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도",
   ];
@@ -128,74 +199,80 @@ const Resister = () => {
     return "비밀번호가 일치하지 않습니다.";
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <form onSubmit={handleSubmit(onRegisterFormSubmit)}>
+      <Top onClick={handleGoBack}>
+        <BiArrowBack size={30}/>
+        <BackText><Typo size="1.2rem" weight="400">뒤로</Typo></BackText>
+      </Top>
       <LoginBox>
-      <Title>이메일로 시작하기</Title>
+        <Title>이메일로 시작하기</Title>
         <InputContainer>
+          <label>이메일 (아이디)</label>
+          <Input
+            type="email"
+            {...register("email", {
+              required: "필수 항목입니다.",
+              pattern: {
+                value: emailRegex,
+                message: "이메일 형식에 맞게 입력해주세요.",
+              },
+            })}
+          />
+          {errors.email && <span>{errors.email.message}</span>}
+
           <label>이름</label>
           <Input type="name" {...register("name", { required: true })} />
           {errors.name && <span>필수 항목입니다.</span>}
-        
-        <label>이메일 (아이디)</label>
-        <Input
-          type="email"
-          {...register("email", {
-            required: "필수 항목입니다.",
-            pattern: {
-              value: emailRegex,
-              message: "이메일 형식에 맞게 입력해주세요.",
-            },
-          })}
-        />
-        {errors.email && <span>{errors.email.message}</span>}
-
-        <label>비밀번호</label>
-        <Input type="password" {...register("password", { required: true })} />
-        {errors.password && <span>필수 항목입니다.</span>}
-        
-        <label>비밀번호 확인</label>
-        <Input
-          type="password"
-          {...register("passwordConfirm", {
-            required: true,
-            validate: validatePasswordConfirmation,
-          })}
-        />
-        {errors.passwordConfirm && (
-          <span>{errors.passwordConfirm.message}</span>
-        )}
-
-        {!errors.passwordConfirm &&
-          !validatePasswordConfirmation(watch("passwordConfirm")) && (
-            <span>비밀번호가 일치하지 않습니다.</span>
+          
+          <label>핸드폰 번호</label>
+          <Input type="tel" {...register("phoneNumber", { required: true })} />
+          {errors.phoneNumber && <span>필수 항목입니다.</span>}
+          
+          <label>비밀번호</label>
+          <Input type="password" {...register("password", { required: true })} />
+          {errors.password && <span>필수 항목입니다.</span>}
+          
+          <label>비밀번호 확인</label>
+          <Input
+            type="password"
+            {...register("passwordConfirm", {
+              required: true,
+              validate: validatePasswordConfirmation,
+            })}
+          />
+          {errors.passwordConfirm && (
+            <span>{errors.passwordConfirm.message}</span>
           )}
 
-        <label>생일</label>
-        <Input type="date" {...register("birthdate", { required: true })} />
-        {errors.birthdate && <span>필수 항목입니다.</span>}
-
-        <label>핸드폰 번호</label>
-        <Input type="tel" {...register("phoneNumber", { required: true })} />
-        {errors.phoneNumber && <span>필수 항목입니다.</span>}
-        
-        <label>성별</label>
-        <select {...register("gender", { required: true })}>
-          <option value="">-- 성별을 선택해주세요. --</option>
-          <option value="Male">남</option>
-          <option value="Female">여</option>
-        </select>
-        {errors.gender && <span>필수 항목입니다.</span>}
-        <label>사용자 종류</label>
-        <select {...register("userType", { required: true })}>
-          <option value="">-- 종류를 선택해주세요. --</option>
-          <option value="Personal">개인</option>
-          <option value="Business">기업</option>
-        </select>
-        {errors.userType && <span>필수 항목입니다.</span>}
+          {!errors.passwordConfirm &&
+            !validatePasswordConfirmation(watch("passwordConfirm")) && (
+              <span>비밀번호가 일치하지 않습니다.</span>
+            )}
+          
+          <label>성별</label>
+          <StyledSelect {...register("gender", { required: true })}>
+            <option value="">-- 성별을 선택해주세요. --</option>
+            <option value="Male">남</option>
+            <option value="Female">여</option>
+          </StyledSelect>
+          {errors.gender && <span>필수 항목입니다.</span>}
+          
+          <label>사용자 종류</label>
+          <StyledSelect {...register("userType", { required: true })}>
+            <option value="">-- 종류를 선택해주세요. --</option>
+            <option value="Personal">개인</option>
+            <option value="Business">기업</option>
+          </StyledSelect>
+          {errors.userType && <span>필수 항목입니다.</span>}
         </InputContainer>
+
         <ResisterBox>
-          <label>도/광역시</label>
+          <label>주소</label>
           <select value={selectedProvince} onChange={handleProvinceChange}>
             {provinces.map((province) => (
               <option key={province} value={province}>
@@ -205,7 +282,6 @@ const Resister = () => {
           </select>
           {errors.residentialArea && <span>필수 항목입니다.</span>}
 
-          <label>시/군 선택</label>
           <select value={selectedCity} onChange={handleCityChange}>
             {citiesByProvince[selectedProvince]?.map((city) => (
               <option key={city} value={city}>
@@ -215,6 +291,7 @@ const Resister = () => {
           </select>
           {errors.residentialArea && <span>필수 항목입니다.</span>}
         </ResisterBox>
+
         <LoginButton type="submit">시작하기</LoginButton>
       </LoginBox>
     </form>

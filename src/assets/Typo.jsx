@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const StyledTypo = styled.p`
+  font-family: "Noto Sans KR", sans-serif;
   width: ${(props) => props.width}px;
   font-size: ${(props) => props.size || "1rem"};
   font-weight: ${(props) => props.weight || "400"};
   color: ${(props) =>
     props.color ? props.theme.colors[props.color] : props.theme.colors.black};
-
-  ${(props) => props.fontType && props.theme.font[props.fontType]}
-  opacity: ${(props) => props.opacity || "1"}
+  line-height: ${(props) => props.lineheight || 1};
+  ${(props) => props.fontType && props.theme.font[props.fontType]};
 `;
 const Typo = (props) => <StyledTypo {...props}>{props.children}</StyledTypo>;
 

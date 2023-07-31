@@ -30,11 +30,11 @@ const font = {
     `,
   mediumSmall: `
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 400;
     `,
   small: `
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 400;
     `,
 };
 
