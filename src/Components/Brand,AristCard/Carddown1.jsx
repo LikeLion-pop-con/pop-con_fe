@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import Typo from "../../assets/Typo";
 import { TbPointFilled } from "react-icons/tb";
 import { BsFillShareFill } from "react-icons/bs";
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;

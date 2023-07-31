@@ -13,3 +13,8 @@ export const adImgs = atom({
     "img/Artistimg/iablogo.png",
   ],
 });
+
+export const isCateClicked = atom({
+  key: "isCateClicked",
+  default: false,
+});
