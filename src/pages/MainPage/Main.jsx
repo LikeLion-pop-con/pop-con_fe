@@ -13,6 +13,7 @@ import PostCard from "../../Components/Card/PostCard";
 import ArtistCategory from "../../Components/ArtistCategory/ArtistCategory";
 import NavigationBar from "../../Components/Navigate/Navigate";
 import Footer from "../../Components/Footer/Footer";
+import { MdArrowForwardIos } from "react-icons/md";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -78,7 +79,7 @@ function Main() {
         <PopupTitle text="팝업 카테고리" bottomgap="20" />
         <Category listid="main" />
         <Margin height="30" />
-        <PopupTitle text="여기에 열어주세요" bottomgap="15" />
+        <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" />
         <SliderXwrapper>
           <SliderXItems>
             <SmallCard
@@ -102,7 +103,11 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="30" />
-        <PopupTitle text="예매 가능한 인기 팝업" bottomgap="15" />
+        <PopupTitle
+          isarrow={true}
+          text="예매 가능한 인기 팝업"
+          bottomgap="15"
+        />
         <SliderXwrapper>
           <SliderXItems>
             <SmallCard
@@ -126,7 +131,7 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="50" />
-        <PopupTitle text="팝업 포스트" bottomgap="10" />
+        <PopupTitle isarrow={true} text="팝업 포스트" bottomgap="10" />
         <PostCard
           image={"img/Artistimg/iab_box.jpg"}
           title="슬릭의 Super Shy 팝업공연 현장!!"
@@ -134,7 +139,12 @@ function Main() {
           main="요즘 가장 핫한 뉴진스의 Super shy을 슬릭님만의 스타일로 리믹스한 음원을 팝업스테이지에서 최초 공개하였습니다."
         />
         <Margin height="60" />
-        <PopupTitle text="새로운 팝업 브랜드를 만나보세요!" bottomgap="30" />
+        <PopupTitle
+          onClick={() => navigate("/newbrand")}
+          isarrow={true}
+          text="새로운 팝업 브랜드를 만나보세요!"
+          bottomgap="30"
+        />
         <SliderXwrapper>
           <SliderXItems>
             <SmallCard
@@ -158,7 +168,7 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="35" />
-        <PopupTitle text="독립 아티스트" bottomgap="20" />
+        <PopupTitle isarrow={true} text="독립 아티스트" bottomgap="20" />
         <ArtistCategory />
         <SliderXwrapper>
           <SliderXItems>

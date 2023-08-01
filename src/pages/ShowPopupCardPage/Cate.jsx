@@ -7,6 +7,7 @@ import Header from "../../Components/Header/Header";
 import PageTabs from "../../Components/PageTitle/PageTabs";
 import { useRecoilValue } from "recoil";
 import { PopupCategory } from "../../atom";
+import back from "../../assets/Icons/NavigationBar/back.svg";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -32,13 +33,24 @@ const CateTitle = styled.p`
 function Cate() {
   const { cateId } = useParams();
 
+  const state = useLocation();
+  console.log(state);
+
   const popupcate = useRecoilValue(PopupCategory);
 
   console.log(cateId);
 
-  //   useEffect(() => {
-  //     axios.get();
-  //   });
+  function getCateImg(cateId) {
+    if (cateId === 1) {
+      return "img/cate1.png";
+    } else if (cateId === 2) {
+      return "img/cate2.png";
+    } else if (cateId === 3) {
+      return "img/cate3.png";
+    } else if (cateId === 4) {
+      return "img/cate4.png";
+    }
+  }
 
   return (
     <Wrapper>
@@ -50,7 +62,7 @@ function Cate() {
           alt="img"
           width="35"
           height="35"
-          src={`img/cate${cateId}.png`}
+          src={back}
         ></img>
       </CateHead>
       <PageTabs

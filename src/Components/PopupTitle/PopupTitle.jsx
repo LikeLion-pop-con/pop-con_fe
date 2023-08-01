@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Typo from "../../assets/Typo";
+import { MdArrowForwardIos } from "react-icons/md";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -10,10 +11,15 @@ const Wrapper = styled.div`
   margin-bottom: ${(props) => props.bottomgap}px;
 `;
 
-function PopupTitle({ text, bottomgap }) {
+function PopupTitle({ text, bottomgap, isarrow }) {
   return (
     <Wrapper bottomgap={bottomgap}>
       <Typo fontType="title">{text}</Typo>
+      {isarrow && (
+        <MdArrowForwardIos
+          style={{ fontSize: 16, marginTop: 2, marginLeft: 3 }}
+        />
+      )}
     </Wrapper>
   );
 }
