@@ -17,16 +17,16 @@ const iconType = (navigate, type) => {
   };
 
   return icon[type]; //return icon[type]: type에 따라 적절한 아이콘을 반환
-};
+};  
 
 const HeaderWrapper = styled.div`
-  margin-top: 10px;
-  width: 95%;
-  height: 40px;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  background-color:${({ Color }) => Color || 'white'};
 `;
 
 const IconsContainer = styled.div`
@@ -50,12 +50,12 @@ const EmptyIcon = styled.div`
   height: 16px;
 `;
 
-export default function Header({ left = "", right = [] }) {
+export default function Header({ left = "", right = [],bgColor }) {
   const navigate = useNavigate();
 
   return (
     <>
-      <HeaderWrapper>
+      <HeaderWrapper Color={bgColor}>
           <IconsContainer>
             {left ? iconType(navigate, left) : <EmptyIcon />}
           </IconsContainer>
