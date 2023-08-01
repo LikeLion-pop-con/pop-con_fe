@@ -19,14 +19,13 @@ import ShowCate from "./pages/CategoryPage/ShowCate";
 import BrandIntroduce from "./pages/BrandIntroduce/BrandIntroduce";
 import LogoWelcome from "./pages/LogoWelcome/LogoWelcome";
 import PopupPost from "./pages/PopupPost/PopupPost";
-
 import NewBrand from "./pages/MainPlusPage/NewBrand";
 import NewArtist from "./pages/MainPlusPage/NewArtist";
 import Weekly from "./pages/MainPlusPage/Weekly";
 import PostList from "./pages/MainPlusPage/PostList";
-
 import Login from "./pages/Login/Login";
 import Resister from "./pages/Login/Resister";
+import PopupInfo from "./pages/PopupInfo/PopupInfo"
 
 function Router() {
   return (
@@ -70,6 +69,7 @@ function Router() {
           <Route path='/Brand' element={<BrandIntroduce />} />
           <Route path='/PostList' element={<PostList/> } />
           <Route path='/PopupPost' element={<PopupPost/> } />
+          <Route path="/popupinfo" element={<PopupInfo/>}/>
 
           <Route path="*" element={<div>없는페이지임</div>} />
           

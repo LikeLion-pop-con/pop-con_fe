@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/Icons/Header/logo.png'
-import Button from '../../assets/Icons/Card/Button.svg'
+import logo from '../../assets/Icons/Header/logo.png';
+import Button from '../../assets/Icons/Card/Button.svg';
 import Typo from '../../assets/Typo';
 import Margin from '../Margin/Margin';
 import Header from '../Header/Header';
