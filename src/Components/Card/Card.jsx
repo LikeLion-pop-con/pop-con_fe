@@ -57,14 +57,14 @@ const Card = ({ image, title, category, main }) => {
     <CardEach onClick={() => navigate("/")}>
       <Thumbnail image={image} />
       <TextWrapper>
-        <Typo fontType="title">{title}</Typo>
-        <Margin height="4" />
-        <Typo size="small" color="darkgray">
+        <Typo size="1rem" weight='400'>{title}</Typo>
+        <Margin height="6" />
+        <Typo size="small" color="gray">
           {" "}
           {category}{" "}
         </Typo>
         <Margin height="6" />
-        <Typo size="small" color="darkgray">
+        <Typo size="small" color="gray">
           {" "}
           {main}{" "}
         </Typo>
