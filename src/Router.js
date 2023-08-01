@@ -18,7 +18,8 @@ import Requesting from "./pages/ShowPopupCardPage/Requesting";
 import ShowCate from "./pages/CategoryPage/ShowCate";
 import BrandIntroduce from "./pages/BrandIntroduce/BrandIntroduce";
 import LogoWelcome from "./pages/LogoWelcome/LogoWelcome";
-
+import Login from "./pages/Login/Login";
+import Resister from "./pages/Login/Resister";
 function Router() {
   return (
     <BrowserRouter>
@@ -43,6 +44,8 @@ function Router() {
           <Route path="/Mypage/MyBrandLike" element={<MyBrandLike />} />
           <Route path="/Mypage/Knowlist" element={<KnowList />} />
           <Route path="/Mypage/introduce" element={<Introduce />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Resister" element={<Resister />} />
           <Route path='/Brand' element={<BrandIntroduce />} />
           <Route path="*" element={<div>없는페이지임</div>} />
           <Route path="/:cateId" element={<Cate />}>

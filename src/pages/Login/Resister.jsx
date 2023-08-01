@@ -292,7 +292,7 @@ const Resister = () => {
           {errors.residentialArea && <span>필수 항목입니다.</span>}
         </ResisterBox>
 
-        <LoginButton type="submit">시작하기</LoginButton>
+        <LoginButton type="submit"><Typo size="1.1rem" weight="600" color="white">시작하기</Typo></LoginButton>
       </LoginBox>
     </form>
   );
