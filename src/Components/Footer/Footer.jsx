@@ -5,6 +5,7 @@ import { RiKakaoTalkFill } from 'react-icons/ri';
 import { AiOutlineTwitter } from 'react-icons/ai';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import Horizon from "../Horizon/Horizon";
+import { Link } from "react-router-dom";
 const FooterWrapper = styled.div`
   background-color: ${theme.colors.lightgray};
   padding: 1rem;
@@ -17,7 +18,7 @@ const Secondbox = styled.div`
   flex-wrap: wrap;
   margin: 5px;
 `;
-const Label = styled.label`
+const Label = styled(Link)`
   margin: 10px;
 `;
 const Thirdbox = styled.div`
@@ -53,8 +54,8 @@ function Footer() {
       <Typo size="1rem" weight="200">
       <Secondbox>
         <Label>팝업 시작</Label>
-        <Label>서비스 소개</Label>
-        <Label>공지사항</Label>
+        <Label to="/Mypage/introduce">서비스 소개</Label>
+        <Label to="/Mypage/KnowList">공지사항</Label>
         <Label>고객 센터</Label>
         <Label>팝업 스토어 가이드</Label>
         <Label>이용약관</Label>
