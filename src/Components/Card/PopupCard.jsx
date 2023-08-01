@@ -88,7 +88,7 @@ const PopupCard = ({image, title, main }) => {
                         <Typo >{title}</Typo>
                     </TitleWrapper>
                     <TextWrapper>
-                        <Typo weight='300' size='0.9rem'>{main}</Typo>
+                        <Typo weight='300' size='0.9rem' lineheight='18px'>{main}</Typo>
                     </TextWrapper>
                 </TextBox>
                 <UnderWapper>
