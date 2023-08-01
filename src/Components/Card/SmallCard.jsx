@@ -14,11 +14,11 @@ const CardEach = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  height: 230px;
-  min-width: 150px;
+  height: 240px;
+  min-width: 10rem;
   border-radius: 12px;
   cursor: pointer;
-  margin: 0px 20px;
+  margin: 0px 10px;
   box-shadow: 8px 8px 8px 5px rgba(67, 0, 209, 0.05);
 `;
 const Thumbnail = styled.div`
@@ -31,8 +31,7 @@ const Thumbnail = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 16px;
-
-  height: 150px;
+  height: 160px;
   width: 100%;
 `;
 
@@ -53,13 +52,13 @@ const SmallCard = ({ image, title, category, main }) => {
       <CardEach onClick={() => navigate("/")}>
         <Thumbnail image={image} />
         <TextWrapper>
-          <Typo size="1rem">{title}</Typo>
-          <Margin height="8" />
-          <Typo size="0.7rem" color="darkgray">
+          <Typo size="0.9rem" weight='400'>{title}</Typo>
+          <Margin height="6" />
+          <Typo size="0.7rem" color="gray">
             {category}
           </Typo>
-          <Margin height="6" />
-          <Typo size="0.7rem" color="darkgray">
+          <Margin height="4" />
+          <Typo size="0.7rem" color="gray">
             {main}
           </Typo>
         </TextWrapper>

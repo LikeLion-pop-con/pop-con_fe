@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import Typo from '../../assets/Typo';
 import {BsHeart} from "react-icons/bs"
 import { BsFillShareFill } from "react-icons/bs";
+
 const Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -17,18 +18,16 @@ const Wrapper = styled.div`
 
 const Toptext = styled.p``;
 
-const Bodytext = styled.p`
+const BodytextWrapper = styled.div`
   width: 300px;
   text-align: center;
   margin: 15px;
-  color: gray;
-  line-height: 1.3;
 `;
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  top: -70%;
-  right: 0%;
+  top: -80%;
+  right: -0.1%;
   display: flex;
   flex-direction: row;
 `;
@@ -46,14 +45,16 @@ const Button = styled.button`
   align-items: center;
 `;
 
-const Carrddown2 = ({ toptext, bodytext }) => {
+const Carddown2 = ({ toptext, bodytext }) => {
   return (
     <>
       <Wrapper>
         <Toptext>
-          <Typo size="1.1rem" weight="600">{toptext}</Typo>
+          <Typo size="1.1rem" weight="400">{toptext}</Typo>
         </Toptext>
-        <Bodytext>{bodytext}</Bodytext>
+        <BodytextWrapper>
+          <Typo size="0.9rem" weight="300" color="gray" lineheight="20px">{bodytext}</Typo>
+        </BodytextWrapper>
         <ButtonWrapper>
           <Button><BsHeart size={20}/></Button>
           <Button><BsFillShareFill size={20}/></Button>
@@ -63,4 +64,4 @@ const Carrddown2 = ({ toptext, bodytext }) => {
   );
 };
 
-export default Carrddown2;
+export default Carddown2;

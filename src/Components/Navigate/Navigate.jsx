@@ -94,7 +94,7 @@ export default function NavigationBar({ hide, setIsCateClicked }) {
         <Icon onClick={() => navigate("/category")} img={category}>
           CATEGORY
         </Icon>
-        <Icon onClick={() => navigate("/")} img={home}>
+        <Icon onClick={() => navigate("/main")} img={home}>
           HOME
         </Icon>
         <Icon onClick={() => navigate("/like")} img={like}>

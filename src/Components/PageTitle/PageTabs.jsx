@@ -24,6 +24,7 @@ const Tab = styled.div`
   width: 7rem;
   height: 20px;
   position: relative;
+  margin: 0px 5px;
   a {
     font-size: 16px;
     display: block;
@@ -36,7 +37,7 @@ const Tab = styled.div`
 const StatusBar = styled(motion.div)`
   position: absolute;
   background-color: ${(props) => props.theme.colors.main};
-  width: 90%;
+  width: 95%;
   height: 2px;
   bottom: -3px;
 `;
@@ -50,9 +51,9 @@ function PageTabs({
   page3link,
   cateId,
 }) {
-  const allowdMatch = useMatch(`/${cateId}${page1link}`);
-  const ingMatch = useMatch(`/${cateId}${page2link}`);
-  const otherMatch = useMatch(`/${cateId}${page3link}`);
+  const allowdMatch = useMatch(`/main/${cateId}${page1link}`);
+  const ingMatch = useMatch(`/main/${cateId}${page2link}`);
+  const otherMatch = useMatch(`/main/${cateId}${page3link}`);
 
   const [page, setPages] = useState([]);
 
@@ -80,19 +81,19 @@ function PageTabs({
         <Tabs tabs={page.length}>
           {page1 && (
             <Tab match={allowdMatch !== null}>
-              <Link to={`/${cateId}${page1link}`}>{page1}</Link>
+              <Link to={`/main/${cateId}${page1link}`}>{page1}</Link>
               {allowdMatch && <StatusBar layoutId="bar" />}
             </Tab>
           )}
           {page2 && (
             <Tab match={ingMatch !== null}>
-              <Link to={`/${cateId}${page2link}`}>{page2}</Link>
+              <Link to={`/main/${cateId}${page2link}`}>{page2}</Link>
               {ingMatch && <StatusBar layoutId="bar" />}
             </Tab>
           )}
           {page3 && (
             <Tab match={otherMatch !== null}>
-              <Link to={`/${cateId}${page3link}`}>{page3}</Link>
+              <Link to={`/main/${cateId}${page3link}`}>{page3}</Link>
               {otherMatch && <StatusBar layoutId="bar" />}
             </Tab>
           )}

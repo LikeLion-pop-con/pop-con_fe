@@ -76,7 +76,7 @@ const LargeCard = ({ image, title, popcategory, detail, space, date }) => {
     <CardEach onClick={() => navigate("/")}>
       <Thumbnail image={image} />
       <TitleWrapper>
-        <Typo fontType="title">{title}</Typo>
+        <Typo weight='600'>{title}</Typo>
       </TitleWrapper>
       <TextBox>
         <TextWrapper>

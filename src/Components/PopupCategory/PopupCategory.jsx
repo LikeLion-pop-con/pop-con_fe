@@ -24,7 +24,7 @@ function Category({ listid }) {
 
   useEffect(() => {
     getImgs();
-  });
+  }, []);
 
   function getList() {
     if (listid === "main") {
