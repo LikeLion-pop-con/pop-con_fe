@@ -15,7 +15,7 @@ const CardEach = styled.div`
   flex-direction: column;
   background-color: white;
   height: 230px;
-  min-width: 150px;
+  min-width: 10rem;
   border-radius: 12px;
   cursor: pointer;
   margin: 0px 20px;
@@ -31,7 +31,6 @@ const Thumbnail = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 16px;
-
   height: 150px;
   width: 100%;
 `;

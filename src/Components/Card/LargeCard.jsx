@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Typo from "../../assets/Typo";
 import Margin from "../Margin/Margin";
+import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
+
 
 const CardBlock = styled.div`
   display: flex;
@@ -31,6 +33,7 @@ const Thumbnail = styled.div`
   //background-image: url('/Cardrose.jpg');
   background-image: url(" ${(props) => props.image} ");
   background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
   background-color: none;
   border-radius: 16px;

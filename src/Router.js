@@ -18,6 +18,11 @@ import Requesting from "./pages/ShowPopupCardPage/Requesting";
 import ShowCate from "./pages/CategoryPage/ShowCate";
 import BrandIntroduce from "./pages/BrandIntroduce/BrandIntroduce";
 import LogoWelcome from "./pages/LogoWelcome/LogoWelcome";
+import NewBrand from "./pages/MainPlusPage/NewBrand";
+import NewArtist from "./pages/MainPlusPage/NewArtist";
+import Weekly from "./pages/MainPlusPage/Weekly";
+import Login from "./pages/Login/Login";
+import Resister from "./pages/Login/Resister";
 import PopupInfo from "./pages/PopupInfo/PopupInfo"
 
 function Router() {
@@ -25,7 +30,9 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path='' element={<LogoWelcome />} />
+
+          <Route path="" element={<LogoWelcome />} />
+        
           <Route path="/main" element={<Main />}>
             <Route path="art" element={<Main />}></Route>
             <Route path="lit" element={<Main />}></Route>
@@ -33,10 +40,21 @@ function Router() {
             <Route path="music" element={<Main />}></Route>
           </Route>
           <Route path="/category" element={<ShowCate />}></Route>
+
+          <Route path="/newbrand" element={<NewBrand />}></Route>
+          <Route path="/newartist" element={<NewArtist />}></Route>
+
           <Route path="/CardTest" element={<CardTest />} />
           <Route path="/welcome" element={<Welcome />} />
+          <Route path="/weekly" element={<Weekly />}></Route>
           <Route path="/search" element={<Search />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/Brand" element={<BrandIntroduce />} />
+          <Route path="/main/:cateId" element={<Cate />}>
+            <Route path="" element={<Ing />}></Route>
+            <Route path="ing" element={<Requesting />}></Route>
+          </Route>
+
           <Route path="/Mypage" element={<Mypage />} />
           <Route path="/Mypage/Myreservation" element={<Myreservation />} />
           <Route path="/Mypage/MypopLike" element={<MypopLike />} />
@@ -44,14 +62,12 @@ function Router() {
           <Route path="/Mypage/MyBrandLike" element={<MyBrandLike />} />
           <Route path="/Mypage/Knowlist" element={<KnowList />} />
           <Route path="/Mypage/introduce" element={<Introduce />} />
-          <Route path="/Brand" element={<BrandIntroduce />} />
-          <Route path="/popupinfo" element={<PopupInfo />} />
-          <Route path="*" element={<div>없는페이지임</div>} />
-          <Route path="/:cateId" element={<Cate />}>
-            <Route path="" element={<Ing />}></Route>
-            <Route path="ing" element={<Requesting />}></Route>
-          </Route>
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Resister" element={<Resister />} />
+          <Route path='/Brand' element={<BrandIntroduce />} />
+          <Route path="/popupinfo" element={<PopupInfo/>}/>
 
+          <Route path="*" element={<div>없는페이지임</div>} />
           
         </Route>
       </Routes>

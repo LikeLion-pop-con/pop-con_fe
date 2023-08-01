@@ -50,7 +50,7 @@ const EmptyIcon = styled.div`
   height: 16px;
 `;
 
-export default function Header({ left = "", right = [],bgColor }) {
+export default function Header({ left = "", right = [], bgColor }) {
   const navigate = useNavigate();
 
   return (
