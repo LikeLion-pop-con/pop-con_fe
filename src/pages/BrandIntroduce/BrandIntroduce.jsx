@@ -1,7 +1,7 @@
 import React from "react";
 import Cardup from "../../Components/Brand,AristCard/Cardup";
 import Carddown1 from "../../Components/Brand,AristCard/Carddown1";
-import Carddown2 from "../../Components/Brand,AristCard/Carrddown2";
+import Carddown2 from "../../Components/Brand,AristCard/Carddown2";
 import PageTabs from "../../Components/PageTitle/PageTabs";
 const BrandIntroduce = () => {
   return (
