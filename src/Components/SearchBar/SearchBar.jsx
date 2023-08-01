@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import searchLook from '../../assets/Icons/SearchBar/searchLook.svg';
 import CircleX from '../../assets/Icons/SearchBar/CircleX.svg';
-
+import { useNavigate } from 'react-router-dom';
+import { useSearchContext } from "./SearchContext"
 const SearchBarWrapper = styled.div`
   background-color: #E9E9E9;
   border-radius: 8px;
@@ -49,8 +50,11 @@ const CancelText = styled.div`
   display: ${props => (props.hasText ? 'block' : 'none')};
 `;
 
-const SearchBar = () => {
-  const [searchText, setSearchText] = useState('');
+const SearchBar = ({ onSearchTextChange, inputText }) => {
+  const { searchHistory, setSearchHistory } = useSearchContext();
+  const [searchText, setSearchText] = useState(inputText);
+
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setSearchText(e.target.value);
@@ -60,7 +64,21 @@ const SearchBar = () => {
     setSearchText('');
   };
 
-  const hasText = searchText.trim().length > 0;
+  const handleIconClick = () => {
+    if (searchText.trim().length > 0) {
+      onSearchTextChange(searchText);
+      navigate(`/search/result?query=${encodeURIComponent(searchText)}`);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      if (searchText.trim().length > 0) {
+        onSearchTextChange(searchText);
+        navigate(`/search/result?query=${encodeURIComponent(searchText)}`);
+      }
+    }
+  };
 
   return (
     <SearchBarWrapper>
@@ -69,13 +87,14 @@ const SearchBar = () => {
         placeholder="검색어를 입력하세요"
         value={searchText}
         onChange={handleInputChange}
+        onKeyPress={handleKeyPress}
       />
-      {hasText && (
+      
         <CancelIconWrapper onClick={clearSearch}>
           <img src={CircleX} alt="Cancel" />
         </CancelIconWrapper>
-      )}
-      <SearchIconWrapper>
+      
+       <SearchIconWrapper onClick={handleIconClick}>
         <img src={searchLook} alt="Search" />
       </SearchIconWrapper>
     </SearchBarWrapper>
