@@ -18,7 +18,8 @@ const CardEach = styled.div`
   background-color: white;
 
   height: 300px;
-  width: 95%;
+  min-width:400px;
+
 
   border-radius: 16px;
   cursor: pointer;

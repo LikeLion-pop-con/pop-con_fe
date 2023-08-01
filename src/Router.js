@@ -20,9 +20,12 @@ import BrandIntroduce from "./pages/BrandIntroduce/BrandIntroduce";
 import LogoWelcome from "./pages/LogoWelcome/LogoWelcome";
 import Login from "./pages/Login/Login";
 import Resister from "./pages/Login/Resister";
+import Searchresult from "./pages/Search/Searchresult";
+import { SearchProvider } from "../../pop-con_fe/src/Components/SearchBar/SearchContext"
 function Router() {
   return (
     <BrowserRouter>
+      <SearchProvider>
       <Routes>
         <Route element={<Layout />}>
           <Route path='' element={<LogoWelcome />} />
@@ -36,6 +39,7 @@ function Router() {
           <Route path="/CardTest" element={<CardTest />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/search/result" element={<Searchresult />} />
           <Route path="/test" element={<Test />} />
           <Route path="/Mypage" element={<Mypage />} />
           <Route path="/Mypage/Myreservation" element={<Myreservation />} />
@@ -52,10 +56,9 @@ function Router() {
             <Route path="" element={<Ing />}></Route>
             <Route path="ing" element={<Requesting />}></Route>
           </Route>
-
-          
         </Route>
       </Routes>
+     </SearchProvider>
     </BrowserRouter>
   );
 }
