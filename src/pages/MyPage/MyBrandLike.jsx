@@ -5,6 +5,7 @@ import Typo from '../../assets/Typo';
 import Horizon from '../../Components/Horizon/Horizon';
 import Card from '../../Components/Card/Card';
 import NavigationBar from '../../Components/Navigate/Navigate';
+import Margin from '../../Components/Margin/Margin';
 
 const Title = styled.div`
     margin: 5%;
@@ -26,14 +27,14 @@ const MyBrandLike = () => {
           <Header left="logo" right={["login", "search"]} bgColor="#EC7538"/>
           <Title><Typo size="1.3rem" weight="400">구독 브랜드</Typo></Title>
           <Horizon width="350px" ></Horizon>
-          <Wrapper>
+          <Margin height='20'/>
+
             <CardBlock>
-          <Card image= "Cardrose.jpg" title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
-        <Card image= "Cardrose.jpg" title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
-        <Card image= "Cardrose.jpg" title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
-        <Card image= "Cardrose.jpg" title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
-        </CardBlock>
-          </Wrapper>
+          <Card image= "/Card/Cardrose.jpg" title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
+          <Card image= "/Card/Cardrose.jpg" title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
+          <Card image= "/Card/Cardrose.jpg" title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
+          <Card image= "/Card/Cardrose.jpg" title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>        
+            </CardBlock>
           <NavigationBar/>
         </>
     );
