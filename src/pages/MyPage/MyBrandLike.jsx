@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../Components/Header/Header';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import Typo from '../../assets/Typo';
 import Horizon from '../../Components/Horizon/Horizon';
 import Card from '../../Components/Card/Card';
@@ -10,6 +10,7 @@ import Margin from '../../Components/Margin/Margin';
 const Title = styled.div`
     margin: 5%;
 `
+
 const Wrapper = styled.div`
     margin: 20px;
 `
