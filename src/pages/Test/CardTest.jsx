@@ -9,7 +9,6 @@ import SmallCard from "../../Components/Card/SmallCard";
 import PostCard from "../../Components/Card/PostCard";
 import PopupCard from "../../Components/Card/PopupCard";
 
-
 const Wrapper = styled.div`
   display: flex; 
   flex-direction: column;
