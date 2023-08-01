@@ -18,7 +18,7 @@ export default function LogoWelcome() {
     const timer = setTimeout(() => {
       // 페이지 전환코드
       navigate('/main');
-    }, 2500); //(1000 밀리초 = 1초)
+    }, 1500); //(1000 밀리초 = 1초)
 
     return () => {
       clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머를 정리
