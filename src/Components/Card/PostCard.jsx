@@ -73,7 +73,7 @@ const ThumbnailWrapper = styled.div`
 `;
 const Horizon = styled.div`
   margin-left: 20px;
-  width: 15%;0
+  width: 15%;
   height: 2px;
   background-color: green;
 `;
@@ -92,7 +92,7 @@ const PostCard = ({ image, type, title, color, main }) => {
         </Typo>
       </TextWrapper>
       <TitleWrapper>
-        <Typo fontType="title">{title}</Typo>
+        <Typo size='1.2rem' lineheight='26px'>{title}</Typo>
       </TitleWrapper>
       <Margin height="8" />
       <Horizon color={color} />

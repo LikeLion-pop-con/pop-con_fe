@@ -56,7 +56,7 @@ const CardTest = () => {
         <LargeCard image={NewJeans} title='NewJeans의 HYPE맑음' popcategory='팝업 스토어' detail='창작 예술' space={'하텍 해동 스룸G \n인하대학교'} date='2023.07.21~2023.08.19'/>
         <LargeCard image={NewJeans} title='NewJeans의 HYPE맑음' popcategory='팝업 스토어' detail='창작 예술' space={'하텍 해동 스룸G '} date='2023.07.21~2023.08.19'/>
 
-        <PostCard image={PostCardimg1} type={'추천 포스트'} title={'슬릭의 Supershy프랑스 밤잼 크렘드 마롱 \n 팝업 스토어 현장'} color='green' main={'크렘드마롱(Crème de Marrons)은 클레망포지에사의\n140년 전통 프랑스산 밤잼 브랜드 입니다.\n크렘드마롱은 프랑스 남부 리옹 지역에서 수확하는\n야생밤을 원료로 깊은 밤의 풍미를 선사합니다.'} />
+        <PostCard image={PostCardimg1} type={'추천 포스트'} title={'슬릭의 Supershy프랑스 밤잼 크렘드 마롱 \n 팝업 스토어 현장'} color='green' main={'크렘드마롱(Crème de Marrons)은 클레망포지에사의 140년 전통 프랑스산 밤잼 브랜드 입니다.\n크렘드마롱은 프랑스 남부 리옹 지역에서 수확하는\n야생밤을 원료로 깊은 밤의 풍미를 선사합니다.'} />
         
         <PopupCard image={PopupCardimg1} title='IAB studio 팝업 요청되었습니다!' main={'팝업 장소와 일정이 확정되면 알려드릴게요.\n이 팝업 정보를 공유해보세요!'}/>
 
