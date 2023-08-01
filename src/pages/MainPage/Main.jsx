@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../Components/Header/Header";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdSlider from "../../Components/AdSlider/AdSlider";
 import Category from "../../Components/PopupCategory/PopupCategory";
@@ -10,6 +10,9 @@ import SliderX from "../../Components/ArtistCategory/ArtistCategory";
 import SmallCard from "../../Components/Card/SmallCard";
 import Horizon from "../../Components/Horizon/Horizon";
 import PostCard from "../../Components/Card/PostCard";
+import ArtistCategory from "../../Components/ArtistCategory/ArtistCategory";
+import NavigationBar from "../../Components/Navigate/Navigate";
+import Footer from "../../Components/Footer/Footer";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -36,15 +39,46 @@ const SliderXItems = styled.div`
 
 function Main() {
   const navigate = useNavigate();
+  const [scrollDir, setScrollDir] = useState("scrolling down");
+
+  useEffect(() => {
+    const threshold = 0;
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateScrollDir = () => {
+      const scrollY = window.scrollY;
+
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+    console.log(scrollDir);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollDir]);
+
   return (
     <>
       <Wrapper>
         <Header left="logo" right={["login", "search"]} />
         <AdSlider />
         <Margin height="230" />
-        <PopupTitle text="팝업 카테고리" bottomgap="30" />
-        <Category />
-        <Margin height="10" />
+        <PopupTitle text="팝업 카테고리" bottomgap="20" />
+        <Category listid="main" />
+        <Margin height="30" />
+        <PopupTitle text="여기에 열어주세요" bottomgap="15" />
         <SliderXwrapper>
           <SliderXItems>
             <SmallCard
@@ -124,7 +158,33 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="35" />
-        <PopupTitle text="독립 아티스트" />
+        <PopupTitle text="독립 아티스트" bottomgap="20" />
+        <ArtistCategory />
+        <SliderXwrapper>
+          <SliderXItems>
+            <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="로제"
+              category="이쁘다"
+              main="진짜 이쁘다"
+            />
+            <SmallCard
+              image="img/Artistimg/iab_box.jpg"
+              title="iab"
+              category="이쁘다"
+              main="너무 이쁘다"
+            />
+            <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="블랙핑크"
+              category="진짜 이쁘네 ㅋㅋ"
+              main="제 이상형이에요 사귀자"
+            />
+          </SliderXItems>
+        </SliderXwrapper>
+        <Margin height="20" />
+        <NavigationBar hide={scrollDir} />
+        <Footer />
       </Wrapper>
     </>
   );

@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 const Myreservation = () => {
     return (
         <>
-          <Header left="logo" right={["login", "search"]} />
+          <Header left="logo" right={["login", "search"]} bgColor="#EC7538"/>
           <Title><Typo size="1.3rem" weight="400">나의 예약</Typo></Title>
           <Horizon width="350px" ></Horizon>
           <Wrapper>

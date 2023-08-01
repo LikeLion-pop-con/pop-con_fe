@@ -91,7 +91,7 @@ const KnowList = () => {
 
   return (
     <>
-      <Header left="logo" right={["login", "search"]} />
+      <Header left="logo" right={["login", "search"]} bgColor="#EC7538"/>
       <Title>
         <Typo size="1.3rem" weight="400">
           공지사항

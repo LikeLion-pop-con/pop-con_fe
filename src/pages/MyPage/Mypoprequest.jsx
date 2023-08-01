@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 const Mypoprequest = () => {
     return (
         <>
-          <Header left="logo" right={["login", "search"]} />
+          <Header left="logo" right={["login", "search"]} bgColor="#EC7538"/>
           <Title><Typo size="1.3rem" weight="400">팝업 요청</Typo></Title>
           <Horizon width="350px" ></Horizon>
           <Wrapper>

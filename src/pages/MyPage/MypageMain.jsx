@@ -55,7 +55,7 @@ const Mypage = () => {
     const navigate = useNavigate();
     return (
          <>
-             <Header left="logo" right={["login", "search"]} />
+             <Header left="logo" right={["login", "search"]} bgColor="#EC7538" />
              <Wrapper>
                  <Image src='/MyPage/Logo.png' />
                  <Name><Typo size="1.5rem" weight="400" color = "white">이상혁</Typo></Name>

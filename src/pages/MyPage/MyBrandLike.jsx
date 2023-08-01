@@ -23,7 +23,7 @@ const CardBlock = styled.div`
 const MyBrandLike = () => {
     return (
         <>
-          <Header left="logo" right={["login", "search"]} />
+          <Header left="logo" right={["login", "search"]} bgColor="#EC7538"/>
           <Title><Typo size="1.3rem" weight="400">구독 브랜드</Typo></Title>
           <Horizon width="350px" ></Horizon>
           <Wrapper>

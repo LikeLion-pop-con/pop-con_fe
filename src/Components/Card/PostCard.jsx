@@ -16,7 +16,7 @@ const CardEach = styled.div`
   background-color: white;
 
   //height: 470px;
-  min-width: 400px;
+  width: 95%;
 
   border-radius: 16px;
   border: 1px solid lightgray;
@@ -25,30 +25,29 @@ const CardEach = styled.div`
   box-shadow: 8px 8px 8px 5px rgba(67, 0, 209, 0.05);
 `;
 const Thumbnail = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  //background-image: url('/Cardrose.jpg');
-  background-image: url(" ${(props) => props.image} ");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: none;
-  border-radius: 16px;
-  //margin-bottom: 15px;
-
-  height: 230px;
-  width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-image: url(' ${(props) => props.image} ');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: none;
+    border-radius: 16px;
+    height: 230px;
+    width: 95%;
+    
 `;
 
 const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  margin-bottom: 10px;
-  margin-left: 20px;
-  margin-right: 15px;
-  line-height: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 15px;
+    line-height: 18px;
+    
 `;
 const TitleWrapper = styled.div`
   display: flex;
@@ -74,7 +73,7 @@ const ThumbnailWrapper = styled.div`
 `;
 const Horizon = styled.div`
   margin-left: 20px;
-  width: 15%;
+  width: 15%;0
   height: 2px;
   background-color: green;
 `;

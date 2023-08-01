@@ -96,7 +96,6 @@ const PopupCard = ({image, title, main }) => {
                     <Typo fontType='medium'> 확인</Typo>
                     <Icon src={Button} alt='Button' onClick={() => navigate('/')} />
                 </UnderWapper>
-
             </CardEach>
     );
 
