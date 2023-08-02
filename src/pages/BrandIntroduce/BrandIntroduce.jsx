@@ -7,9 +7,12 @@ import Header from "../../Components/Header/Header";
 import Headerline from "../../Components/Headerline/Headerline";
 import { useLocation, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import PageTabs from "../../Components/PageTitle/PageTabs";
+import { PopupCategory } from "../../atom";
 
 const BrandIntroduce = () => {
   const { brandId } = useParams();
+
   return (
     <div>
       <Header left="logo" right={["login", "search"]} />
@@ -28,9 +31,9 @@ const BrandIntroduce = () => {
         page1="소개"
         page2="팝업 정보"
         page3="포스트"
-        page1link={""}
-        page2link={""}
-        page3link={""}
+        page1link={"brand/:brandId"}
+        page2link={"brand/:brandId"}
+        page3link={"brand/:brandId"}
         />
       <Headerline title="브랜드 소개 제목" subtitle="브랜드 소개 부제목" content="브랜드 소개 본문"/>
     </div>

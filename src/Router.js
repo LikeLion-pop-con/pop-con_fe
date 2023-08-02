@@ -17,6 +17,7 @@ import Ing from "./pages/ShowPopupCardPage/Ing";
 import Requesting from "./pages/ShowPopupCardPage/Requesting";
 import ShowCate from "./pages/CategoryPage/ShowCate";
 import BrandIntroduce from "./pages/BrandIntroduce/BrandIntroduce";
+import ArtistIntroduce from "./pages/ArtistIntroduce/ArtistIntroduce"
 import LogoWelcome from "./pages/LogoWelcome/LogoWelcome";
 import PopupPost from "./pages/PopupPost/PopupPost";
 import NewBrand from "./pages/MainPlusPage/NewBrand";
@@ -45,20 +46,30 @@ function Router() {
             <Route path="video" element={<Main />}></Route>
             <Route path="music" element={<Main />}></Route>
           </Route>
-          <Route path="/category" element={<ShowCate />}></Route>
 
+          <Route path="/category" element={<ShowCate />}></Route>
           <Route path="/newbrand" element={<NewBrand />}></Route>
           <Route path="/newartist" element={<NewArtist />}></Route>
-
           <Route path="/CardTest" element={<CardTest />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/weekly" element={<Weekly />}></Route>
           <Route path="/search" element={<Search />} />
           <Route path="/search/result" element={<Searchresult />} />
           <Route path="/test" element={<Test />} />
+
           <Route path="/main/:cateId" element={<Cate />}>
             <Route path="" element={<Ing />}></Route>
             <Route path="ing" element={<Requesting />}></Route>
+          </Route>
+
+          <Route path="/brand/:brandId" element={<BrandIntroduce />}>
+            <Route path="" element={<Ing />}></Route>
+            <Route path="" element={<Requesting />}></Route>
+          </Route>
+
+          <Route path="/artist/:artisiId" element={<ArtistIntroduce />}>
+            <Route path="" element={<Ing />}></Route>
+            <Route path="" element={<Requesting />}></Route>
           </Route>
 
           <Route path="/Mypage" element={<Mypage />} />
@@ -70,8 +81,7 @@ function Router() {
           <Route path="/Mypage/introduce" element={<Introduce />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Resister" element={<Resister />} />
-          <Route path="/brand" element={<BrandIntroduce />} />
-          <Route path="/artist" element={<BrandIntroduce/>}/>
+          <Route path="/artist" element={<ArtistIntroduce/>}/>
           <Route path="/:cateId" element={<Cate />}>
             <Route path="" element={<Ing />}></Route>
             <Route path="ing" element={<Requesting />}></Route>

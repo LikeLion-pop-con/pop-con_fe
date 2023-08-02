@@ -54,11 +54,11 @@ function InfoTabs({
   page1link,
   page2link,
   page3link,
-  cateId,
+  brandId,
 }) {
-  const allowdMatch = useMatch(`/main/${cateId}${page1link}`);
-  const ingMatch = useMatch(`/main/${cateId}${page2link}`);
-  const otherMatch = useMatch(`/main/${cateId}${page3link}`);
+  const allowdMatch = useMatch(`/brand/${brandId}${page1link}`);
+  const ingMatch = useMatch(`/brand/${brandId}${page2link}`);
+  const otherMatch = useMatch(`/brand/${brandId}${page3link}`);
 
   const [page, setPages] = useState([]);
 
@@ -86,19 +86,19 @@ function InfoTabs({
         <Tabs tabs={page.length}>
           {page1 && (
             <Tab match={allowdMatch !== null}>
-              <Link to={`/main/${cateId}${page1link}`}>{page1}</Link>
+              <Link to={`/brand/${brandId}${page1link}`}>{page1}</Link>
               {allowdMatch && <StatusBar layoutId="bar" />}
             </Tab>
           )}
           {page2 && (
             <Tab match={ingMatch !== null}>
-              <Link to={`/main/${cateId}${page2link}`}>{page2}</Link>
+              <Link to={`/brand/${brandId}${page2link}`}>{page2}</Link>
               {ingMatch && <StatusBar layoutId="bar" />}
             </Tab>
           )}
           {page3 && (
             <Tab match={otherMatch !== null}>
-              <Link to={`/main/${cateId}${page3link}`}>{page3}</Link>
+              <Link to={`/brand/${brandId}${page3link}`}>{page3}</Link>
               {otherMatch && <StatusBar layoutId="bar" />}
             </Tab>
           )}
@@ -106,7 +106,7 @@ function InfoTabs({
       </TabsContainer>
       <Outlet
         context={{
-          cateId,
+          brandId,
         }}
       />
     </Wrapper>

@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
 const CateHead = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -23,6 +24,7 @@ const CateHead = styled.div`
   width: 100%;
   padding: 20px;
 `;
+
 const CateTitle = styled.p`
   font-size: 20px;
   margin-top: 10px;
@@ -50,7 +52,7 @@ function Cate() {
     } else if (cateId === 4) {
       return "img/cate4.png";
     }
-  }
+  };
 
   return (
     <Wrapper>

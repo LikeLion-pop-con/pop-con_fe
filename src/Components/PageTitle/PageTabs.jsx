@@ -10,11 +10,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const TabsContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
 `;
+
 const Tabs = styled.div`
   display: grid;
   grid-template-columns: repeat(${(props) => props.tabs}, 1fr);
