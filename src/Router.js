@@ -28,11 +28,13 @@ import Resister from "./pages/Login/Resister";
 import Searchresult from "./pages/Search/Searchresult";
 import { SearchProvider } from "./Components/SearchBar/SearchContext";
 
-import PopupInfo from "./pages/PopupInfo/PopupInfo";
+import PopupInfo from "./pages/PopupInfo/PopupInfo"
+import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 
 function Router() {
   return (
     <BrowserRouter>
+      <ScrollToTop/>
       <SearchProvider>
         <Routes>
           <Route element={<Layout />}>
