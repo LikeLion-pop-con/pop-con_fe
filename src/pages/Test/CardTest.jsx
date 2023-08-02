@@ -65,7 +65,6 @@ const CardTest = () => {
         <CheckCard title='제일 인기가 많은 대전에서 팝업을 열까요?'/>
       
       </CardBlock>
-      <PageTabs></PageTabs>
     </>
   );
 };
