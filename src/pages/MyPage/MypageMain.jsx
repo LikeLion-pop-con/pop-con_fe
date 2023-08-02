@@ -103,7 +103,8 @@ const Mypage = () => {
                 <Horizon width="340px"color="white"></Horizon></TextLink>
                 <TextLink><Text1><Typo size="1.3rem" weight="400">ABOUT POPCON</Typo></Text1><Horizon width="340px"></Horizon></TextLink>
                 <TextLink to="/Mypage/KnowList"><Text><Typo size="1rem" weight="400">공지사항</Typo></Text><Horizon width="340px"color="lightgray"></Horizon></TextLink>
-                <TextLink to="/Mypage/introduce"><Text><Typo size="1rem" weight="400">회사소개</Typo></Text><Horizon width="340px"color="white"></Horizon></TextLink>
+                <TextLink to="/Mypage/introduce"><Text><Typo size="1rem" weight="400">회사소개</Typo></Text><Horizon width="340px"color="lightgray"></Horizon></TextLink>
+                <TextLink to="/Mypage/Service"><Text><Typo size="1rem" weight="400">고객센터</Typo></Text><Horizon width="340px"color="white"></Horizon></TextLink>
              </Detailbox>
              <NavigationBar/>
          </>
