@@ -70,10 +70,10 @@ const TextBox = styled.div`
   margin-right: 7px;
 `;
 
-const LargeCard = ({ image, title, popcategory, detail, space, date }) => {
+const LargeCard = ({ image, title, popcategory, detail, space, date, onClick}) => {
   const navigate = useNavigate();
   return (
-    <CardEach onClick={() => navigate("/")}>
+    <CardEach onClick={onClick}>
       <Thumbnail image={image} />
       <TitleWrapper>
         <Typo weight='600'>{title}</Typo>

@@ -17,7 +17,8 @@ import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
 import PopupCardimg1 from "../../assets/Icons/Card/PopupCardimg1.png";
 
-
+import Headerline from "../../Components/Headerline/Headerline";
+import PageTabs from "../../Components/PageTitle/PageTabs";
 
 
 
@@ -66,6 +67,8 @@ const CardTest = () => {
         <CheckCard title='제일 인기가 많은 대전에서 팝업을 열까요?'/>
         <SpacePopup title='어떤 공간을 갖고 계세요?'/>
       </CardBlock>
+
+      <Headerline title='dkssud' subtitle='dksdu' content='dksdu'/>
     </>
   );
 };

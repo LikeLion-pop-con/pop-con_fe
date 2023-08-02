@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useMatch } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Typo from "../../assets/Typo";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -22,12 +23,13 @@ const Tabs = styled.div`
   grid-template-columns: repeat(${(props) => props.tabs}, 1fr);
   margin: 20px 20px;
 `;
+
 const Tab = styled.div`
   width: 7rem;
   height: 20px;
   position: relative;
   margin: 0px 5px;
-  a {
+  a p {
     font-size: 16px;
     display: block;
     width: 100%;
@@ -39,7 +41,7 @@ const Tab = styled.div`
 const StatusBar = styled(motion.div)`
   position: absolute;
   background-color: ${(props) => props.theme.colors.main};
-  width: 95%;
+  width: 90%;
   height: 2px;
   bottom: -3px;
 `;
@@ -83,13 +85,17 @@ function PageTabs({
         <Tabs tabs={page.length}>
           {page1 && (
             <Tab match={allowdMatch !== null}>
-              <Link to={`/main/${cateId}${page1link}`}>{page1}</Link>
+              <Link to={`/main/${cateId}${page1link}`}>
+                <Typo>{page1}</Typo>
+              </Link>
               {allowdMatch && <StatusBar layoutId="bar" />}
             </Tab>
           )}
           {page2 && (
             <Tab match={ingMatch !== null}>
-              <Link to={`/main/${cateId}${page2link}`}>{page2}</Link>
+              <Link to={`/main/${cateId}${page2link}`}>
+                <Typo>{page2}</Typo>
+              </Link>
               {ingMatch && <StatusBar layoutId="bar" />}
             </Tab>
           )}

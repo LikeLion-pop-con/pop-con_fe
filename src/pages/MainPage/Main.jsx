@@ -14,6 +14,8 @@ import ArtistCategory from "../../Components/ArtistCategory/ArtistCategory";
 import NavigationBar from "../../Components/Navigate/Navigate";
 import Footer from "../../Components/Footer/Footer";
 import { MdArrowForwardIos } from "react-icons/md";
+import LargeCard from "../../Components/Card/LargeCard";
+import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -28,6 +30,12 @@ const SliderXwrapper = styled.div`
   min-height: 250px;
   width: 100%;
 `;
+const SliderXwrapper2 = styled.div`
+  position: relative;
+  overflow-x: scroll;
+  min-height: 320px;
+  width: 100%;
+`;
 const SliderXItems = styled.div`
   position: absolute;
   left: 0;
@@ -37,6 +45,7 @@ const SliderXItems = styled.div`
   grid-template-columns: repeat(${(props) => props.cards}, 1fr);
   gap: 20px; */
 `;
+
 
 function Main() {
   const navigate = useNavigate();
@@ -76,6 +85,7 @@ function Main() {
   }, [scrollDir]);
 
   return (
+    
     <>
       <Wrapper>
         <Header left="logo" right={["login", "search"]} />
@@ -85,57 +95,73 @@ function Main() {
         <Category listid="main" />
         <Margin height="30" />
         <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" />
-        <SliderXwrapper>
+        <SliderXwrapper2>
           <SliderXItems>
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="로제"
-              category="이쁘다"
-              main="진짜 이쁘다"
+            <LargeCard 
+              onClick={() => navigate('/PopupInfo')}
+              image={NewJeans}
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <SmallCard
-              image="img/Artistimg/iab_box.jpg"
-              title="iab"
-              category="이쁘다"
-              main="너무 이쁘다"
+            <LargeCard 
+              image={NewJeans}
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="블랙핑크"
-              category="진짜 이쁘네 ㅋㅋ"
-              main="제 이상형이에요 사귀자"
+            <LargeCard 
+              image={NewJeans}
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
           </SliderXItems>
-        </SliderXwrapper>
+        </SliderXwrapper2>
+
         <Margin height="30" />
         <PopupTitle
           isarrow={true}
           text="예매 가능한 인기 팝업"
           bottomgap="15"
         />
-        <SliderXwrapper>
+        <SliderXwrapper2>
           <SliderXItems>
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="로제"
-              category="이쁘다"
-              main="진짜 이쁘다"
+          <LargeCard 
+              onClick={() => navigate('/PopupInfo')}
+              image={NewJeans}
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <SmallCard
-              image="img/Artistimg/iab_box.jpg"
-              title="iab"
-              category="이쁘다"
-              main="너무 이쁘다"
+            <LargeCard 
+              image={NewJeans}
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="블랙핑크"
-              category="진짜 이쁘네 ㅋㅋ"
-              main="제 이상형이에요 사귀자"
+            <LargeCard 
+              image={NewJeans}
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
           </SliderXItems>
-        </SliderXwrapper>
+        </SliderXwrapper2>
         <Margin height="50" />
+<<<<<<< HEAD
         <PopupTitle isarrow={true} text="팝업 포스트" bottomgap="10" />
         <PostCard
           onClick={()=> navigate('/cardtest')}
@@ -144,6 +170,16 @@ function Main() {
           type="추천 포스트"
           main="요즘 가장 핫한 뉴진스의 Super shy을 슬릭님만의 스타일로 리믹스한 음원을 팝업스테이지에서 최초 공개하였습니다."
         />
+=======
+        <PopupTitle onClick={() => navigate('/PostList')} isarrow={true} text="팝업 포스트" bottomgap="10"/>
+          <PostCard 
+            onClick={() => navigate('/PopupPost')}
+            image={"img/Artistimg/iab_box.jpg"}
+            title="슬릭의 Super Shy 팝업공연 현장!!"
+            type="추천 포스트"
+            main="요즘 가장 핫한 뉴진스의 Super shy을 슬릭님만의 스타일로 리믹스한 음원을 팝업스테이지에서 최초 공개하였습니다."
+          />
+>>>>>>> 2b66cf1de32de4bc783fd605817d283c9816b427
         <Margin height="60" />
         <PopupTitle
           onClick={() => navigate("/newbrand")}
@@ -174,7 +210,7 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="35" />
-        <PopupTitle isarrow={true} text="독립 아티스트" bottomgap="20" />
+        <PopupTitle isarrow={true} text="독립 아티스트" bottomgap="20" onClick={() => navigate('/NewArtist')} />
         <ArtistCategory />
         <SliderXwrapper>
           <SliderXItems>

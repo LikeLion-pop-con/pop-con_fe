@@ -78,10 +78,10 @@ const Icon = styled.img`
   cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 
 `;
 
-const PopupCard = ({image, title, main }) => {
+const PopupCard = ({image, title, main, onClick}) => {
     const navigate = useNavigate();
     return (
-            <CardEach onClick={() => navigate('/')}>
+            <CardEach onClick={onClick}>
                 <Thumbnail image={image}/>
                 <TextBox>
                     <TitleWrapper>
