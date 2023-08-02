@@ -1,9 +1,9 @@
 import React from "react";
 import { styled } from 'styled-components';
 import Header from "../../Components/Header/Header";
-import Cardup from "../../Components/Brand,AristCard/Cardup";
-import Carddown2 from "../../Components/Brand,AristCard/Carddown2";
-import Popinfodetail from "../../Components/Brand,AristCard/Popinfodetail";
+import Cardup from "../../Components/Brand, ArtistCard/Cardup";
+import Carddown2 from "../../Components/Brand, ArtistCard/Carddown2";
+import Popinfodetail from "../../Components/Brand, ArtistCard/Popinfodetail";
 import Typo from "../../assets/Typo";
 import Footer from "../../Components/Footer/Footer";
 

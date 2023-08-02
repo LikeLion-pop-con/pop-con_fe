@@ -42,6 +42,11 @@ function Main() {
   const navigate = useNavigate();
   const [scrollDir, setScrollDir] = useState("scrolling down");
 
+  const PostCardWrapper = styled.div`
+  display:flex;
+  flex-direction: column;
+`
+
   useEffect(() => {
     const threshold = 0;
     let lastScrollY = window.scrollY;
@@ -133,6 +138,7 @@ function Main() {
         <Margin height="50" />
         <PopupTitle isarrow={true} text="팝업 포스트" bottomgap="10" />
         <PostCard
+          onClick={()=> navigate('/cardtest')}
           image={"img/Artistimg/iab_box.jpg"}
           title="슬릭의 Super Shy 팝업공연 현장!!"
           type="추천 포스트"

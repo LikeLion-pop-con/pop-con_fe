@@ -26,7 +26,7 @@ import PostList from "./pages/MainPlusPage/PostList";
 import Login from "./pages/Login/Login";
 import Resister from "./pages/Login/Resister";
 import Searchresult from "./pages/Search/Searchresult";
-import { SearchProvider } from "../../pop-con_fe/src/Components/SearchBar/SearchContext"
+import { SearchProvider } from "./Components/SearchBar/SearchContext"
 
 import PopupInfo from "./pages/PopupInfo/PopupInfo"
 
@@ -56,7 +56,6 @@ function Router() {
           <Route path="/search" element={<Search />} />
           <Route path="/search/result" element={<Searchresult />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/Brand" element={<BrandIntroduce />} />
           <Route path="/main/:cateId" element={<Cate />}>
             <Route path="" element={<Ing />}></Route>
             <Route path="ing" element={<Requesting />}></Route>
@@ -71,8 +70,8 @@ function Router() {
           <Route path="/Mypage/introduce" element={<Introduce />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Resister" element={<Resister />} />
-          <Route path='/Brand' element={<BrandIntroduce />} />
-          <Route path="*" element={<div>없는페이지임</div>} />
+          <Route path="/brand" element={<BrandIntroduce />} />
+          <Route path="/artist" element={<BrandIntroduce/>}/>
           <Route path="/:cateId" element={<Cate />}>
             <Route path="" element={<Ing />}></Route>
             <Route path="ing" element={<Requesting />}></Route>

@@ -1,12 +1,12 @@
 import { useLocation, useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { PopupCategory } from "../../atom";
 import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import PopupTitle from "../../Components/PopupTitle/PopupTitle";
 import Header from "../../Components/Header/Header";
 import PageTabs from "../../Components/PageTitle/PageTabs";
-import { useRecoilValue } from "recoil";
-import { PopupCategory } from "../../atom";
 import back from "../../assets/Icons/NavigationBar/back.svg";
 
 const Wrapper = styled.div`

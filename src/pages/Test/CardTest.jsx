@@ -9,12 +9,14 @@ import SmallCard from "../../Components/Card/SmallCard";
 import PostCard from "../../Components/Card/PostCard";
 import PopupCard from "../../Components/Card/PopupCard";
 import CheckCard from "../../Components/Card/CheckCard";
+import SpacePopup from "../../Components/Card/SpacePopup";
 
 import Cardrose from "../../assets/Icons/Card/Cardrose.jpg";
 import SmallCardGH from "../../assets/Icons/Card/SmallCardGH.jpg";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
 import PopupCardimg1 from "../../assets/Icons/Card/PopupCardimg1.png";
+
 
 
 
@@ -62,6 +64,7 @@ const CardTest = () => {
         <PopupCard image={PopupCardimg1} title='IAB studio 팝업 요청되었습니다!' main={'팝업 장소와 일정이 확정되면 알려드릴게요.\n이 팝업 정보를 공유해보세요!'}/>
 
         <CheckCard title='제일 인기가 많은 대전에서 팝업을 열까요?'/>
+        <SpacePopup title='어떤 공간을 갖고 계세요?'/>
       </CardBlock>
     </>
   );
