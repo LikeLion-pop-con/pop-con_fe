@@ -14,6 +14,7 @@ const CardEach = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
+  
 
   //height: 470px;
   width: 95%;
@@ -78,10 +79,10 @@ const Horizon = styled.div`
   background-color: green;
 `;
 
-const PostCard = ({ image, type, title, color, main }) => {
+const PostCard = ({ image, type, title, color, main, onClick}) => {
   const navigate = useNavigate();
   return (
-    <CardEach onClick={() => navigate("/")}>
+    <CardEach onClick={onClick}>
       <ThumbnailWrapper>
         <Thumbnail image={image} />
       </ThumbnailWrapper>

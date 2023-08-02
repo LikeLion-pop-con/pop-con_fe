@@ -9,17 +9,19 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-bottom: ${(props) => props.bottomgap}px;
+  cursor: pointer;
 `;
 
-function PopupTitle({ text, bottomgap, isarrow }) {
+function PopupTitle({ text, bottomgap, isarrow, onClick}) {
   return (
-    <Wrapper bottomgap={bottomgap}>
+    <Wrapper bottomgap={bottomgap} onClick={onClick}>
       <Typo fontType="title">{text}</Typo>
       {isarrow && (
         <MdArrowForwardIos
           style={{ fontSize: 16, marginTop: 2, marginLeft: 3 }}
         />
       )}
+      
     </Wrapper>
   );
 }
