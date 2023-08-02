@@ -61,7 +61,7 @@ const Tab = styled(motion.div)`
   align-items: center;
   padding: 0px 20px;
   height: 3rem;
-  border-bottom: 1px solid ${(props) => props.theme.colors.black};
+  //border-bottom: 1px solid ${(props) => props.theme.colors.black};
   z-index: 10;
 `;
 const CateVariants = {
@@ -186,25 +186,22 @@ function ShowCate() {
                 }}
               >
                 <Tab onClick={() => setId("All")}>
-                  <Typo fontType="mediumsmall">All</Typo>
+                  <Typo fontType="mediumsmall">팝업</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
                 <Tab onClick={() => setId("스토어")}>
-                  <Typo fontType="mediumsmall">스토어</Typo>
+                  <Typo fontType="mediumsmall">팝업 브랜드</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
                 <Tab onClick={() => setId("갤러리")}>
-                  <Typo fontType="mediumsmall">갤러리</Typo>
+                  <Typo fontType="mediumsmall">독립 아티스트</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
                 <Tab onClick={() => setId("스테이지")}>
-                  <Typo fontType="mediumsmall">스테이지</Typo>
+                  <Typo fontType="mediumsmall">서비스 가이드</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-                <Tab onClick={() => setId("클래스")}>
-                  <Typo fontType="mediumsmall">클래스</Typo>
-                  <MdArrowForwardIos style={{ fontSize: 18 }} />
-                </Tab>
+               
               </List>
               <Margin height="15" />
             </AnimatePresence>

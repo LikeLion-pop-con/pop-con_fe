@@ -17,6 +17,7 @@ import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
 import PopupCardimg1 from "../../assets/Icons/Card/PopupCardimg1.png";
 
 import Headerline from "../../Components/Headerline/Headerline";
+import PageTabs from "../../Components/PageTitle/PageTabs";
 
 
 const Wrapper = styled.div`
