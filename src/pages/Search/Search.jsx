@@ -83,7 +83,11 @@ const Search = () => {
   const clearHistory = () => {
     setSearchHistory([]);
   };
-  
+  const handleSearchTextClick = (text) => {
+    addToHistory(text);
+    setSearchHistory((prevHistory) => [...prevHistory, text]);
+    navigate(`/search/result?query=${encodeURIComponent(text)}`);
+  };
   const navigate = useNavigate();
   return (
     <>
@@ -98,7 +102,7 @@ const Search = () => {
       </Resentbox>
       <Reset>
       {searchHistory.map((text, index) => (
-            <Typo color="black" size="0.7rem"><ResetText key={index}>{text}</ResetText></Typo>
+            <Typo color="black" size="0.7rem"><ResetText onClick={() => handleSearchTextClick(text)}>{text}</ResetText></Typo>
           ))}
           
       </Reset>
