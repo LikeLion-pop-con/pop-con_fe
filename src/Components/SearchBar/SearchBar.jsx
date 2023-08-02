@@ -66,16 +66,19 @@ const SearchBar = ({ onSearchTextChange, inputText }) => {
 
   const handleIconClick = () => {
     if (searchText.trim().length > 0) {
-      onSearchTextChange(searchText);
+      onSearchTextChange(searchText); 
       navigate(`/search/result?query=${encodeURIComponent(searchText)}`);
+    } else {
+      alert('검색어를 입력해주세요.');
     }
   };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       if (searchText.trim().length > 0) {
-        onSearchTextChange(searchText);
         navigate(`/search/result?query=${encodeURIComponent(searchText)}`);
+      } else {
+        alert('검색어를 입력해주세요.');
       }
     }
   };
@@ -90,11 +93,13 @@ const SearchBar = ({ onSearchTextChange, inputText }) => {
         onKeyPress={handleKeyPress}
       />
       
+      {searchText && (
         <CancelIconWrapper onClick={clearSearch}>
           <img src={CircleX} alt="Cancel" />
         </CancelIconWrapper>
+      )}
       
-       <SearchIconWrapper onClick={handleIconClick}>
+      <SearchIconWrapper onClick={handleIconClick}>
         <img src={searchLook} alt="Search" />
       </SearchIconWrapper>
     </SearchBarWrapper>

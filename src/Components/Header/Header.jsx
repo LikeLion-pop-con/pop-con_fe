@@ -1,12 +1,15 @@
-import logo from '../../assets/Icons/Header/logo.png'
-import login from '../../assets/Icons/Header/login.svg'
-import search from '../../assets/Icons/Header/search.svg'
-import { styled } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+// Header.js
 import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+
+import logo from '../../assets/Icons/Header/logo.png';
+import login from '../../assets/Icons/Header/login.svg';
+import search from '../../assets/Icons/Header/search.svg';
 
 const Icon = styled.img`
-  cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 
+  cursor: pointer;
 `;
 
 const iconType = (navigate, type) => {
@@ -16,17 +19,17 @@ const iconType = (navigate, type) => {
     search: <Icon src={search} alt='search' onClick={() => navigate('/search')} />,
   };
 
-  return icon[type]; //return icon[type]: type에 따라 적절한 아이콘을 반환
-};  
+  return icon[type];
+};
 
 const HeaderWrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  background-color:${({ Color }) => Color || 'white'};
+  background-color: ${({ Color }) => Color || 'white'};
 `;
 
 const IconsContainer = styled.div`
@@ -34,12 +37,14 @@ const IconsContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-left: 10px;
 `;
 
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 10px;
   & > :not(:last-child) {
     margin-right: 10px;
   }
@@ -50,19 +55,33 @@ const EmptyIcon = styled.div`
   height: 16px;
 `;
 
-export default function Header({ left = "", right = [], bgColor }) {
+export default function Header({ left = '', right = [], bgColor }) {
   const navigate = useNavigate();
+  const isLoggedIn = !!localStorage.getItem('Token');
+
+  const handleLogout = () => {
+    // Perform logout actions here
+    localStorage.removeItem('Token');
+    // Additional logout logic, if any...
+  };
 
   return (
     <>
       <HeaderWrapper Color={bgColor}>
-          <IconsContainer>
-            {left ? iconType(navigate, left) : <EmptyIcon />}
-          </IconsContainer>
-          <IconWrapper>
-            {right.map((iconTypeItem) => (
-              iconTypeItem ? iconType(navigate, iconTypeItem) : <EmptyIcon />))}
-          </IconWrapper>
+        <IconsContainer>
+          {left ? iconType(navigate, left) : <EmptyIcon />}
+        </IconsContainer>
+        <IconWrapper>
+          {right.map((iconTypeItem) => {
+            if (iconTypeItem === 'login') {
+              // Render login icon only when the user is logged out
+              return isLoggedIn ? null : iconType(navigate, iconTypeItem);
+            } else {
+              // Render other icons always
+              return iconType(navigate, iconTypeItem);
+            }
+          })}
+        </IconWrapper>
       </HeaderWrapper>
     </>
   );
