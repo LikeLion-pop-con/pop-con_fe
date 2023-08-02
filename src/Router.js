@@ -27,11 +27,7 @@ import PostList from "./pages/MainPlusPage/PostList";
 import Login from "./pages/Login/Login";
 import Resister from "./pages/Login/Resister";
 import Searchresult from "./pages/Search/Searchresult";
-<<<<<<< HEAD
 import { SearchProvider } from "./Components/SearchBar/SearchContext"
-=======
-import { SearchProvider } from "./Components/SearchBar/SearchContext";
->>>>>>> 2b66cf1de32de4bc783fd605817d283c9816b427
 
 import PopupInfo from "./pages/PopupInfo/PopupInfo"
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
@@ -63,6 +59,7 @@ function Router() {
             <Route path="/search/result" element={<Searchresult />} />
             <Route path="/test" element={<Test />} />
             <Route path="/Brand" element={<BrandIntroduce />} />
+
             <Route path="/main/:cateId" element={<Cate />}>
               <Route path="" element={<Ing />}></Route>
               <Route path="ing" element={<Requesting />}></Route>
@@ -77,7 +74,8 @@ function Router() {
             <Route path="/Mypage/introduce" element={<Introduce />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Resister" element={<Resister />} />
-            <Route path="/Brand" element={<BrandIntroduce />} />
+            <Route path="/brand" element={<BrandIntroduce />} />
+            <Route path="/artist" element={<ArtistIntroduce/>} />
             <Route path="*" element={<div>없는페이지임</div>} />
             <Route path="/:cateId" element={<Cate />}>
               <Route path="" element={<Ing />}></Route>
@@ -89,7 +87,6 @@ function Router() {
 
             <Route path="*" element={<div>없는페이지임</div>} />
           </Route>
-<<<<<<< HEAD
 
           <Route path="/category" element={<ShowCate />}></Route>
           <Route path="/newbrand" element={<NewBrand />}></Route>
@@ -106,16 +103,6 @@ function Router() {
             <Route path="ing" element={<Requesting />}></Route>
           </Route>
 
-          <Route path="/brand/:brandId" element={<BrandIntroduce />}>
-            <Route path="" element={<Ing />}></Route>
-            <Route path="" element={<Requesting />}></Route>
-          </Route>
-
-          <Route path="/artist/:artisiId" element={<ArtistIntroduce />}>
-            <Route path="" element={<Ing />}></Route>
-            <Route path="" element={<Requesting />}></Route>
-          </Route>
-
           <Route path="/Mypage" element={<Mypage />} />
           <Route path="/Mypage/Myreservation" element={<Myreservation />} />
           <Route path="/Mypage/MypopLike" element={<MypopLike />} />
@@ -125,7 +112,6 @@ function Router() {
           <Route path="/Mypage/introduce" element={<Introduce />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Resister" element={<Resister />} />
-          <Route path="/artist" element={<ArtistIntroduce/>}/>
           <Route path="/:cateId" element={<Cate />}>
             <Route path="" element={<Ing />}></Route>
             <Route path="ing" element={<Requesting />}></Route>
@@ -135,14 +121,8 @@ function Router() {
           <Route path="/popupinfo" element={<PopupInfo/>}/>
 
           <Route path="*" element={<div>없는페이지임</div>} />
-          
-        </Route>
       </Routes>
      </SearchProvider>
-=======
-        </Routes>
-      </SearchProvider>
->>>>>>> 2b66cf1de32de4bc783fd605817d283c9816b427
     </BrowserRouter>
   );
 }

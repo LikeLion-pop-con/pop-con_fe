@@ -82,11 +82,7 @@ const Horizon = styled.div`
 const PostCard = ({ image, type, title, color, main, onClick}) => {
   const navigate = useNavigate();
   return (
-<<<<<<< HEAD
-    <CardEach>
-=======
     <CardEach onClick={onClick}>
->>>>>>> 2b66cf1de32de4bc783fd605817d283c9816b427
       <ThumbnailWrapper>
         <Thumbnail image={image} />
       </ThumbnailWrapper>

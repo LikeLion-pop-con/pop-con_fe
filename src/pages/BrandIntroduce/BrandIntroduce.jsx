@@ -7,10 +7,10 @@ import Header from "../../Components/Header/Header";
 import Headerline from "../../Components/Headerline/Headerline";
 import { useLocation, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import PageTabs from "../../Components/PageTitle/PageTabs";
 import { PopupCategory } from "../../atom";
 
 const BrandIntroduce = () => {
+
   const { brandId } = useParams();
 
   return (
