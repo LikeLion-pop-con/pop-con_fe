@@ -27,8 +27,8 @@ import PostList from "./pages/MainPlusPage/PostList";
 import Login from "./pages/Login/Login";
 import Resister from "./pages/Login/Resister";
 import Searchresult from "./pages/Search/Searchresult";
-import { SearchProvider } from "./Components/SearchBar/SearchContext"
-
+import { SearchProvider } from "./Components/SearchBar/SearchContext";
+import Service from "./pages/MyPage/Service";
 import PopupInfo from "./pages/PopupInfo/PopupInfo"
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 
@@ -72,6 +72,7 @@ function Router() {
             <Route path="/Mypage/MyBrandLike" element={<MyBrandLike />} />
             <Route path="/Mypage/Knowlist" element={<KnowList />} />
             <Route path="/Mypage/introduce" element={<Introduce />} />
+            <Route path="/Mypage/Service" element={<Service />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Resister" element={<Resister />} />
             <Route path="/brand" element={<BrandIntroduce />} />

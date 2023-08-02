@@ -3,6 +3,7 @@ import NavigationBar from '../../Components/Navigate/Navigate';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { useSearchContext } from "../../Components/SearchBar/SearchContext";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import LargeCard from '../../Components/Card/LargeCard';
 import SmallCard from '../../Components/Card/SmallCard';
@@ -25,9 +26,15 @@ const TitleText = styled.p`
 const Searchresult = () => {
     const location = useLocation();
     const searchText = new URLSearchParams(location.search).get('query');
+    const { searchHistory, setSearchHistory } = useSearchContext();
+
+  const addToHistory = (text) => {
+    setSearchHistory((prevHistory) => [...prevHistory, text]);
+  };
+
     return (
         <>
-        <SearchBar onSearchTextChange={(text) => {}} searchText={searchText}></SearchBar>
+        <SearchBar onSearchTextChange={(text) => addToHistory(text)} searchText={searchText} searchHistory={searchHistory}></SearchBar>
         <TitleText><Typo size="1.2rem" weight="400" color = "main">팝업 스토어</Typo></TitleText>
         <Wrapper>
         <LargeCard image={NewJeans} title='NewJeans의 HYPE맑음' popcategory='팝업 스토어' detail='창작 예술' space={'하텍 해동 스룸G '} date='2023.07.21~2023.08.19'/>
