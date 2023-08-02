@@ -20,7 +20,6 @@ import PopupCardimg1 from "../../assets/Icons/Card/PopupCardimg1.png";
 import AdminCardimg from "../../assets/Icons/Card/AdminCardimg.png";
 
 import Headerline from "../../Components/Headerline/Headerline";
-import PageTabs from "../../Components/PageTitle/PageTabs";
 
 
 const Wrapper = styled.div`

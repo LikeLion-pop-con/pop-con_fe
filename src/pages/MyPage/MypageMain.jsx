@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding: 30px;
   padding-bottom: 110px;
+  margin-bottom: 30px; 
 `;
 
 const Image = styled.img`
@@ -24,8 +25,9 @@ const Image = styled.img`
 `;
 
 const Name = styled.p`
-margin-left: 60px;
-
+position: absolute;
+top:180px;
+left: 100px;
 `;
 const Detailbox = styled.div`
     width: 100%;
@@ -51,14 +53,42 @@ padding: 8px;
 padding-top:30px;
 
 `
+const LogoutButton = styled.button`
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  display: flex;
+  align-self: flex-end;
+  cursor: pointer;
+  position: absolute;
+  top:260px;
+`;
 const Mypage = () => {
     const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('Token');
+        localStorage.removeItem('Name');
+        navigate("/");
+  };
+  const isLoggedIn = !!localStorage.getItem('Token');
+  const userName = localStorage.getItem('Name')
     return (
          <>
              <Header left="logo" right={["login", "search"]} bgColor="#EC7538" />
              <Wrapper>
                  <Image src='/MyPage/Logo.png' />
-                 <Name><Typo size="1.5rem" weight="400" color = "white">이상혁</Typo></Name>
+                 <Name> {isLoggedIn ? ( 
+            <Typo size="1.5rem" weight="400" color="white">
+              {userName}
+            </Typo>
+          ) : (
+            <Typo size="1rem" weight="400" color="white">
+              로그인 필요!
+            </Typo>
+          )}</Name>
+                 {isLoggedIn && <LogoutButton onClick={handleLogout}>Logout</LogoutButton>}
              </Wrapper>
              <Detailbox>
                 <TextLink ><Typo size="1.3rem" weight="400"><Text1>My POPCON</Text1></Typo>
@@ -73,7 +103,8 @@ const Mypage = () => {
                 <Horizon width="340px"color="white"></Horizon></TextLink>
                 <TextLink><Text1><Typo size="1.3rem" weight="400">ABOUT POPCON</Typo></Text1><Horizon width="340px"></Horizon></TextLink>
                 <TextLink to="/Mypage/KnowList"><Text><Typo size="1rem" weight="400">공지사항</Typo></Text><Horizon width="340px"color="lightgray"></Horizon></TextLink>
-                <TextLink to="/Mypage/introduce"><Text><Typo size="1rem" weight="400">회사소개</Typo></Text><Horizon width="340px"color="white"></Horizon></TextLink>
+                <TextLink to="/Mypage/introduce"><Text><Typo size="1rem" weight="400">회사소개</Typo></Text><Horizon width="340px"color="lightgray"></Horizon></TextLink>
+                <TextLink to="/Mypage/Service"><Text><Typo size="1rem" weight="400">고객센터</Typo></Text><Horizon width="340px"color="white"></Horizon></TextLink>
              </Detailbox>
              <NavigationBar/>
          </>

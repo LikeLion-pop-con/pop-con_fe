@@ -94,6 +94,7 @@ const AdminCard = ({ image, title, space, floor, area, onClick}) => {
           <Icon src={AdminCardHeart} alt='logo' onClick={() => navigate('/main')} />
         </TextWrapper>
       </TextBox>
+      <Margin height='10'/>
     </CardEach>
   );
 };

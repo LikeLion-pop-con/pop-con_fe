@@ -4,7 +4,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import Header from "../../Components/Header/Header";
 import Margin from "../../Components/Margin/Margin";
 import NavigationBar from "../../Components/Navigate/Navigate";
-
 import Typo from "../../assets/Typo";
 import Card from "../../Components/Card/Card";
 import LargeCard from "../../Components/Card/LargeCard";

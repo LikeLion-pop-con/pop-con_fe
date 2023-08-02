@@ -82,6 +82,7 @@ const Login = () => {
         console.log(response);
         console.log(response.data.token);
         localStorage.setItem("Token", response.data.token);
+        localStorage.setItem("Name", response.data.이름);
         console.log("로그인 성공");
         if (response.status === 200) {
           return navigate("/main");
@@ -89,6 +90,7 @@ const Login = () => {
       })
       .catch((err) => {
         setMessage(err.response.data.message);
+        alert("다시 로그인해주세요!")
         console.log(err);
       });
   };
