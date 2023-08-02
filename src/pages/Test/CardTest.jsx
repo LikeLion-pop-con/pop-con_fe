@@ -15,6 +15,7 @@ import SmallCardGH from "../../assets/Icons/Card/SmallCardGH.jpg";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
 import PopupCardimg1 from "../../assets/Icons/Card/PopupCardimg1.png";
+import PageTabs from "../../Components/PageTitle/PageTabs";
 
 
 
@@ -62,7 +63,9 @@ const CardTest = () => {
         <PopupCard image={PopupCardimg1} title='IAB studio 팝업 요청되었습니다!' main={'팝업 장소와 일정이 확정되면 알려드릴게요.\n이 팝업 정보를 공유해보세요!'}/>
 
         <CheckCard title='제일 인기가 많은 대전에서 팝업을 열까요?'/>
+      
       </CardBlock>
+      <PageTabs></PageTabs>
     </>
   );
 };
