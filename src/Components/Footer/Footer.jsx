@@ -56,7 +56,7 @@ function Footer() {
         <Label>팝업 시작</Label>
         <Label to="/Mypage/introduce">서비스 소개</Label>
         <Label to="/Mypage/KnowList">공지사항</Label>
-        <Label>고객 센터</Label>
+        <Label to="/Mypage/Service">고객 센터</Label>
         <Label>팝업 스토어 가이드</Label>
         <Label>이용약관</Label>
         <Label>개인정보 처리방침</Label>

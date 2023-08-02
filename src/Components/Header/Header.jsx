@@ -60,9 +60,7 @@ export default function Header({ left = '', right = [], bgColor }) {
   const isLoggedIn = !!localStorage.getItem('Token');
 
   const handleLogout = () => {
-    // Perform logout actions here
     localStorage.removeItem('Token');
-    // Additional logout logic, if any...
   };
 
   return (
@@ -74,10 +72,8 @@ export default function Header({ left = '', right = [], bgColor }) {
         <IconWrapper>
           {right.map((iconTypeItem) => {
             if (iconTypeItem === 'login') {
-              // Render login icon only when the user is logged out
               return isLoggedIn ? null : iconType(navigate, iconTypeItem);
             } else {
-              // Render other icons always
               return iconType(navigate, iconTypeItem);
             }
           })}
