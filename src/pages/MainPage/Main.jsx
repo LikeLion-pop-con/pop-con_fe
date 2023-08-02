@@ -51,6 +51,11 @@ function Main() {
   const navigate = useNavigate();
   const [scrollDir, setScrollDir] = useState("scrolling down");
 
+  const PostCardWrapper = styled.div`
+  display:flex;
+  flex-direction: column;
+`
+
   useEffect(() => {
     const threshold = 0;
     let lastScrollY = window.scrollY;
@@ -156,14 +161,14 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper2>
         <Margin height="50" />
-        <PopupTitle onClick={() => navigate('/PostList')} isarrow={true} text="팝업 포스트" bottomgap="10"/>
-          <PostCard 
-            onClick={() => navigate('/PopupPost')}
-            image={"img/Artistimg/iab_box.jpg"}
-            title="슬릭의 Super Shy 팝업공연 현장!!"
-            type="추천 포스트"
-            main="요즘 가장 핫한 뉴진스의 Super shy을 슬릭님만의 스타일로 리믹스한 음원을 팝업스테이지에서 최초 공개하였습니다."
-          />
+        <PopupTitle isarrow={true} text="팝업 포스트" bottomgap="10" />
+        <PostCard
+          onClick={()=> navigate('/cardtest')}
+          image={"img/Artistimg/iab_box.jpg"}
+          title="슬릭의 Super Shy 팝업공연 현장!!"
+          type="추천 포스트"
+          main="요즘 가장 핫한 뉴진스의 Super shy을 슬릭님만의 스타일로 리믹스한 음원을 팝업스테이지에서 최초 공개하였습니다."
+        />
         <Margin height="60" />
         <PopupTitle
           onClick={() => navigate("/newbrand")}

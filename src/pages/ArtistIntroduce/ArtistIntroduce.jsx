@@ -9,7 +9,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { PopupCategory } from "../../atom";
 
-const BrandIntroduce = () => {
+const ArtistIntroduce = () => {
 
   const { brandId } = useParams();
 
@@ -17,17 +17,17 @@ const BrandIntroduce = () => {
     <div>
       <Header left="logo" right={["login", "search"]} />
       <Cardup
-        name="IAB STUDIO"
-        backimageUrl="/img/Artistimg/iablogo.png" //이미지 크기가 안 맞아서 
-        CircleimageUrl="/img/Artistimg/iabCircleimg.png"
+        name="로제"
+        backimageUrl="/img/Artistimg/Backrose.png" //이미지 크기가 안 맞아서 
+        CircleimageUrl="/img/Artistimg/rose.jpg"
       ></Cardup>
       <Carddown1
         subcribeNum="452"
         popNum="23"
-        introduceText="[I've Always Been], '항상 그래왔듯, 앞으로 변함없이'"
+        introduceText="뉴질랜드 국적을 가진 최초의 K-POP 아이돌로써 화제가 됨과 동시에 박봄을 잇는 차세대 YG 걸그룹 음색깡패"
       ></Carddown1>
       <InfoTabs
-        brandId={brandId} // cateId 변수명을 brandId로 수정
+        artistId={brandId} // cateId 변수명을 brandId로 수정
         page1="소개"
         page2="팝업 정보"
         page3="포스트"
@@ -35,9 +35,9 @@ const BrandIntroduce = () => {
         page2link={"brand/:brandId"}
         page3link={"brand/:brandId"}
         />
-      <Headerline title="브랜드 소개 제목" subtitle="브랜드 소개 부제목" content="브랜드 소개 본문"/>
+      <Headerline title="아티스트 제목" subtitle="아티스트 부제목" content="아티스트 본문"/>
     </div>
   );
 };
 
-export default BrandIntroduce;
+export default ArtistIntroduce;
