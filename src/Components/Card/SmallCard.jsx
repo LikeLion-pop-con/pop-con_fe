@@ -45,11 +45,11 @@ const TextWrapper = styled.div`
   margin-right: 15px;
 `;
 
-const SmallCard = ({ image, title, category, main }) => {
+const SmallCard = ({ image, title, category, main, onClick}) => {
   const navigate = useNavigate();
   return (
     <CardBlock>
-      <CardEach onClick={() => navigate("/")}>
+      <CardEach onClick={onClick}>
         <Thumbnail image={image} />
         <TextWrapper>
           <Typo size="0.9rem" weight='400'>{title}</Typo>

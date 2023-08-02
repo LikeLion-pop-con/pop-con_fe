@@ -6,6 +6,7 @@ import PostCard from "../../Components/Card/PostCard";
 import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
 import Footer from "../../Components/Footer/Footer";
 import PostCardimg2 from "../../assets/Icons/Card/PostCardimg2.jpg";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 const Title = styled.div`
   width: 100%;
@@ -47,6 +48,7 @@ function PostList() {
             color='green' 
             main={'크렘드마롱(Crème de Marrons)은 클레망포지에사의 140년 전통 프랑스산 밤잼 브랜드 입니다. 크렘드마롱은 프랑스 남부 리옹 지역에서 수확하는 야생밤을 원료로 깊은 밤의 풍미를 선사합니다.'} />
       </CardBlock>
+      <NavigationBar/>
       <Footer/>
     </>
   );

@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Typo from '../../assets/Typo';
 import {BiArrowBack} from 'react-icons/bi'
+import Margin from '../../Components/Margin/Margin';
 const LoginText = styled.p``;
 const Top = styled.div`
     display: flex;
@@ -49,6 +50,21 @@ height:48px;
 background-color: #EC7538;
 border: none;
 border-radius: 8px;
+`;
+
+const ResisterButton = styled.button`
+width:326px;
+height:48px;
+background-color: white;
+border: 1px solid black;
+border-radius: 8px;
+`;
+
+const ButtonWapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+
 `;
 
 const Login = () => {
@@ -99,8 +115,11 @@ const Login = () => {
             <Input type='password' {...register('password', { required: true })} autoComplete="new-password" />
             {errors.password && <span>비밀번호를 입력해주세요.</span>}
           </InputWrapper>
-
-          <LoginButton type="submit"><Typo size="1.1rem" weight="600" color="white">로그인</Typo></LoginButton>
+          <ButtonWapper>
+            <LoginButton type="submit"><Typo size="1.1rem" weight="600" color="white">로그인</Typo></LoginButton>
+            <Margin height='10'/>
+            <ResisterButton onClick={() => navigate('/resister')}><Typo size="1.1rem" weight="600" color="black">이메일로 시작하기</Typo></ResisterButton>
+          </ButtonWapper>
         </LoginBox>
       </form>
     </>

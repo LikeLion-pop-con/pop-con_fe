@@ -50,11 +50,11 @@ const TextWrapper = styled.div`
   margin-right: 15px;
 `;
 
-const Card = ({ image, title, category, main }) => {
+const Card = ({ image, title, category, main, onClick }) => {
   // image, title, category, main을 props로 받습니다.
   const navigate = useNavigate();
   return (
-    <CardEach onClick={() => navigate("/")}>
+    <CardEach onClick={onClick}>
       <Thumbnail image={image} />
       <TextWrapper>
         <Typo size="1rem" weight='400'>{title}</Typo>

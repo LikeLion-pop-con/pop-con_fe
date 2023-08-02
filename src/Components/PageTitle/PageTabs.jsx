@@ -21,6 +21,7 @@ const Tabs = styled.div`
   grid-template-columns: repeat(${(props) => props.tabs}, 1fr);
   margin: 20px 20px;
 `;
+
 const Tab = styled.div`
   width: 7rem;
   height: 20px;

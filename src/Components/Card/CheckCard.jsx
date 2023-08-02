@@ -60,10 +60,10 @@ const Icon = styled.img`
   cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 
 `;
 
-const CheckCard = ({title}) => {
+const CheckCard = ({title, onClick}) => {
     const navigate = useNavigate();
     return (
-            <CardEach>
+            <CardEach onClick={onClick}>
                 <LogoWrapper>
                     <Icon src={logo} width='10%' height='10%' alt='logo' onClick={() => navigate('/main')} />
                 </LogoWrapper>

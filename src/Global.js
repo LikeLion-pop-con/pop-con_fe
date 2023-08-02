@@ -44,6 +44,10 @@ const GlobalStyle = createGlobalStyle`
       //font-family: 'Noto Sans KR', sans-serif;
       margin: 0;
       padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 16px;
+
+
   }
 
   @font-face {
@@ -53,7 +57,7 @@ const GlobalStyle = createGlobalStyle`
 
   * {//우선순위 1로 변경하는법 찾기, 로컬이랑 우선순위가 같은 것 같다. 그래서 오버라이딩되지 않았을까
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0;
     padding: 0;
   }
