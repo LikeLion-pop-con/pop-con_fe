@@ -100,7 +100,7 @@ export default function NavigationBar({ hide, setIsCateClicked }) {
         <Icon onClick={() => navigate("/like")} img={like}>
           LIKE
         </Icon>
-        <Icon onClick={() => navigate("/my")} img={my}>
+        <Icon onClick={() => navigate("/Mypage")} img={my}>
           MY
         </Icon>
       </IconsContainer>

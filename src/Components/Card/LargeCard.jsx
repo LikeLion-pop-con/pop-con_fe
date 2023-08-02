@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Typo from "../../assets/Typo";
 import Margin from "../Margin/Margin";
+import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
+
 
 const CardBlock = styled.div`
   display: flex;
@@ -16,7 +18,8 @@ const CardEach = styled.div`
   background-color: white;
 
   height: 300px;
-  width: 95%;
+  min-width:400px;
+
 
   border-radius: 16px;
   cursor: pointer;
@@ -31,6 +34,7 @@ const Thumbnail = styled.div`
   //background-image: url('/Cardrose.jpg');
   background-image: url(" ${(props) => props.image} ");
   background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
   background-color: none;
   border-radius: 16px;
@@ -72,7 +76,7 @@ const LargeCard = ({ image, title, popcategory, detail, space, date }) => {
     <CardEach onClick={() => navigate("/")}>
       <Thumbnail image={image} />
       <TitleWrapper>
-        <Typo fontType="title">{title}</Typo>
+        <Typo weight='600'>{title}</Typo>
       </TitleWrapper>
       <TextBox>
         <TextWrapper>
