@@ -94,7 +94,7 @@ function Main() {
         <PopupTitle text="팝업 카테고리" bottomgap="20" />
         <Category listid="main" />
         <Margin height="30" />
-        <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" />
+        <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" onClick={() => navigate('/popuphere')} />
         <SliderXwrapper2>
           <SliderXItems>
             <LargeCard 
@@ -130,6 +130,7 @@ function Main() {
           isarrow={true}
           text="예매 가능한 인기 팝업"
           bottomgap="15"
+          onClick={() => navigate('/popularpopup')}
         />
         <SliderXwrapper2>
           <SliderXItems>
