@@ -22,7 +22,7 @@ import LogoWelcome from "./pages/LogoWelcome/LogoWelcome";
 import PopupPost from "./pages/PopupPost/PopupPost";
 import NewBrand from "./pages/MainPlusPage/NewBrand";
 import NewArtist from "./pages/MainPlusPage/NewArtist";
-import Weekly from "./pages/MainPlusPage/Weekly";
+import Weekly from "./pages/MainPlusPage/PopularPopup";
 import PostList from "./pages/MainPlusPage/PostList";
 import Login from "./pages/Login/Login";
 import Resister from "./pages/Login/Resister";
@@ -31,6 +31,8 @@ import { SearchProvider } from "./Components/SearchBar/SearchContext";
 import Service from "./pages/MyPage/Service";
 import PopupInfo from "./pages/PopupInfo/PopupInfo"
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
+import Popularpopup from "./pages/MainPlusPage/PopularPopup"
+import PopupHere from "./pages/MainPlusPage/PopupHere";
 
 function Router() {
   return (
@@ -47,14 +49,15 @@ function Router() {
               <Route path="video" element={<Main />}></Route>
               <Route path="music" element={<Main />}></Route>
             </Route>
-            <Route path="/category" element={<ShowCate />}></Route>
 
+            <Route path="/category" element={<ShowCate />}></Route>
             <Route path="/newbrand" element={<NewBrand />}></Route>
             <Route path="/newartist" element={<NewArtist />}></Route>
 
             <Route path="/CardTest" element={<CardTest />} />
             <Route path="/welcome" element={<Welcome />} />
-            <Route path="/weekly" element={<Weekly />}></Route>
+            <Route path="/popularpopup" element={<Popularpopup />}/>
+            <Route path="/popuphere" element={<PopupHere />}/>
             <Route path="/search" element={<Search />} />
             <Route path="/search/result" element={<Searchresult />} />
             <Route path="/test" element={<Test />} />
