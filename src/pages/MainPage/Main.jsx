@@ -16,7 +16,7 @@ import Footer from "../../Components/Footer/Footer";
 import { MdArrowForwardIos } from "react-icons/md";
 import LargeCard from "../../Components/Card/LargeCard";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
-
+import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -29,12 +29,16 @@ const SliderXwrapper = styled.div`
   overflow-x: scroll;
   min-height: 250px;
   width: 100%;
+  scroll-snap-type: x mandatory ;
+
 `;
 const SliderXwrapper2 = styled.div`
   position: relative;
   overflow-x: scroll;
   min-height: 320px;
   width: 100%;
+  scroll-snap-type: x mandatory ;
+
 `;
 const SliderXItems = styled.div`
   position: absolute;
@@ -162,13 +166,15 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper2>
         <Margin height="50" />
-        <PopupTitle isarrow={true} text="팝업 포스트" bottomgap="10" />
+        <PopupTitle isarrow={true} text="팝업 포스트" bottomgap="10"  onClick={()=> navigate('/PostList')} />
         <PostCard
-          onClick={()=> navigate('/cardtest')}
-          image={"img/Artistimg/iab_box.jpg"}
-          title="슬릭의 Super Shy 팝업공연 현장!!"
+          onClick={()=> navigate('/PopUpPost')}
+          image={PostCardimg1}
+          title="프랑스 밤잼 크렘드 마롱 팝업 스토어 현장"
           type="추천 포스트"
-          main="요즘 가장 핫한 뉴진스의 Super shy을 슬릭님만의 스타일로 리믹스한 음원을 팝업스테이지에서 최초 공개하였습니다."
+          main='크렘드마롱(Crème de Marrons)은 클레망포지에사의 140년 전통 프랑스산 밤잼 브랜드 입니다.
+          크렘드마롱은 프랑스 남부 리옹 지역에서 수확하는
+          야생밤을 원료로 깊은 밤의 풍미를 선사합니다.'
         />
         <Margin height="60" />
         <PopupTitle
