@@ -9,7 +9,6 @@ const GlobalStyle = createGlobalStyle`
     font-size: 14px;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     scroll-behavior: smooth;
     
     ::-webkit-scrollbar{
@@ -46,6 +45,7 @@ const GlobalStyle = createGlobalStyle`
       padding: 0;
       font-family: 'Noto Sans KR', sans-serif;
       font-size: 16px;
+      box-sizing: border-box;
   }
 
   @font-face {

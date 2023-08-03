@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   row-gap: 20px;
 `;
 
-function Brandpopup() {
+function BrandInfo() {
   const params = useOutletContext();
   console.log(params.cateId);
 
@@ -20,6 +20,6 @@ function Brandpopup() {
       <PopupTitle text="팝업 정보" />
       <LargeCard image="img/Artistimg/Backrose.png" />
     </Wrapper>
-  )
+  );
 }
-export default Brandpopup;
+export default BrandInfo;

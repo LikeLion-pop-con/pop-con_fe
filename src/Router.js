@@ -35,25 +35,31 @@ import Chatbot from "./pages/Chatbot/Chatbot";
 import MyInfo from "./pages/MyPage/MyInfo";
 import AdminMain from "./pages/MainPage/AdminMain";
 import PopupSpace from "./pages/MainPlusPage/PopupSpace";
-import Popularpopup from "./pages/MainPlusPage/PopularPopup"
+import Popularpopup from "./pages/MainPlusPage/PopularPopup";
 import PopupHere from "./pages/MainPlusPage/PopupHere";
+
+import BrandIntro from "./pages/BrandIntroduce/BrandIntro";
+import BrandInfo from "./pages/BrandIntroduce/BrandInfo";
+import BrandPost from "./pages/BrandIntroduce/BrandPost";
+
 import ChatPage from "./pages/Chatbot/Chatpage";
+
 
 function Router() {
   return (
     <BrowserRouter>
-      <ScrollToTop/>
+      <ScrollToTop />
       <SearchProvider>
         <Routes>
           <Route element={<Layout />}>
-            <Route path='/AdminMain' element={<AdminMain/>}/>
-            <Route path='/PopupSpace' element={<PopupSpace/>}/>
+            <Route path="/AdminMain" element={<AdminMain />} />
+            <Route path="/PopupSpace" element={<PopupSpace />} />
             <Route path="" element={<LogoWelcome />} />
             <Route path="*" element={<div>없는페이지임</div>} />
             <Route path="/CardTest" element={<CardTest />} />
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/test" element={<Test />} />
-            
+
             <Route path="/main" element={<Main />}>
               <Route path="art" element={<Main />}></Route>
               <Route path="lit" element={<Main />}></Route>
@@ -69,6 +75,11 @@ function Router() {
             <Route path="/search/result" element={<Searchresult />} />
             <Route path="/Brand" element={<BrandIntroduce />} />
 
+            <Route path="/brand/:brandId" element={<BrandIntroduce />}>
+              <Route path="" element={<BrandIntro />}></Route>
+              <Route path="info" element={<BrandInfo />}></Route>
+              <Route path="post" element={<BrandPost />}></Route>
+            </Route>
             <Route path="/main/:cateId" element={<Cate />}>
               <Route path="" element={<Ing />}></Route>
               <Route path="ing" element={<Requesting />}></Route>
@@ -86,7 +97,7 @@ function Router() {
             <Route path="/Login" element={<Login />} />
             <Route path="/Resister" element={<Resister />} />
             <Route path="/brand" element={<BrandIntroduce />} />
-            <Route path="/artist" element={<ArtistIntroduce/>} />
+            <Route path="/artist" element={<ArtistIntroduce />} />
 
             <Route path="/:cateId" element={<Cate />}>
               <Route path="" element={<Ing />}></Route>
@@ -97,13 +108,16 @@ function Router() {
             <Route path="/PopupPost" element={<PopupPost />} />
             <Route path="/popupinfo" element={<PopupInfo />} />
 
-            <Route path="/Chatbot" element={<ChatPage />} />
-            <Route path="/popularpopup" element={<Popularpopup />}/>
-            <Route path="/popuphere" element={<PopupHere />}/>
+
+            <Route path="/Chatbot" element={<Chatbot />} />
+            <Route path="/popularpopup" element={<Popularpopup />} />
+            <Route path="/popuphere" element={<PopupHere />} />
+
+
 
           </Route>
-      </Routes>
-     </SearchProvider>
+        </Routes>
+      </SearchProvider>
     </BrowserRouter>
   );
 }

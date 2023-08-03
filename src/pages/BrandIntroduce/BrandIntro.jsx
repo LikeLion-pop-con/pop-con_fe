@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   row-gap: 20px;
 `;
 
-function BrandIntroDetail() {
+function BrandIntro() {
   const params = useOutletContext();
   console.log(params.cateId);
 
@@ -18,8 +18,10 @@ function BrandIntroDetail() {
     <Wrapper>
       <Margin height="20" />
       <PopupTitle text="브랜드 소개" />
-      <LargeCard image="img/Artistimg/Backrose.png" />
+      <LargeCard image="img/cate1.png" />
+      <LargeCard image="img/cate1.png" />
+      <LargeCard image="img/cate1.png" />
     </Wrapper>
-  )
+  );
 }
-export default BrandIntroDetail;
+export default BrandIntro;

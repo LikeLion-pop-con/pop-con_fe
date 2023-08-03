@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   row-gap: 20px;
 `;
 
-function BrandpopupPost() {
+function BrandPost() {
   const params = useOutletContext();
   console.log(params.cateId);
 
@@ -20,6 +20,6 @@ function BrandpopupPost() {
       <PopupTitle text="브랜드 포스트" />
       <LargeCard image="img/Artistimg/Backrose.png" />
     </Wrapper>
-  )
+  );
 }
-export default BrandpopupPost;
+export default BrandPost;

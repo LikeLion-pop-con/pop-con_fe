@@ -1,10 +1,10 @@
-import React from "react"
-import styled, { ThemeProvider } from "styled-components"
+import React from "react";
+import styled, { ThemeProvider } from "styled-components";
 
-import ChatBot from "react-simple-chatbot"
-import ChatbotModal from "react-modal"
-import {AiOutlineClose} from "react-icons/ai"
-import CheckBox from "./Checkbox.js"
+import ChatBot from "react-simple-chatbot";
+import ChatbotModal from "react-modal";
+import { AiOutlineClose } from "react-icons/ai";
+import CheckBox from "./Checkbox.js";
 
 const Closebtn = styled.div`
   width: 35px;
@@ -17,7 +17,7 @@ const Closebtn = styled.div`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 const steps = [
   /////////////////////////////////////////////////////////////////// 질문 카테고리 선택
@@ -210,7 +210,7 @@ const steps = [
     message: "감사합니다.",
     end: true,
   },
-]
+];
 
 const Chatbot = ({ isModal, setModal, modalPosition }) => {
   const theme = {
@@ -222,7 +222,7 @@ const Chatbot = ({ isModal, setModal, modalPosition }) => {
     botFontColor: "#fff",
     userBubbleColor: "#fff",
     userFontColor: "#4a4a4a",
-  }
+  };
 
   return (
     <ChatbotModal
@@ -247,8 +247,13 @@ const Chatbot = ({ isModal, setModal, modalPosition }) => {
           backgroundColor: "transparent",
         },
       }}
+
+    >
+      <Closebtn src={AiOutlineClose} onClick={() => setModal(false)} />
+
    >
       <Closebtn onClick={() => setModal(false)} ><AiOutlineClose size={25}/></Closebtn>
+
       <ThemeProvider theme={theme}>
         <ChatBot
           steps={steps}
@@ -258,7 +263,7 @@ const Chatbot = ({ isModal, setModal, modalPosition }) => {
         />
       </ThemeProvider>
     </ChatbotModal>
-  )
-}
+  );
+};
 
-export default Chatbot
+export default Chatbot;

@@ -18,3 +18,8 @@ export const isCateClicked = atom({
   key: "isCateClicked",
   default: false,
 });
+
+export const isBotClicked = atom({
+  key: "isBotClicked",
+  default: false,
+});

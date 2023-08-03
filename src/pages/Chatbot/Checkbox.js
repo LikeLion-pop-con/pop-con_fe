@@ -1,15 +1,15 @@
-import React, { Component } from "react"
-import styled from "styled-components"
+import React, { Component } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   background-color: #d7ffcc;
   border-radius: 10px;
-`
+`;
 
-const Form = styled.form``
-const FormCheck = styled.div``
-const Input = styled.input``
-const FormGroup = styled.div``
+const Form = styled.form``;
+const FormCheck = styled.div``;
+const Input = styled.input``;
+const FormGroup = styled.div``;
 const Btn = styled.button`
   width: 50px;
   height: 20px;
@@ -24,43 +24,43 @@ const Btn = styled.button`
     color: #fff;
     cursor: pointer;
   }
-`
+`;
 
 export default class CheckBox extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       satisfaction: false,
       average: false,
       unsatisfactory: false,
       trigger: false,
-    }
-    this.triggetNext = this.triggetNext.bind(this)
+    };
+    this.triggetNext = this.triggetNext.bind(this);
   }
   onChange = (checkedState) => (event) => {
     this.setState((initialState) => ({
       [checkedState]: !this.state[checkedState],
-    }))
-  }
+    }));
+  };
   onSubmit = async (e) => {
-    e.preventDefault()
-    let checkArray = []
+    e.preventDefault();
+    let checkArray = [];
     for (var key in this.state) {
       if (this.state[key] === true) {
-        checkArray.push(key)
+        checkArray.push(key);
       }
     }
     let checkData = {
       checkbox: checkArray.toString(),
-    }
+    };
 
-    console.log(checkData)
-    this.triggetNext()
-  }
+    console.log(checkData);
+    this.triggetNext();
+  };
   triggetNext() {
     this.setState({ trigger: true }, () => {
-      this.props.triggerNextStep()
-    })
+      this.props.triggerNextStep();
+    });
   }
   render() {
     return (
@@ -86,6 +86,6 @@ export default class CheckBox extends Component {
           </FormGroup>
         </Form>
       </Container>
-    )
+    );
   }
 }
