@@ -30,6 +30,7 @@ import { SearchProvider } from "./Components/SearchBar/SearchContext";
 import Service from "./pages/MyPage/Service";
 import PopupInfo from "./pages/PopupInfo/PopupInfo"
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
+import Chatbot from "./pages/Chatbot/Chatbot";
 
 function Router() {
   return (
@@ -82,6 +83,8 @@ function Router() {
             <Route path="/PostList" element={<PostList />} />
             <Route path="/PopupPost" element={<PopupPost />} />
             <Route path="/popupinfo" element={<PopupInfo />} />
+
+            <Route path="/Chatbot" element={<Chatbot />} />
 
             <Route path="*" element={<div>없는페이지임</div>} />
           </Route>
