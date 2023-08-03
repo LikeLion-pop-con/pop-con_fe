@@ -32,6 +32,7 @@ import Service from "./pages/MyPage/Service";
 import PopupInfo from "./pages/PopupInfo/PopupInfo"
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import Chatbot from "./pages/Chatbot/Chatbot";
+import MyInfo from "./pages/MyPage/MyInfo";
 
 function Router() {
   return (
@@ -74,6 +75,7 @@ function Router() {
             <Route path="/Mypage/Knowlist" element={<KnowList />} />
             <Route path="/Mypage/introduce" element={<Introduce />} />
             <Route path="/Mypage/Service" element={<Service />} />
+            <Route path="/Mypage/Myinfo" element={<MyInfo />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Resister" element={<Resister />} />
             <Route path="/brand" element={<BrandIntroduce />} />

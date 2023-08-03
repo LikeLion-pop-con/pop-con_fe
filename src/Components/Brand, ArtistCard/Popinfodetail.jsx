@@ -21,7 +21,7 @@ const TitleText = styled.p`
 const BodyText = styled.p`
     width: 80%;
     margin-left: 10%;
-    line-height: 120%;
+    line-height: 1.6;
 `
 
 const TextWrapper = styled.div`
