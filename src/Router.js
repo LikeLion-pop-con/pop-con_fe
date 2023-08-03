@@ -22,7 +22,7 @@ import LogoWelcome from "./pages/LogoWelcome/LogoWelcome";
 import PopupPost from "./pages/PopupPost/PopupPost";
 import NewBrand from "./pages/MainPlusPage/NewBrand";
 import NewArtist from "./pages/MainPlusPage/NewArtist";
-import Weekly from "./pages/MainPlusPage/Weekly";
+import Weekly from "./pages/MainPlusPage/PopularPopup";
 import PostList from "./pages/MainPlusPage/PostList";
 import Login from "./pages/Login/Login";
 import Resister from "./pages/Login/Resister";
@@ -33,6 +33,8 @@ import PopupInfo from "./pages/PopupInfo/PopupInfo";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import AdminMain from "./pages/MainPage/AdminMain";
 import PopupSpace from "./pages/MainPlusPage/PopupSpace";
+import Popularpopup from "./pages/MainPlusPage/PopularPopup"
+import PopupHere from "./pages/MainPlusPage/PopupHere";
 
 function Router() {
   return (
@@ -48,7 +50,7 @@ function Router() {
             <Route path="/CardTest" element={<CardTest />} />
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/test" element={<Test />} />
-
+            
             <Route path="/main" element={<Main />}>
               <Route path="art" element={<Main />}></Route>
               <Route path="lit" element={<Main />}></Route>
@@ -90,6 +92,8 @@ function Router() {
             <Route path="/PostList" element={<PostList />} />
             <Route path="/PopupPost" element={<PopupPost />} />
             <Route path="/popupinfo" element={<PopupInfo />} />
+            <Route path="/popularpopup" element={<Popularpopup />}/>
+            <Route path="/popuphere" element={<PopupHere />}/>
 
           </Route>
       </Routes>
