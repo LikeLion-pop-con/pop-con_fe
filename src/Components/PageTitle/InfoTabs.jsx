@@ -20,18 +20,21 @@ const TabsContainer = styled.div`
 `;
 const Tabs = styled.div`
   display: grid;
-  grid-template-columns: repeat(${(props) => props.tabs}, 1fr);
-  margin: 5% 10%;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 1.5rem 0;
+  width: 100%;
 `;
 const Tab = styled.div`
-  width: 7rem;
-  height: 20px;
+  width: 90%;
+  padding: 1rem 0;
   position: relative;
   margin: 0px 5px;
+  display: flex;
+  justify-content: center;
   a {
     font-size: px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     width: 100%;
     color: ${(props) =>
@@ -42,66 +45,33 @@ const Tab = styled.div`
 const StatusBar = styled(motion.div)`
   position: absolute;
   background-color: ${(props) => props.theme.colors.main};
-  width: 95%;
+  width: 80%;
   height: 2px;
-  bottom: -3px;
+  bottom: 0;
 `;
 
-function InfoTabs({
-  page1,
-  page2,
-  page3,
-  page1link,
-  page2link,
-  page3link,
-  brandId,
-}) {
-  const allowdMatch = useMatch(`/brand/${brandId}${page1link}`);
-  const ingMatch = useMatch(`/brand/${brandId}${page2link}`);
-  const otherMatch = useMatch(`/brand/${brandId}${page3link}`);
-
-  const [page, setPages] = useState([]);
-
-  useEffect(() => {
-    if (page1) {
-      setPages((obj) => {
-        return [...obj, page1];
-      });
-    }
-    if (page2) {
-      setPages((obj) => {
-        return [...obj, page2];
-      });
-    }
-    if (page3) {
-      setPages((obj) => {
-        return [...obj, page3];
-      });
-    }
-  }, [page1, page2, page3]);
+function InfoTabs({ page1, page2, page3, brandId }) {
+  const introMatch = useMatch(`/brand/${brandId}`);
+  const infoMatch = useMatch(`/brand/${brandId}/info`);
+  const postMatch = useMatch(`/brand/${brandId}/post`);
 
   return (
     <Wrapper>
       <TabsContainer>
-        <Tabs tabs={page.length}>
-          {page1 && (
-            <Tab match={allowdMatch !== null}>
-              <Link to={`/brand/${brandId}${page1link}`}>{page1}</Link>
-              {allowdMatch && <StatusBar layoutId="bar" />}
-            </Tab>
-          )}
-          {page2 && (
-            <Tab match={ingMatch !== null}>
-              <Link to={`/brand/${brandId}${page2link}`}>{page2}</Link>
-              {ingMatch && <StatusBar layoutId="bar" />}
-            </Tab>
-          )}
-          {page3 && (
-            <Tab match={otherMatch !== null}>
-              <Link to={`/brand/${brandId}${page3link}`}>{page3}</Link>
-              {otherMatch && <StatusBar layoutId="bar" />}
-            </Tab>
-          )}
+        <Tabs>
+          <Tab match={introMatch !== null}>
+            <Link to={`/brand/${brandId}`}>{page1}</Link>
+            {introMatch && <StatusBar layoutId="bar" />}
+          </Tab>
+          <Tab match={infoMatch !== null}>
+            <Link to={`/brand/${brandId}/info`}>{page2}</Link>
+            {infoMatch && <StatusBar layoutId="bar" />}
+          </Tab>
+
+          <Tab match={postMatch !== null}>
+            <Link to={`/brand/${brandId}/post`}>{page3}</Link>
+            {postMatch && <StatusBar layoutId="bar" />}
+          </Tab>
         </Tabs>
       </TabsContainer>
       <Outlet

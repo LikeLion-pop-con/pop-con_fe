@@ -17,7 +17,7 @@ import Ing from "./pages/ShowPopupCardPage/Ing";
 import Requesting from "./pages/ShowPopupCardPage/Requesting";
 import ShowCate from "./pages/CategoryPage/ShowCate";
 import BrandIntroduce from "./pages/BrandIntroduce/BrandIntroduce";
-import ArtistIntroduce from "./pages/ArtistIntroduce/ArtistIntroduce"
+import ArtistIntroduce from "./pages/ArtistIntroduce/ArtistIntroduce";
 import LogoWelcome from "./pages/LogoWelcome/LogoWelcome";
 import PopupPost from "./pages/PopupPost/PopupPost";
 import NewBrand from "./pages/MainPlusPage/NewBrand";
@@ -29,13 +29,16 @@ import Resister from "./pages/Login/Resister";
 import Searchresult from "./pages/Search/Searchresult";
 import { SearchProvider } from "./Components/SearchBar/SearchContext";
 import Service from "./pages/MyPage/Service";
-import PopupInfo from "./pages/PopupInfo/PopupInfo"
+import PopupInfo from "./pages/PopupInfo/PopupInfo";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
+import BrandIntro from "./pages/BrandIntroduce/BrandIntro";
+import BrandInfo from "./pages/BrandIntroduce/BrandInfo";
+import BrandPost from "./pages/BrandIntroduce/BrandPost";
 
 function Router() {
   return (
     <BrowserRouter>
-      <ScrollToTop/>
+      <ScrollToTop />
       <SearchProvider>
         <Routes>
           <Route element={<Layout />}>
@@ -58,8 +61,12 @@ function Router() {
             <Route path="/search" element={<Search />} />
             <Route path="/search/result" element={<Searchresult />} />
             <Route path="/test" element={<Test />} />
-            <Route path="/Brand" element={<BrandIntroduce />} />
 
+            <Route path="/brand/:brandId" element={<BrandIntroduce />}>
+              <Route path="" element={<BrandIntro />}></Route>
+              <Route path="info" element={<BrandInfo />}></Route>
+              <Route path="post" element={<BrandPost />}></Route>
+            </Route>
             <Route path="/main/:cateId" element={<Cate />}>
               <Route path="" element={<Ing />}></Route>
               <Route path="ing" element={<Requesting />}></Route>
@@ -75,13 +82,9 @@ function Router() {
             <Route path="/Mypage/Service" element={<Service />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Resister" element={<Resister />} />
-            <Route path="/brand" element={<BrandIntroduce />} />
-            <Route path="/artist" element={<ArtistIntroduce/>} />
-            <Route path="*" element={<div>없는페이지임</div>} />
-            <Route path="/:cateId" element={<Cate />}>
-              <Route path="" element={<Ing />}></Route>
-              <Route path="ing" element={<Requesting />}></Route>
-            </Route>
+
+            <Route path="/artist" element={<ArtistIntroduce />} />
+
             <Route path="/PostList" element={<PostList />} />
             <Route path="/PopupPost" element={<PopupPost />} />
             <Route path="/popupinfo" element={<PopupInfo />} />
@@ -113,17 +116,14 @@ function Router() {
           <Route path="/Mypage/introduce" element={<Introduce />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Resister" element={<Resister />} />
-          <Route path="/:cateId" element={<Cate />}>
-            <Route path="" element={<Ing />}></Route>
-            <Route path="ing" element={<Requesting />}></Route>
-          </Route>
-          <Route path='/PostList' element={<PostList/> } />
-          <Route path='/PopupPost' element={<PopupPost/> } />
-          <Route path="/popupinfo" element={<PopupInfo/>}/>
+
+          <Route path="/PostList" element={<PostList />} />
+          <Route path="/PopupPost" element={<PopupPost />} />
+          <Route path="/popupinfo" element={<PopupInfo />} />
 
           <Route path="*" element={<div>없는페이지임</div>} />
-      </Routes>
-     </SearchProvider>
+        </Routes>
+      </SearchProvider>
     </BrowserRouter>
   );
 }

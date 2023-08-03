@@ -4,13 +4,10 @@ import Cardup from "../../Components/Brand, ArtistCard/Cardup";
 import Carddown1 from "../../Components/Brand, ArtistCard/Carddown1";
 import InfoTabs from "../../Components/PageTitle/InfoTabs";
 import Header from "../../Components/Header/Header";
-import Headerline from "../../Components/Headerline/Headerline";
 import { useLocation, useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { PopupCategory } from "../../atom";
+import { Outlet } from "react-router-dom";
 
 const BrandIntroduce = () => {
-
   const { brandId } = useParams();
 
   return (
@@ -18,7 +15,7 @@ const BrandIntroduce = () => {
       <Header left="logo" right={["login", "search"]} />
       <Cardup
         name="IAB STUDIO"
-        backimageUrl="/img/Artistimg/iablogo.png" //이미지 크기가 안 맞아서 
+        backimageUrl="/img/Artistimg/iablogo.png" //이미지 크기가 안 맞아서
         CircleimageUrl="/img/Artistimg/iabCircleimg.png"
       ></Cardup>
       <Carddown1
@@ -31,11 +28,7 @@ const BrandIntroduce = () => {
         page1="소개"
         page2="팝업 정보"
         page3="포스트"
-        page1link={"brand/:brandId"}
-        page2link={"brand/:brandId"}
-        page3link={"brand/:brandId"}
-        />
-      <Headerline title="브랜드 소개 제목" subtitle="브랜드 소개 부제목" content="브랜드 소개 본문"/>
+      />
     </div>
   );
 };

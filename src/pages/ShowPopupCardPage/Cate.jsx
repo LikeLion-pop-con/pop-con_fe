@@ -28,7 +28,7 @@ const CateHead = styled.div`
 const CateTitle = styled.p`
   font-size: 20px;
   margin-top: 10px;
-  padding-right: 5px;
+  padding: 0px 25px;
   font-weight: 600;
 `;
 
@@ -52,7 +52,7 @@ function Cate() {
     } else if (cateId === 4) {
       return "img/cate4.png";
     }
-  };
+  }
 
   return (
     <Wrapper>
