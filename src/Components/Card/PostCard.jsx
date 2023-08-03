@@ -14,16 +14,14 @@ const CardEach = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  
-
   //height: 470px;
   width: 95%;
-
   border-radius: 16px;
   border: 1px solid lightgray;
   cursor: pointer;
   margin: 9px;
   box-shadow: 8px 8px 8px 5px rgba(67, 0, 209, 0.05);
+  scroll-snap-align: center;
 `;
 const Thumbnail = styled.div`
     display: flex;
