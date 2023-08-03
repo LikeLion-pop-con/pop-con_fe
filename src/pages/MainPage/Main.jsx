@@ -54,11 +54,6 @@ function Main() {
   const navigate = useNavigate();
   const [scrollDir, setScrollDir] = useState("scrolling down");
 
-  const PostCardWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-  `;
-
   useEffect(() => {
     const threshold = 0;
     let lastScrollY = window.scrollY;
@@ -86,7 +81,7 @@ function Main() {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollDir]);
-
+  
   return (
     <>
       <Wrapper>
