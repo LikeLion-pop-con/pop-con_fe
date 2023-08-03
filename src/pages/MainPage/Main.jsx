@@ -59,7 +59,12 @@ function Main() {
   display:flex;
   flex-direction: column;
 `
-
+const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
+  const toggleChatbotModal = (e) => {
+    setIsModalOpen((prev) => !prev);
+    setModalPosition({ x: e.clientX, y: e.clientY });
+  };
   useEffect(() => {
     const threshold = 0;
     let lastScrollY = window.scrollY;
@@ -87,7 +92,7 @@ function Main() {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollDir]);
-
+  
   return (
     
     <>

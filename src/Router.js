@@ -37,6 +37,7 @@ import AdminMain from "./pages/MainPage/AdminMain";
 import PopupSpace from "./pages/MainPlusPage/PopupSpace";
 import Popularpopup from "./pages/MainPlusPage/PopularPopup"
 import PopupHere from "./pages/MainPlusPage/PopupHere";
+import ChatPage from "./pages/Chatbot/Chatpage";
 
 function Router() {
   return (
@@ -96,7 +97,7 @@ function Router() {
             <Route path="/PopupPost" element={<PopupPost />} />
             <Route path="/popupinfo" element={<PopupInfo />} />
 
-            <Route path="/Chatbot" element={<Chatbot />} />
+            <Route path="/Chatbot" element={<ChatPage />} />
             <Route path="/popularpopup" element={<Popularpopup />}/>
             <Route path="/popuphere" element={<PopupHere />}/>
 
