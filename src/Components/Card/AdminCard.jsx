@@ -23,6 +23,7 @@ const CardEach = styled.div`
   cursor: pointer;
   margin: 9px;
   box-shadow: 8px 8px 8px 5px rgba(67, 0, 209, 0.05);
+  scroll-snap-align: center;
 `;
 const Thumbnail = styled.div`
   display: flex;
@@ -72,6 +73,7 @@ const TextBox = styled.div`
 const Icon = styled.img`
   cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 
 `;
+
 
 const AdminCard = ({ image, title, space, floor, area, onClick}) => {
   const navigate = useNavigate();
