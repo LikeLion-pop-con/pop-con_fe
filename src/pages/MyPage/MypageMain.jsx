@@ -64,12 +64,30 @@ const LogoutButton = styled.button`
   cursor: pointer;
   position: absolute;
   top:260px;
+  right: 10px;
+`;
+const MyINFO = styled.button`
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  display: flex;
+  align-self: flex-end;
+  cursor: pointer;
+  position: absolute;
+  top:260px;
+  right: 80px;
 `;
 const Mypage = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('Token');
         localStorage.removeItem('Name');
+        localStorage.removeItem('Phone');
+        localStorage.removeItem('Gender');
+        localStorage.removeItem('Address');
+        localStorage.removeItem('UserType');
         navigate("/");
   };
   const isLoggedIn = !!localStorage.getItem('Token');
@@ -89,6 +107,7 @@ const Mypage = () => {
             </Typo>
           )}</Name>
                  {isLoggedIn && <LogoutButton onClick={handleLogout}>Logout</LogoutButton>}
+                 {isLoggedIn && <MyINFO onClick={() => navigate("/Mypage/Myinfo")}>내 정보</MyINFO>}
              </Wrapper>
              <Detailbox>
                 <TextLink ><Typo size="1.3rem" weight="400"><Text1>My POPCON</Text1></Typo>

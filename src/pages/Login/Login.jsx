@@ -83,6 +83,10 @@ const Login = () => {
         console.log(response.data.token);
         localStorage.setItem("Token", response.data.token);
         localStorage.setItem("Name", response.data.이름);
+        localStorage.setItem("Phone", response.data.전화번호);
+        localStorage.setItem("Gender", response.data.성별);
+        localStorage.setItem("Address", response.data.주소);
+        localStorage.setItem("UserType", response.data.회원종류);
         console.log("로그인 성공");
         if (response.status === 200) {
           return navigate("/main");
