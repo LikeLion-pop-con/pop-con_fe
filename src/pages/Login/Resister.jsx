@@ -202,7 +202,12 @@ const Resister = () => {
   const handleGoBack = () => {
     navigate(-1);
   };
-
+  const handlePhoneNumberInput = (e) => {
+    const phoneNumber = e.target.value.replace(/[^0-9]/g, ""); // 숫자만 추출
+    const formattedPhoneNumber = phoneNumber
+      .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"); // 010-0000-0000 형식으로 변경
+    e.target.value = formattedPhoneNumber;
+  };
   return (
     <form onSubmit={handleSubmit(onRegisterFormSubmit)}>
       <Top onClick={handleGoBack}>
@@ -215,6 +220,7 @@ const Resister = () => {
           <label>이메일 (아이디)</label>
           <Input
             type="email"
+            placeholder="wwww@naver.com"
             {...register("email", {
               required: "필수 항목입니다.",
               pattern: {
@@ -226,11 +232,18 @@ const Resister = () => {
           {errors.email && <span>{errors.email.message}</span>}
 
           <label>이름</label>
-          <Input type="name" {...register("name", { required: true })} />
+          <Input type="name" 
+          {...register("name", { required: true })}
+          placeholder="홍길동" />
           {errors.name && <span>필수 항목입니다.</span>}
           
           <label>핸드폰 번호</label>
-          <Input type="tel" {...register("phoneNumber", { required: true })} />
+          <Input
+            type="tel"
+            {...register("phoneNumber", { required: true })}
+            onInput={handlePhoneNumberInput}
+            placeholder="숫자만 입력해주세요 (예: 01012345678)" 
+          />
           {errors.phoneNumber && <span>필수 항목입니다.</span>}
           
           <label>비밀번호</label>

@@ -6,13 +6,14 @@ import ChatbotModal from "react-modal"
 import {AiOutlineClose} from "react-icons/ai"
 import CheckBox from "./Checkbox.js"
 
-const Closebtn = styled.img`
+const Closebtn = styled.div`
   width: 35px;
   height: 35px;
   position: absolute;
-  top: 3%;
+  top: 2.5%;
   right: 3%;
   z-index: 1000;
+  color: white;
   &:hover {
     cursor: pointer;
   }
@@ -211,10 +212,9 @@ const steps = [
   },
 ]
 
-const Chatbot = ({ isModal, setModal }) => {
+const Chatbot = ({ isModal, setModal, modalPosition }) => {
   const theme = {
     background: "#f5f8fb",
-    fontFamily: "Helvetica Neue",
     headerBgColor: "#EF6C00",
     headerFontColor: "#fff",
     headerFontSize: "15px",
@@ -232,11 +232,11 @@ const Chatbot = ({ isModal, setModal }) => {
       shouldCloseOnOverlayClick={false}
       style={{
         content: {
-          width: "320px",
+          width: "350px",
           height: "500px",
-          position: "relative",
-          top: "200px",
-          left: "680px",
+          position: "fixed",
+          top: modalPosition.y +150,
+          left: modalPosition.x - 160,
           display: "flex",
           overflow: "hidden",
           border: "medium none black",
@@ -248,7 +248,7 @@ const Chatbot = ({ isModal, setModal }) => {
         },
       }}
    >
-      <Closebtn src={AiOutlineClose} onClick={() => setModal(false)} />
+      <Closebtn onClick={() => setModal(false)} ><AiOutlineClose size={25}/></Closebtn>
       <ThemeProvider theme={theme}>
         <ChatBot
           steps={steps}
