@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   white-space: pre-line;
+  width: 100%;
 `;
 
 const InfoText = styled.p`
@@ -21,9 +22,9 @@ const TitleText = styled.p`
 `;
 
 const BodyText = styled.p`
-  width: 80%;
-  margin-left: 10%;
-  line-height: 120%;
+  width: 90%;
+  margin: 0 5%;
+  line-height: 1.6;
 `;
 
 const TextWrapper = styled.div`
@@ -65,19 +66,18 @@ const Popinfodetail = ({ bodyText }) => {
               </Typo>
             </TitleText>
           </div>
-          <div>
-            <BodyText>
-              {contentOrder.map((text, index) => (
-                <>
-                  <Typo style={{ lineHeight: 1.2 }} size="1rem" weight="400">
-                    <TextWrap>{contentTitle[index]}</TextWrap>
-                    {text}
-                  </Typo>
-                  <Margin height="10" />
-                </>
-              ))}
-            </BodyText>
-          </div>
+
+          <BodyText>
+            {contentOrder.map((text, index) => (
+              <>
+                <Typo style={{ lineHeight: 1.2 }} size="1rem" weight="400">
+                  <TextWrap>{contentTitle[index]}</TextWrap>
+                  {text}
+                </Typo>
+                <Margin height="10" />
+              </>
+            ))}
+          </BodyText>
         </TextWrapper>
       </Wrapper>
     </>

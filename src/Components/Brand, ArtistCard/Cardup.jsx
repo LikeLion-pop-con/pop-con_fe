@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const Imgbox = styled.div`
-  min-width: 450px;
+  width: 100%;
   height: 202px;
   background-image: url(${(props) => props.backimageUrl});
   background-size: cover;
@@ -30,14 +30,14 @@ const Circle = styled.div`
 const Name = styled.p`
   margin: 20px;
 `;
-const Cardup = ({ name,backimageUrl ,CircleimageUrl}) => {
+const Cardup = ({ name, backimageUrl, CircleimageUrl }) => {
   return (
     <>
       <Wrapper>
-        <Imgbox backimageUrl = {backimageUrl}></Imgbox>
-        <Circle CircleimageUrl = {CircleimageUrl}></Circle>
+        <Imgbox backimageUrl={backimageUrl}></Imgbox>
+        <Circle CircleimageUrl={CircleimageUrl}></Circle>
         <Typo size="1.5rem" weight="600">
-          <Name>{ name }</Name>
+          <Name>{name}</Name>
         </Typo>
       </Wrapper>
     </>

@@ -17,6 +17,9 @@ import { MdArrowForwardIos } from "react-icons/md";
 import LargeCard from "../../Components/Card/LargeCard";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
+import AdminCard from "../../Components/Card/AdminCard";
+import AdminCardimg from "../../assets/Icons/Card/AdminCardimg.png";
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -38,7 +41,6 @@ const SliderXwrapper2 = styled.div`
   min-height: 320px;
   width: 100%;
   scroll-snap-type: x mandatory ;
-
 `;
 const SliderXItems = styled.div`
   position: absolute;
@@ -50,14 +52,15 @@ const SliderXItems = styled.div`
   gap: 20px; */
 `;
 
-function Main() {
+
+function AdminMain() {
   const navigate = useNavigate();
   const [scrollDir, setScrollDir] = useState("scrolling down");
 
   const PostCardWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-  `;
+  display:flex;
+  flex-direction: column;
+`
 
   useEffect(() => {
     const threshold = 0;
@@ -88,6 +91,7 @@ function Main() {
   }, [scrollDir]);
 
   return (
+    
     <>
       <Wrapper>
         <Header left="logo" right={["login", "search"]} />
@@ -96,74 +100,109 @@ function Main() {
         <PopupTitle text="팝업 카테고리" bottomgap="20" />
         <Category listid="main" />
         <Margin height="30" />
-        <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" onClick={() => navigate('/popuphere')} />
+       
+        <PopupTitle
+          isarrow={true}
+          text="추천 팝업 공간"
+          bottomgap="15"
+          onClick={() => navigate('/PopupSpace')}
+        
+        />
         <SliderXwrapper2>
           <SliderXItems>
-            <LargeCard
-              onClick={() => navigate("/PopupInfo")}
+            <AdminCard 
+            image={AdminCardimg} 
+            title='IAB studio & Lee 팝업 스토어 현장' 
+            space='서울 마포구 양화로' 
+            floor='지하 3 층 ~ 지상 15 층'
+            area='연면적 : 277.686㎡'/>
+            <AdminCard 
+            image={AdminCardimg} 
+            title='IAB studio & Lee 팝업 스토어 현장' 
+            space='서울 마포구 양화로' 
+            floor='지하 3 층 ~ 지상 15 층'
+            area='연면적 : 277.686㎡'/>
+            <AdminCard 
+            image={AdminCardimg} 
+            title='IAB studio & Lee 팝업 스토어 현장' 
+            space='서울 마포구 양화로' 
+            floor='지하 3 층 ~ 지상 15 층'
+            area='연면적 : 277.686㎡'/>
+
+          </SliderXItems>
+        </SliderXwrapper2>
+        <Margin height="30" />
+
+        <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" />
+        <SliderXwrapper2>
+          <SliderXItems>
+            <LargeCard 
+              onClick={() => navigate('/PopupInfo')}
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <LargeCard
+            <LargeCard 
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <LargeCard
+            <LargeCard 
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
           </SliderXItems>
         </SliderXwrapper2>
 
         <Margin height="30" />
+        
         <PopupTitle
           isarrow={true}
           text="예매 가능한 인기 팝업"
           bottomgap="15"
-          onClick={() => navigate('/popularpopup')}
         />
         <SliderXwrapper2>
           <SliderXItems>
-            <LargeCard
-              onClick={() => navigate("/PopupInfo")}
+          <LargeCard 
+              onClick={() => navigate('/PopupInfo')}
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <LargeCard
+            <LargeCard 
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <LargeCard
+            <LargeCard 
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
           </SliderXItems>
         </SliderXwrapper2>
-        <Margin height="50" />
+        <Margin height="30" />
+
+
         <PopupTitle isarrow={true} text="팝업 포스트" bottomgap="10"  onClick={()=> navigate('/PostList')} />
         <PostCard
           onClick={()=> navigate('/PopUpPost')}
@@ -201,15 +240,22 @@ function Main() {
               category="진짜 이쁘네 ㅋㅋ"
               main="제 이상형이에요 사귀자"
             />
+            <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="블랙핑크"
+              category="진짜 이쁘네 ㅋㅋ"
+              main="제 이상형이에요 사귀자"
+            />
+            <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="블랙핑크"
+              category="진짜 이쁘네 ㅋㅋ"
+              main="제 이상형이에요 사귀자"
+            />
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="35" />
-        <PopupTitle
-          isarrow={true}
-          text="독립 아티스트"
-          bottomgap="20"
-          onClick={() => navigate("/NewArtist")}
-        />
+        <PopupTitle isarrow={true} text="독립 아티스트" bottomgap="20" onClick={() => navigate('/NewArtist')} />
         <ArtistCategory />
         <SliderXwrapper>
           <SliderXItems>
@@ -231,6 +277,18 @@ function Main() {
               category="진짜 이쁘네 ㅋㅋ"
               main="제 이상형이에요 사귀자"
             />
+            <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="블랙핑크"
+              category="진짜 이쁘네 ㅋㅋ"
+              main="제 이상형이에요 사귀자"
+            />
+            <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="블랙핑크"
+              category="진짜 이쁘네 ㅋㅋ"
+              main="제 이상형이에요 사귀자"
+            />
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="20" />
@@ -241,4 +299,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default AdminMain;
