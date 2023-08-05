@@ -15,10 +15,10 @@ import { BsArrowBarUp } from "react-icons/bs";
 import { GoDependabot } from "react-icons/go";
 
 const Wrapper = styled(motion.div)`
-  width: 450px;
   height: 60px;
   position: fixed;
   bottom: 0;
+  width: 55vw;
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -91,12 +91,12 @@ const ScrollToTopBtn = styled(motion.div)`
   border: none;
   justify-content: center;
   align-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   padding: 5px;
   position: absolute;
-  top: -3rem;
+  top: -50px;
   right: 1rem;
   cursor: pointer;
 `;
@@ -106,12 +106,12 @@ const ChatbotBtn = styled(motion.div)`
   border: none;
   justify-content: center;
   align-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   padding: 5px;
   position: absolute;
-  top: -5.5rem;
+  top: -100px;
   right: 1rem;
   cursor: pointer;
 `;
@@ -131,7 +131,7 @@ const Icon = ({ img, children, onClick }) => {
   );
 };
 
-export default function NavigationBar({ hide, setIsCateClicked }) {
+export default function NavigationBar({ setIsCateClicked }) {
   const navigate = useNavigate();
   const navani = useAnimation();
   const btnani = useAnimation();
@@ -139,15 +139,17 @@ export default function NavigationBar({ hide, setIsCateClicked }) {
   const setBot = useSetRecoilState(isBotClicked);
   const isClicked = useRecoilValue(isBotClicked);
 
+  const [scrollDir, setScrollDir] = useState("scrolling down");
+
   useEffect(() => {
-    if (hide === "scrolling down") {
+    if (scrollDir === "scrolling down") {
       navani.start("hidden");
       btnani.start("hidden");
     } else {
       navani.start("visible");
       btnani.start("visible");
     }
-  }, [hide]);
+  }, [scrollDir]);
 
   useEffect(() => {
     if (isClicked) {
@@ -156,6 +158,34 @@ export default function NavigationBar({ hide, setIsCateClicked }) {
       btnani.start("noclicked");
     }
   }, [isClicked]);
+
+  useEffect(() => {
+    const threshold = 0;
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateScrollDir = () => {
+      const scrollY = window.scrollY;
+
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+    console.log(scrollDir);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollDir]);
 
   return (
     <Wrapper>

@@ -35,7 +35,7 @@ const Box1 = styled.div`
 const MyInfo = () => {
     const userName = localStorage.getItem('Name');
     const userPhone = localStorage.getItem('Phone');
-    const userGender = parseInt(localStorage.getItem('Gender'), 10) === 1 ? '남자' : '여자';
+    const userGender = parseInt(localStorage.getItem('Gender'), 10) === 1 ? '여자' : '남자';
     const userAddress = localStorage.getItem('Address');
     const userType = parseInt(localStorage.getItem('UserType'), 10) === 1 ? '개인' : '기업';
 
@@ -58,8 +58,8 @@ const MyInfo = () => {
           <Title1><Typo size="1.3rem" weight="400" color = "black">{userName}</Typo></Title1>
           <Title1><Typo size="1.3rem" weight="400" color = "black">{userPhone}</Typo></Title1>
           <Title1><Typo size="1.3rem" weight="400" color = "black">{userGender}</Typo></Title1>
-          <Title1><Typo size="1.3rem" weight="400" color = "black">{userAddress}</Typo></Title1>
           <Title1><Typo size="1.3rem" weight="400" color = "black">{userType}</Typo></Title1>
+          <Title1><Typo size="1.3rem" weight="400" color = "black">{userAddress}</Typo></Title1>
           </Box1>
           </Wrapper>
           <NavigationBar/>

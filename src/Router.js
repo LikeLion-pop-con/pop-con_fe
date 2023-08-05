@@ -40,6 +40,8 @@ import PopupHere from "./pages/MainPlusPage/PopupHere";
 import BrandIntro from "./pages/BrandIntroduce/BrandIntro";
 import BrandInfo from "./pages/BrandIntroduce/BrandInfo";
 import BrandPost from "./pages/BrandIntroduce/BrandPost";
+import ChatPage from "./pages/Chatbot/Chatpage";
+import Kakaomap from "./Components/Kakaomap/Kakaomap";
 
 function Router() {
   return (
@@ -100,13 +102,14 @@ function Router() {
               <Route path="ing" element={<Requesting />}></Route>
             </Route>
 
-            <Route path="/PostList" element={<PostList />} />
-            <Route path="/PopupPost" element={<PopupPost />} />
-            <Route path="/popupinfo" element={<PopupInfo />} />
+            <Route path="/postList" element={<PostList />} />
+            <Route path="/popupPost" element={<PopupPost />} />
+            <Route path="/popupinfo/:brandId" element={<PopupInfo />} />
 
-            <Route path="/Chatbot" element={<Chatbot />} />
+            <Route path="/Chatbot" element={<ChatPage />} />
             <Route path="/popularpopup" element={<Popularpopup />} />
             <Route path="/popuphere" element={<PopupHere />} />
+            <Route path="/maptest" element={<Kakaomap />}></Route>
           </Route>
         </Routes>
       </SearchProvider>
