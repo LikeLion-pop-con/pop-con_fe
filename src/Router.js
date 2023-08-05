@@ -109,7 +109,7 @@ function Router() {
             <Route path="/popupinfo" element={<PopupInfo />} />
 
 
-            <Route path="/Chatbot" element={<Chatbot />} />
+            <Route path="/Chatbot" element={<ChatPage />} />
             <Route path="/popularpopup" element={<Popularpopup />} />
             <Route path="/popuphere" element={<PopupHere />} />
 

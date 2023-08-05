@@ -74,6 +74,7 @@ function Layout() {
             type: "tween",
           }}
         >
+          <Chatbot/>
           <ExitBtn onClick={() => setIsClicked((prev) => !prev)}>
             <AiOutlineClose style={{ fontSize: 22 }} />
           </ExitBtn>

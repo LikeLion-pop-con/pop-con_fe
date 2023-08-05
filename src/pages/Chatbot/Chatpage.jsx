@@ -18,11 +18,7 @@ const ChatPage = () => {
 
       {/* Chatbot 모달 */}
       {isModalOpen && (
-        <Chatbot
-          isModal={isModalOpen}
-          setModal={setIsModalOpen}
-          modalPosition={modalPosition}
-        />
+        <Chatbot/>
       )}
     </div>
   );

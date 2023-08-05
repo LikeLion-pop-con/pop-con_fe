@@ -1,8 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-
 import ChatBot from "react-simple-chatbot";
-import ChatbotModal from "react-modal";
 import { AiOutlineClose } from "react-icons/ai";
 import CheckBox from "./Checkbox.js";
 
@@ -211,8 +209,15 @@ const steps = [
     end: true,
   },
 ];
-
-const Chatbot = ({ isModal, setModal, modalPosition }) => {
+const ChatbotContainer = styled.div`
+  width: 25%; /* 오버레이와 동일한 너비로 설정 */
+  position: relative;
+  bottom: 8rem;
+  right: 3%;
+  z-index: 10;
+  
+`;
+const Chatbot = () => {
   const theme = {
     background: "#f5f8fb",
     headerBgColor: "#EF6C00",
@@ -225,45 +230,17 @@ const Chatbot = ({ isModal, setModal, modalPosition }) => {
   };
 
   return (
-    <ChatbotModal
-      isOpen={isModal}
-      onRequestClose={() => setModal(false)}
-      ariaHideApp={false}
-      shouldCloseOnOverlayClick={false}
-      style={{
-        content: {
-          width: "350px",
-          height: "500px",
-          position: "fixed",
-          top: modalPosition.y +150,
-          left: modalPosition.x - 160,
-          display: "flex",
-          overflow: "hidden",
-          border: "medium none black",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          alignContent: "center",
-          borderRadius: "20px",
-          backgroundColor: "transparent",
-        },
-      }}
-
-    >
-      <Closebtn src={AiOutlineClose} onClick={() => setModal(false)} />
-
-   >
-      <Closebtn onClick={() => setModal(false)} ><AiOutlineClose size={25}/></Closebtn>
-
+    <ChatbotContainer>
       <ThemeProvider theme={theme}>
         <ChatBot
           steps={steps}
           hideHeader={false}
           headerTitle="ChatBot Q & A"
+          width="200px"
           placeholder={"채팅이 불가능한 채널입니다."}
         />
       </ThemeProvider>
-    </ChatbotModal>
+    </ChatbotContainer>
   );
 };
-
 export default Chatbot;
