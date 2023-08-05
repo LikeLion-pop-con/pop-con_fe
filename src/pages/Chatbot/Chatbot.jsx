@@ -10,8 +10,8 @@ const Closebtn = styled.div`
   width: 35px;
   height: 35px;
   position: absolute;
-  top: 2.5%;
-  right: 3%;
+  top: 5%;
+  right: 5%;
   z-index: 1000;
   color: white;
   &:hover {
@@ -251,7 +251,7 @@ const Chatbot = ({ isModal, setModal, modalPosition }) => {
     >
       <Closebtn src={AiOutlineClose} onClick={() => setModal(false)} />
 
-   >
+   
       <Closebtn onClick={() => setModal(false)} ><AiOutlineClose size={25}/></Closebtn>
 
       <ThemeProvider theme={theme}>

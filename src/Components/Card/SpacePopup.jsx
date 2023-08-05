@@ -77,16 +77,16 @@ align-items: center;
 margin-bottom: 5%;
 `;
 
-const SpacePopup = ({title}) => {
+const SpacePopup = (onClick) => {
     const navigate = useNavigate();
     return (
             <CardEach>
                 <LogoWrapper>
-                    <Icon src={logo} width='10%' height='10%' alt='logo' onClick={() => navigate('/main')} />
-                    <Icon src={cancelButton} width='5%' height='10%' alt='cancelButton' onClick={() => navigate(-1)} />
+                    <Icon src={logo} width='10%' height='10%' alt='logo' onClick={() => navigate('/adminmain')} />
+                    <Icon src={cancelButton} width='5%' height='10%' alt='cancelButton' onClick={onClick} />
                 </LogoWrapper>
                 <TitleWrapper>
-                    <Typo size='1.3rem' weight='700'>{title}</Typo>
+                    <Typo size='1.3rem' weight='700'>어떤 공간을 갖고 계세요?</Typo>
                 </TitleWrapper>
                 <UnderWapper>
                     <TextBox>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Chatbot from "./Chatbot"; // Chatbot 컴포넌트의 경로에 맞게 수정하세요.
 
 const ChatPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); //true바꿔서 클릭안해도 나오게 하든 아니면 챗봇 코드를 긁어서 진짜 챗봇페이지를 하나 만들던지 해야함
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
 
   // Chatbot 모달을 열고 닫는 함수

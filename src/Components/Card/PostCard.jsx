@@ -15,7 +15,7 @@ const CardEach = styled.div`
   flex-direction: column;
   background-color: white;
   //height: 470px;
-  width: 95%;
+  width: 370px;
   border-radius: 16px;
   border: 1px solid lightgray;
   cursor: pointer;
