@@ -12,13 +12,13 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
     
     ::-webkit-scrollbar{
-      height: 0px;
-      width: 0px;
+      height: 3px;
+      width: 5px;
       background: rgba(255, 255, 255, 1);
     }
     
     ::-webkit-scrollbar-thumb {
-      background: #ff0000;
+      background: #ec7538;
       -webkit-border-radius: 3ex;
     }
     ::-webkit-scrollbar-corner {

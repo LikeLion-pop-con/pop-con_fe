@@ -29,16 +29,14 @@ const SliderXwrapper = styled.div`
   overflow-x: scroll;
   min-height: 250px;
   width: 100%;
-  scroll-snap-type: x mandatory ;
-
+  scroll-snap-type: x mandatory;
 `;
 const SliderXwrapper2 = styled.div`
   position: relative;
   overflow-x: scroll;
-  min-height: 320px;
+  min-height: 330px;
   width: 100%;
-  scroll-snap-type: x mandatory ;
-
+  scroll-snap-type: x mandatory;
 `;
 const SliderXItems = styled.div`
   position: absolute;
@@ -52,50 +50,28 @@ const SliderXItems = styled.div`
 
 function Main() {
   const navigate = useNavigate();
-  const [scrollDir, setScrollDir] = useState("scrolling down");
 
-  useEffect(() => {
-    const threshold = 0;
-    let lastScrollY = window.scrollY;
-    let ticking = false;
+  const id = 1;
 
-    const updateScrollDir = () => {
-      const scrollY = window.scrollY;
-
-      if (Math.abs(scrollY - lastScrollY) < threshold) {
-        ticking = false;
-        return;
-      }
-      setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
-      lastScrollY = scrollY > 0 ? scrollY : 0;
-      ticking = false;
-    };
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScrollDir);
-        ticking = true;
-      }
-    };
-    window.addEventListener("scroll", onScroll);
-    console.log(scrollDir);
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [scrollDir]);
-  
   return (
     <>
       <Wrapper>
         <Header left="logo" right={["login", "search"]} />
         <AdSlider />
-        <Margin height="230" />
+        <Margin height="50" />
         <PopupTitle text="팝업 카테고리" bottomgap="20" />
         <Category listid="main" />
         <Margin height="30" />
-        <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" onClick={() => navigate('/popuphere')} />
+        <PopupTitle
+          isarrow={true}
+          text="여기에 열어주세요"
+          bottomgap="15"
+          onClick={() => navigate("/popuphere")}
+        />
         <SliderXwrapper2>
           <SliderXItems>
             <LargeCard
-              onClick={() => navigate("/PopupInfo")}
+              onClick={() => navigate("/popupInfo")}
               image={NewJeans}
               title="NewJeans의 HYPE맑음"
               popcategory="팝업 스토어"
@@ -127,12 +103,12 @@ function Main() {
           isarrow={true}
           text="예매 가능한 인기 팝업"
           bottomgap="15"
-          onClick={() => navigate('/popularpopup')}
+          onClick={() => navigate("/popularpopup")}
         />
         <SliderXwrapper2>
           <SliderXItems>
             <LargeCard
-              onClick={() => navigate("/PopupInfo")}
+              onClick={() => navigate(`/popupInfo/${id}`)}
               image={NewJeans}
               title="NewJeans의 HYPE맑음"
               popcategory="팝업 스토어"
@@ -159,15 +135,20 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper2>
         <Margin height="50" />
-        <PopupTitle isarrow={true} text="팝업 포스트" bottomgap="10"  onClick={()=> navigate('/PostList')} />
+        <PopupTitle
+          isarrow={true}
+          text="팝업 포스트"
+          bottomgap="10"
+          onClick={() => navigate("/postList")}
+        />
         <PostCard
-          onClick={()=> navigate('/PopUpPost')}
+          onClick={() => navigate("/popUpPost")}
           image={PostCardimg1}
           title="프랑스 밤잼 크렘드 마롱 팝업 스토어 현장"
           type="추천 포스트"
-          main='크렘드마롱(Crème de Marrons)은 클레망포지에사의 140년 전통 프랑스산 밤잼 브랜드 입니다.
+          main="크렘드마롱(Crème de Marrons)은 클레망포지에사의 140년 전통 프랑스산 밤잼 브랜드 입니다.
           크렘드마롱은 프랑스 남부 리옹 지역에서 수확하는
-          야생밤을 원료로 깊은 밤의 풍미를 선사합니다.'
+          야생밤을 원료로 깊은 밤의 풍미를 선사합니다."
         />
         <Margin height="60" />
         <PopupTitle
@@ -229,7 +210,7 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="20" />
-        <NavigationBar hide={scrollDir} />
+        <NavigationBar />
         <Footer />
       </Wrapper>
     </>
