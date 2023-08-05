@@ -235,7 +235,7 @@ const Chatbot = ({ isModal, setModal, modalPosition }) => {
           width: "350px",
           height: "500px",
           position: "fixed",
-          top: modalPosition.y +150,
+          top: modalPosition.y + 150,
           left: modalPosition.x - 160,
           display: "flex",
           overflow: "hidden",
@@ -247,7 +247,6 @@ const Chatbot = ({ isModal, setModal, modalPosition }) => {
           backgroundColor: "transparent",
         },
       }}
-
     >
       <Closebtn src={AiOutlineClose} onClick={() => setModal(false)} />
 

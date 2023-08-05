@@ -15,7 +15,7 @@ const Background = styled.div`
   flex-direction: column;
   align-items: center;
   @media (max-width: 768px) {
-    width: 100%;
+    width: 100vw;
   }
   position: relative;
 `;
@@ -23,7 +23,10 @@ const Overlay = styled(motion.div)`
   position: fixed;
   background-color: ${(props) => props.theme.colors.white};
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
-  width: 25%;
+  min-width: 40vw;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
   height: 400px;
   z-index: 10;
   bottom: 8rem;

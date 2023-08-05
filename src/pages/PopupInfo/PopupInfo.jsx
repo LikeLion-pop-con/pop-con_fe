@@ -8,7 +8,24 @@ import Typo from "../../assets/Typo";
 import Footer from "../../Components/Footer/Footer";
 import { useEffect } from "react";
 import ScrollToTop from "../../Components/ScrollToTop/ScrollToTop";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useAnimate,
+  useAnimation,
+} from "framer-motion";
+import Kakaomap from "../../Components/Kakaomap/Kakaomap";
+import Button from "../../Components/Button/Button";
+import Margin from "../../Components/Margin/Margin";
 
+const Wrapper = styled(motion.div)`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 const PopupinfoImg = styled.div`
   display: flex;
   justify-content: center;
@@ -32,9 +49,28 @@ const PopupButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-left: 15%;
+`;
+const RequestWrapper = styled(motion.div)`
+  width: 100%;
+  height: 400px;
+
+  transform-origin: top center;
+  display: flex;
+  justify-content: center;
+`;
+const requestvariants = {
+  hidden: { scaleY: 0 },
+  visible: { scaleY: 1 },
+  exit: { scaleY: 0 },
+};
+const GetMaptext = styled.p`
+  width: 50%;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.3);
+  padding-bottom: 10px;
+  opacity: 0.8;
+  cursor: pointer;
 `;
 
 const renderImages = (imagePaths) => {
@@ -45,13 +81,32 @@ const renderImages = (imagePaths) => {
 
 const PopupInfo = () => {
   //백엔드에서 받아온 이미지 경로 배열 - 데이터 받아서 변수로 선언해야 할 듯
+  const { brandId } = useParams();
+
+  console.log(brandId);
+
+  const navigate = useNavigate();
+
+  const [btnclicked, setBtnclicked] = useState(false);
+
   const imagePathsFromBackend = [
     "이미지1의_경로.jpg",
     "이미지2의_경로.jpg",
     // 추가적인 이미지들의 경로
   ];
+
+  const requestbtnani = useAnimation();
+
+  useEffect(() => {
+    if (btnclicked) {
+      requestbtnani.start("visible");
+    } else {
+      requestbtnani.start("hidden");
+    }
+  }, [btnclicked]);
+
   return (
-    <div>
+    <Wrapper transition={{ type: "tween" }}>
       <Header left="logo" right={["login", "search"]} />
       <Cardup
         name="IAB STUDIO"
@@ -68,13 +123,31 @@ const PopupInfo = () => {
         }
       />
       <PopupinfoImg>{renderImages(imagePathsFromBackend)}</PopupinfoImg>
-      <PopupButton type="submit">
+      <Margin height="20" />
+      <GetMaptext onClick={() => setBtnclicked((prev) => !prev)}>
+        팝업 요청 현황
+      </GetMaptext>
+      <Margin height="15" />
+      {btnclicked && (
+        <AnimatePresence>
+          <RequestWrapper
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: btnclicked ? 1 : 0 }}
+            transition={{ type: "tween", duration: 0.3 }}
+          >
+            <Kakaomap />
+          </RequestWrapper>
+          <Margin height="20" />
+        </AnimatePresence>
+      )}
+      <PopupButton>
         <Typo size="1.1rem" weight="600" color="white">
-          팝업 요청 현황
+          팝업 요청하기
         </Typo>
       </PopupButton>
+      <Margin height="10" />
       <Footer />
-    </div>
+    </Wrapper>
   );
 };
 

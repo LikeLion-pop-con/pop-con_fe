@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   width: 100%;
   align-items: center;
   min-height: 150px;
-  padding: 0px 20px;
 `;
 
 function Category({ listid }) {

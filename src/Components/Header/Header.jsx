@@ -1,12 +1,12 @@
 // Header.js
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-import logo from '../../assets/Icons/Header/logo.png';
-import login from '../../assets/Icons/Header/login.svg';
-import search from '../../assets/Icons/Header/search.svg';
+import logo from "../../assets/Icons/Header/logo.png";
+import login from "../../assets/Icons/Header/login.svg";
+import search from "../../assets/Icons/Header/search.svg";
 
 const Icon = styled.img`
   cursor: pointer;
@@ -14,9 +14,13 @@ const Icon = styled.img`
 
 const iconType = (navigate, type) => {
   const icon = {
-    logo: <Icon src={logo} alt='logo' width='20%' onClick={() => navigate('/')} />,
-    login: <Icon src={login} alt='login' onClick={() => navigate('/login')} />,
-    search: <Icon src={search} alt='search' onClick={() => navigate('/search')} />,
+    logo: (
+      <Icon src={logo} alt="logo" width="20%" onClick={() => navigate("/")} />
+    ),
+    login: <Icon src={login} alt="login" onClick={() => navigate("/login")} />,
+    search: (
+      <Icon src={search} alt="search" onClick={() => navigate("/search")} />
+    ),
   };
 
   return icon[type];
@@ -29,11 +33,11 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ Color }) => Color || 'white'};
+  background-color: ${({ Color }) => Color || "white"};
 `;
 
 const IconsContainer = styled.div`
-  width: 70%;
+  width: 50%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -55,12 +59,12 @@ const EmptyIcon = styled.div`
   height: 16px;
 `;
 
-export default function Header({ left = '', right = [], bgColor }) {
+export default function Header({ left = "", right = [], bgColor }) {
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem('Token');
+  const isLoggedIn = !!localStorage.getItem("Token");
 
   const handleLogout = () => {
-    localStorage.removeItem('Token');
+    localStorage.removeItem("Token");
   };
 
   return (
@@ -71,7 +75,7 @@ export default function Header({ left = '', right = [], bgColor }) {
         </IconsContainer>
         <IconWrapper>
           {right.map((iconTypeItem) => {
-            if (iconTypeItem === 'login') {
+            if (iconTypeItem === "login") {
               return isLoggedIn ? null : iconType(navigate, iconTypeItem);
             } else {
               return iconType(navigate, iconTypeItem);

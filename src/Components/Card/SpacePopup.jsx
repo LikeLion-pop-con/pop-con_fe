@@ -82,7 +82,7 @@ const SpacePopup = (onClick) => {
     return (
             <CardEach>
                 <LogoWrapper>
-                    <Icon src={logo} width='10%' height='10%' alt='logo' onClick={() => navigate('/adminmain')} />
+                    <Icon src={logo} width='10%' height='10%' alt='logo' onClick={() => navigate('/main')} />
                     <Icon src={cancelButton} width='5%' height='10%' alt='cancelButton' onClick={onClick} />
                 </LogoWrapper>
                 <TitleWrapper>
