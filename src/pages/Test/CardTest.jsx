@@ -68,7 +68,7 @@ const CardTest = () => {
 
         <CheckCard title='제일 인기가 많은 대전에서 팝업을 열까요?'/>
         <AdminCard image={AdminCardimg} title='압구정 사거리에 위치한 대형 건물 ' space={'서울 성동구 서울숲2길'} floor='지하 - 층 ~ 지상 1 층' area='연면적 : 62.8,099㎡' />
-        <SpacePopup title='어떤 공간을 갖고 계세요?'/>
+        <SpacePopup/>
       </CardBlock>
     </>
   );

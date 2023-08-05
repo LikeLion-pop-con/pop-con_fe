@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 import Header from "../../Components/Header/Header";
 import Typo from "../../assets/Typo";
 import Margin from "../../Components/Margin/Margin";
@@ -9,6 +10,8 @@ import PostCardimg2 from "../../assets/Icons/Card/PostCardimg2.jpg";
 import NavigationBar from "../../Components/Navigate/Navigate";
 import AdminCard from "../../Components/Card/AdminCard";
 import AdminCardimg from "../../assets/Icons/Card/AdminCardimg.png";
+import Modal from "../../Components/Modal/Modal";
+import SpacePopup from "../../Components/Card/SpacePopup";
 
 const Title = styled.div`
   width: 100%;
@@ -28,8 +31,12 @@ const CardBlock = styled.div`
 `   
 
 function PopupSpace() {
+    const [isModalOpen, setIsModalOpen] = useState(true);
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
   return (
     <>
+      
       <Header left="logo" right={["login", "search"]} />
       <Margin height="40" />
       <Title>
@@ -67,6 +74,10 @@ function PopupSpace() {
             area='연면적 : 277.686㎡'/>   
 
       </CardBlock>
+      <div>
+      <Modal isOpen={isModalOpen} closeModal={closeModal} />
+      </div>
+      
       <NavigationBar/>
       <Footer/>
     </>
