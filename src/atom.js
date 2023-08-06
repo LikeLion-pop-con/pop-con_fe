@@ -23,3 +23,15 @@ export const isBotClicked = atom({
   key: "isBotClicked",
   default: false,
 });
+
+export const isPopupRequestYes = atom({
+  // 팝업 요청하기에서 Yes
+  key: "isPopupRequestYes",
+  default: false,
+});
+
+export const isPopupRequestNo = atom({
+  // 팝업 요청하기에서 No
+  key: "isPopupRequestYes",
+  default: false,
+});
