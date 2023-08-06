@@ -1,0 +1,35 @@
+.timeSlot {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeSlotLabel {
+  font-weight: bold;
+  border:none;
+  border-bottom: 1px solid;
+  padding: 5px;
+}
+
+.timeSlotButtons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+
+  .timeSlotButton {
+    padding: 4px 100px;
+    margin-bottom: 8px; /* 각 버튼 사이의 간격을 설정 */
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: black;
+    &.selected {
+      background-color: rgb(0, 0, 0);
+      color: white;
+    }
+  }
+}
+
+.unselected {
+  background-color: rgb(255, 255, 255); /* 연한색 배경색 */
+}

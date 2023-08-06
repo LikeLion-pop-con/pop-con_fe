@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import styles from './calendar.module.scss';
 import { useState } from 'react';
+import CustomTimeSlot from './CustomTimeSlot'
 const YEARS = Array.from({ length: getYear(new Date()) + 1 - 2000 }, (_, i) => getYear(new Date()) - i);
 const MONTHS = [
   '1월',
@@ -24,12 +25,12 @@ const MONTHS = [
   
 const Calendar = ({ selectedDate, setSelectedDate }) => {
     const [currentDate, setCurrentDate] = useState(new Date());
-    
+    const [selectedTimeSlot, setSelectedTimeSlot] = useState({ start: 11, end: 14 });
   return (
     <div className={styles.datePickerWrapper}>
+        
       <DatePicker
-        open={true} 
-        dateFormat='yyyy.MM.dd'
+        open={true}
         formatWeekDay={(nameOfDay) => {
             switch (nameOfDay) {
               case 'Sunday':
@@ -50,12 +51,8 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
                 return nameOfDay;
             }
         }}
-        showYearDropdown={false}
-        scrollableYearDropdown={false}
-        shouldCloseOnSelect
-        yearDropdownItemNumber={100}
         minDate={new Date()}
-        maxDate={new Date('2023-09-09')}
+        maxDate={new Date('2023-08-09')}
         selected={currentDate}
         calendarClassName={styles.calenderWrapper}
         dayClassName={(d) => {
