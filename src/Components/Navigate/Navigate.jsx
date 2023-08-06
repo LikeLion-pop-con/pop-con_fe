@@ -139,7 +139,7 @@ export default function NavigationBar({ setIsCateClicked }) {
   const setBot = useSetRecoilState(isBotClicked);
   const isClicked = useRecoilValue(isBotClicked);
 
-  const [scrollDir, setScrollDir] = useState("scrolling down");
+  const [scrollDir, setScrollDir] = useState("scrolling up");
 
   useEffect(() => {
     if (scrollDir === "scrolling down") {
