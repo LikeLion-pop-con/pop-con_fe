@@ -12,6 +12,8 @@ import { useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Kakaomap from "../../Components/Kakaomap/Kakaomap";
 import Margin from "../../Components/Margin/Margin";
+import RequestModal from "../../Components/Modal/PopRequestModal";
+import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -114,7 +116,7 @@ const PopupInfo = () => {
       <Header left="logo" right={["login", "search"]} />
       <Cardup
         name="IAB STUDIO"
-        backimageUrl="img/Artistimg/iab_box.jpg"
+        backimageUrl={img1}
         CircleimageUrl="img/Artistimg/iabCircleimg.png"
       />
       <Carddown2
@@ -144,7 +146,7 @@ const PopupInfo = () => {
           <Margin height="20" />
         </AnimatePresence>
       )}
-      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      {/* <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} /> */}
       <PopupButton
         onClick={() => {
           window.scrollTo(0, 0);

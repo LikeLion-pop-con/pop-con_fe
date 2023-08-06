@@ -5,7 +5,6 @@ import { isBotClicked } from "../../atom";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import Chatbot from "../../pages/Chatbot/Chatbot";
-import { AiOutlineClose } from "react-icons/ai";
 
 const Background = styled.div`
   width: 40vw;
@@ -22,7 +21,8 @@ const Background = styled.div`
 const Overlay = styled(motion.div)`
   position: fixed;
   background-color: transparent;
-  
+  box-sizing: border-box;
+
   min-width: 40vw;
   @media (max-width: 768px) {
     width: 80%;
@@ -37,15 +37,7 @@ const botvariants = {
   hidden: { scale: 0, opacity: 0 },
   visible: { scale: 1, opacity: 1 },
 };
-const ExitBtn = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  cursor: pointer;
-`;
+
 // const Wrapper = styled.div`
 //   display: flex;
 //   flex-direction: column;
@@ -54,34 +46,41 @@ const ExitBtn = styled.div`
 // `;
 
 function Layout() {
-  const [isClicked, setIsClicked] = useRecoilState(isBotClicked);
-
   const botani = useAnimation();
 
-  useEffect(() => {
-    if (isClicked) {
-      botani.start("visible");
-    } else {
-      botani.start("hidden");
-    }
-  }, [isClicked]);
+  const [isClicked, setIsClicked] = useRecoilState(isBotClicked);
+
+  // useEffect(() => {
+  //   if (isClicked) {
+  //     botani.start("visible");
+  //   } else {
+  //     botani.start("hidden");
+  //   }
+  // }, [isClicked]);
 
   return (
     <>
       <Background>
-        <Overlay
+        {/* <Overlay
           variants={botvariants}
           initial="hidden"
           animate={botani}
           transition={{
             type: "tween",
           }}
+        > */}
+        <motion.div
+          style={{ transformOrigin: "center right" }}
+          initial={{ scale: 0 }}
+          animate={{ scale: isClicked ? 1 : 0 }}
+          transition={{
+            type: "tween",
+            duration: 0.5,
+          }}
         >
-          <Chatbot/>
-          <ExitBtn onClick={() => setIsClicked((prev) => !prev)}>
-            <AiOutlineClose style={{ fontSize: 22 }} />
-          </ExitBtn>
-        </Overlay>
+          <Chatbot setModal={setIsClicked}></Chatbot>
+        </motion.div>
+        {/* </Overlay> */}
         <Outlet />
       </Background>
     </>
