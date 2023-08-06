@@ -141,7 +141,7 @@ const Resister = () => {
     };
     console.log(requestData);
     axios
-          .post("https://heartgold.store/signup/", requestData)
+          .post("https://popcon.store/signup/", requestData)
           .then((response) => {
             console.log(response); // 응답 데이터를 콘솔에 출력
             if (parseInt(response.status / 100) === 2) {
