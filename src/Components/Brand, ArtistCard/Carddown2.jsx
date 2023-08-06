@@ -1,8 +1,9 @@
-import React from 'react';
-import { styled } from 'styled-components';
-import Typo from '../../assets/Typo';
-import {BsHeart} from "react-icons/bs"
+import React from "react";
+import { styled } from "styled-components";
+import Typo from "../../assets/Typo";
+import { BsHeart } from "react-icons/bs";
 import { BsFillShareFill } from "react-icons/bs";
+import Margin from "../Margin/Margin";
 
 const Wrapper = styled.div`
   position: relative;
@@ -26,8 +27,8 @@ const BodytextWrapper = styled.div`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  top: -80%;
-  right: -0.1%;
+  top: -60%;
+  right: -5%;
   display: flex;
   flex-direction: row;
 `;
@@ -50,14 +51,22 @@ const Carddown2 = ({ toptext, bodytext }) => {
     <>
       <Wrapper>
         <Toptext>
-          <Typo size="1.1rem" weight="400">{toptext}</Typo>
+          <Typo size="1.1rem" weight="400">
+            {toptext}
+          </Typo>
         </Toptext>
         <BodytextWrapper>
-          <Typo size="0.9rem" weight="300" color="gray" lineheight="20px">{bodytext}</Typo>
+          <Typo size="0.9rem" weight="300" color="gray" lineheight="20px">
+            {bodytext}
+          </Typo>
         </BodytextWrapper>
         <ButtonWrapper>
-          <Button><BsHeart size={20}/></Button>
-          <Button><BsFillShareFill size={20}/></Button>
+          <Button>
+            <BsHeart size={20} />
+          </Button>
+          <Button>
+            <BsFillShareFill size={20} />
+          </Button>
         </ButtonWrapper>
       </Wrapper>
     </>

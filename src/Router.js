@@ -37,13 +37,16 @@ import AdminMain from "./pages/MainPage/AdminMain";
 import PopupSpace from "./pages/MainPlusPage/PopupSpace";
 import Popularpopup from "./pages/MainPlusPage/PopularPopup";
 import PopupHere from "./pages/MainPlusPage/PopupHere";
+import PopupSpaceItem from "./pages/MainPlusPage/PopupSpaceItem";
+import SpaceItemInfo from "./pages/MainPlusPage/SpaceItemInfo";
+import SpaceItemIntro from "./pages/MainPlusPage/SpaceItemIntro";
 import Modal from "./Components/Modal/Modal";
 
 import BrandIntro from "./pages/BrandIntroduce/BrandIntro";
 import BrandInfo from "./pages/BrandIntroduce/BrandInfo";
 import BrandPost from "./pages/BrandIntroduce/BrandPost";
 import ChatPage from "./pages/Chatbot/Chatpage";
-import Kakaomap from "./Components/Kakaomap/Kakaomap";
+import Kakaomap2 from "./Components/Kakaomap/Kakaomap2";
 import RequestComplete from "./pages/PopupInfo/RequestComplete";
 
 function Router() {
@@ -54,8 +57,13 @@ function Router() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/AdminMain" element={<AdminMain />} />
+            <Route path="/popupspace/:spaceId" element={<PopupSpaceItem />}>
+              <Route path="" element={<SpaceItemIntro />}></Route>
+              <Route path="info" element={<SpaceItemInfo />}></Route>
+            </Route>
 
-            <Route path="/PopupSpace" element={<PopupSpace />} />
+            <Route path="/PopupSpace" element={<PopupSpace />}></Route>
+
             <Route path="" element={<LogoWelcome />} />
             <Route path="*" element={<div>없는페이지임</div>} />
             <Route path="/CardTest" element={<CardTest />} />
@@ -114,11 +122,10 @@ function Router() {
               element={<RequestComplete />}
             ></Route>
 
-
             <Route path="/Chatbot" element={<ChatPage />} />
             <Route path="/popularpopup" element={<Popularpopup />} />
             <Route path="/popuphere" element={<PopupHere />} />
-            <Route path="/maptest" element={<Kakaomap />}></Route>
+            <Route path="/maptest" element={<Kakaomap2 />}></Route>
           </Route>
         </Routes>
       </SearchProvider>

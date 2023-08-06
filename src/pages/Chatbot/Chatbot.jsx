@@ -3,6 +3,11 @@ import styled, { ThemeProvider } from "styled-components";
 import ChatBot from "react-simple-chatbot";
 import { AiOutlineClose } from "react-icons/ai";
 import CheckBox from "./Checkbox.js";
+import ChatbotModal from "react-modal";
+import { useRecoilState } from "recoil";
+import { isBotClicked } from "../../atom";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 
 const steps = [
   /////////////////////////////////////////////////////////////////// 질문 카테고리 선택
@@ -197,12 +202,25 @@ const steps = [
   },
 ];
 const Box = styled.div`
-  position: relative;
-  bottom: -10%;
   width: 100%;
   height: 100%;
-`
-const Chatbot = () => {
+  position: relative;
+`;
+const ExitBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  width: 30px;
+  height: 30px;
+  z-index: 1000;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const Chatbot = ({ setModal }) => {
   const theme = {
     background: "#f5f8fb",
     headerBgColor: "white",
@@ -213,19 +231,65 @@ const Chatbot = () => {
     userBubbleColor: "#fff",
     userFontColor: "#4a4a4a",
   };
+  const [isClicked, setIsClicked] = useRecoilState(isBotClicked);
+  // const botani = useAnimation();
+
+  // useEffect(() => {
+  //   if (isClicked) {
+  //     botani.start("visible");
+  //   } else {
+  //     botani.start("hidden");
+  //   }
+  // }, [isClicked]);
 
   return (
-    <Box>
+    <ChatbotModal
+      isOpen={isClicked}
+      onRequestClose={() => setIsClicked(false)}
+      ariaHideApp={false}
+      shouldCloseOnOverlayClick={false}
+      overlayElement={(props, contentElement) => (
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "tween" }}
+          isOpen={isClicked}
+          {...props}
+        >
+          {contentElement}
+        </motion.div>
+      )}
+      style={{
+        content: {
+          width: "340px",
+          position: "relative",
+          top: 30,
+          left: 0,
+          right: 0,
+          margin: "auto auto",
+          display: "flex",
+          overflow: "hidden",
+          border: "medium none black",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          alignContent: "center",
+          borderRadius: "20px",
+          backgroundColor: "transparent",
+        },
+      }}
+    >
+      <ExitBtn onClick={() => setIsClicked(false)}>
+        <AiOutlineClose style={{ fontSize: 22 }} />
+      </ExitBtn>
       <ThemeProvider theme={theme}>
         <ChatBot
           steps={steps}
           hideHeader={false}
           headerTitle="ChatBot Q & A"
-          width="100%"
           placeholder={"채팅이 불가능한 채널입니다."}
         />
       </ThemeProvider>
-      </Box>
+    </ChatbotModal>
   );
 };
 export default Chatbot;
