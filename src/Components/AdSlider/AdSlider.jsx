@@ -48,7 +48,6 @@ function AdSlider() {
 
   return (
     <Wrapper>
-      <Margin height="10" />
       <AnimatePresence>
         <Items variants={itemsVariants} initial="hidden" animate="visible">
           {adimgs.map((i, index) => {

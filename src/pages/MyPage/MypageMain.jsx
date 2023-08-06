@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  padding: 30px;
+
   padding-bottom: 110px;
   margin-bottom: 30px;
 `;
@@ -24,12 +24,13 @@ const Container = styled.div`
 const Image = styled.img`
   width: 200px;
   height: 150px;
+  margin-left: 30%;
 `;
 
 const Name = styled.p`
   position: absolute;
   top: 70px;
-  left: 60px;
+  left: 130px;
 `;
 const Detailbox = styled.div`
   width: 100%;
@@ -63,7 +64,7 @@ const LogoutButton = styled.button`
   align-self: flex-end;
   cursor: pointer;
   position: absolute;
-  top: 260px;
+  top: 350px;
   right: 10px;
 `;
 const MyINFO = styled.button`
@@ -76,7 +77,7 @@ const MyINFO = styled.button`
   align-self: flex-end;
   cursor: pointer;
   position: absolute;
-  top: 260px;
+  top: 350px;
   right: 80px;
 `;
 const Mypage = () => {

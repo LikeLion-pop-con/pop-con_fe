@@ -21,15 +21,15 @@ const Background = styled.div`
 `;
 const Overlay = styled(motion.div)`
   position: fixed;
-  background-color: ${(props) => props.theme.colors.white};
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  background-color: transparent;
+  
   min-width: 40vw;
   @media (max-width: 768px) {
     width: 80%;
   }
   height: 400px;
   z-index: 10;
-  bottom: 8rem;
+  bottom: 14rem;
   border-radius: 30px;
   transform-origin: bottom right;
 `;
@@ -77,6 +77,7 @@ function Layout() {
             type: "tween",
           }}
         >
+          <Chatbot/>
           <ExitBtn onClick={() => setIsClicked((prev) => !prev)}>
             <AiOutlineClose style={{ fontSize: 22 }} />
           </ExitBtn>

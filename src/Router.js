@@ -37,7 +37,7 @@ import AdminMain from "./pages/MainPage/AdminMain";
 import PopupSpace from "./pages/MainPlusPage/PopupSpace";
 import Popularpopup from "./pages/MainPlusPage/PopularPopup";
 import PopupHere from "./pages/MainPlusPage/PopupHere";
-import Modal from "./Components/Modal/Modal";
+import GuidePage from "./pages/Guide/Guide";
 
 import BrandIntro from "./pages/BrandIntroduce/BrandIntro";
 import BrandInfo from "./pages/BrandIntroduce/BrandInfo";
@@ -60,6 +60,8 @@ function Router() {
             <Route path="/CardTest" element={<CardTest />} />
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/test" element={<Test />} />
+            <Route path="/Guide" element={<GuidePage />} />
+            
 
             <Route path="/main" element={<Main />}>
               <Route path="art" element={<Main />}></Route>
@@ -108,6 +110,7 @@ function Router() {
             <Route path="/postList" element={<PostList />} />
             <Route path="/popupPost" element={<PopupPost />} />
             <Route path="/popupinfo/:brandId" element={<PopupInfo />} />
+
 
             <Route path="/Chatbot" element={<ChatPage />} />
             <Route path="/popularpopup" element={<Popularpopup />} />

@@ -170,7 +170,8 @@ function ShowCate() {
                   <MdArrowBackIosNew style={{ fontSize: 18 }} />
                 </motion.div>
                 <motion.div>
-                  <Typo fontType="large">POPCON</Typo>
+                  
+                  <Typo size='22px'>CATEGORY</Typo>
                 </motion.div>
                 <motion.div onClick={() => navigate(-1)}>
                   <AiOutlineClose style={{ fontSize: 18 }} />
@@ -185,20 +186,20 @@ function ShowCate() {
                   duration: 0.5,
                 }}
               >
-                <Tab onClick={() => setId("All")}>
+                <Tab onClick={() => setId( <Typo size='22px'>POP-UP</Typo>)}>
                   <Typo fontType="mediumsmall">팝업</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-                <Tab onClick={() => setId("스토어")}>
+                <Tab onClick={() => setId(<Typo size='22px'>BRAND</Typo>)}>
                   <Typo fontType="mediumsmall">팝업 브랜드</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-                <Tab onClick={() => setId("갤러리")}>
+                <Tab onClick={() => setId(<Typo size='22px'>ARTIST</Typo>)}>
                   <Typo fontType="mediumsmall">독립 아티스트</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-                <Tab onClick={() => setId("스테이지")}>
-                  <Typo fontType="mediumsmall">서비스 가이드</Typo>
+                <Tab onClick={() => navigate("/Guide")}>
+                  <Typo fontType="mediumsmall">POP-CON | 서비스 가이드</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
                
@@ -240,7 +241,7 @@ function ShowCate() {
                 transition={{ type: "tween", duration: 0.5 }}
               >
                 <Tab onClick={() => setIsClicked((prev) => !prev)}>
-                  <Typo fontType="mediumsmall">Category</Typo>
+                  <Typo fontType="mediumsmall">CATEGORY</Typo>
                   {isClicked ? (
                     <RiArrowDownSLine style={{ fontSize: 24 }} />
                   ) : (
