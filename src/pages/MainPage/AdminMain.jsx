@@ -20,6 +20,7 @@ import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
 import AdminCard from "../../Components/Card/AdminCard";
 import AdminCardimg from "../../assets/Icons/Card/AdminCardimg.png";
 
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -38,7 +39,7 @@ const SliderXwrapper = styled.div`
 const SliderXwrapper2 = styled.div`
   position: relative;
   overflow-x: scroll;
-  min-height: 320px;
+  min-height: 330px;
   width: 100%;
   scroll-snap-type: x mandatory ;
 `;
@@ -96,7 +97,7 @@ function AdminMain() {
       <Wrapper>
         <Header left="logo" right={["login", "search"]} />
         <AdSlider />
-        <Margin height="230" />
+        <Margin height="50" />
         <PopupTitle text="팝업 카테고리" bottomgap="20" />
         <Category listid="main" />
         <Margin height="30" />
