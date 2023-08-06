@@ -5,7 +5,6 @@ import Typo from "../../assets/Typo";
 import Margin from "../Margin/Margin";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 
-
 const CardBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -16,9 +15,9 @@ const CardEach = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-
+  box-sizing: border-box;
   height: 300px;
-  min-width:400px;
+  min-width:370px;
 
 
   border-radius: 16px;
@@ -55,14 +54,13 @@ const TextWrapper = styled.div`
   line-height: 18px;
 `;
 const TitleWrapper = styled.div`
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    margin-bottom: 5px;
-
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
+`;
 const TextBox = styled.div`
   display: flex;
   flex-direction: row;
@@ -71,13 +69,21 @@ const TextBox = styled.div`
   margin-right: 7px;
 `;
 
-const LargeCard = ({ image, title, popcategory, detail, space, date, onClick}) => {
+const LargeCard = ({
+  image,
+  title,
+  popcategory,
+  detail,
+  space,
+  date,
+  onClick,
+}) => {
   const navigate = useNavigate();
   return (
     <CardEach onClick={onClick}>
       <Thumbnail image={image} />
       <TitleWrapper>
-        <Typo weight='600'>{title}</Typo>
+        <Typo weight="600">{title}</Typo>
       </TitleWrapper>
       <TextBox>
         <TextWrapper>

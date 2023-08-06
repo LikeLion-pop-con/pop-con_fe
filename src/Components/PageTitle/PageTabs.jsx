@@ -28,7 +28,7 @@ const Tab = styled.div`
   width: 7rem;
   height: 20px;
   position: relative;
-  margin: 0px 5px;
+
   a p {
     font-size: 16px;
     display: block;

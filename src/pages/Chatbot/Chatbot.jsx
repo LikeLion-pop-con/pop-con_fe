@@ -4,19 +4,6 @@ import ChatBot from "react-simple-chatbot";
 import { AiOutlineClose } from "react-icons/ai";
 import CheckBox from "./Checkbox.js";
 
-const Closebtn = styled.div`
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  top: 2.5%;
-  right: 3%;
-  z-index: 1000;
-  color: white;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 const steps = [
   /////////////////////////////////////////////////////////////////// 질문 카테고리 선택
   {
@@ -209,38 +196,36 @@ const steps = [
     end: true,
   },
 ];
-const ChatbotContainer = styled.div`
-  width: 25%; /* 오버레이와 동일한 너비로 설정 */
+const Box = styled.div`
   position: relative;
-  bottom: 8rem;
-  right: 3%;
-  z-index: 10;
-  
-`;
+  bottom: -10%;
+  width: 100%;
+  height: 100%;
+`
 const Chatbot = () => {
   const theme = {
     background: "#f5f8fb",
-    headerBgColor: "#EF6C00",
-    headerFontColor: "#fff",
+    headerBgColor: "white",
+    headerFontColor: "black",
     headerFontSize: "15px",
-    botBubbleColor: "#EF6C00",
+    botBubbleColor: "#EC7538",
     botFontColor: "#fff",
     userBubbleColor: "#fff",
     userFontColor: "#4a4a4a",
   };
 
   return (
-    <ChatbotContainer>
+    <Box>
       <ThemeProvider theme={theme}>
         <ChatBot
           steps={steps}
           hideHeader={false}
           headerTitle="ChatBot Q & A"
-          width="200px"
+          width="100%"
           placeholder={"채팅이 불가능한 채널입니다."}
         />
       </ThemeProvider>
-    </ChatbotContainer>
+      </Box>
   );
 };
 export default Chatbot;

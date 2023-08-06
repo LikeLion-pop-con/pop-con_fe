@@ -6,7 +6,9 @@ import Margin from "../Margin/Margin";
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 36vh;
   position: relative;
+  box-sizing: border-box;
 `;
 const Items = styled(motion.div)`
   width: 100%;
@@ -16,7 +18,7 @@ const Item = styled(motion.div)`
   background-size: cover;
   background-position: center center;
   width: 100%;
-  height: 200px;
+  height: 100%;
   position: absolute;
 `;
 const itemsVariants = {

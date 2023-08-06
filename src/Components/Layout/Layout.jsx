@@ -8,25 +8,28 @@ import Chatbot from "../../pages/Chatbot/Chatbot";
 import { AiOutlineClose } from "react-icons/ai";
 
 const Background = styled.div`
-  width: 450px;
+  width: 55vw;
   background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   @media (max-width: 768px) {
-    width: 100%;
+    width: 100vw;
   }
   position: relative;
 `;
 const Overlay = styled(motion.div)`
   position: fixed;
-  background-color: ${(props) => props.theme.colors.white};
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
-  width: 25%;
+  background-color: transparent;
+  
+  min-width: 40vw;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
   height: 400px;
   z-index: 10;
-  bottom: 8rem;
+  bottom: 14rem;
   border-radius: 30px;
   transform-origin: bottom right;
 `;
