@@ -6,8 +6,10 @@ import Margin from "../Margin/Margin";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 36vh;
-  position: relative;
+  height: 30vh;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 4vh;
   box-sizing: border-box;
 `;
 const Items = styled(motion.div)`
@@ -43,7 +45,7 @@ const itemVariants = {
   },
 };
 
-function AdSlider() {
+function PopupSlider() {
   const adimgs = useRecoilValue(adImgs);
 
   return (
@@ -58,4 +60,4 @@ function AdSlider() {
     </Wrapper>
   );
 }
-export default AdSlider;
+export default PopupSlider;

@@ -18,7 +18,7 @@ const Wrapper = styled(motion.div)`
   height: 60px;
   position: fixed;
   bottom: 0;
-  width: 450px;
+  width: 40vw;
   @media (max-width: 768px) {
     width: 100%;
   }

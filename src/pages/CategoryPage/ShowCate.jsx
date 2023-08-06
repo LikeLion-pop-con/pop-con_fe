@@ -12,9 +12,13 @@ import { useAnimation } from "framer-motion";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiArrowDownSLine } from "react-icons/ri";
+import PopupSlider from "../../Components/AdSlider/PopupSlider";
+import Horizon from "../../Components/Horizon/Horizon";
+
 
 const Wrapper = styled(motion.div)`
   width: 100%;
+  height: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -117,6 +121,13 @@ const LogoWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const SliderWrapper = styled.div`
+  position: absolute;
+  top: 5rem;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+`
 
 function ShowCate() {
   const navigate = useNavigate();
@@ -155,13 +166,14 @@ function ShowCate() {
         transition={{ type: "tween", duration: 0.5 }}
       >
         <LogoWrap>
-          <img src={"logo.png"} height="100" />
+          <img src={"logo.png"} height="80" />
         </LogoWrap>
         {id === "" ? (
           <>
             <AnimatePresence>
               <Margin height="30" />
               <Header>
+                
                 <motion.div
                   variants={showupvariants}
                   initial="hidden"
@@ -170,7 +182,8 @@ function ShowCate() {
                   <MdArrowBackIosNew style={{ fontSize: 18 }} />
                 </motion.div>
                 <motion.div>
-                  <Typo fontType="large">POPCON</Typo>
+                  
+                  <Typo size='22px'>CATEGORY</Typo>
                 </motion.div>
                 <motion.div onClick={() => navigate(-1)}>
                   <AiOutlineClose style={{ fontSize: 18 }} />
@@ -185,25 +198,24 @@ function ShowCate() {
                   duration: 0.5,
                 }}
               >
-                <Tab onClick={() => setId("All")}>
+                <Tab onClick={() => setId( <Typo size='22px'>POP-UP</Typo>)}>
                   <Typo fontType="mediumsmall">팝업</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-                <Tab onClick={() => setId("스토어")}>
+                <Tab onClick={() => setId(<Typo size='22px'>BRAND</Typo>)}>
                   <Typo fontType="mediumsmall">팝업 브랜드</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-                <Tab onClick={() => setId("갤러리")}>
+                <Tab onClick={() => setId(<Typo size='22px'>ARTIST</Typo>)}>
                   <Typo fontType="mediumsmall">독립 아티스트</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-                <Tab onClick={() => setId("스테이지")}>
-                  <Typo fontType="mediumsmall">서비스 가이드</Typo>
+                <Tab onClick={() => navigate("/Guide")}>
+                  <Typo fontType="mediumsmall">POP-CON | 서비스 가이드</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-               
               </List>
-              <Margin height="15" />
+              <PopupSlider/>
             </AnimatePresence>
           </>
         ) : null}
@@ -240,7 +252,7 @@ function ShowCate() {
                 transition={{ type: "tween", duration: 0.5 }}
               >
                 <Tab onClick={() => setIsClicked((prev) => !prev)}>
-                  <Typo fontType="mediumsmall">Category</Typo>
+                  <Typo fontType="mediumsmall">CATEGORY</Typo>
                   {isClicked ? (
                     <RiArrowDownSLine style={{ fontSize: 24 }} />
                   ) : (
