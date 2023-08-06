@@ -44,6 +44,7 @@ import BrandInfo from "./pages/BrandIntroduce/BrandInfo";
 import BrandPost from "./pages/BrandIntroduce/BrandPost";
 import ChatPage from "./pages/Chatbot/Chatpage";
 import Kakaomap from "./Components/Kakaomap/Kakaomap";
+import RequestComplete from "./pages/PopupInfo/RequestComplete";
 
 function Router() {
   return (
@@ -53,7 +54,7 @@ function Router() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/AdminMain" element={<AdminMain />} />
-            
+
             <Route path="/PopupSpace" element={<PopupSpace />} />
             <Route path="" element={<LogoWelcome />} />
             <Route path="*" element={<div>없는페이지임</div>} />
@@ -110,6 +111,10 @@ function Router() {
             <Route path="/postList" element={<PostList />} />
             <Route path="/popupPost" element={<PopupPost />} />
             <Route path="/popupinfo/:brandId" element={<PopupInfo />} />
+            <Route
+              path="/popupinfo/:brandId/complete"
+              element={<RequestComplete />}
+            ></Route>
 
 
             <Route path="/Chatbot" element={<ChatPage />} />

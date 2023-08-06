@@ -34,6 +34,7 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${({ Color }) => Color || "white"};
+  
 `;
 
 const IconsContainer = styled.div`
@@ -42,6 +43,8 @@ const IconsContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-left: 10px;
+  margin-top:2px;
+  margin-bottom:2px;
 `;
 
 const IconWrapper = styled.div`

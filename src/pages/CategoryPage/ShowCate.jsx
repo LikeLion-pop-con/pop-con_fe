@@ -12,9 +12,13 @@ import { useAnimation } from "framer-motion";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiArrowDownSLine } from "react-icons/ri";
+import PopupSlider from "../../Components/AdSlider/PopupSlider";
+import Horizon from "../../Components/Horizon/Horizon";
+
 
 const Wrapper = styled(motion.div)`
   width: 100%;
+  height: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -117,6 +121,13 @@ const LogoWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const SliderWrapper = styled.div`
+  position: absolute;
+  top: 5rem;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+`
 
 function ShowCate() {
   const navigate = useNavigate();
@@ -155,13 +166,14 @@ function ShowCate() {
         transition={{ type: "tween", duration: 0.5 }}
       >
         <LogoWrap>
-          <img src={"logo.png"} height="100" />
+          <img src={"logo.png"} height="80" />
         </LogoWrap>
         {id === "" ? (
           <>
             <AnimatePresence>
               <Margin height="30" />
               <Header>
+                
                 <motion.div
                   variants={showupvariants}
                   initial="hidden"
@@ -202,9 +214,8 @@ function ShowCate() {
                   <Typo fontType="mediumsmall">POP-CON | 서비스 가이드</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-               
               </List>
-              <Margin height="15" />
+              <PopupSlider/>
             </AnimatePresence>
           </>
         ) : null}

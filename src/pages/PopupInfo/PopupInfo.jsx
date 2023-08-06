@@ -7,18 +7,12 @@ import Popinfodetail from "../../Components/Brand, ArtistCard/Popinfodetail";
 import Typo from "../../assets/Typo";
 import Footer from "../../Components/Footer/Footer";
 import { useEffect } from "react";
-import ScrollToTop from "../../Components/ScrollToTop/ScrollToTop";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useAnimate,
-  useAnimation,
-} from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Kakaomap from "../../Components/Kakaomap/Kakaomap";
-import Button from "../../Components/Button/Button";
 import Margin from "../../Components/Margin/Margin";
+import RequestModal from "../../Components/Modal/PopRequestModal";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -33,13 +27,11 @@ const PopupinfoImg = styled.div`
   align-items: center;
   width: 90%;
 `;
-
 const Image = styled.img`
   width: 100%;
   height: 100%;
   margin-bottom: 10px;
 `;
-
 const PopupButton = styled.button`
   width: 70%;
   height: 48px;
@@ -49,6 +41,7 @@ const PopupButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 const RequestWrapper = styled(motion.div)`
   width: 100%;
@@ -72,6 +65,17 @@ const GetMaptext = styled.p`
   opacity: 0.8;
   cursor: pointer;
 `;
+const Overlay = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
 
 const renderImages = (imagePaths) => {
   return imagePaths.map((imagePath, index) => (
@@ -88,6 +92,7 @@ const PopupInfo = () => {
   const navigate = useNavigate();
 
   const [btnclicked, setBtnclicked] = useState(false);
+  const [requestbtnclikced, setRequestbtnclicked] = useState(false);
 
   const imagePathsFromBackend = [
     "이미지1의_경로.jpg",
@@ -140,13 +145,28 @@ const PopupInfo = () => {
           <Margin height="20" />
         </AnimatePresence>
       )}
-      <PopupButton>
+      <PopupButton
+        onClick={() => {
+          window.scrollTo(0, 0);
+          setTimeout(() => setRequestbtnclicked((prev) => !prev), 500);
+        }}
+      >
         <Typo size="1.1rem" weight="600" color="white">
           팝업 요청하기
         </Typo>
       </PopupButton>
+
       <Margin height="10" />
       <Footer />
+      {requestbtnclikced ? (
+        <Overlay
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ type: "tween", duration: 0.3 }}
+        >
+          <RequestModal />
+        </Overlay>
+      ) : null}
     </Wrapper>
   );
 };
