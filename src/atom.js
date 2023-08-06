@@ -13,6 +13,7 @@ export const adImgs = atom({
     "img/Artistimg/rose2.jpg",
     "img/Artistimg/iab_box.jpg",
     "img/Artistimg/adidas.jpeg",
+    "img/Artistimg/popcon.gif",
     "img/Artistimg/jennie.gif",
     "img/Artistimg/winter.jpeg",
     "img/Artistimg/jisoo.jpeg",

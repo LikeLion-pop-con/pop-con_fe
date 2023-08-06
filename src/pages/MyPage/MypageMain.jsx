@@ -107,7 +107,7 @@ const Mypage = () => {
               </Typo>
             ) : (
               <Typo size="1rem" weight="400" color="white">
-                로그인 필요!
+                로그인 <br/>필요!
               </Typo>
             )}
           </Name>

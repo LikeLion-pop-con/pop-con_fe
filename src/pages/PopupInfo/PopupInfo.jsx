@@ -12,7 +12,6 @@ import { useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Kakaomap from "../../Components/Kakaomap/Kakaomap";
 import Margin from "../../Components/Margin/Margin";
-import RequestModal from "../../Components/Modal/PopRequestModal";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -99,7 +98,7 @@ const PopupInfo = () => {
     "이미지2의_경로.jpg",
     // 추가적인 이미지들의 경로
   ];
-
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const requestbtnani = useAnimation();
 
   useEffect(() => {
@@ -145,6 +144,7 @@ const PopupInfo = () => {
           <Margin height="20" />
         </AnimatePresence>
       )}
+      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       <PopupButton
         onClick={() => {
           window.scrollTo(0, 0);
