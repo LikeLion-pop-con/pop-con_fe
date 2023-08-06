@@ -37,6 +37,8 @@ import AdminMain from "./pages/MainPage/AdminMain";
 import PopupSpace from "./pages/MainPlusPage/PopupSpace";
 import Popularpopup from "./pages/MainPlusPage/PopularPopup";
 import PopupHere from "./pages/MainPlusPage/PopupHere";
+import Modal from "./Components/Modal/Modal";
+
 import BrandIntro from "./pages/BrandIntroduce/BrandIntro";
 import BrandInfo from "./pages/BrandIntroduce/BrandInfo";
 import BrandPost from "./pages/BrandIntroduce/BrandPost";
@@ -51,6 +53,7 @@ function Router() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/AdminMain" element={<AdminMain />} />
+            
             <Route path="/PopupSpace" element={<PopupSpace />} />
             <Route path="" element={<LogoWelcome />} />
             <Route path="*" element={<div>없는페이지임</div>} />

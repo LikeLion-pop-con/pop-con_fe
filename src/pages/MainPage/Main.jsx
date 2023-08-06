@@ -17,6 +17,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 import LargeCard from "../../Components/Card/LargeCard";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -24,6 +25,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
 const SliderXwrapper = styled.div`
   position: relative;
   overflow-x: scroll;
@@ -48,12 +50,15 @@ const SliderXItems = styled.div`
   gap: 20px; */
 `;
 
+
 function Main() {
   const navigate = useNavigate();
+  const [scrollDir, setScrollDir] = useState("scrolling down");
 
   const id = 1;
 
   return (
+    
     <>
       <Wrapper>
         <Header left="logo" right={["login", "search"]} />
@@ -70,30 +75,30 @@ function Main() {
         />
         <SliderXwrapper2>
           <SliderXItems>
-            <LargeCard
-              onClick={() => navigate("/popupInfo")}
+            <LargeCard 
+              onClick={() => navigate('/PopupInfo')}
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <LargeCard
+            <LargeCard 
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <LargeCard
+            <LargeCard 
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
           </SliderXItems>
         </SliderXwrapper2>
@@ -110,27 +115,27 @@ function Main() {
             <LargeCard
               onClick={() => navigate(`/popupInfo/${id}`)}
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <LargeCard
+            <LargeCard 
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
-            <LargeCard
+            <LargeCard 
               image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
+              title='NewJeans의 HYPE맑음' 
+              popcategory='팝업 스토어' 
+              detail='창작 예술' 
+              space={'하텍 해동 스룸G \n인하대학교'} 
+              date='2023.07.21~2023.08.19'
             />
           </SliderXItems>
         </SliderXwrapper2>
@@ -180,12 +185,7 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="35" />
-        <PopupTitle
-          isarrow={true}
-          text="독립 아티스트"
-          bottomgap="20"
-          onClick={() => navigate("/NewArtist")}
-        />
+        <PopupTitle isarrow={true} text="독립 아티스트" bottomgap="20" onClick={() => navigate('/NewArtist')} />
         <ArtistCategory />
         <SliderXwrapper>
           <SliderXItems>
