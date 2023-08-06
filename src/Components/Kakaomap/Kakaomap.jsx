@@ -33,14 +33,18 @@ function Kakaomap() {
 
     // 서울 : (37.56813164258918, 126.98514913782813)
     // 인천 : (37.45130623868385, 126.71465682462927)
+
+    const seoul = new window.kakao.maps.Marker({
+      map: map,
+      position: new window.kakao.maps.LatLng(
+        37.56813164258918,
+        126.98514913782813
+      ),
+    });
+
     var markers = [
-      new window.kakao.maps.Marker({
-        map: map,
-        position: new window.kakao.maps.LatLng(
-          37.56813164258918,
-          126.98514913782813
-        ),
-      }),
+      seoul,
+      seoul,
       new window.kakao.maps.Marker({
         map: map,
         position: new window.kakao.maps.LatLng(
