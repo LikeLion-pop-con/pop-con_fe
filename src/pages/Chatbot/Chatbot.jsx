@@ -1,23 +1,8 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-
 import ChatBot from "react-simple-chatbot";
-import ChatbotModal from "react-modal";
 import { AiOutlineClose } from "react-icons/ai";
 import CheckBox from "./Checkbox.js";
-
-const Closebtn = styled.div`
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  z-index: 1000;
-  color: white;
-  &:hover {
-    cursor: pointer;
-  }
-`;
 
 const steps = [
   /////////////////////////////////////////////////////////////////// 질문 카테고리 선택
@@ -211,58 +196,36 @@ const steps = [
     end: true,
   },
 ];
-
-const Chatbot = ({ isModal, setModal, modalPosition }) => {
+const Box = styled.div`
+  position: relative;
+  bottom: -10%;
+  width: 100%;
+  height: 100%;
+`
+const Chatbot = () => {
   const theme = {
     background: "#f5f8fb",
-    headerBgColor: "#EF6C00",
-    headerFontColor: "#fff",
+    headerBgColor: "white",
+    headerFontColor: "black",
     headerFontSize: "15px",
-    botBubbleColor: "#EF6C00",
+    botBubbleColor: "#EC7538",
     botFontColor: "#fff",
     userBubbleColor: "#fff",
     userFontColor: "#4a4a4a",
   };
 
   return (
-    <ChatbotModal
-      isOpen={isModal}
-      onRequestClose={() => setModal(false)}
-      ariaHideApp={false}
-      shouldCloseOnOverlayClick={false}
-      style={{
-        content: {
-          width: "350px",
-          height: "500px",
-          position: "fixed",
-          top: modalPosition.y + 150,
-          left: modalPosition.x - 160,
-          display: "flex",
-          overflow: "hidden",
-          border: "medium none black",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          alignContent: "center",
-          borderRadius: "20px",
-          backgroundColor: "transparent",
-        },
-      }}
-    >
-      <Closebtn src={AiOutlineClose} onClick={() => setModal(false)} />
-
-   
-      <Closebtn onClick={() => setModal(false)} ><AiOutlineClose size={25}/></Closebtn>
-
+    <Box>
       <ThemeProvider theme={theme}>
         <ChatBot
           steps={steps}
           hideHeader={false}
           headerTitle="ChatBot Q & A"
+          width="100%"
           placeholder={"채팅이 불가능한 채널입니다."}
         />
       </ThemeProvider>
-    </ChatbotModal>
+      </Box>
   );
 };
-
 export default Chatbot;
