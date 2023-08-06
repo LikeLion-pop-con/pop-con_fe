@@ -46,7 +46,60 @@ const GlobalStyle = createGlobalStyle`
       font-family: 'Noto Sans KR', sans-serif;
       font-size: 16px;
       box-sizing: border-box;
-  }
+      .react-datepicker {
+
+        .react-datepicker__day {
+
+              width: 36px;
+              height: 36px;
+              text-align: center;
+              cursor: pointer;
+
+              &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+              }
+
+              &.react-datepicker__day--selected {
+                background-color: rgb(0, 0, 0);
+                border-radius: 8px;
+                color: white;
+
+                &:hover {
+                  background-color: #000000;
+                }
+              }
+
+              &.react-datepicker__day--outside-month {
+                cursor: default;
+                visibility: hidden;
+              }
+            }
+
+          .react-datepicker__day--outside-month {
+            cursor: default;
+            visibility: hidden;
+          }
+          .react-datepicker__day-names {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 40px;
+
+              .react-datepicker__day-name {
+                color: #5b5b5b;
+                width: 36px;
+              }
+            }
+          .react-datepicker__header {
+            background-color: white;
+            border-bottom: none;
+            border-radius: 0;
+          }
+        .react-datepicker__triangle {
+            display: none;
+          }
+        }
+      }
 
   @font-face {
     font-family: 'Noto Sans KR', sans-serif;
