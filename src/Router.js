@@ -84,7 +84,7 @@ function Router() {
             <Route path="/main/:cateId" element={<Cate />}>
               <Route path="" element={<Ing />}></Route>
               <Route path="ing" element={<Requesting />}></Route>
-            </Route>
+            </Route> 
 
             <Route path="/Mypage" element={<Mypage />} />
             <Route path="/Mypage/Myreservation" element={<Myreservation />} />
