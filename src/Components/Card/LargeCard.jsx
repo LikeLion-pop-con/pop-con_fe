@@ -17,9 +17,7 @@ const CardEach = styled.div`
   background-color: white;
   box-sizing: border-box;
   height: 300px;
-  min-width:370px;
-
-
+  min-width: 370px;
   border-radius: 16px;
   cursor: pointer;
   margin: 9px;
