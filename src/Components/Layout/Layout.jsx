@@ -8,7 +8,7 @@ import Chatbot from "../../pages/Chatbot/Chatbot";
 import { AiOutlineClose } from "react-icons/ai";
 
 const Background = styled.div`
-  width: 450px;
+  width: 40vw;
   background-color: white;
   min-height: 100vh;
   display: flex;
