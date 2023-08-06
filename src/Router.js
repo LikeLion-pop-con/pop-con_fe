@@ -55,7 +55,7 @@ function Router() {
     <BrowserRouter>
       <ScrollToTop />
       <SearchProvider>
-        <Routes>
+        <Routes> 
           <Route element={<Layout />}>
             <Route path="/AdminMain" element={<AdminMain />} />
             <Route path="/popupspace/:spaceId" element={<PopupSpaceItem />}>

@@ -196,6 +196,24 @@ function Main() {
               category="진짜 이쁘네 ㅋㅋ"
               main="제 이상형이에요 사귀자"
             />
+             <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="로제"
+              category="이쁘다"
+              main="진짜 이쁘다"
+            />
+            <SmallCard
+              image="img/Artistimg/iab_box.jpg"
+              title="iab"
+              category="이쁘다"
+              main="너무 이쁘다"
+            />
+            <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="블랙핑크"
+              category="진짜 이쁘네 ㅋㅋ"
+              main="제 이상형이에요 사귀자"
+            />
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="35" />
@@ -209,6 +227,24 @@ function Main() {
         <SliderXwrapper>
           <SliderXItems>
             <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="로제"
+              category="이쁘다"
+              main="진짜 이쁘다"
+            />
+            <SmallCard
+              image="img/Artistimg/iab_box.jpg"
+              title="iab"
+              category="이쁘다"
+              main="너무 이쁘다"
+            />
+            <SmallCard
+              image="img/Artistimg/rose.jpg"
+              title="블랙핑크"
+              category="진짜 이쁘네 ㅋㅋ"
+              main="제 이상형이에요 사귀자"
+            />
+             <SmallCard
               image="img/Artistimg/rose.jpg"
               title="로제"
               category="이쁘다"
