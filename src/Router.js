@@ -41,6 +41,7 @@ import PopupSpaceItem from "./pages/MainPlusPage/PopupSpaceItem";
 import SpaceItemInfo from "./pages/MainPlusPage/SpaceItemInfo";
 import SpaceItemIntro from "./pages/MainPlusPage/SpaceItemIntro";
 import Modal from "./Components/Modal/Modal";
+import GuidePage from "./pages/Guide/Guide";
 
 import BrandIntro from "./pages/BrandIntroduce/BrandIntro";
 import BrandInfo from "./pages/BrandIntroduce/BrandInfo";
@@ -69,6 +70,7 @@ function Router() {
             <Route path="/CardTest" element={<CardTest />} />
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/test" element={<Test />} />
+            <Route path="/Guide" element={<GuidePage />} />
 
             <Route path="/main" element={<Main />}>
               <Route path="art" element={<Main />}></Route>

@@ -29,12 +29,7 @@ const TextWrap = styled.span`
 const Spacedetail = ({ bodyText }) => {
   const contentOrder = bodyText.split("\n");
 
-  const contentTitle = [
-    "• 공간 소개: ",
-    "• 주요 포인트: ",
-    "• 공간 활용 추천: ",
-    "• 제약 사항: ",
-  ];
+  const contentTitle = ["• 주요 포인트: ", "• 공간 활용 추천: "];
 
   console.log(contentOrder);
 

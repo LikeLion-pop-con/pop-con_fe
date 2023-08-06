@@ -8,6 +8,9 @@ import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
 import img2 from "../../assets/Icons/Card/PostCardimg1.png";
 import img3 from "../../assets/Icons/Card/PostCardimg2.jpg";
 import Footer from "../../Components/Footer/Footer";
+import Main from "../MainPage/Main";
+import { MdOutlineElevator } from "react-icons/md";
+import { AiOutlineFullscreen } from "react-icons/ai";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -33,6 +36,20 @@ const RequestWrapper = styled(motion.div)`
   transform-origin: top center;
   display: flex;
   justify-content: center;
+`;
+const Space = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 60%;
+  padding-left: 20%;
+`;
+const Size = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 60%;
+  padding-left: 20%;
 `;
 const GetMaptext = styled.p`
   width: 50%;
@@ -65,6 +82,11 @@ const Img = styled.img`
     width: 100%;
   }
 `;
+const BodyText = styled.p`
+  width: 90%;
+  margin: 0 5%;
+  line-height: 1.6;
+`;
 
 function SpaceItemIntro() {
   return (
@@ -77,16 +99,44 @@ function SpaceItemIntro() {
         </SliderXItems>
       </SliderXwrapper2>
       <Margin height="30" />
+
+      <BodyText>
+        <Typo fontType="large">공간 소개</Typo>
+        <Margin height="20" />
+        <Space>
+          <MdOutlineElevator style={{ fontSize: 50 }} />
+          <Typo style={{ marginLeft: 10 }} size="18px">
+            건물층: 지하 4층 ~ 지하 5층
+          </Typo>
+        </Space>
+        <Size>
+          <AiOutlineFullscreen style={{ fontSize: 50 }} />
+          <Typo style={{ marginLeft: 10 }} size="18px">
+            연면적: 8802 m2
+          </Typo>
+        </Size>
+        <Margin height="10" />
+        <Typo style={{ lineHeight: 1.2 }} size="1rem" weight="400">
+          압구성 사거리에 위치한 대형 건물로 가시성이 매우 좋고 접근성 또한
+          우수한 공간입니다. 또한 3호선 압구정역과 수인분당선 압구정
+          로데오역에서 도보 7분 거리에 위치합니다. 하이하이
+        </Typo>
+      </BodyText>
+      <Margin height="20" />
       <Spacedetail
         bodyText={
-          "압구성 사거리에 위치한 대형 건물로 가시성이 매우 좋고 접근성 또한 우수한 공간입니다. 또한 3호선 압구정역과 수인분당선 압구정 로데오역에서 도보 7분 거리에 위치합니다ㅣ.\n하이하이"
+          "압구성 사거리에 위치한 대형 건물로 가시성이 매우 좋고 접근성 또한 우수한 공간입니다.\n 또한 3호선 압구정역과 수인분당선 압구정 로데오역에서 도보 7분 거리에 위치합니다ㅣ.\n하이하이"
         }
       >
         hi
       </Spacedetail>
-      <GetMaptext>팝업 요청 현황</GetMaptext>
+      <Margin height="30" />
+      <BodyText>
+        <Typo fontType="large">제약 사항</Typo>
+      </BodyText>
+      <Margin height="30" />
+      <GetMaptext>지도 보기</GetMaptext>
       <Margin height="15" />
-
       <RequestWrapper>
         <Kakaomap />
       </RequestWrapper>

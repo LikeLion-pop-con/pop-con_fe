@@ -211,7 +211,7 @@ const ExitBtn = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 10%;
+  right: 7%;
   top: 5%;
   width: 30px;
   height: 30px;
@@ -247,7 +247,7 @@ const Chatbot = ({ setModal }) => {
       isOpen={isClicked}
       onRequestClose={() => setIsClicked(false)}
       ariaHideApp={false}
-      shouldCloseOnOverlayClick={false}
+      shouldCloseOnOverlayClick={true}
       overlayElement={(props, contentElement) => (
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
@@ -260,6 +260,10 @@ const Chatbot = ({ setModal }) => {
         </motion.div>
       )}
       style={{
+        overlay: {
+          backgroundColor: "rgba(0,0,0,0.3)",
+          touchAction: "none",
+        },
         content: {
           width: "340px",
           position: "relative",

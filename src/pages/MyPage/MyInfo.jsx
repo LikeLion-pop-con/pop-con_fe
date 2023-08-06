@@ -19,7 +19,6 @@ const Title1 = styled.div`
 const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
-
 `
 const Box = styled.div`
     margin: 40px;
