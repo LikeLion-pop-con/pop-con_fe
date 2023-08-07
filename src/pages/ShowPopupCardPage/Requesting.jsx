@@ -3,6 +3,9 @@ import LargeCard from "../../Components/Card/LargeCard";
 import styled from "styled-components";
 import PopupTitle from "../../Components/PopupTitle/PopupTitle";
 import Margin from "../../Components/Margin/Margin";
+import { useEffect } from "react";
+import * as api from "../../api";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   display: grid;
@@ -10,16 +13,31 @@ const Wrapper = styled.div`
   row-gap: 20px;
 `;
 
-function Ing() {
+function Requesting() {
   const params = useOutletContext();
-  console.log(params.cateId);
+
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    const data = await api.getMainCategory(params.cateId);
+    setData(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <Wrapper>
       <Margin height="20" />
-      <PopupTitle text="팝업이 열릴 위치를 정해주실래요?" />
-      <LargeCard image="img/Artistimg/Backrose.png" />
+      <PopupTitle text="지금 팝업을 예매해보세요!" />
+      {data?.map((item) => (
+        <LargeCard
+          image={"https://popcon.store" + item?.popup_image}
+          title={item?.popup_info}
+        />
+      ))}
     </Wrapper>
   );
 }
-export default Ing;
+export default Requesting;

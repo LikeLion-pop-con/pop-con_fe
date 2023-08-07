@@ -55,7 +55,7 @@ function Router() {
     <BrowserRouter>
       <ScrollToTop />
       <SearchProvider>
-        <Routes> 
+        <Routes>
           <Route element={<Layout />}>
             <Route path="/AdminMain" element={<AdminMain />} />
             <Route path="/popupspace/:spaceId" element={<PopupSpaceItem />}>
@@ -93,8 +93,8 @@ function Router() {
               <Route path="post" element={<BrandPost />}></Route>
             </Route>
             <Route path="/main/:cateId" element={<Cate />}>
-              <Route path="" element={<Ing />}></Route>
-              <Route path="ing" element={<Requesting />}></Route>
+              <Route path="" element={<Requesting />}></Route>
+              <Route path="ing" element={<Ing />}></Route>
             </Route>
 
             <Route path="/Mypage" element={<Mypage />} />
@@ -112,8 +112,8 @@ function Router() {
             <Route path="/artist" element={<ArtistIntroduce />} />
 
             <Route path="/:cateId" element={<Cate />}>
-              <Route path="" element={<Ing />}></Route>
-              <Route path="ing" element={<Requesting />}></Route>
+              <Route path="" element={<Requesting />}></Route>
+              <Route path="ing" element={<Ing />}></Route>
             </Route>
 
             <Route path="/postList" element={<PostList />} />

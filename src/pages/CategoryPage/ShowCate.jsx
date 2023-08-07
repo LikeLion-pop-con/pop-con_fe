@@ -15,7 +15,6 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import PopupSlider from "../../Components/AdSlider/PopupSlider";
 import Horizon from "../../Components/Horizon/Horizon";
 
-
 const Wrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
@@ -127,7 +126,7 @@ const SliderWrapper = styled.div`
   flex-direction: row;
   align-items: left;
   justify-content: left;
-`
+`;
 
 function ShowCate() {
   const navigate = useNavigate();
@@ -173,7 +172,6 @@ function ShowCate() {
             <AnimatePresence>
               <Margin height="30" />
               <Header>
-                
                 <motion.div
                   variants={showupvariants}
                   initial="hidden"
@@ -182,8 +180,7 @@ function ShowCate() {
                   <MdArrowBackIosNew style={{ fontSize: 18 }} />
                 </motion.div>
                 <motion.div>
-                  
-                  <Typo size='22px'>CATEGORY</Typo>
+                  <Typo size="22px">CATEGORY</Typo>
                 </motion.div>
                 <motion.div onClick={() => navigate(-1)}>
                   <AiOutlineClose style={{ fontSize: 18 }} />
@@ -198,15 +195,15 @@ function ShowCate() {
                   duration: 0.5,
                 }}
               >
-                <Tab onClick={() => setId( <Typo size='22px'>POP-UP</Typo>)}>
+                <Tab onClick={() => setId(<Typo size="22px">POP-UP</Typo>)}>
                   <Typo fontType="mediumsmall">팝업</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-                <Tab onClick={() => setId(<Typo size='22px'>BRAND</Typo>)}>
+                <Tab onClick={() => setId(<Typo size="22px">BRAND</Typo>)}>
                   <Typo fontType="mediumsmall">팝업 브랜드</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
-                <Tab onClick={() => setId(<Typo size='22px'>ARTIST</Typo>)}>
+                <Tab onClick={() => setId(<Typo size="22px">ARTIST</Typo>)}>
                   <Typo fontType="mediumsmall">독립 아티스트</Typo>
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
@@ -215,7 +212,7 @@ function ShowCate() {
                   <MdArrowForwardIos style={{ fontSize: 18 }} />
                 </Tab>
               </List>
-              <PopupSlider/>
+              <PopupSlider />
             </AnimatePresence>
           </>
         ) : null}
