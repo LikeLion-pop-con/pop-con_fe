@@ -245,7 +245,7 @@ const Chatbot = ({ setModal }) => {
   return (
     <ChatbotModal
       isOpen={isClicked}
-      onRequestClose={() => setIsClicked(false)}
+      
       ariaHideApp={false}
       shouldCloseOnOverlayClick={true}
       overlayElement={(props, contentElement) => (

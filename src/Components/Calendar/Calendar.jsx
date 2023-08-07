@@ -5,7 +5,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import styles from './calendar.module.scss';
 import { useState } from 'react';
-import CustomTimeSlot from './CustomTimeSlot'
+import {BsFillCalendarCheckFill} from 'react-icons/bs';
+import styled from 'styled-components';
 const YEARS = Array.from({ length: getYear(new Date()) + 1 - 2000 }, (_, i) => getYear(new Date()) - i);
 const MONTHS = [
   '1월',
@@ -21,14 +22,13 @@ const MONTHS = [
   '11월',
   '12월',
 ];
-
   
 const Calendar = ({ selectedDate, setSelectedDate }) => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedTimeSlot, setSelectedTimeSlot] = useState({ start: 11, end: 14 });
   return (
     <div className={styles.datePickerWrapper}>
-        
+       <BsFillCalendarCheckFill/>&nbsp;&nbsp;
       <DatePicker
         open={true}
         formatWeekDay={(nameOfDay) => {

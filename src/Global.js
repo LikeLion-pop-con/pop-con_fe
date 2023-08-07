@@ -84,7 +84,6 @@ const GlobalStyle = createGlobalStyle`
               justify-content: center;
               align-items: center;
               height: 40px;
-
               .react-datepicker__day-name {
                 color: #5b5b5b;
                 width: 36px;
@@ -94,6 +93,7 @@ const GlobalStyle = createGlobalStyle`
             background-color: white;
             border-bottom: none;
             border-radius: 0;
+            font-weight: 800;
           }
         .react-datepicker__triangle {
             display: none;
