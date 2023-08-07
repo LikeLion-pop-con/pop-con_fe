@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './custom.TimeSlot.module.scss';
+import {AiOutlineClockCircle} from 'react-icons/ai'
 const CustomTimeSlot = ({ label, selectedTime, onChange }) => {
     const timeSlots = [
       { start: 11, end: 14 },
@@ -9,7 +10,7 @@ const CustomTimeSlot = ({ label, selectedTime, onChange }) => {
   
     return (
       <div className={styles.timeSlot}>
-        <div className={styles.timeSlotLabel}>{label}</div>
+        <div className={styles.timeSlotLabel}><AiOutlineClockCircle/>{label}</div>
         <div className={styles.timeSlotButtons}>
           {timeSlots.map((slot, index) => (
            <button
