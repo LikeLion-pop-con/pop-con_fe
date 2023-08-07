@@ -22,6 +22,7 @@ const Wrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 `;
 const PopupinfoImg = styled.div`
   display: flex;
@@ -135,26 +136,20 @@ const PopupInfo = () => {
       />
       <PopupinfoImg>{renderImages(imagePathsFromBackend)}</PopupinfoImg>
       <Margin height="20" />
-      <GetMaptext onClick={() => setBtnclicked((prev) => !prev)}>
-        팝업 요청 현황
-      </GetMaptext>
+      <GetMaptext>팝업 요청 현황</GetMaptext>
       <Margin height="15" />
-      {btnclicked && (
-        <AnimatePresence>
-          <RequestWrapper
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: btnclicked ? 1 : 0 }}
-            transition={{ type: "tween", duration: 0.3 }}
-          >
-            <Kakaomap />
-          </RequestWrapper>
-          <Margin height="20" />
-        </AnimatePresence>
-      )}
-      <Choose/>
+
+      <AnimatePresence>
+        <RequestWrapper>
+          <Kakaomap />
+        </RequestWrapper>
+        <Margin height="20" />
+      </AnimatePresence>
+
+      <Choose />
       <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       <CustomTimeSlot
-       label="시간 선택"
+        label="시간 선택"
         selectedTime={selectedTimeSlot}
         onChange={handleTimeSlotChange}
       />
@@ -164,14 +159,13 @@ const PopupInfo = () => {
           setTimeout(() => setRequestbtnclicked((prev) => !prev), 500);
         }}
       >
-        
         <Typo size="1.1rem" weight="600" color="white">
           팝업 요청하기
         </Typo>
       </PopupButton>
 
       <Margin height="30" />
-      
+
       <Footer />
       {requestbtnclikced ? (
         <Overlay
