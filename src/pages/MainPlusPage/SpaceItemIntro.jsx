@@ -58,7 +58,6 @@ const GetMaptext = styled.p`
   box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.3);
   padding-bottom: 10px;
   opacity: 0.8;
-  cursor: pointer;
 `;
 const SliderXwrapper2 = styled.div`
   position: relative;
@@ -77,7 +76,7 @@ const SliderXItems = styled.div`
 `;
 const Img = styled.img`
   height: 300px;
-  min-width: 370px;
+  width: 370px;
   @media (max-width: 768px) {
     width: 100%;
   }

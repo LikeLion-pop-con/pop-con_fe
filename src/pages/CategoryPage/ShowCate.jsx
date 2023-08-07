@@ -128,8 +128,7 @@ const SliderWrapper = styled.div`
   flex-direction: row;
   align-items: left;
   justify-content: left;
-`
-
+`;
 
 function ShowCate() {
   const navigate = useNavigate();

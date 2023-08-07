@@ -16,6 +16,7 @@ import RequestModal from "../../Components/Modal/PopRequestModal";
 import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
 import Calendar from "../../Components/Calendar/Calendar";
 import CustomTimeSlot from "../../Components/Calendar/CustomTimeSlot";
+import Choose from "../../Components/Calendar/Choose";
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
   display: flex;
@@ -150,26 +151,27 @@ const PopupInfo = () => {
           <Margin height="20" />
         </AnimatePresence>
       )}
-   
+      <Choose/>
+      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      <CustomTimeSlot
+       label="시간 선택"
+        selectedTime={selectedTimeSlot}
+        onChange={handleTimeSlotChange}
+      />
       <PopupButton
         onClick={() => {
           window.scrollTo(0, 0);
           setTimeout(() => setRequestbtnclicked((prev) => !prev), 500);
         }}
       >
+        
         <Typo size="1.1rem" weight="600" color="white">
           팝업 요청하기
         </Typo>
       </PopupButton>
 
       <Margin height="30" />
-
-      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-      <CustomTimeSlot
-      label="시간 선택"
-        selectedTime={selectedTimeSlot}
-        onChange={handleTimeSlotChange}
-      />
+      
       <Footer />
       {requestbtnclikced ? (
         <Overlay

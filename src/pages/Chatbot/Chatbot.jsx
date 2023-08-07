@@ -8,58 +8,73 @@ import { useRecoilState } from "recoil";
 import { isBotClicked } from "../../atom";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+import { MdOutlineMoveToInbox } from "react-icons/md";
+import Margin from "../../Components/Margin/Margin.jsx";
+import Input from "./SpaceEnroll.jsx";
+import Input2 from "./SpaceGive.jsx";
 
 const steps = [
   /////////////////////////////////////////////////////////////////// 질문 카테고리 선택
   {
     id: "1",
-    message: "안녕하세요,팝업 소셜 플랫폼 팝콘입니다.",
+    message: "안녕하세요. 오프라인 팝업 POPCON 입니다.",
     trigger: "2",
   },
   {
     id: "2",
     message:
-      "팝콘에 대해 궁금한 점이나 하고 싶은 일이 있다면 아래의 카테고리를 선택해 물어봐주세요!",
+      "POPCON에 궁금한 점이 있거나 문의하고자 하는 사항이 있다면 아래의 버튼을 눌러 의견을 남겨주세요!",
     trigger: "3",
   },
   {
     id: "3",
-    message: "최대한 빠르게 답변 드리겠습니다🦁",
+    message: "최대한 빠르게 답변 드리겠습니다.",
     trigger: "4",
   },
   {
     id: "4",
     options: [
-      { value: "공간등록", label: "공간등록", trigger: "5" },
-      { value: "inbody", label: "인바디", trigger: "6" },
-      { value: "calendar", label: "캘린더", trigger: "7" },
+      { value: "spaceenroll", label: "공간 등록", trigger: "5" },
+      { value: "spacegive", label: "공간 대관", trigger: "6" },
+      { value: "cardenroll", label: "카드 등록", trigger: "7" },
+      { value: "popup", label: "팝업", trigger: "7" },
     ],
   },
   /////////////////////////////////////////////////////////////////// 넓은 범위 카테고리 선택 확인 메시지
   {
     id: "5",
-    message: "공간등록을 선택하셨습니다.",
+    message: "공간 등록을 선택하셨습니다.",
     trigger: "8",
   },
   {
     id: "6",
-    message: "인바디를 선택하셨습니다.",
+    message: "공간 대관을 선택하셨습니다.",
     trigger: "9",
   },
   {
     id: "7",
-    message: "캘린더를 선택하셨습니다.",
+    message: "카드 등록을 선택하셨습니다.",
     trigger: "10",
   },
   /////////////////////////////////////////////////////////////////// 세부 질문 카테고리 안내 메시지
   {
     id: "8",
-    message: "공간등록과 관련된 카테고리중 문의하고자 하는 내용을 선택해주세요~",
+    message: "등록을 원하는 공간의 정보를 기입해주세요.",
     trigger: "11",
   },
   {
     id: "9",
-    message: "인바디과 관련된 카테고리중 문의하고자 하는 내용을 선택해주세요~",
+    message: "문의 주셔서 감사합니다!",
+    trigger: "spacegive",
+  },
+  {
+    id: "spacegive",
+    message: "공간 대관을 위해 추가 정보 작성 부탁드립니다!",
+    trigger: "spacegivenext",
+  },
+  {
+    id: "spacegivenext",
+    message: "상담에 앞서 행사 관련 추가 정보 작성 부탁드립니다.",
     trigger: "12",
   },
   {
@@ -70,43 +85,15 @@ const steps = [
   /////////////////////////////////////////////////////////////////// 세부 질문 카테고리 선택
   {
     id: "11",
-    options: [
-      {
-        value: "14",
-        label: "첼린지 전체 현황은 어디서 확인하나요?",
-        trigger: "14",
-      },
-      {
-        value: "15",
-        label: "팔굽혀펴기 챌린지 참여는 어디서 할 수 있나요?",
-        trigger: "15",
-      },
-      {
-        value: "16",
-        label: "챌랜지의 모든 미션들을 완주하면 어떠한 보상이 주어지나요?",
-        trigger: "16",
-      },
-    ],
+    component: <Input />,
+    waitAction: true,
+    trigger: "14",
   },
   {
     id: "12",
-    options: [
-      {
-        value: "17",
-        label: "인바디 전체 현황은 어디서 확인하나요?",
-        trigger: "17",
-      },
-      {
-        value: "18",
-        label: "웹에서 사용자가 직접 물알람을 설정할 수 있나요?",
-        trigger: "18",
-      },
-      {
-        value: "19",
-        label: "나의 인바디 정보를 다른 유저들과 서로 공유할 수 있나요?",
-        trigger: "19",
-      },
-    ],
+    component: <Input2 />,
+    waitAction: true,
+    trigger: "15",
   },
   {
     id: "13",
@@ -245,7 +232,6 @@ const Chatbot = ({ setModal }) => {
   return (
     <ChatbotModal
       isOpen={isClicked}
-      onRequestClose={() => setIsClicked(false)}
       ariaHideApp={false}
       shouldCloseOnOverlayClick={true}
       overlayElement={(props, contentElement) => (
@@ -276,6 +262,7 @@ const Chatbot = ({ setModal }) => {
           border: "medium none black",
           justifyContent: "center",
           flexWrap: "wrap",
+          whiteSpace: "pre-wrap",
           alignContent: "center",
           borderRadius: "20px",
           backgroundColor: "transparent",

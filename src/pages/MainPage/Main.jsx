@@ -17,7 +17,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 import LargeCard from "../../Components/Card/LargeCard";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
-import axios from "axios";
+import * as api from "../../api";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -27,7 +27,6 @@ const Wrapper = styled.div`
   align-items: center;
 
 `;
-
 const SliderXwrapper = styled.div`
   position: relative;
   overflow-x: scroll;
@@ -55,20 +54,16 @@ const SliderXItems = styled.div`
 function Main() {
   const navigate = useNavigate();
   const [scrollDir, setScrollDir] = useState("scrolling down");
+  const [hotpopupdata, setHotpopupdata] = useState([]);
 
   useEffect(() => {
-    const data = getData();
-
-    console.log(data);
-  });
+    getData();
+  }, []);
 
   const getData = async () => {
-    const response = await axios
-      .get(`https://popcon.store/main/1`)
-      .then((res) => res.data);
-
-    console.log(response);
-    return response;
+    const hotpopup = await api.getMainHotPopup();
+    setHotpopupdata(hotpopup);
+    console.log(hotpopupdata);
   };
 
   const id = 1;
@@ -127,31 +122,17 @@ function Main() {
         />
         <SliderXwrapper2>
           <SliderXItems>
-            <LargeCard
-              onClick={() => navigate(`/popupInfo/${id}`)}
-              image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
-            />
-            <LargeCard
-              image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
-            />
-            <LargeCard
-              image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
-            />
+            {hotpopupdata?.map((item) => (
+              <LargeCard
+                onClick={() => navigate(`/popupInfo/${id}`)}
+                image={item?.popup_image}
+                title="NewJeans의 HYPE맑음"
+                popcategory={item?.popup_category}
+                detail="창작 예술"
+                space={"하텍 해동 스룸G \n인하대학교"}
+                date="2023.07.21~2023.08.19"
+              />
+            ))}
           </SliderXItems>
         </SliderXwrapper2>
         <Margin height="50" />
@@ -197,7 +178,7 @@ function Main() {
               category="진짜 이쁘네 ㅋㅋ"
               main="제 이상형이에요 사귀자"
             />
-             <SmallCard
+            <SmallCard
               image="img/Artistimg/rose.jpg"
               title="로제"
               category="이쁘다"
@@ -245,7 +226,7 @@ function Main() {
               category="진짜 이쁘네 ㅋㅋ"
               main="제 이상형이에요 사귀자"
             />
-             <SmallCard
+            <SmallCard
               image="img/Artistimg/rose.jpg"
               title="로제"
               category="이쁘다"
