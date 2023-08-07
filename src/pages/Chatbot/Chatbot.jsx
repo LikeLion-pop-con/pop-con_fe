@@ -276,7 +276,8 @@ const Chatbot = ({ setModal }) => {
         <ChatBot
           steps={steps}
           hideHeader={false}
-          headerTitle="ChatBot Q & A"
+        
+          headerTitle="POP-CON ChatBot"
           placeholder={"채팅이 불가능한 채널입니다."}
         />
       </ThemeProvider>

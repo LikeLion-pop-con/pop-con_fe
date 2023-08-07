@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   height: 30vh;
   position: absolute;
   bottom: 0;
-  margin-bottom: 4vh;
+  margin-bottom: 12vh;
   box-sizing: border-box;
 `;
 const Items = styled(motion.div)`
