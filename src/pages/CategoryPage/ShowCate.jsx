@@ -14,6 +14,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { RiArrowDownSLine } from "react-icons/ri";
 import PopupSlider from "../../Components/AdSlider/PopupSlider";
 import Horizon from "../../Components/Horizon/Horizon";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 
 const Wrapper = styled(motion.div)`
@@ -56,14 +57,14 @@ const List = styled(motion.div)`
   grid-template-columns: 1fr;
   gap: 5px;
   margin-top: 30px;
-  padding: 0px 20px;
+  margin: 0px 20px;
   margin-top: 9rem;
 `;
 const Tab = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 20px;
+  margin: 0px 20px;
   height: 3rem;
   //border-bottom: 1px solid ${(props) => props.theme.colors.black};
   z-index: 10;
@@ -129,6 +130,7 @@ const SliderWrapper = styled.div`
   justify-content: left;
 `
 
+
 function ShowCate() {
   const navigate = useNavigate();
   const [id, setId] = useState("");
@@ -158,138 +160,139 @@ function ShowCate() {
   }, [id, back]);
 
   return (
-    <AnimatePresence>
-      <Wrapper
-        variants={CateVariants}
-        initial="hidden"
-        animate="visible"
-        transition={{ type: "tween", duration: 0.5 }}
-      >
-        <LogoWrap>
-          <img src={"logo.png"} height="80" />
-        </LogoWrap>
-        {id === "" ? (
-          <>
-            <AnimatePresence>
+      <AnimatePresence>
+        <Wrapper
+          variants={CateVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ type: "tween", duration: 0.5 }}
+        >
+          <LogoWrap>
+            <img src={"logo.png"} height="80" />
+          </LogoWrap>
+          {id === "" ? (
+            <>
+              <AnimatePresence>
+                <Margin height="30" />
+                <Header>
+                  
+                  <motion.div
+                    variants={showupvariants}
+                    initial="hidden"
+                    animate={ani}
+                  >
+                    <MdArrowBackIosNew style={{ fontSize: 18 }} />
+                  </motion.div>
+                  <motion.div>
+                    
+                    <Typo size='22px'>CATEGORY</Typo>
+                  </motion.div>
+                  <motion.div onClick={() => navigate(-1)}>
+                    <AiOutlineClose style={{ fontSize: 18 }} />
+                  </motion.div>
+                </Header>
+                <List
+                  variants={relistvariants}
+                  initial={back && "initial"}
+                  animate={back && backani}
+                  transition={{
+                    type: "tween",
+                    duration: 0.5,
+                  }}
+                >
+                  <Tab onClick={() => setId( <Typo size='22px'>POP-UP</Typo>)}>
+                    <Typo fontType="mediumsmall">팝업</Typo>
+                    <MdArrowForwardIos style={{ fontSize: 18 }} />
+                  </Tab>
+                  <Tab onClick={() => setId(<Typo size='22px'>BRAND</Typo>)}>
+                    <Typo fontType="mediumsmall">팝업 브랜드</Typo>
+                    <MdArrowForwardIos style={{ fontSize: 18 }} />
+                  </Tab>
+                  <Tab onClick={() => setId(<Typo size='22px'>ARTIST</Typo>)}>
+                    <Typo fontType="mediumsmall">독립 아티스트</Typo>
+                    <MdArrowForwardIos style={{ fontSize: 18 }} />
+                  </Tab>
+                  <Tab onClick={() => navigate("/Guide")}>
+                    <Typo fontType="mediumsmall">POP-CON | 서비스 가이드</Typo>
+                    <MdArrowForwardIos style={{ fontSize: 18 }} />
+                  </Tab>
+                </List>
+                <PopupSlider/>
+              </AnimatePresence>
+            </>
+          ) : null}
+          {id ? (
+            <>
               <Margin height="30" />
               <Header>
-                
+                <motion.div
+                  variants={showupvariants}
+                  initial="hidden"
+                  animate={ani}
+                  onClick={async () => {
+                    await handleBack();
+                  }}
+                >
+                  <MdArrowBackIosNew style={{ fontSize: 18 }} />
+                </motion.div>
                 <motion.div
                   variants={showupvariants}
                   initial="hidden"
                   animate={ani}
                 >
-                  <MdArrowBackIosNew style={{ fontSize: 18 }} />
-                </motion.div>
-                <motion.div>
-                  
-                  <Typo size='22px'>CATEGORY</Typo>
+                  <Typo fontType="large">{id}</Typo>
                 </motion.div>
                 <motion.div onClick={() => navigate(-1)}>
                   <AiOutlineClose style={{ fontSize: 18 }} />
                 </motion.div>
               </Header>
-              <List
-                variants={relistvariants}
-                initial={back && "initial"}
-                animate={back && backani}
-                transition={{
-                  type: "tween",
-                  duration: 0.5,
-                }}
-              >
-                <Tab onClick={() => setId( <Typo size='22px'>POP-UP</Typo>)}>
-                  <Typo fontType="mediumsmall">팝업</Typo>
-                  <MdArrowForwardIos style={{ fontSize: 18 }} />
-                </Tab>
-                <Tab onClick={() => setId(<Typo size='22px'>BRAND</Typo>)}>
-                  <Typo fontType="mediumsmall">팝업 브랜드</Typo>
-                  <MdArrowForwardIos style={{ fontSize: 18 }} />
-                </Tab>
-                <Tab onClick={() => setId(<Typo size='22px'>ARTIST</Typo>)}>
-                  <Typo fontType="mediumsmall">독립 아티스트</Typo>
-                  <MdArrowForwardIos style={{ fontSize: 18 }} />
-                </Tab>
-                <Tab onClick={() => navigate("/Guide")}>
-                  <Typo fontType="mediumsmall">POP-CON | 서비스 가이드</Typo>
-                  <MdArrowForwardIos style={{ fontSize: 18 }} />
-                </Tab>
-              </List>
-              <PopupSlider/>
-            </AnimatePresence>
-          </>
-        ) : null}
-        {id ? (
-          <>
-            <Margin height="30" />
-            <Header>
-              <motion.div
-                variants={showupvariants}
-                initial="hidden"
-                animate={ani}
-                onClick={async () => {
-                  await handleBack();
-                }}
-              >
-                <MdArrowBackIosNew style={{ fontSize: 18 }} />
-              </motion.div>
-              <motion.div
-                variants={showupvariants}
-                initial="hidden"
-                animate={ani}
-              >
-                <Typo fontType="large">{id}</Typo>
-              </motion.div>
-              <motion.div onClick={() => navigate(-1)}>
-                <AiOutlineClose style={{ fontSize: 18 }} />
-              </motion.div>
-            </Header>
-            <AnimatePresence>
-              <List
-                variants={listvariants}
-                initial="hidden"
-                animate={ani}
-                transition={{ type: "tween", duration: 0.5 }}
-              >
-                <Tab onClick={() => setIsClicked((prev) => !prev)}>
-                  <Typo fontType="mediumsmall">CATEGORY</Typo>
-                  {isClicked ? (
-                    <RiArrowDownSLine style={{ fontSize: 24 }} />
-                  ) : (
-                    <MdArrowForwardIos style={{ fontSize: 18 }} />
-                  )}
-                </Tab>
-                <DetailItems
-                  initial={{ scaleY: 0 }}
-                  animate={{ scaleY: isClicked ? 1 : 0 }}
-                  transition={{
-                    type: "tween",
-                    duration: 0.2,
-                  }}
+              <AnimatePresence>
+                <List
+                  variants={listvariants}
+                  initial="hidden"
+                  animate={ani}
+                  transition={{ type: "tween", duration: 0.5 }}
                 >
-                  <DetailItem>
-                    <Typo size="15px">All</Typo>
-                  </DetailItem>
-                  <DetailItem>
-                    <Typo size="15px">스토어</Typo>
-                  </DetailItem>
-                  <DetailItem>
-                    <Typo size="15px">갤러리</Typo>
-                  </DetailItem>
-                  <DetailItem>
-                    <Typo size="15px">스테이지</Typo>
-                  </DetailItem>
-                  <DetailItem>
-                    <Typo size="15px">클래스</Typo>
-                  </DetailItem>
-                </DetailItems>
-              </List>
-            </AnimatePresence>
-            <Margin height="15" />
-          </>
-        ) : null}
-      </Wrapper>
-    </AnimatePresence>
+                  <Tab onClick={() => setIsClicked((prev) => !prev)}>
+                    <Typo fontType="mediumsmall">CATEGORY</Typo>
+                    {isClicked ? (
+                      <RiArrowDownSLine style={{ fontSize: 24 }} />
+                    ) : (
+                      <MdArrowForwardIos style={{ fontSize: 18 }} />
+                    )}
+                  </Tab>
+                  <DetailItems
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: isClicked ? 1 : 0 }}
+                    transition={{
+                      type: "tween",
+                      duration: 0.2,
+                    }}
+                  >
+                    <DetailItem>
+                      <Typo size="15px">All</Typo>
+                    </DetailItem>
+                    <DetailItem>
+                      <Typo size="15px">스토어</Typo>
+                    </DetailItem>
+                    <DetailItem>
+                      <Typo size="15px">갤러리</Typo>
+                    </DetailItem>
+                    <DetailItem>
+                      <Typo size="15px">스테이지</Typo>
+                    </DetailItem>
+                    <DetailItem>
+                      <Typo size="15px">클래스</Typo>
+                    </DetailItem>
+                  </DetailItems>
+                </List>
+              </AnimatePresence>
+              <Margin height="15" />
+            </>
+          ) : null}
+        </Wrapper>
+      </AnimatePresence>
+    
   );
 }
 export default ShowCate;

@@ -13,10 +13,10 @@ const Background = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (max-width: 768px) {
-    width: 100vw;
+  @media (max-width: 770px) {
+    width: 100%;
   }
-  position: relative;
+  //position: relative;
 `;
 const Overlay = styled(motion.div)`
   position: fixed;
