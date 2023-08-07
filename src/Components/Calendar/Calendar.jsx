@@ -28,7 +28,6 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
     const [selectedTimeSlot, setSelectedTimeSlot] = useState({ start: 11, end: 14 });
   return (
     <div className={styles.datePickerWrapper}>
-       <BsFillCalendarCheckFill/>&nbsp;&nbsp;
       <DatePicker
         open={true}
         formatWeekDay={(nameOfDay) => {
