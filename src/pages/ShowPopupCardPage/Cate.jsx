@@ -33,7 +33,7 @@ const CateTitle = styled.p`
 `;
 
 function Cate() {
-  const { cateId } = useParams();
+  const { cateId } = useParams(); // 1 2 3 4
 
   const state = useLocation();
   console.log(state);

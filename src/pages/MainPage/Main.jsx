@@ -55,20 +55,20 @@ function Main() {
   const navigate = useNavigate();
   const [scrollDir, setScrollDir] = useState("scrolling down");
 
-  // useEffect(() => {
-  //   const data = getData();
+  useEffect(() => {
+    const data = getData();
 
-  //   console.log(data);
-  // });
+    console.log(data);
+  });
 
-  // const getData = async () => {
-  //   const response = await axios
-  //     .get(`https://popcon.store/main/1`)
-  //     .then((res) => res.data);
+  const getData = async () => {
+    const response = await axios
+      .get(`https://popcon.store/main/1`)
+      .then((res) => res.data);
 
-  //   console.log(response);
-  //   return response;
-  // };
+    console.log(response);
+    return response;
+  };
 
   const id = 1;
 
@@ -196,7 +196,7 @@ function Main() {
               category="진짜 이쁘네 ㅋㅋ"
               main="제 이상형이에요 사귀자"
             />
-             <SmallCard
+            <SmallCard
               image="img/Artistimg/rose.jpg"
               title="로제"
               category="이쁘다"
@@ -244,7 +244,7 @@ function Main() {
               category="진짜 이쁘네 ㅋㅋ"
               main="제 이상형이에요 사귀자"
             />
-             <SmallCard
+            <SmallCard
               image="img/Artistimg/rose.jpg"
               title="로제"
               category="이쁘다"
