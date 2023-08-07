@@ -8,6 +8,7 @@ import { AiOutlineInstagram } from "react-icons/ai";
 import Horizon from "../Horizon/Horizon";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Icons/Header/logo.png";
+import Margin from "../Margin/Margin";
 
 
 const FooterWrapper = styled.div`
@@ -15,10 +16,12 @@ const FooterWrapper = styled.div`
   width: 100%;
   padding: 1rem;
   box-sizing: border-box;
+  
 `;
 const LogoTitlebox = styled.div`
   display:flex;
   flex-direction: row;
+  align-items: center;
   padding: 10px;
 `;
 const Secondbox = styled.div`
@@ -80,8 +83,8 @@ function Footer() {
       <LogoTitlebox>
         <Icon
           src={logo}
-          width="10%"
-          height="10%"
+          width="12%"
+          height="12%"
           alt="logo"
           onClick={() => navigate("/main")}
         />
@@ -129,7 +132,9 @@ function Footer() {
         <AiOutlineTwitter size={35}></AiOutlineTwitter>
         <AiOutlineInstagram size={35}></AiOutlineInstagram>
       </Snsbox>
+      <Margin height='35'/>
     </FooterWrapper>
+    
   );
 }
 export default Footer;

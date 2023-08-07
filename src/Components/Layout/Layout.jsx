@@ -5,6 +5,7 @@ import { isBotClicked } from "../../atom";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import Chatbot from "../../pages/Chatbot/Chatbot";
+import Margin from "../Margin/Margin";
 
 const Background = styled.div`
   width: 40vw;
@@ -82,6 +83,7 @@ function Layout() {
         </motion.div>
         {/* </Overlay> */}
         <Outlet />
+        
       </Background>
     </>
   );

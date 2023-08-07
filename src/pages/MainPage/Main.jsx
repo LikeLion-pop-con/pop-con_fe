@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
 `;
 
 const SliderXwrapper = styled.div`
