@@ -1,5 +1,5 @@
 .datePickerWrapper{
-    height: 400px;
+    height: 330px;
 }
 
 .datePicker {
@@ -10,10 +10,11 @@
   background-color: rgb(255, 255, 255);
   box-sizing: border-box;
   width: 100%;
-  height: 46px;
+  height: 20px;
   color:rgb(0, 0, 0);
   text-align: left;
   pointer-events: none;
+  
 }
 .customHeaderContainer {
   display: flex;
@@ -51,9 +52,9 @@
   background-color: rgb(255, 255, 255);
   color:white;
   position: absolute;
-  left: -45px;
+  margin-left: -40px;
   border: none;
-  border-top: 1px solid black;
+  border-top: 2px solid black;
 }
 
 .unselectedDay {

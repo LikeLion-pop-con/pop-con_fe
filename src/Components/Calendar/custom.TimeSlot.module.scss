@@ -2,13 +2,16 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .timeSlotLabel {
   font-weight: bold;
   border:none;
-  border-bottom: 1px solid;
+  border-bottom: 2px solid;
   padding: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .timeSlotButtons {
