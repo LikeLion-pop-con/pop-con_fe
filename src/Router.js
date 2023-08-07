@@ -58,25 +58,25 @@ function Router() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/AdminMain" element={<AdminMain />} />
+
+            <Route path="/popupspace" element={<PopupSpace />}></Route>
+
             <Route path="/popupspace/:spaceId" element={<PopupSpaceItem />}>
               <Route path="" element={<SpaceItemIntro />}></Route>
               <Route path="info" element={<SpaceItemInfo />}></Route>
             </Route>
 
-            <Route path="/PopupSpace" element={<PopupSpace />}></Route>
-
             <Route path="" element={<LogoWelcome />} />
-            <Route path="*" element={<div>없는페이지임</div>} />
+
             <Route path="/CardTest" element={<CardTest />} />
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/test" element={<Test />} />
             <Route path="/Guide" element={<GuidePage />} />
 
-            <Route path="/main" element={<Main />}>
-              <Route path="art" element={<Main />}></Route>
-              <Route path="lit" element={<Main />}></Route>
-              <Route path="video" element={<Main />}></Route>
-              <Route path="music" element={<Main />}></Route>
+            <Route path="/main" element={<Main />}></Route>
+            <Route path="/main/:cateId" element={<Cate />}>
+              <Route path="" element={<Requesting />}></Route>
+              <Route path="ing" element={<Ing />}></Route>
             </Route>
 
             <Route path="/category" element={<ShowCate />}></Route>
@@ -85,16 +85,11 @@ function Router() {
             <Route path="/weekly" element={<Weekly />}></Route>
             <Route path="/search" element={<Search />} />
             <Route path="/search/result" element={<Searchresult />} />
-            <Route path="/Brand" element={<BrandIntroduce />} />
 
             <Route path="/brand/:brandId" element={<BrandIntroduce />}>
               <Route path="" element={<BrandIntro />}></Route>
               <Route path="info" element={<BrandInfo />}></Route>
               <Route path="post" element={<BrandPost />}></Route>
-            </Route>
-            <Route path="/main/:cateId" element={<Cate />}>
-              <Route path="" element={<Requesting />}></Route>
-              <Route path="ing" element={<Ing />}></Route>
             </Route>
 
             <Route path="/Mypage" element={<Mypage />} />
@@ -108,13 +103,8 @@ function Router() {
             <Route path="/Mypage/Myinfo" element={<MyInfo />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Resister" element={<Resister />} />
-            <Route path="/brand" element={<BrandIntroduce />} />
-            <Route path="/artist" element={<ArtistIntroduce />} />
 
-            <Route path="/:cateId" element={<Cate />}>
-              <Route path="" element={<Requesting />}></Route>
-              <Route path="ing" element={<Ing />}></Route>
-            </Route>
+            <Route path="/artist" element={<ArtistIntroduce />} />
 
             <Route path="/postList" element={<PostList />} />
             <Route path="/popupPost" element={<PopupPost />} />
