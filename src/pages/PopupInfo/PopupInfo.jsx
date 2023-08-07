@@ -14,7 +14,8 @@ import Kakaomap from "../../Components/Kakaomap/Kakaomap";
 import Margin from "../../Components/Margin/Margin";
 import RequestModal from "../../Components/Modal/PopRequestModal";
 import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
-
+import Calendar from "../../Components/Calendar/Calendar";
+import CustomTimeSlot from "../../Components/Calendar/CustomTimeSlot";
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
   display: flex;
@@ -101,8 +102,11 @@ const PopupInfo = () => {
     // 추가적인 이미지들의 경로
   ];
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const requestbtnani = useAnimation();
-
+  const handleTimeSlotChange = (timeSlot) => {
+    setSelectedTimeSlot(timeSlot);
+  };
   useEffect(() => {
     if (btnclicked) {
       requestbtnani.start("visible");
@@ -146,7 +150,7 @@ const PopupInfo = () => {
           <Margin height="20" />
         </AnimatePresence>
       )}
-      {/* <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} /> */}
+   
       <PopupButton
         onClick={() => {
           window.scrollTo(0, 0);
@@ -158,7 +162,14 @@ const PopupInfo = () => {
         </Typo>
       </PopupButton>
 
-      <Margin height="10" />
+      <Margin height="30" />
+
+      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      <CustomTimeSlot
+      label="시간 선택"
+        selectedTime={selectedTimeSlot}
+        onChange={handleTimeSlotChange}
+      />
       <Footer />
       {requestbtnclikced ? (
         <Overlay
