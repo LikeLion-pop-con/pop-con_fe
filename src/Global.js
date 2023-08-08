@@ -82,13 +82,7 @@ const GlobalStyle = createGlobalStyle`
           .react-datepicker__day-names {
               display: flex;
               justify-content: center;
-              align-items: center;
-              height: 40px;
-              .react-datepicker__day-name {
-                color: #5b5b5b;
-                width: 36px;
-              }
-            }
+          
           .react-datepicker__header {
             background-color: white;
             border-bottom: none;
