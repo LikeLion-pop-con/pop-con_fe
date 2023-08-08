@@ -39,7 +39,7 @@ const Thirdbox = styled.div`
 const AskButton = styled.button`
   width: 9rem;
   height: 3rem;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.1);
   //background-color: main;
   //margin: 6px ;

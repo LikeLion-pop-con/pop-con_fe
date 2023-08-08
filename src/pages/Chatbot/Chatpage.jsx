@@ -12,8 +12,6 @@ const ChatPage = () => {
   return (
     <div>
       <button onClick={toggleChatbot}>Open Chatbot</button>
-
-      {/* Conditionally render the Chatbot */}
       {isChatbotOpen && <Chatbot setIsChatbotOpen={setIsChatbotOpen} />}
     </div>
   );
