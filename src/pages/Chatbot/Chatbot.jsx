@@ -118,7 +118,7 @@ const steps = [
     id: "16",
     component: <Input4 triggerNext={triggerNextStep}/>,
     waitAction: true,
-    trigger: "24",
+    trigger: "23",
   },
   {
     id: "17",
@@ -135,7 +135,7 @@ const steps = [
   },
   {
     id: "24",
-    component: <Askbutton triggerNext={triggerNextStep} />,
+    component: <Askbutton triggerNext={triggerNextStep} />, 
     waitAction: true,
     trigger: "25",
   },
