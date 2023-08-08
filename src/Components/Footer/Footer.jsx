@@ -44,7 +44,7 @@ const AskButton = styled.button`
   //background-color: main;
   //margin: 6px ;
   margin-left: 10px;
-  
+  cursor: pointer;
 
   font-size: 1rem;
   font-weight: 600;
@@ -78,6 +78,13 @@ const Icon = styled.img`
 
 function Footer() {
   const navigate = useNavigate();
+  const handleButtonClick = () => {
+    window.open('http://pf.kakao.com/_xlxixmxhG', '_blank')
+  };
+  const handleButtonClick1 = () => {
+    window.open('https://www.instagram.com/popcontent.official/', '_blank')
+  };
+  
   return (
     <FooterWrapper>
       <LogoTitlebox>
@@ -111,7 +118,7 @@ function Footer() {
               <Label>고객지원</Label>
               <Label>평일 10:00~17:00 (13:00~15:00 제외)</Label>
             </TextWrapper>
-            <AskButton>PopCon에 문의</AskButton>
+            <AskButton onClick={handleButtonClick}>PopCon에 문의</AskButton>
           </TextWrapper2>
           <Horizon width="100%" color="lightgrey" />
         </Thirdbox>
@@ -128,9 +135,8 @@ function Footer() {
         </Typo>
       </Fourthbox>
       <Snsbox>
-        <RiKakaoTalkFill size={35}></RiKakaoTalkFill>
-        <AiOutlineTwitter size={35}></AiOutlineTwitter>
-        <AiOutlineInstagram size={35}></AiOutlineInstagram>
+        <RiKakaoTalkFill onClick={handleButtonClick} size={35}></RiKakaoTalkFill>
+        <AiOutlineInstagram onClick={handleButtonClick1} size={35}></AiOutlineInstagram>
       </Snsbox>
       <Margin height='35'/>
     </FooterWrapper>

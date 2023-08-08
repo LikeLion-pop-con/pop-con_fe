@@ -19,10 +19,14 @@ const Askbutton = ( {triggerNextStep} ) => {
   const handleButtonClick = () => {
     triggerNextStep();
   };
-
+  const handleButtonClick1 = () => {
+    window.open('http://pf.kakao.com/_xlxixmxhG', '_blank')
+    triggerNextStep();
+  };
   return (
     <>
-      <AskButton onClick={handleButtonClick}>PopCon에 문의</AskButton>
+      <AskButton onClick={handleButtonClick1} >PopCon에 문의</AskButton>
+      <AskButton onClick={handleButtonClick}>문의 안할거에요!</AskButton>
     </>
   );
 };
