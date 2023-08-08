@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-
+  overflow-x: hidden;
 `;
 const SliderXwrapper = styled.div`
   position: relative;
@@ -86,7 +86,7 @@ function Main() {
         <SliderXwrapper2>
           <SliderXItems>
             <LargeCard
-              onClick={() => navigate("/PopupInfo")}
+              onClick={() => navigate(`/PopupInfo/${id}`)}
               image={NewJeans}
               title="NewJeans의 HYPE맑음"
               popcategory="팝업 스토어"
