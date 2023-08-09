@@ -7,7 +7,7 @@ import Popinfodetail from "../../Components/Brand, ArtistCard/Popinfodetail";
 import Typo from "../../assets/Typo";
 import Footer from "../../Components/Footer/Footer";
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useMatch, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Kakaomap from "../../Components/Kakaomap/Kakaomap";
@@ -20,7 +20,7 @@ import Choose from "../../Components/Calendar/Choose";
 import Modal from "react-modal";
 import toast, { Toaster } from "react-hot-toast";
 import RequestComplete from "./RequestComplete";
-
+import { postMylikepopup } from "../../api";
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
   display: flex;
@@ -87,13 +87,15 @@ const Overlay = styled(motion.div)`
 `;
 
 const renderImages = (imagePaths) => {
-  return imagePaths.map((imagePath, index) => (
+  return imagePaths?.map((imagePath, index) => (
     <Image key={index} src={imagePath} alt="팝업 이미지" />
   ));
 };
 
 const PopupInfo = () => {
   //백엔드에서 받아온 이미지 경로 배열 - 데이터 받아서 변수로 선언해야 할 듯
+const {brandId} = useParams();
+
   const userName = localStorage.getItem("Name");
   const popupName = localStorage.getItem("Name");
   const navigate = useNavigate();
@@ -109,11 +111,21 @@ const PopupInfo = () => {
     // 추가적인 이미지들의 경로
   ];
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const requestbtnani = useAnimation();
+  const [isLiked, setIsLiked] = useState(false);
+  const isPopupinfoPage = useMatch(`/popupinfo/${brandId}`);
+
+  const timeSlots = [
+    { start: 11, end: 14 },
+    { start: 14, end: 17 },
+    { start: 17, end: 20 },
+  ];
+  const [selectedTime, setSelectedTime] = useState(timeSlots[0]);
+
   const handleTimeSlotChange = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
+    setSelectedTime(timeSlot);
   };
+
   useEffect(() => {
     if (btnclicked) {
       requestbtnani.start("visible");
@@ -121,6 +133,21 @@ const PopupInfo = () => {
       requestbtnani.start("hidden");
     }
   }, [btnclicked]);
+
+useEffect(() => {
+  console.log("hi")
+    return () => {
+      console.log(isPopupinfoPage);   
+      postMylikepopup(popupName, userName)
+      .then((data) => {
+        console.log("Like successfully posted:", data);
+        setIsYes(true);
+      })
+      .catch((error) => {
+        console.error("Error posting like:", error);
+      });
+    }
+  }, [])
 
   const yestoast = () =>
     toast.success("팝업 신청이 완료되었습니다.", {
@@ -135,7 +162,6 @@ const PopupInfo = () => {
       setTimeout(() => yestoast(), 1000);
     }
   }, [isYes]);
-
   return (
     <Wrapper transition={{ type: "tween" }}>
       <Header left="logo" right={["login", "search"]} />
@@ -147,8 +173,8 @@ const PopupInfo = () => {
       <Carddown2
         toptext="빈지노의 새로운 노비츠키 한정판 팝업 스토어"
         bodytext="10년 만에 세상으로 모습을 들어낸 빈지노가 낸 음반 노비츠키를 한정판으로 판매할 예정이다. 앨범 발매기념 팝업 스토어는 3일 간 운영되고 집계된 의결을 바탕으로 지역을 선택하여 열릴 예정이다."
-        popup_name={popupName}
-        userName={userName}
+        isLiked={isLiked} // isLiked 상태 전달
+        setIsLiked={setIsLiked} // 좋아요 버튼 클릭 핸들러 전달
       />
       <Popinfodetail
         bodyText={
@@ -171,7 +197,7 @@ const PopupInfo = () => {
       <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       <CustomTimeSlot
         label="시간 선택"
-        selectedTime={selectedTimeSlot}
+        selectedTime={selectedTime}
         onChange={handleTimeSlotChange}
       />
 

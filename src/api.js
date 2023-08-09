@@ -15,11 +15,34 @@ export function getMainHotPopup() {
 export function getMypageMylikebrand(name) {
   return axios.get(`${BASE_URL}/mylikebrand/?user_name=${name}`).then((res) => res.data);
 }
-export function postMylikebrand(popup_name, user_name) {
+export function getNewbrand() {
+  return axios.get(`${BASE_URL}/main/newbrand`).then((res) => res.data);
+}
+
+
+
+
+export function postMylikepopup(popup_name, user_name) {
   const data = {
-    popup_name: "아디다스 슈퍼스타",
+    popup_name: popup_name,
     user_name: user_name
   };
   console.log(data)
-  return axios.post(`${BASE_URL}/popuplike`, data).then((res) => res.data);
+  return axios.post(`${BASE_URL}/popuplike/`, data).then((res) => res.data);
+}
+export function postMylikebrand(brand_name, user_name) {
+  const data = {
+    brand_name: brand_name,
+    user_name: user_name
+  };
+  console.log(data)
+  return axios.post(`${BASE_URL}/brandlike/`, data).then((res) => res.data);
+}
+export function postPopupplace(brand_name, user_name) {
+  const data = {
+    brand_name: brand_name,
+    user_name: user_name
+  };
+  console.log(data)
+  return axios.post(`${BASE_URL}/popupplacelike`, data).then((res) => res.data);
 }

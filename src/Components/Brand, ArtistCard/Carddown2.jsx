@@ -5,7 +5,6 @@ import { BsHeart,BsHeartFill } from "react-icons/bs";
 import { BsFillShareFill } from "react-icons/bs";
 import { useState } from "react";
 import Margin from "../Margin/Margin";
-import { postMylikebrand } from "../../api";
 const Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -47,20 +46,7 @@ const Button = styled.button`
   align-items: center;
 `;
 
-const Carddown2 = ({ toptext, bodytext, popup_name, userName }) => {
-  const [isLiked, setIsLiked] = useState(false);
-
-  const handleLikeClick = () => {
-    setIsLiked(!isLiked);
-    postMylikebrand(popup_name, userName)
-      .then((data) => {
-        console.log("Like successfully posted:", data);
-      })
-      .catch((error) => {
-        console.error("Error posting like:", error);
-      });
-  };
-
+const Carddown2 = ({ toptext, bodytext, isLiked, setIsLiked }) => {
   return (
     <>
       <Wrapper>
@@ -75,12 +61,12 @@ const Carddown2 = ({ toptext, bodytext, popup_name, userName }) => {
           </Typo>
         </BodytextWrapper>
         <ButtonWrapper>
-          <Button onClick={handleLikeClick}>
-            {isLiked ? <BsHeartFill size={20} color="red" /> : <BsHeart size={20} />}
+          <Button onClick={() => setIsLiked(prev => !prev)}>
+          {isLiked ? <BsHeartFill size={20} color="red" /> : <BsHeart size={20} />}
           </Button>
           <Button>
             <BsFillShareFill size={20} />
-          </Button>
+          </Button> 
         </ButtonWrapper>
       </Wrapper>
     </>
