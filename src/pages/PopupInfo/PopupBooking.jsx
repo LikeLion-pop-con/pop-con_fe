@@ -85,6 +85,22 @@ const Overlay = styled(motion.div)`
   left: 0;
   background-color: rgba(0, 0, 0, 0.3);
 `;
+const PopupSpace = styled.div`
+  width: 90%;
+`;
+const Detail = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px 0px;
+`;
+const DetailTime = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 20px;
+  margin-left: 3%;
+  margin-top: 3%;
+`;
 
 const renderImages = (imagePaths) => {
   return imagePaths.map((imagePath, index) => (
@@ -92,10 +108,12 @@ const renderImages = (imagePaths) => {
   ));
 };
 
-const PopupInfo = () => {
+const PopupBooking = () => {
   //백엔드에서 받아온 이미지 경로 배열 - 데이터 받아서 변수로 선언해야 할 듯
-  const userName = localStorage.getItem("Name");
-  const popupName = localStorage.getItem("Name");
+  const { brandId } = useParams();
+
+  console.log(brandId);
+
   const navigate = useNavigate();
 
   const [btnclicked, setBtnclicked] = useState(false);
@@ -147,16 +165,53 @@ const PopupInfo = () => {
       <Carddown2
         toptext="빈지노의 새로운 노비츠키 한정판 팝업 스토어"
         bodytext="10년 만에 세상으로 모습을 들어낸 빈지노가 낸 음반 노비츠키를 한정판으로 판매할 예정이다. 앨범 발매기념 팝업 스토어는 3일 간 운영되고 집계된 의결을 바탕으로 지역을 선택하여 열릴 예정이다."
-        popup_name={popupName}
-        userName={userName}
       />
-      <Popinfodetail
+      <Popinfodetail // 팝업의 본문 내용 컴포넌트 (운영 기간, 시간, 기획/운영, 키워드)
         bodyText={
           "2023.07.06(목) ~ 2023.07.12 (수)\n행사 종료\n아이앱 스튜디오, 더현대 서울IAB STUDIO POP-UP STORE at ‘THE HYUNDAI SEOUL' 아이앱 스튜디오가 여의도에 위치한 ‘더현대 서울’에서 팝업 스토어를 진행합니다. 오프라인으로 열리는 이번 팝업 스토어에서는 새롭게 선보이는 의류들과 아이웨어 라인이 공개되며, 팝업 품목 리스트와 구매 방식에 관련된 정보는 추후 공개될 예정입니다.\niabstudiopop-upstore, iabstudiopop-upstore, iabstudio, 아이앱스튜디오, 더현대서울, 아이앱스튜디오팝업,팝업, 팝업스토어, 더현대, 서울팝업, 서울가볼만한곳, 브랜드팝업, popup, popupstore\n아이앱 스튜디오 인스타그램 공식 계정"
         }
       />
       <PopupinfoImg>{renderImages(imagePathsFromBackend)}</PopupinfoImg>
       <Margin height="20" />
+
+      <PopupSpace>
+        <Typo style={{ width: "100%" }} fontType="large">
+          팝업 장소
+        </Typo>
+        <Margin height="20" />
+        <Detail>
+          <Typo weight="600" style={{ paddingRight: 10 }}>
+            • 운영 시간:{" "}
+          </Typo>
+          <Typo weight="400">12:00 ~ 18:00</Typo>
+        </Detail>
+        <Detail>
+          <Typo weight="600" style={{ paddingRight: 10 }}>
+            • 기획/운영:{" "}
+          </Typo>
+          <Typo weight="400">아이앱 스튜디오, Vunque</Typo>
+        </Detail>
+        <Typo style={{ padding: "10px 0px", lineHeight: 1.2 }}>
+          많은 분들의 성원에 힘입어 이번 팝업 장소는 다음과 같이 선정되었습니다!
+        </Typo>
+
+        <DetailTime>
+          <div>
+            <Typo>• 2023.07.06(목) ~ 2023.07.12(수)</Typo>
+            <Typo style={{ paddingLeft: 5 }}>
+              17,yeonmujang-gil, Seongdong-gu, Seoul
+            </Typo>
+          </div>
+          <div>
+            <Typo>• 2023.07.06(목) ~ 2023.07.12(수)</Typo>
+            <Typo style={{ paddingLeft: 5 }}>
+              17,yeonmujang-gil, Seongdong-gu, Seoul
+            </Typo>
+          </div>
+        </DetailTime>
+      </PopupSpace>
+
+      {/* <Margin height="20" />
       <GetMaptext>팝업 요청 현황</GetMaptext>
       <Margin height="15" />
 
@@ -173,13 +228,14 @@ const PopupInfo = () => {
         label="시간 선택"
         selectedTime={selectedTimeSlot}
         onChange={handleTimeSlotChange}
-      />
+      /> */}
 
       {/* <div>
         <button onClick={notify}>Get Toast</button>
         <Toaster position="bottom-center" />
       </div> */}
 
+      <Margin height="30" />
       <PopupButton
         onClick={() => {
           window.scrollTo(0, 0);
@@ -187,7 +243,7 @@ const PopupInfo = () => {
         }}
       >
         <Typo size="1.1rem" weight="600" color="white">
-          팝업 요청하기
+          예약하기
         </Typo>
       </PopupButton>
 
@@ -265,4 +321,4 @@ const PopupInfo = () => {
   );
 };
 
-export default PopupInfo;
+export default PopupBooking;
