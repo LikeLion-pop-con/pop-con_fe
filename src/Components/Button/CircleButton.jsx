@@ -17,7 +17,7 @@ const Img = styled.div`
   border-radius: ${(props) => (props.shape === "circle" ? "50%" : "10px")};
   border: ${(props) =>
     props.shape === "circle" ? "none" : "2px dotted rgba(0,0,0,1)"};
-  box-shadow: 2px 3px 5px rgba(67, 0, 209, 0.1);
+  box-shadow: 2px 5px 10px rgba(67, 0, 209, 0.1);
   cursor: pointer;
   img {
     width: ${(props) => (props.shape === "circle" ? "2.3rem" : "2.3rem")};

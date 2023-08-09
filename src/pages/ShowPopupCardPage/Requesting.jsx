@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 import LargeCard from "../../Components/Card/LargeCard";
 import styled from "styled-components";
 import PopupTitle from "../../Components/PopupTitle/PopupTitle";
@@ -16,11 +16,20 @@ const Wrapper = styled.div`
 function Requesting() {
   const params = useOutletContext();
 
+  const { state } = useLocation();
+
+  console.log(state);
+
   const [data, setData] = useState([]);
 
   const getData = async () => {
     const data = await api.getMainCategory(params.cateId);
-    setData(data);
+    console.log(data);
+    if (state) {
+      data.filter((item) => item);
+    } else {
+      setData(data);
+    }
   };
 
   useEffect(() => {

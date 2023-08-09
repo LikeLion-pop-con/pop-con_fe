@@ -1,6 +1,7 @@
 import Router from "./Router";
 import GlobalStyle from "./Global";
 import ShowCate from "./pages/CategoryPage/ShowCate";
+import Modal from "react-modal";
 
 function App() {
   return (
@@ -10,5 +11,6 @@ function App() {
     </>
   );
 }
+Modal.setAppElement("#root");
 
 export default App;
