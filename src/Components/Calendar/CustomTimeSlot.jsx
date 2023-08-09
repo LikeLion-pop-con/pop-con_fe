@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./custom.TimeSlot.module.scss";
 import { AiOutlineClockCircle } from "react-icons/ai";
+
 const CustomTimeSlot = ({ label, selectedTime, onChange }) => {
   const timeSlots = [
     { start: 11, end: 14 },

@@ -25,44 +25,44 @@ const SubcribeText = styled.div``;
 const PopNum = styled.div``;
 const PopText = styled.div``;
 const IconContainer = styled.div`
-    margin: 3px;
+  margin: 3px;
 `;
 const IntroduceText = styled.div`
-    width: 300px;
-    margin: 20px;
-    text-align: center;
-    line-height: 1.3;
+  width: 300px;
+  margin: 20px;
+  text-align: center;
+  line-height: 1.3;
 `;
 const Button1 = styled.button`
-    width: auto;
-    height: 45px;
-    border: 1px solid lightgray;
-    border-radius: 30px;
-    padding: 15px ;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-`
+  width: auto;
+  height: 45px;
+  border: 1px solid lightgray;
+  border-radius: 30px;
+  padding: 15px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+`;
 const Button2 = styled.button`
-    width: 45px;
-    height: 45px;
-    border: 1px solid lightgray;
-    border-radius: 50%;
-    padding: 8px;
-    background-color: transparent;
-`
+  width: 45px;
+  height: 45px;
+  border: 1px solid lightgray;
+  border-radius: 50%;
+  padding: 8px;
+  background-color: transparent;
+`;
 const Carddown1 = ({ subcribeNum, popNum, introduceText }) => {
   return (
     <>
       <Wrapper>
         <FirstBox>
           <SubcribeNum>
-            <Typo size="1.2rem" weight="400" color="main">
+            <Typo size="1.1rem" weight="400" color="main">
               {subcribeNum}
             </Typo>
           </SubcribeNum>
           <SubcribeText>
-            <Typo size="1.2rem" weight="400">
+            <Typo size="1.1rem" weight="400">
               구독
             </Typo>
           </SubcribeText>
@@ -70,20 +70,27 @@ const Carddown1 = ({ subcribeNum, popNum, introduceText }) => {
             <TbPointFilled />
           </IconContainer>
           <PopNum>
-            <Typo size="1.2rem" weight="400" color="main">
+            <Typo size="1.1rem" weight="400" color="main">
               {popNum}
             </Typo>
           </PopNum>
           <PopText>
-            <Typo size="1.2rem" weight="400">
+            <Typo size="1.1rem" weight="400">
               회 팝업
             </Typo>
           </PopText>
         </FirstBox>
-        <IntroduceText><Typo size="1rem" weight="200">{introduceText}</Typo></IntroduceText>
+        <IntroduceText>
+          <Typo size="1rem" weight="200">
+            {introduceText}
+          </Typo>
+        </IntroduceText>
         <SecondBox>
           <Button1>+ 구독</Button1>
-                    <Button2><BsFillShareFill/></Button2></SecondBox>
+          <Button2>
+            <BsFillShareFill />
+          </Button2>
+        </SecondBox>
       </Wrapper>
     </>
   );

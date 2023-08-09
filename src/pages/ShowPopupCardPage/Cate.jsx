@@ -8,6 +8,10 @@ import PopupTitle from "../../Components/PopupTitle/PopupTitle";
 import Header from "../../Components/Header/Header";
 import PageTabs from "../../Components/PageTitle/PageTabs";
 import back from "../../assets/Icons/NavigationBar/back.svg";
+import cate1 from "../../assets/Icons/Cate/cate1.png";
+import cate2 from "../../assets/Icons/Cate/cate2.png";
+import cate3 from "../../assets/Icons/Cate/cate3.png";
+import cate4 from "../../assets/Icons/Cate/cate4.png";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -29,6 +33,7 @@ const CateTitle = styled.p`
   font-size: 20px;
   margin-top: 10px;
   padding: 0px 25px;
+  padding-right: 10px;
   font-weight: 600;
 `;
 
@@ -43,14 +48,14 @@ function Cate() {
   console.log(cateId);
 
   function getCateImg(cateId) {
-    if (cateId === 1) {
-      return "img/cate1.png";
-    } else if (cateId === 2) {
-      return "img/cate2.png";
-    } else if (cateId === 3) {
-      return "img/cate3.png";
-    } else if (cateId === 4) {
-      return "img/cate4.png";
+    if (parseInt(cateId) === 1) {
+      return cate1;
+    } else if (parseInt(cateId) === 2) {
+      return cate2;
+    } else if (parseInt(cateId) === 3) {
+      return cate3;
+    } else if (parseInt(cateId) === 4) {
+      return cate4;
     }
   }
 
@@ -60,11 +65,11 @@ function Cate() {
       <CateHead>
         <CateTitle>{popupcate[cateId - 1]}</CateTitle>
         <img
+          src={getCateImg(cateId)}
           style={{ marginTop: 5 }}
           alt="img"
           width="35"
           height="35"
-          src={back}
         ></img>
       </CateHead>
       <PageTabs

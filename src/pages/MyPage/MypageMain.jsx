@@ -5,12 +5,13 @@ import Typo from "../../assets/Typo";
 import Horizon from "../../Components/Horizon/Horizon";
 import { useNavigate, Link } from "react-router-dom";
 import NavigationBar from "../../Components/Navigate/Navigate";
+import Margin from "../../Components/Margin/Margin";
 const Wrapper = styled.div`
   background-color: #ec7538;
   height: 260px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;
 
@@ -20,6 +21,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   position: relative;
   margin-bottom: -85px;
+  top: 70px;
 `;
 const Image = styled.img`
   width: 200px;
@@ -29,7 +31,7 @@ const Image = styled.img`
 
 const Name = styled.p`
   position: absolute;
-  top: 70px;
+  top: 64px;
   left: 130px;
 `;
 const Detailbox = styled.div`
@@ -63,9 +65,6 @@ const LogoutButton = styled.button`
   display: flex;
   align-self: flex-end;
   cursor: pointer;
-  position: absolute;
-  top: 350px;
-  right: 10px;
 `;
 const MyINFO = styled.button`
   background-color: transparent;
@@ -76,9 +75,12 @@ const MyINFO = styled.button`
   display: flex;
   align-self: flex-end;
   cursor: pointer;
-  position: absolute;
-  top: 350px;
-  right: 80px;
+`;
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-self: flex-end;
+  margin-top: 250px; /* 원하는 여백 조정 */
 `;
 const Mypage = () => {
   const navigate = useNavigate();
@@ -107,17 +109,20 @@ const Mypage = () => {
               </Typo>
             ) : (
               <Typo size="1rem" weight="400" color="white">
-                로그인 <br/>필요!
+                로그인 <br />
+                필요!
               </Typo>
             )}
           </Name>
         </Container>
-        {isLoggedIn && (
-          <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
-        )}
-        {isLoggedIn && (
-          <MyINFO onClick={() => navigate("/Mypage/Myinfo")}>내 정보</MyINFO>
-        )}
+        <ButtonsWrapper>
+          {isLoggedIn && (
+            <MyINFO onClick={() => navigate("/Mypage/Myinfo")}>내 정보</MyINFO>
+          )}
+          {isLoggedIn && (
+            <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+          )}
+        </ButtonsWrapper>
       </Wrapper>
       <Detailbox>
         <TextLink>
@@ -192,6 +197,7 @@ const Mypage = () => {
           <Horizon width="340px" color="white"></Horizon>
         </TextLink>
       </Detailbox>
+      <Margin height="100" />
       <NavigationBar />
     </>
   );

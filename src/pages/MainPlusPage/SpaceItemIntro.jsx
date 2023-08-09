@@ -82,6 +82,7 @@ const Img = styled.img`
 const BodyText = styled.p`
   width: 90%;
   margin: 0 5%;
+
   line-height: 1.6;
 `;
 const SpaceText = styled.p`
@@ -131,7 +132,7 @@ function SpaceItemIntro() {
             연면적: 8802 m2
           </Typo>
         </Size>
-        <Margin height="10" />
+        <Margin height="25" />
         <Typo style={{ lineHeight: 1.2 }} size="1rem" weight="400">
           압구성 사거리에 위치한 대형 건물로 가시성이 매우 좋고 접근성 또한
           우수한 공간입니다. 또한 3호선 압구정역과 수인분당선 압구정
