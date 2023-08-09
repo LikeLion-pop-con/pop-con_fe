@@ -50,6 +50,10 @@ import ChatPage from "./pages/Chatbot/Chatpage";
 import Kakaomap2 from "./Components/Kakaomap/Kakaomap2";
 import RequestComplete from "./pages/PopupInfo/RequestComplete";
 import PopupBooking from "./pages/PopupInfo/PopupBooking";
+import BookingOne from "./pages/PopupInfo/BookingOne";
+import BookingTwo from "./pages/PopupInfo/BookingTwo";
+import BookingLast from "./pages/PopupInfo/BookingLast";
+import BookingComplete from "./pages/PopupInfo/BookingComplete";
 import CardList from "./pages/Card/CardList";
 import AddCard from "./pages/Card/AddCard";
 
@@ -115,7 +119,19 @@ function Router() {
 
             <Route
               path="/popupbooking/:brandId"
-              element={<PopupBooking />}
+              element={<BookingOne />}
+            ></Route>
+            <Route
+              path="/popupbooking/:brandId/bookingtwo"
+              element={<BookingTwo />}
+            ></Route>
+            <Route
+              path="/popupbooking/:brandId/bookinglast"
+              element={<BookingLast />}
+            ></Route>
+            <Route
+              path="/popupbooking/:brandId/bookingcomplete"
+              element={<BookingComplete />}
             ></Route>
 
             <Route path="/Chatbot" element={<ChatPage />} />

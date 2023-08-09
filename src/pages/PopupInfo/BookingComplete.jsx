@@ -7,7 +7,7 @@ import Popinfodetail from "../../Components/Brand, ArtistCard/Popinfodetail";
 import Typo from "../../assets/Typo";
 import Footer from "../../Components/Footer/Footer";
 import { useEffect } from "react";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Kakaomap2 from "../../Components/Kakaomap/Kakaomap2";
@@ -21,6 +21,7 @@ import Modal from "react-modal";
 import toast, { Toaster } from "react-hot-toast";
 import RequestComplete from "./RequestComplete";
 import ss from "../../assets/Icons/Card/NewJeans.jpg";
+import Horizon from "../../Components/Horizon/Horizon";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -66,64 +67,40 @@ const Form = styled.div`
   margin: 25px 0px;
 `;
 
-const Period = styled(Form)``;
-const OperateTime = styled(Form)``;
-const Space = styled(Form)``;
-const Map = styled(Form)``;
-
-const RequestWrapper = styled(motion.div)`
-  width: 100%;
-  height: 400px;
-
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
+const Complete = styled(Form)``;
+const CompleteText = styled(Form)`
+  width: 60%;
+  p {
+    color: red;
+  }
 `;
-const requestvariants = {
-  hidden: { scaleY: 0 },
-  visible: { scaleY: 1 },
-  exit: { scaleY: 0 },
-};
-const GetMaptext = styled.p`
+const CompleteDetail = styled(Form)`
+  display: flex;
+  justify-content: space-evenly;
   width: 50%;
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.3);
-  padding-bottom: 10px;
-  opacity: 0.8;
-  cursor: pointer;
 `;
-const Overlay = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  position: fixed;
+const CompleteAlert = styled(Form)`
+  width: 50%;
+  p {
+    text-align: start;
+  }
+`;
+
+const BookDate = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  flex-direction: column;
+  align-items: flex-start;
+  p {
+    padding: 5px 0px;
+  }
 `;
-const PopupSpace = styled.div`
-  width: 90%;
-`;
-const Detail = styled.div`
+const Time = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 5px 0px;
-`;
-const DetailTime = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 20px;
-  margin-left: 3%;
-  margin-top: 3%;
-`;
-const ImageBox = styled.div`
-  width: 100%;
-  position: absolute;
-  top: 10%;
+  flex-direction: column;
+  align-items: flex-start;
+  p {
+    padding: 5px 0px;
+  }
 `;
 
 const renderImages = (imagePaths) => {
@@ -132,9 +109,11 @@ const renderImages = (imagePaths) => {
   ));
 };
 
-const BookingTwo = () => {
+const BookingComplete = () => {
   //백엔드에서 받아온 이미지 경로 배열 - 데이터 받아서 변수로 선언해야 할 듯
   const { brandId } = useParams();
+
+  console.log(brandId);
 
   const navigate = useNavigate();
 
@@ -180,86 +159,69 @@ const BookingTwo = () => {
     <Wrapper>
       <Header left="logo" right={["login", "search"]} />
       <Popinfodetail // 팝업의 본문 내용 컴포넌트 (운영 기간, 시간, 기획/운영, 키워드)
+        isTabed={false}
         firsttitle={null}
         bodytitle={null}
-        bodyText={
-          "샤넬의 모든 컬러는 코드로 정의됩니다.\n샤넬 코드 컬러 팝업 스토어에 방문하셔서 나만의 컬러와 코드를 찾아보세요\n\n샤넬 컬러 철학을 보여주는\n색채로 가득 찬 특별한 공간에서\n샤넬 컬러와 코드를 다양하게 경험해보세요.\n\n샤넬의 컬러로 표현되는\n메이크업 터치업 서비스와 특별한 기프트도 놓치지 마세요.\n\n본팝업을 위해 특별 제작된 샤넬 코드 컬러 리미티드 에디션도 만나 보실 수 있습니다.\n\n지금 바로 예약하세요."
-        }
+        bodyText={null}
         textstyle={"center"}
-        width={"60%"}
+        width={"100%"}
         image={ss}
       />
-      <Margin height="20" />
-      {/* <Margin height="20" />
-      <GetMaptext>팝업 요청 현황</GetMaptext>
-      <Margin height="15" />
+      <Margin height="10" />
 
-      <AnimatePresence>
-        <RequestWrapper>
-          <Kakaomap />
-        </RequestWrapper>
-        <Margin height="20" />
-      </AnimatePresence>
+      <Complete>
+        <Typo fontType="title">예약 신청이 완료되었습니다.</Typo>
+      </Complete>
+      <CompleteText>
+        <Typo>
+          아래 예약 내역에 안내된
+          <br /> 예약 시간 3시간 이내에 언제든지 입장하시면 되며, 인원 집중이
+          예상되는 입장 시작 시간보다는 여유를 두고 방문하시기 바랍니다.
+        </Typo>
+        <Typo>
+          마지막 세션(오후 5시 ~ 오후 8시)의 입장은 오후 7시까지 가능합니다.
+        </Typo>
+      </CompleteText>
+      <CompleteDetail>
+        <BookDate>
+          <Typo weight="600">예약일</Typo>
+          <Typo weight="600">시간</Typo>
+        </BookDate>
+        <Time>
+          <Typo>2023년 07월 27일</Typo>
+          <Typo>14:00 ~ 17:00</Typo>
+        </Time>
+      </CompleteDetail>
+      <CompleteAlert>
+        <Typo>
+          • 카카오 알림톡 혹은 문자로 예약 관련 안내 사항이 발송됩니다.
+        </Typo>
+        <Typo>
+          • 카카오 알림톡 혹은 문자로 발송되는 예약 결과를 반드시 확인 해주세요.
+        </Typo>
+        <Typo>
+          • 카카오 알림톡 혹은 문자로 발송되는 예약 결과 메시지 삭제 시 행사
+          참여가 어려울 수 있습니다.
+        </Typo>
+        <Typo>
+          • 본인 명의로 된 카드와 신분증 확인 후 구매 가능하며, 제품 구매 개수에
+          제한이 있을 수 있습니다.
+        </Typo>
+      </CompleteAlert>
 
-      <Choose />
-      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-      <CustomTimeSlot
-        label="시간 선택"
-        selectedTime={selectedTimeSlot}
-        onChange={handleTimeSlotChange}
-      /> */}
-      {/* <div>
-        <button onClick={notify}>Get Toast</button>
-        <Toaster position="bottom-center" />
-      </div> */}
-
-      <Period>
-        <Typo
-          weight="600"
-          style={{ textDecoration: "underline", textUnderlineOffset: 5 }}
-        >
-          기간
-        </Typo>
-        <Typo>2023년 7월 5일(수) ~ 2023년 7월 30일(일)</Typo>
-      </Period>
-      <OperateTime>
-        <Typo
-          weight="600"
-          style={{ textDecoration: "underline", textUnderlineOffset: 5 }}
-        >
-          운영 시간
-        </Typo>
-        <Typo>11:00 ~ 20:00</Typo>
-      </OperateTime>
-      <Space>
-        <Typo
-          weight="600"
-          style={{ textDecoration: "underline", textUnderlineOffset: 5 }}
-        >
-          장소
-        </Typo>
-        <Typo>서울 성동구 아차산로9길 41 레이어 41</Typo>
-      </Space>
-      <Map>
-        <Typo
-          weight="600"
-          style={{ textDecoration: "underline", textUnderlineOffset: 5 }}
-        >
-          지도 보기
-        </Typo>
-        <Kakaomap2 />
-      </Map>
-
-      <Margin height="30" />
       <PopupButton
-        onClick={() => navigate(`/popupbooking/${brandId}/bookinglast`)}
+        onClick={() => {
+          window.scrollTo(0, 0);
+          setIsYes((prev) => !prev);
+        }}
       >
         <Typo size="1.1rem" weight="600" color="white">
-          예약하기
+          확인
         </Typo>
       </PopupButton>
       <Margin height="30" />
       <Footer />
+      
       <Modal
         isOpen={requestbtnclikced && !isYes}
         onRequestClose={false}
@@ -331,4 +293,4 @@ const BookingTwo = () => {
   );
 };
 
-export default BookingTwo;
+export default BookingComplete;

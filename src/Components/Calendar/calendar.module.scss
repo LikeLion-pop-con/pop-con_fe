@@ -15,17 +15,15 @@
   text-align: center;
   pointer-events: none;
   border-bottom: 1.5px solid black;
-  display: none;
 }
 .customHeaderContainer {
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
   align-items: center;
-  background-color: transparent;
   height: 100%;
   margin-top: 8px;
-  background-color: white;
+  background-color: transparent;
 
   .month {
     font-size: 16px;
@@ -33,6 +31,7 @@
     color: black;
     font-family: "Noto Sans KR", serif;
     margin-right: 50px;
+    background-color: transparent;
   }
 
   .year {
@@ -47,14 +46,13 @@
 }
 
 .calenderWrapper {
-  background-color: transparent;
   color: white;
   position: absolute;
   width: 100vw;
-  left: -10vw;
+  left: -4vw;
   // margin-left: -170px;
   @media (max-width: 768px) {
-    left: -37vw;
+    left: -5vw;
   }
   border: none;
 }

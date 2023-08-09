@@ -55,15 +55,22 @@ function Main() {
   const navigate = useNavigate();
   const [scrollDir, setScrollDir] = useState("scrolling down");
   const [hotpopupdata, setHotpopupdata] = useState([]);
+  const [newbrandData, setNewbrandData] = useState([]);
 
   useEffect(() => {
     getData();
+    getNewbrand();
   }, []);
 
   const getData = async () => {
     const hotpopup = await api.getMainHotPopup();
     setHotpopupdata(hotpopup);
-    console.log(hotpopupdata);
+    console.log(hotpopup);
+  };
+  const getNewbrand = async () => {
+    const newbrand = await api.getNewbrand();
+    setNewbrandData(newbrand);
+    console.log(newbrand);
   };
 
   const id = 1;
@@ -125,7 +132,7 @@ function Main() {
             {hotpopupdata?.map((item) => (
               <LargeCard
                 onClick={() => navigate(`/popupInfo/${id}`)}
-                image={item?.popup_image}
+                image={"https://popcon.store" + item?.popup_image}
                 title="NewJeans의 HYPE맑음"
                 popcategory={item?.popup_category}
                 detail="창작 예술"
@@ -160,42 +167,14 @@ function Main() {
         />
         <SliderXwrapper>
           <SliderXItems>
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="로제"
-              category="이쁘다"
-              main="진짜 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/iab_box.jpg"
-              title="iab"
-              category="이쁘다"
-              main="너무 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="블랙핑크"
-              category="진짜 이쁘네 ㅋㅋ"
-              main="제 이상형이에요 사귀자"
-            />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="로제"
-              category="이쁘다"
-              main="진짜 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/iab_box.jpg"
-              title="iab"
-              category="이쁘다"
-              main="너무 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="블랙핑크"
-              category="진짜 이쁘네 ㅋㅋ"
-              main="제 이상형이에요 사귀자"
-            />
+            {newbrandData.map((item) => (
+              <SmallCard
+                image={"https://popcon.store/" + item?.popup_image}
+                title={item?.brand_name}
+                category="이쁘다"
+                main="진짜 이쁘다"
+              />
+            ))}
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="35" />

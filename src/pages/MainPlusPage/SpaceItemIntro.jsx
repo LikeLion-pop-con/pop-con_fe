@@ -31,8 +31,6 @@ const PopupButton = styled.button`
 `;
 const RequestWrapper = styled(motion.div)`
   width: 100%;
-  height: 400px;
-
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -84,7 +82,27 @@ const Img = styled.img`
 const BodyText = styled.p`
   width: 90%;
   margin: 0 5%;
+
   line-height: 1.6;
+`;
+const SpaceText = styled.p`
+  width: 90%;
+`;
+const Limits = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  gap: 20px;
+  margin-top: 30px;
+`;
+const Limit = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  height: 40px;
+  border-radius: 20px;
+  align-items: center;
 `;
 
 function SpaceItemIntro() {
@@ -114,7 +132,7 @@ function SpaceItemIntro() {
             연면적: 8802 m2
           </Typo>
         </Size>
-        <Margin height="10" />
+        <Margin height="25" />
         <Typo style={{ lineHeight: 1.2 }} size="1rem" weight="400">
           압구성 사거리에 위치한 대형 건물로 가시성이 매우 좋고 접근성 또한
           우수한 공간입니다. 또한 3호선 압구정역과 수인분당선 압구정
@@ -132,14 +150,36 @@ function SpaceItemIntro() {
       <Margin height="30" />
       <BodyText>
         <Typo fontType="large">제약 사항</Typo>
+        <Limits>
+          <Limit>
+            <Typo>전기 사용</Typo>
+            <Typo style={{ paddingLeft: 20, color: "#0054D1" }}>가능</Typo>
+          </Limit>
+          <Limit>
+            <Typo>창고 사용</Typo>
+            <Typo style={{ paddingLeft: 20, color: "#0054D1" }}>가능</Typo>
+          </Limit>
+          <Limit>
+            <Typo>화물 E/V</Typo>
+            <Typo style={{ paddingLeft: 20, color: "#0054D1" }}>가능</Typo>
+          </Limit>
+          <Limit>
+            <Typo>주차 지원</Typo>
+            <Typo style={{ paddingLeft: 20, color: "#0054D1" }}>가능</Typo>
+          </Limit>
+        </Limits>
       </BodyText>
       <Margin height="30" />
+
+      <SpaceText>
+        <Typo fontType="large">공간 위치</Typo>
+      </SpaceText>
       <GetMaptext>지도 보기</GetMaptext>
       <Margin height="15" />
       <RequestWrapper>
         <Kakaomap />
       </RequestWrapper>
-      <Margin height="20" />
+      <Margin height="40" />
       <PopupButton
         onClick={() => {
           window.scrollTo(0, 0);
@@ -149,6 +189,7 @@ function SpaceItemIntro() {
           대여하기
         </Typo>
       </PopupButton>
+      <Margin height="40" />
       <Footer />
     </Wrapper>
   );

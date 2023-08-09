@@ -7,10 +7,10 @@ import Popinfodetail from "../../Components/Brand, ArtistCard/Popinfodetail";
 import Typo from "../../assets/Typo";
 import Footer from "../../Components/Footer/Footer";
 import { useEffect } from "react";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import Kakaomap2 from "../../Components/Kakaomap/Kakaomap2";
+import Kakaomap from "../../Components/Kakaomap/Kakaomap";
 import Margin from "../../Components/Margin/Margin";
 import RequestModal from "../../Components/Modal/PopRequestModal";
 import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
@@ -20,7 +20,6 @@ import Choose from "../../Components/Calendar/Choose";
 import Modal from "react-modal";
 import toast, { Toaster } from "react-hot-toast";
 import RequestComplete from "./RequestComplete";
-import ss from "../../assets/Icons/Card/NewJeans.jpg";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -29,7 +28,6 @@ const Wrapper = styled(motion.div)`
   align-items: center;
   overflow-x: hidden;
   width: 100%;
-  position: relative;
 `;
 const PopupinfoImg = styled.div`
   display: flex;
@@ -54,23 +52,6 @@ const PopupButton = styled.button`
   justify-content: center;
   cursor: pointer;
 `;
-const Form = styled.div`
-  width: 90%;
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 10px;
-  justify: center;
-  p {
-    text-align: center;
-  }
-  margin: 25px 0px;
-`;
-
-const Period = styled(Form)``;
-const OperateTime = styled(Form)``;
-const Space = styled(Form)``;
-const Map = styled(Form)``;
-
 const RequestWrapper = styled(motion.div)`
   width: 100%;
   height: 400px;
@@ -120,11 +101,6 @@ const DetailTime = styled.div`
   margin-left: 3%;
   margin-top: 3%;
 `;
-const ImageBox = styled.div`
-  width: 100%;
-  position: absolute;
-  top: 10%;
-`;
 
 const renderImages = (imagePaths) => {
   return imagePaths.map((imagePath, index) => (
@@ -132,9 +108,11 @@ const renderImages = (imagePaths) => {
   ));
 };
 
-const BookingTwo = () => {
+const BookingOne = () => {
   //백엔드에서 받아온 이미지 경로 배열 - 데이터 받아서 변수로 선언해야 할 듯
   const { brandId } = useParams();
+
+  console.log(brandId);
 
   const navigate = useNavigate();
 
@@ -179,17 +157,72 @@ const BookingTwo = () => {
   return (
     <Wrapper>
       <Header left="logo" right={["login", "search"]} />
+      <Cardup
+        name="IAB STUDIO"
+        backimageUrl={img1}
+        CircleimageUrl="img/Artistimg/iabCircleimg.png"
+      />
+      <Carddown2
+        toptext="빈지노의 새로운 노비츠키 한정판 팝업 스토어"
+        bodytext="10년 만에 세상으로 모습을 들어낸 빈지노가 낸 음반 노비츠키를 한정판으로 판매할 예정이다. 앨범 발매기념 팝업 스토어는 3일 간 운영되고 집계된 의결을 바탕으로 지역을 선택하여 열릴 예정이다."
+      />
       <Popinfodetail // 팝업의 본문 내용 컴포넌트 (운영 기간, 시간, 기획/운영, 키워드)
-        firsttitle={null}
-        bodytitle={null}
+        isTabed={false}
+        firsttitle={"팝업 소개"}
+        bodytitle={[
+          "• 운영 기간: ",
+          "• 운영 시간: ",
+          "• 기획/운영: ",
+          "• 소개: ",
+          "• 키워드: ",
+          "• 자료 출처: ",
+        ]}
         bodyText={
-          "샤넬의 모든 컬러는 코드로 정의됩니다.\n샤넬 코드 컬러 팝업 스토어에 방문하셔서 나만의 컬러와 코드를 찾아보세요\n\n샤넬 컬러 철학을 보여주는\n색채로 가득 찬 특별한 공간에서\n샤넬 컬러와 코드를 다양하게 경험해보세요.\n\n샤넬의 컬러로 표현되는\n메이크업 터치업 서비스와 특별한 기프트도 놓치지 마세요.\n\n본팝업을 위해 특별 제작된 샤넬 코드 컬러 리미티드 에디션도 만나 보실 수 있습니다.\n\n지금 바로 예약하세요."
+          "2023.07.06(목) ~ 2023.07.12 (수)\n행사 종료\n아이앱 스튜디오, 더현대 서울IAB STUDIO POP-UP STORE at ‘THE HYUNDAI SEOUL' 아이앱 스튜디오가 여의도에 위치한 ‘더현대 서울’에서 팝업 스토어를 진행합니다. 오프라인으로 열리는 이번 팝업 스토어에서는 새롭게 선보이는 의류들과 아이웨어 라인이 공개되며, 팝업 품목 리스트와 구매 방식에 관련된 정보는 추후 공개될 예정입니다.\niabstudiopop-upstore, iabstudiopop-upstore, iabstudio, 아이앱스튜디오, 더현대서울, 아이앱스튜디오팝업,팝업, 팝업스토어, 더현대, 서울팝업, 서울가볼만한곳, 브랜드팝업, popup, popupstore\n아이앱 스튜디오 인스타그램 공식 계정"
         }
-        textstyle={"center"}
-        width={"60%"}
-        image={ss}
       />
       <Margin height="20" />
+
+      <PopupinfoImg>{renderImages(imagePathsFromBackend)}</PopupinfoImg>
+
+      <Margin height="30" />
+      <PopupSpace>
+        <Typo style={{ width: "100%" }} fontType="large">
+          팝업 장소
+        </Typo>
+        <Margin height="20" />
+        <Detail>
+          <Typo weight="600" style={{ paddingRight: 10 }}>
+            • 운영 시간:{" "}
+          </Typo>
+          <Typo weight="400">12:00 ~ 18:00</Typo>
+        </Detail>
+        <Detail>
+          <Typo weight="600" style={{ paddingRight: 10 }}>
+            • 기획/운영:{" "}
+          </Typo>
+          <Typo weight="400">아이앱 스튜디오, Vunque</Typo>
+        </Detail>
+        <Typo style={{ padding: "10px 0px", lineHeight: 1.2 }}>
+          많은 분들의 성원에 힘입어 이번 팝업 장소는 다음과 같이 선정되었습니다!
+        </Typo>
+
+        <DetailTime>
+          <div>
+            <Typo>• 2023.07.06(목) ~ 2023.07.12(수)</Typo>
+            <Typo style={{ paddingLeft: 5 }}>
+              17,yeonmujang-gil, Seongdong-gu, Seoul
+            </Typo>
+          </div>
+          <div>
+            <Typo>• 2023.07.06(목) ~ 2023.07.12(수)</Typo>
+            <Typo style={{ paddingLeft: 5 }}>
+              17,yeonmujang-gil, Seongdong-gu, Seoul
+            </Typo>
+          </div>
+        </DetailTime>
+      </PopupSpace>
+
       {/* <Margin height="20" />
       <GetMaptext>팝업 요청 현황</GetMaptext>
       <Margin height="15" />
@@ -208,57 +241,21 @@ const BookingTwo = () => {
         selectedTime={selectedTimeSlot}
         onChange={handleTimeSlotChange}
       /> */}
+
       {/* <div>
         <button onClick={notify}>Get Toast</button>
         <Toaster position="bottom-center" />
       </div> */}
 
-      <Period>
-        <Typo
-          weight="600"
-          style={{ textDecoration: "underline", textUnderlineOffset: 5 }}
-        >
-          기간
-        </Typo>
-        <Typo>2023년 7월 5일(수) ~ 2023년 7월 30일(일)</Typo>
-      </Period>
-      <OperateTime>
-        <Typo
-          weight="600"
-          style={{ textDecoration: "underline", textUnderlineOffset: 5 }}
-        >
-          운영 시간
-        </Typo>
-        <Typo>11:00 ~ 20:00</Typo>
-      </OperateTime>
-      <Space>
-        <Typo
-          weight="600"
-          style={{ textDecoration: "underline", textUnderlineOffset: 5 }}
-        >
-          장소
-        </Typo>
-        <Typo>서울 성동구 아차산로9길 41 레이어 41</Typo>
-      </Space>
-      <Map>
-        <Typo
-          weight="600"
-          style={{ textDecoration: "underline", textUnderlineOffset: 5 }}
-        >
-          지도 보기
-        </Typo>
-        <Kakaomap2 />
-      </Map>
-
       <Margin height="30" />
-      <PopupButton
-        onClick={() => navigate(`/popupbooking/${brandId}/bookinglast`)}
-      >
+      <PopupButton onClick={() => navigate("bookingtwo")}>
         <Typo size="1.1rem" weight="600" color="white">
           예약하기
         </Typo>
       </PopupButton>
+
       <Margin height="30" />
+
       <Footer />
       <Modal
         isOpen={requestbtnclikced && !isYes}
@@ -331,4 +328,4 @@ const BookingTwo = () => {
   );
 };
 
-export default BookingTwo;
+export default BookingOne;

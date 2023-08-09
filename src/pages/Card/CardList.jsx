@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import Header from '../../Components/Header/Header';
-import Modal from 'react-modal';
+import React, { useState } from "react";
+import styled from "styled-components";
+import Header from "../../Components/Header/Header";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import Margin from "../../Components/Margin/Margin";
+import { useNavigate } from "react-router-dom";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
 `;
 
 const MYCardList = styled.div`
@@ -19,7 +24,11 @@ const MYCardList = styled.div`
   flex-direction: column;
   justify-content: space-around;
   border: 1px solid lightgray;
-  background: linear-gradient(180deg, rgba(128, 128, 128, 0.3) 50%, transparent 50%);
+  background: linear-gradient(
+    180deg,
+    rgba(128, 128, 128, 0.3) 50%,
+    transparent 50%
+  );
 `;
 
 const CardCom = styled.div``;
@@ -28,18 +37,20 @@ const CardNum = styled.div``;
 
 const AddButton = styled.div`
   width: 100%;
-  height: 100px;
-  background-color: white;
+  height: 150px;
+
   margin-top: 40px;
   text-align: center;
   cursor: pointer;
 `;
 
 const ButtonBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 20px;
+  height: 60%;
 `;
 
 const AddButton1 = styled.div`
@@ -55,60 +66,53 @@ const AddButton1 = styled.div`
   margin: 5px;
   justify-content: center;
 `;
-  
+const Toast = styled(motion.div)`
+  width: 100%;
+  border-bottom: none;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  background-color: white;
+  height: 40vh;
+  z-index: 10;
+`;
+
 const CardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAddButtonClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const navigate = useNavigate();
 
   return (
-    <Wrapper>
+    <Wrapper
+      animate={{
+        backgroundColor: isModalOpen
+          ? "rgba(0,0,0,0.5)"
+          : "rgba(255,255,255,1)",
+      }}
+      transition={{ type: "tween", duration: 0.3 }}
+    >
       <Header left="logo" right={["login", "search"]} />
+      <Margin height="100" />
       <MYCardList>
         <CardCom>국민카드</CardCom>
-        <CardNum>0000-0000-0000-0000-0000</CardNum>
+        <CardNum>0000-0000-0000-0000</CardNum>
       </MYCardList>
-      <AddButton onClick={handleAddButtonClick}>
+      <AddButton onClick={() => setIsModalOpen((prev) => !prev)}>
         계좌 / 카드 등록하기
       </AddButton>
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        contentLabel="Additional Content Modal"
-        style={{
-            overlay: {
-              backgroundColor: "rgba(0,0,0,0.3)",
-              width: "100vw",
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            },
-            content: {
-              position: "fixed",
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
-              margin: "auto auto",
-              width: "325px",
-              height: "200px",
-              borderRadius: "20px",
-            },
-          }}
-      >
-        <ButtonBox>
-          <AddButton1>신용/체크카드</AddButton1>
-          <AddButton1>은행계좌</AddButton1>
-        </ButtonBox>
-        <button onClick={closeModal}>Close</button>
-      </Modal>
+      <Margin height="40" />
+      <AnimatePresence initial={false}>
+        <Toast
+          animate={{ y: isModalOpen ? 0 : 300 }}
+          transition={{ type: "tween" }}
+        >
+          <ButtonBox>
+            <AddButton1 onClick={() => navigate("addcard")}>
+              신용/체크카드
+            </AddButton1>
+            <AddButton1>은행계좌</AddButton1>
+          </ButtonBox>
+        </Toast>
+      </AnimatePresence>
     </Wrapper>
   );
 };
