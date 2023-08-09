@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
+import Typo from "../../assets/Typo";
 const Container = styled.div`
-  background-color: #d7ffcc;
+  background-color: transparent;
   border-radius: 10px;
 `;
 
 const Form = styled.form``;
 const FormCheck = styled.div``;
-const Input = styled.input``;
+const Input = styled.input`
+  margin-left:20px`;
 const FormGroup = styled.div``;
 const Btn = styled.button`
-  width: 50px;
-  height: 20px;
-  font-size: 10px;
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
   border-radius: 20px;
+  border: none;
   margin-top: 5px;
-  margin-left: 3px;
-  background-color: #fff;
+  background-color:#D9D9D9;
   color: #333;
   :hover {
     background-color: #333;
@@ -82,7 +84,9 @@ export default class CheckBox extends Component {
           </FormCheck>
 
           <FormGroup>
-            <Btn>Submit</Btn>
+          <Typo size="1rem" weight="500">
+            <Btn>제출</Btn>
+          </Typo>
           </FormGroup>
         </Form>
       </Container>

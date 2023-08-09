@@ -37,7 +37,13 @@ const GlobalStyle = createGlobalStyle`
   html, body, #root {
       width: 100%;
       min-height: 100vh;
-      background-color: ${({ theme }) => theme.colors.lightgray};
+      //background-color: ${({ theme }) => theme.colors.lightgray};
+      background-image: url('/img/LogoBack5.jpg');
+      //background-image: url(" ${(props) => props.image} ");
+      background-size: auto;
+      //background-position: fixed;
+      background-repeat: repeat;
+      background-color: none;
       justify-content: center;
       display: flex;
       //font-family: 'Noto Sans KR', sans-serif;
@@ -82,13 +88,7 @@ const GlobalStyle = createGlobalStyle`
           .react-datepicker__day-names {
               display: flex;
               justify-content: center;
-              align-items: center;
-              height: 40px;
-              .react-datepicker__day-name {
-                color: #5b5b5b;
-                width: 36px;
-              }
-            }
+          
           .react-datepicker__header {
             background-color: white;
             border-bottom: none;
@@ -100,6 +100,7 @@ const GlobalStyle = createGlobalStyle`
           }
         }
       }
+    }
 
   @font-face {
     font-family: 'Noto Sans KR', sans-serif;
