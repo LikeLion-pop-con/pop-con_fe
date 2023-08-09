@@ -50,6 +50,7 @@ import ChatPage from "./pages/Chatbot/Chatpage";
 import Kakaomap2 from "./Components/Kakaomap/Kakaomap2";
 import RequestComplete from "./pages/PopupInfo/RequestComplete";
 import PopupBooking from "./pages/PopupInfo/PopupBooking";
+import CardList from "./pages/Card/CardList";
 
 function Router() {
   return (
@@ -120,6 +121,8 @@ function Router() {
             <Route path="/popularpopup" element={<Popularpopup />} />
             <Route path="/popuphere" element={<PopupHere />} />
             <Route path="/maptest" element={<Kakaomap2 />}></Route>
+
+            <Route path="/CardList" element={<CardList />}></Route>
           </Route>
         </Routes>
       </SearchProvider>
