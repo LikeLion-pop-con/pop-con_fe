@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   height: 260px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;
 
@@ -20,6 +20,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   position: relative;
   margin-bottom: -85px;
+  top: 70px; 
 `;
 const Image = styled.img`
   width: 200px;
@@ -63,9 +64,7 @@ const LogoutButton = styled.button`
   display: flex;
   align-self: flex-end;
   cursor: pointer;
-  position: absolute;
-  top: 350px;
-  right: 10px;
+
 `;
 const MyINFO = styled.button`
   background-color: transparent;
@@ -76,9 +75,13 @@ const MyINFO = styled.button`
   display: flex;
   align-self: flex-end;
   cursor: pointer;
-  position: absolute;
-  top: 350px;
-  right: 80px;
+
+`;
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-self: flex-end;
+  margin-top: 250px; /* 원하는 여백 조정 */
 `;
 const Mypage = () => {
   const navigate = useNavigate();
@@ -112,12 +115,14 @@ const Mypage = () => {
             )}
           </Name>
         </Container>
-        {isLoggedIn && (
-          <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
-        )}
-        {isLoggedIn && (
-          <MyINFO onClick={() => navigate("/Mypage/Myinfo")}>내 정보</MyINFO>
-        )}
+        <ButtonsWrapper> 
+      {isLoggedIn && (
+        <MyINFO onClick={() => navigate("/Mypage/Myinfo")}>내 정보</MyINFO>
+      )}
+      {isLoggedIn && (
+        <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+      )}
+    </ButtonsWrapper>
       </Wrapper>
       <Detailbox>
         <TextLink>
