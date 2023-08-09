@@ -49,6 +49,7 @@ import BrandPost from "./pages/BrandIntroduce/BrandPost";
 import ChatPage from "./pages/Chatbot/Chatpage";
 import Kakaomap2 from "./Components/Kakaomap/Kakaomap2";
 import RequestComplete from "./pages/PopupInfo/RequestComplete";
+import PopupBooking from "./pages/PopupInfo/PopupBooking";
 
 function Router() {
   return (
@@ -109,9 +110,10 @@ function Router() {
             <Route path="/postList" element={<PostList />} />
             <Route path="/popupPost" element={<PopupPost />} />
             <Route path="/popupinfo/:brandId" element={<PopupInfo />} />
+
             <Route
-              path="/popupinfo/:brandId/complete"
-              element={<RequestComplete />}
+              path="/popupbooking/:brandId"
+              element={<PopupBooking />}
             ></Route>
 
             <Route path="/Chatbot" element={<ChatPage />} />

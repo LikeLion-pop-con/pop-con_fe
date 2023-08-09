@@ -5,12 +5,13 @@ import Typo from "../../assets/Typo";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { isPopupRequestNo, isPopupRequestYes } from "../../atom";
 import { motion } from "framer-motion";
+import Modal from "react-modal";
 
 const Wrapper = styled(motion.div)`
-  width: 330px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   background-color: ${(props) => props.theme.colors.white};
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3); */
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -23,7 +24,6 @@ const Header = styled.div`
 `;
 const Icon = styled.img`
   cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다
-  padding: 10px;
 `;
 const TextWrap = styled.div`
   margin-top: 35px;
@@ -35,7 +35,7 @@ const Confirm = styled.div`
   margin-top: 40px;
 `;
 
-function RequestModal() {
+function RequestModal({ setIsYes }) {
   const navigate = useNavigate();
 
   const [isYesClicked, setYesClicked] = useRecoilState(isPopupRequestYes);
@@ -52,30 +52,30 @@ function RequestModal() {
       <Header>
         <Icon
           src={logo}
-          width="30"
-          height="30"
+          width="35"
+          height="35"
           alt="logo"
           onClick={() => navigate("/AdminMain")}
         />
       </Header>
       <TextWrap>
-        <Typo style={{ display: "inline" }} size="18px" weight="400">
+        <Typo style={{ display: "inline" }} size="20px" weight="400">
           가입하신 주소로&nbsp;&nbsp;
         </Typo>
         <Typo
           style={{ display: "inline", color: "#ec7538" }}
-          size="20px"
+          size="22px"
           weight="600"
         >
           팝업 요청&nbsp;
         </Typo>
-        <Typo style={{ display: "inline" }} size="18px" weight="400">
+        <Typo style={{ display: "inline" }} size="20px" weight="400">
           을 할까요?
         </Typo>
       </TextWrap>
       <Confirm>
         <Typo
-          onClick={() => navigate("complete")}
+          onClick={() => setIsYes((prev) => !prev)}
           width="100"
           style={{
             textAlign: "center",
@@ -83,7 +83,7 @@ function RequestModal() {
             padding: 7,
             cursor: "pointer",
           }}
-          fontType="title"
+          fontType="large"
         >
           Yes
         </Typo>
@@ -96,7 +96,7 @@ function RequestModal() {
             padding: 7,
             cursor: "pointer",
           }}
-          fontType="title"
+          fontType="large"
         >
           No
         </Typo>

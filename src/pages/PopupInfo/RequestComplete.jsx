@@ -2,6 +2,9 @@ import styled from "styled-components";
 import PopupCard from "../../Components/Card/PopupCard";
 import { motion } from "framer-motion";
 import PopupCardimg1 from "../../assets/Icons/Card/PopupCardimg1.png";
+import toast, { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Overlay = styled.div`
   width: 100%;
@@ -9,7 +12,6 @@ const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
 `;
 const popupcardvariants = {
   hidden: { scale: 0 },
@@ -17,22 +19,48 @@ const popupcardvariants = {
     scale: 1,
     transition: {
       type: "spring",
-      damping: 5,
+      damping: 10,
       delay: 0.5,
     },
   },
 };
 
 function RequestComplete() {
+  const complete = () =>
+    toast.success(
+      (t) => (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <p>팝업 신청이 완료되었습니다 !!</p>
+        </div>
+      ),
+      {
+        duration: 3000,
+        style: {
+          marginTop: 50,
+          width: "20%",
+        },
+      }
+    );
+
+  useEffect(() => {
+    // setTimeout(() => complete(), 1000);
+  }, []);
+
   return (
-    <Overlay>
+    <>
       <motion.div variants={popupcardvariants} initial="hidden" animate="load">
         <PopupCard
           image={PopupCardimg1}
           title={"IAB STUDIO 팝업 요청되었습니다."}
         />
       </motion.div>
-    </Overlay>
+    </>
   );
 }
 export default RequestComplete;
