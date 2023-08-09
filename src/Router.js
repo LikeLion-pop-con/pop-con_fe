@@ -55,6 +55,7 @@ import BookingTwo from "./pages/PopupInfo/BookingTwo";
 import BookingLast from "./pages/PopupInfo/BookingLast";
 import BookingComplete from "./pages/PopupInfo/BookingComplete";
 import CardList from "./pages/Card/CardList";
+import AddCard from "./pages/Card/AddCard";
 
 function Router() {
   return (
@@ -139,6 +140,7 @@ function Router() {
             <Route path="/maptest" element={<Kakaomap2 />}></Route>
 
             <Route path="/CardList" element={<CardList />}></Route>
+            <Route path="/CardList/AddCard" element={<AddCard />}></Route>
           </Route>
         </Routes>
       </SearchProvider>
