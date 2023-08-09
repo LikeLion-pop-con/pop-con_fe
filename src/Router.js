@@ -54,6 +54,7 @@ import BookingOne from "./pages/PopupInfo/BookingOne";
 import BookingTwo from "./pages/PopupInfo/BookingTwo";
 import BookingLast from "./pages/PopupInfo/BookingLast";
 import BookingComplete from "./pages/PopupInfo/BookingComplete";
+import CardList from "./pages/Card/CardList";
 
 function Router() {
   return (
@@ -136,6 +137,8 @@ function Router() {
             <Route path="/popularpopup" element={<Popularpopup />} />
             <Route path="/popuphere" element={<PopupHere />} />
             <Route path="/maptest" element={<Kakaomap2 />}></Route>
+
+            <Route path="/CardList" element={<CardList />}></Route>
           </Route>
         </Routes>
       </SearchProvider>
