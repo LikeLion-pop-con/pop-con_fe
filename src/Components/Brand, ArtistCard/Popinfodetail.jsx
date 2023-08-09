@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Typo from "../../assets/Typo";
 import Horizon from "../Horizon/Horizon";
@@ -25,6 +25,14 @@ const BodyText = styled.p`
   width: 90%;
   margin: 0 5%;
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: ${(props) =>
+    props.textstyle === "center" ? "center" : "flex-start"};
+`;
+const Image = styled.div`
+  width: 100%;
+  text-align: center;
 `;
 
 const TextWrapper = styled.div`
@@ -37,8 +45,19 @@ const TextWrap = styled.span`
   margin-right: 5px;
 `;
 
-const Popinfodetail = ({ bodyText }) => {
-  const contentOrder = bodyText.split("\n");
+const Popinfodetail = ({
+  firsttitle,
+  bodytitle,
+  bodyText,
+  textstyle,
+  width,
+  image,
+  isTabed,
+}) => {
+  useEffect(() => {
+    return () => console.log("it is over"); 
+  }, []);
+  const contentOrder = bodyText?.split("\n");
 
   const contentTitle = [
     "• 운영 기간: ",
@@ -54,24 +73,47 @@ const Popinfodetail = ({ bodyText }) => {
   return (
     <>
       <Wrapper>
-        <Typo size="1.1rem" weight="600">
-          <InfoText>팝업 정보</InfoText>
-        </Typo>
-        <Horizon width="90%" />
-        <TextWrapper>
-          <div>
-            <TitleText>
-              <Typo size="1.3rem" weight="600">
-                팝업 소개
-              </Typo>
-            </TitleText>
-          </div>
+        {isTabed && (
+          <>
+            <Typo size="1.1rem" weight="600">
+              <InfoText>팝업 정보</InfoText>
+            </Typo>
+            <Horizon width="90%" />
+          </>
+        )}
 
-          <BodyText>
-            {contentOrder.map((text, index) => (
+        <TextWrapper>
+          {firsttitle ? (
+            <div>
+              <TitleText>
+                <Typo size="1.3rem" weight="600">
+                  팝업 소개
+                </Typo>
+              </TitleText>
+            </div>
+          ) : (
+            <>
+              <Margin height="30" />
+              <Image>
+                <img src={image} width="300" height="400"></img>
+              </Image>
+              <Margin height="30" />
+            </>
+          )}
+
+          <BodyText textstyle={textstyle}>
+            {contentOrder?.map((text, index) => (
               <>
-                <Typo style={{ lineHeight: 1.2 }} size="1rem" weight="400">
-                  <TextWrap>{contentTitle[index]}</TextWrap>
+                <Typo
+                  style={{
+                    lineHeight: 1.2,
+                    textAlign: textstyle === "center" ? "center" : "normal",
+                    width: width,
+                  }}
+                  size="1rem"
+                  weight="400"
+                >
+                  {bodytitle && <TextWrap>{bodytitle[index]}</TextWrap>}
                   {text}
                 </Typo>
                 <Margin height="10" />

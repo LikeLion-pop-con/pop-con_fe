@@ -11,7 +11,7 @@ const MapWrapper = styled.div`
 
 const Map = styled.div`
   width: 80%;
-  height: 400px;
+  height: 200px;
   border-radius: 30px;
 `;
 
