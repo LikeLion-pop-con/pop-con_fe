@@ -1,10 +1,10 @@
 import React from "react";
 import { styled } from "styled-components";
 import Typo from "../../assets/Typo";
-import { BsHeart } from "react-icons/bs";
+import { BsHeart,BsHeartFill } from "react-icons/bs";
 import { BsFillShareFill } from "react-icons/bs";
+import { useState } from "react";
 import Margin from "../Margin/Margin";
-
 const Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -46,7 +46,7 @@ const Button = styled.button`
   align-items: center;
 `;
 
-const Carddown2 = ({ toptext, bodytext }) => {
+const Carddown2 = ({ toptext, bodytext, isLiked, setIsLiked }) => {
   return (
     <>
       <Wrapper>
@@ -61,12 +61,12 @@ const Carddown2 = ({ toptext, bodytext }) => {
           </Typo>
         </BodytextWrapper>
         <ButtonWrapper>
-          <Button>
-            <BsHeart size={20} />
+          <Button onClick={() => setIsLiked(prev => !prev)}>
+          {isLiked ? <BsHeartFill size={20} color="red" /> : <BsHeart size={20} />}
           </Button>
           <Button>
             <BsFillShareFill size={20} />
-          </Button>
+          </Button> 
         </ButtonWrapper>
       </Wrapper>
     </>
