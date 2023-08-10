@@ -1,0 +1,53 @@
+/* input 기본 스타일 초기화 */
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+  }
+  
+  /* IE10 이상에서 input box 에 추가된 지우기 버튼 제거 */
+  input::-ms-clear {
+    display: none;
+  }
+  
+  /* input type number 에서 화살표 제거 */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  .main {
+    text-align: center;
+    min-height: 100vh;
+    background-color: #ec7538;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .inputter {
+    margin: 100px auto;
+    width: 420px;
+    height: 360px;
+    background-color: #ecf0f1;
+  }
+  
+  .line {
+    position: relative;
+    display: block;
+    line-height: 90px;
+    height: 90px;
+  }
+  
+  .num-button {
+    vertical-align: middle;
+    width: 33.3%;
+    height: 100%;
+  }

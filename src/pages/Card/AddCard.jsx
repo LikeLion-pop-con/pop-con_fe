@@ -268,10 +268,6 @@ const AddCard = () => {
   const [isCVC, setIsCVC] = useState(false);
   const [ispwd, setIspwd] = useState(false);
 
-  useEffect(() => {
-    inputRefs[0].current.value = "1111";
-  }, []);
-
   const handleInputChange = (index, event) => {
     const { value } = event.target;
 
@@ -433,7 +429,7 @@ const AddCard = () => {
             </InputContainer>
           </PwdText>
         )}
-        <NextButton onClick={() => navigate()}>다음</NextButton>
+        <NextButton onClick={() => navigate("/CardList/AddCard2")}>다음</NextButton>
       </Wrapper>
     </>
   );

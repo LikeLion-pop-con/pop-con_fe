@@ -156,7 +156,7 @@ const CardList = () => {
       <Margin height="40" />
       <AnimatePresence initial={false}>
         <Toast
-          animate={{ y: isModalOpen ? "20vh" : "100vh" }}
+          animate={{ y: isModalOpen ? "5vh" : "100vh" }}
           transition={{ type: "tween" }}
         >
           <ButtonBox>

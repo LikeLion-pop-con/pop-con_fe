@@ -14,9 +14,14 @@ const Text1 = styled.div`
   margin-top: 50px;
   margin-bottom: 50px;
 `;
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 const NextButton = styled.button`
   width: 150px;
   height: 50px;
+  margin: 20px;
   margin-top: 100px;
   background-color: #ec7538;
   border-radius: 15px;
@@ -29,18 +34,14 @@ const NextButton = styled.button`
   font-size: 1.2rem;
   color: white;
 `;
-const ButtonBox = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const AddAccount3 = () => {
+const AddCard2 = () => {
   const navigate = useNavigate();
 
   return (
     <>
       <Header left="logo" right={["login", "search"]} />
-      <Text>계좌등록이 완료되었습니다!</Text>
-      <Text1>등록하신 계좌를 이용해 결제해보세요!</Text1>
+      <Text>카드등록이 완료되었습니다!</Text>
+      <Text1>등록하신 카드를 이용해 결제해보세요!</Text1>
       <ButtonBox>
         <NextButton onClick={() => navigate("/CardList")}>내 결제수단</NextButton>
         <NextButton onClick={() => navigate("/main")}>홈</NextButton>
@@ -49,4 +50,4 @@ const AddAccount3 = () => {
   );
 };
 
-export default AddAccount3;
+export default AddCard2;
