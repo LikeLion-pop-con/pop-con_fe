@@ -2,7 +2,6 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import ChatBot, { triggerNextStep } from "react-simple-chatbot";
 import { AiOutlineClose } from "react-icons/ai";
-import CheckBox from "./Checkbox.js";
 import ChatbotModal from "react-modal";
 import { useRecoilState } from "recoil";
 import { isBotClicked } from "../../atom";
@@ -141,17 +140,6 @@ const steps = [
   },
   {
     id: "25",
-    message: "마지막으로 저의 쳇봇 서비스를 평가 해주세요",
-    trigger: "26",
-  },
-  {
-    id: "26",
-    component: <CheckBox />,
-    waitAction: true,
-    trigger: "27",
-  },
-  {
-    id: "27",
     message: "감사합니다.",
     end: true,
   },

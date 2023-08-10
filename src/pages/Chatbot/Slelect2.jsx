@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {triggerNextStep} from 'react-simple-chatbot';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { isBotClicked } from "../../atom";
+import { useRecoilState } from 'recoil';
 const AskButton = styled.button`
   width: 9rem;
   height: 3rem;
@@ -14,12 +16,13 @@ const AskButton = styled.button`
 `;
 const Input4 = ({ triggerNextStep }) => {
   const navigate = useNavigate();
-  const [isChatbotOpen, setIsChatbotOpen] = useState(true); // Chatbot 상태 추가
+ const [isClicked, setIsClicked] = useRecoilState(isBotClicked); 
 
   const handleButtonClick = () => {
-    navigate(`/CardList`);
-    setIsChatbotOpen(false);
+    navigate(`/Password`);
+    setIsClicked(false); 
   };
+
 
   const handleButtonClick1 = () => {
     triggerNextStep();
