@@ -56,6 +56,9 @@ import BookingLast from "./pages/PopupInfo/BookingLast";
 import BookingComplete from "./pages/PopupInfo/BookingComplete";
 import CardList from "./pages/Card/CardList";
 import AddCard from "./pages/Card/AddCard";
+import AddAccount from "./pages/Card/AddAccount";
+import AddAccount2 from "./pages/Card/AddAccount2";
+import AddAccount3 from "./pages/Card/AddAccount3";
 
 function Router() {
   return (
@@ -138,9 +141,12 @@ function Router() {
             <Route path="/popularpopup" element={<Popularpopup />} />
             <Route path="/popuphere" element={<PopupHere />} />
             <Route path="/maptest" element={<Kakaomap2 />}></Route>
-
+            
             <Route path="/CardList" element={<CardList />}></Route>
             <Route path="/CardList/AddCard" element={<AddCard />}></Route>
+            <Route path="/CardList/AddAccount" element={<AddAccount />}></Route>
+            <Route path="/CardList/AddAccount2/:bankName" element={<AddAccount2 />}></Route>
+            <Route path="/CardList/AddAccount3" element={<AddAccount3 />}></Route>
           </Route>
         </Routes>
       </SearchProvider>

@@ -17,7 +17,7 @@ const Input4 = ({ triggerNextStep }) => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(true); // Chatbot 상태 추가
 
   const handleButtonClick = () => {
-    navigate(`/Card`);
+    navigate(`/CardList`);
     setIsChatbotOpen(false);
   };
 
