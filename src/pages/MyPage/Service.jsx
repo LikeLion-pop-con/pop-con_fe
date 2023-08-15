@@ -108,6 +108,9 @@ const Service = () => {
         break;
     }
   };
+  const handleButtonClick = () => {
+    window.open("http://pf.kakao.com/_xlxixmxhG", "_blank");
+  };
   return (
     <>
       <Header left="logo" right={["login", "search"]} />
@@ -228,9 +231,16 @@ const Service = () => {
               문제를 해결하지 못하셨나요?
             </Typo>
           </Title>
-          <img alt="button" src={Button1} width="90%" />
+          <img
+            alt="button"
+            src={Button1}
+            width="90%"
+            onClick={handleButtonClick}
+          />
           <Margin height="10" />
-          <img alt="button" src={Button2} width="90%" />
+          <a href="tel:010-8869-2796">
+            <img alt="button" src={Button2} width="90%" />
+          </a>
           <Margin height="10" />
         </BOX>
       </Wrapper>
