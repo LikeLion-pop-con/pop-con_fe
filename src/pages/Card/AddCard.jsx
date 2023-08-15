@@ -318,14 +318,13 @@ const AddCard = () => {
   };
 
   const navigate = useNavigate();
-  const id = localStorage.getItem('Pk');
-  const pw = localStorage.getItem('account_password');
+  const id = localStorage.getItem("Pk");
+  const pw = localStorage.getItem("account_password");
   const [user_pk, setUserPk] = useState(id);
   const [account_password, setAccountPassword] = useState(pw);
   const { bankName } = useParams();
   const [bank, setBank] = useState(bankName);
   const [bank_account_number, setBankAccountNumber] = useState(null);
-
 
   const handleNextClick = async () => {
     try {

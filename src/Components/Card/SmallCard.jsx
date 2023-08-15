@@ -27,10 +27,11 @@ const Thumbnail = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  //background-image: url('/Cardrose.jpg');
-  background-image: url(" ${(props) => props.image} ");
+
+  background-image: url(${(props) => props.image});
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center center;
   border-radius: 16px;
   height: 160px;
   width: 100%;
@@ -40,27 +41,39 @@ const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
+  max-height: 70px;
   margin-top: 10px;
   margin-bottom: 5px;
   margin-left: 5px;
   margin-right: 15px;
 `;
 
-const SmallCard = ({ image, title, category, main, onClick}) => {
+const SmallCard = ({ image, title, category, main, onClick }) => {
   const navigate = useNavigate();
   return (
     <CardBlock>
       <CardEach onClick={onClick}>
         <Thumbnail image={image} />
         <TextWrapper>
-          <Typo size="0.9rem" weight='400'>{title}</Typo>
+          <Typo size="0.9rem" weight="600">
+            {title}
+          </Typo>
           <Margin height="6" />
           <Typo size="0.7rem" color="gray">
             {category}
           </Typo>
           <Margin height="4" />
-          <Typo size="0.7rem" color="gray">
-            {main}
+          <Typo size="0.8rem">{main.slice(0, 14)}</Typo>
+          <Typo
+            size="0.8rem"
+            style={{
+              width: "150px",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {main.slice(14)}
           </Typo>
         </TextWrapper>
       </CardEach>

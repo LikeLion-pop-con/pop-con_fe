@@ -81,7 +81,7 @@ const ButtonBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: 20px;
   height: 60%;
 `;
 const Img1 = styled.img`

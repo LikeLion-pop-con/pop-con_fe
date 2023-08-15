@@ -9,6 +9,8 @@ const StyledTypo = styled.p`
     props.color ? props.theme.colors[props.color] : props.theme.colors.black};
   line-height: ${(props) => props.lineheight || 1};
   ${(props) => props.fontType && props.theme.font[props.fontType]};
+
+  white-space: pre-line;
 `;
 const Typo = (props) => <StyledTypo {...props}>{props.children}</StyledTypo>;
 

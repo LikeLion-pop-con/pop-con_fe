@@ -26,11 +26,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  background-color: whitesmoke;
 `;
 const SliderXwrapper = styled.div`
   position: relative;
   overflow-x: scroll;
-  min-height: 250px;
+  min-height: 270px;
   width: 100%;
   scroll-snap-type: x mandatory;
 `;
@@ -69,6 +70,15 @@ function Main() {
     }
   }, []);
 
+  const compareDate = (item) => {
+    const arr = item?.brand_borndate.split("-");
+    let sum;
+    for (let i = 0; i < arr.length; ++i) {
+      sum += parseInt(arr[i]);
+    }
+    return sum;
+  };
+
   const getCardinfo = async () => {
     try {
       const pk = localStorage.getItem("Pk");
@@ -79,13 +89,13 @@ function Main() {
         localStorage.setItem("account_password", cardinfo[0].account_password);
       } else {
         console.log("Card info is empty.");
-        localStorage.removeItem('account_password');
+        localStorage.removeItem("account_password");
       }
     } catch (error) {
       console.error("An error occurred:", error);
     }
   };
-  
+
   const getData = async () => {
     const hotpopup = await api.getMainHotPopup();
     setHotpopupdata(hotpopup);
@@ -155,7 +165,7 @@ function Main() {
           <SliderXItems>
             {hotpopupdata?.map((item) => (
               <LargeCard
-                onClick={() => navigate(`/popupInfo/${id}`)}
+                onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
                 image={"https://popcon.store" + item?.popup_image}
                 title="NewJeans의 HYPE맑음"
                 popcategory={item?.popup_category}
@@ -191,14 +201,23 @@ function Main() {
         />
         <SliderXwrapper>
           <SliderXItems>
-            {newbrandData.map((item) => (
-              <SmallCard
-                image={"https://popcon.store/" + item?.popup_image}
-                title={item?.brand_name}
-                category="이쁘다"
-                main="진짜 이쁘다"
-              />
-            ))}
+            {newbrandData
+              ?.filter((item) => item?.type === 1)
+              ?.sort(function(a, b) {
+                if (compareDate(a) > compareDate(b)) {
+                  return -1;
+                } else {
+                  return 1;
+                }
+              })
+              ?.map((item) => (
+                <SmallCard
+                  image={"https://popcon.store" + item?.brand_logo}
+                  title={item?.brand_name}
+                  category={item?.brand_category}
+                  main={item?.brand_simple_intro}
+                />
+              ))}
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="35" />
@@ -211,42 +230,23 @@ function Main() {
         <ArtistCategory />
         <SliderXwrapper>
           <SliderXItems>
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="로제"
-              category="이쁘다"
-              main="진짜 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/iab_box.jpg"
-              title="iab"
-              category="이쁘다"
-              main="너무 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="블랙핑크"
-              category="진짜 이쁘네 ㅋㅋ"
-              main="제 이상형이에요 사귀자"
-            />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="로제"
-              category="이쁘다"
-              main="진짜 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/iab_box.jpg"
-              title="iab"
-              category="이쁘다"
-              main="너무 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="블랙핑크"
-              category="진짜 이쁘네 ㅋㅋ"
-              main="제 이상형이에요 사귀자"
-            />
+            {newbrandData
+              ?.filter((item) => item?.type === 2)
+              ?.sort(function(a, b) {
+                if (compareDate(a) > compareDate(b)) {
+                  return -1;
+                } else {
+                  return 1;
+                }
+              })
+              ?.map((item) => (
+                <SmallCard
+                  image={"https://popcon.store" + item?.brand_logo}
+                  title={item?.brand_name}
+                  category={item?.brand_category}
+                  main={item?.brand_simple_intro}
+                />
+              ))}
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="20" />

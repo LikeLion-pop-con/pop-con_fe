@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Spacedetail from "../../Components/Brand, ArtistCard/Spacedetail";
 import Margin from "../../Components/Margin/Margin";
-import Kakaomap from "../../Components/Kakaomap/Kakaomap2";
+import Kakaomap from "../../Components/Kakao/Kakaomap2";
 import Typo from "../../assets/Typo";
 import { motion } from "framer-motion";
 import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
@@ -11,6 +11,7 @@ import Footer from "../../Components/Footer/Footer";
 import Main from "../MainPage/Main";
 import { MdOutlineElevator } from "react-icons/md";
 import { AiOutlineFullscreen } from "react-icons/ai";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -106,6 +107,8 @@ const Limit = styled.div`
 `;
 
 function SpaceItemIntro() {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <SliderXwrapper2>
@@ -180,11 +183,7 @@ function SpaceItemIntro() {
         <Kakaomap />
       </RequestWrapper>
       <Margin height="40" />
-      <PopupButton
-        onClick={() => {
-          window.scrollTo(0, 0);
-        }}
-      >
+      <PopupButton onClick={() => navigate("booking")}>
         <Typo size="1.1rem" weight="600" color="white">
           대여하기
         </Typo>

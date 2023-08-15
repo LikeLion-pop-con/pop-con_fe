@@ -1,4 +1,4 @@
-import { useLocation, useOutletContext } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import LargeCard from "../../Components/Card/LargeCard";
 import styled from "styled-components";
 import PopupTitle from "../../Components/PopupTitle/PopupTitle";
@@ -11,12 +11,15 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 20px;
+  place-items: center;
+  place-content: center;
 `;
 
 function Requesting() {
   const params = useOutletContext();
 
   const { state } = useLocation();
+  const navigate = useNavigate();
 
   console.log(state);
 
@@ -42,8 +45,12 @@ function Requesting() {
       <PopupTitle text="지금 팝업을 예매해보세요!" />
       {data?.map((item) => (
         <LargeCard
-          image={"https://popcon.store" + item?.popup_image}
-          title={item?.popup_info}
+          onClick={() => navigate(`/popupbooking/${item?.id}`)}
+          image={"https://popcon.store" + item?.popup_image01}
+          title={item?.popup_name}
+          date={item?.popup_date}
+          space={item?.popup_detailplace}
+          popcategory={item?.popup_category}
         />
       ))}
     </Wrapper>

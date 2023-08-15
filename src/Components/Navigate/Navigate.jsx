@@ -182,7 +182,6 @@ export default function NavigationBar({ setIsCateClicked }) {
       }
     };
     window.addEventListener("scroll", onScroll);
-    console.log(scrollDir);
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollDir]);
