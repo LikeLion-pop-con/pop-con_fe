@@ -135,7 +135,6 @@ export default function NavigationBar({ setIsCateClicked }) {
   const navigate = useNavigate();
   const navani = useAnimation();
   const btnani = useAnimation();
-
   const setBot = useSetRecoilState(isBotClicked);
   const isClicked = useRecoilValue(isBotClicked);
 

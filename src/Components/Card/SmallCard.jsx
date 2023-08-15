@@ -63,7 +63,7 @@ const SmallCard = ({ image, title, category, main, onClick }) => {
             {category}
           </Typo>
           <Margin height="4" />
-          <Typo size="0.8rem">{main.slice(0, 14)}</Typo>
+          <Typo size="0.8rem">{main?.slice(0, 14)}</Typo>
           <Typo
             size="0.8rem"
             style={{
@@ -73,7 +73,7 @@ const SmallCard = ({ image, title, category, main, onClick }) => {
               textOverflow: "ellipsis",
             }}
           >
-            {main.slice(14)}
+            {main?.slice(14)}
           </Typo>
         </TextWrapper>
       </CardEach>

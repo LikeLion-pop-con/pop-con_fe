@@ -122,7 +122,11 @@ function Router() {
             <Route path="/Login" element={<Login />} />
             <Route path="/Resister" element={<Resister />} />
 
-            <Route path="/artist" element={<ArtistIntroduce />} />
+            <Route path="/artist/:brandId" element={<ArtistIntroduce />} >
+            <Route path="" element={<BrandIntro />}></Route>
+              <Route path="info" element={<BrandInfo />}></Route>
+              <Route path="post" element={<BrandPost />}></Route>
+            </Route>
 
             <Route path="/postList" element={<PostList />} />
             <Route path="/popupPost" element={<PopupPost />} />

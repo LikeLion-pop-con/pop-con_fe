@@ -11,12 +11,16 @@ import SmallCardGH from "../../assets/Icons/Card/SmallCardGH.jpg";
 import Card from '../../Components/Card/Card';
 import Typo from '../../assets/Typo';
 import Cardrose from "../../assets/Icons/Card/Cardrose.jpg";
+import { useState, useEffect } from 'react';
+import * as api from "../../api";
+import { useNavigate } from 'react-router-dom';
 const Wrapper = styled.div`
     display: flex;
   flex-direction: row;
   overflow-x: auto;
   width: 90%;
   height: auto;
+  margin-top: 20px;
 `
 const TitleText = styled.p`
     margin-top:20px;
@@ -27,31 +31,58 @@ const Searchresult = () => {
     const location = useLocation();
     const searchText = new URLSearchParams(location.search).get('query');
     const { searchHistory, setSearchHistory } = useSearchContext();
-
+    const [SearchData, setSearchData] = useState([]);
+    const navigate = useNavigate();
+    let smallCardRendered = false;
   const addToHistory = (text) => {
     setSearchHistory((prevHistory) => [...prevHistory, text]);
   };
+  useEffect(() => {
+    getSearch();
+  }, [searchText]);
 
+  const getSearch = async () => {
+    const search = await api.getSearch(searchText);
+    setSearchData(search);
+    console.log(search);
+  };
+  console.log(SearchData);
     return (
         <>
         <SearchBar onSearchTextChange={(text) => addToHistory(text)} searchText={searchText} searchHistory={searchHistory}></SearchBar>
         <TitleText><Typo size="1.2rem" weight="400" color = "main">팝업 스토어</Typo></TitleText>
         <Wrapper>
-        <LargeCard image={NewJeans} title='NewJeans의 HYPE맑음' popcategory='팝업 스토어' detail='창작 예술' space={'하텍 해동 스룸G '} date='2023.07.21~2023.08.19'/>
-        <LargeCard image={NewJeans} title='NewJeans의 HYPE맑음' popcategory='팝업 스토어' detail='창작 예술' space={'하텍 해동 스룸G '} date='2023.07.21~2023.08.19'/>
-        
+        {SearchData.popups && SearchData.popups.map((popup, index) => ( 
+        <LargeCard key={index} image={"https://popcon.store" + popup?.popup_image01} title={popup.popup_name} popcategory={popup.category} detail={popup.simple_info} space={popup.popup_detailplace} date={popup.popup_opendate} onClick={() => navigate(`/Popupbooking/${popup.id}`)}/>
+        ))}
         </Wrapper>
         <TitleText><Typo size="1.2rem" weight="400" color = "main">팝업 브랜드</Typo></TitleText>
         <Wrapper>
-        <SmallCard image={SmallCardGH} title='심금이가 좋다.' category='캐릭터 전시팝업' main={'체고다 멋지다. \n우리 심금이🫶🏻'}/>
-        <SmallCard image={SmallCardGH} title='심금이가 좋다.' category='캐릭터 전시팝업' main={'체고다 멋지다. \n우리 심금이🫶🏻'}/>
-        <SmallCard image={SmallCardGH} title='심금이가 좋다.' category='캐릭터 전시팝업' main={'체고다 멋지다. \n우리 심금이🫶🏻'}/>
+            {SearchData.brands && SearchData.brands.map((brand, index) => {
+                if (brand.type === 1) {
+                    if (!smallCardRendered) {
+                        smallCardRendered = true; // smallCard 렌더링 표시
+                        return (
+                            <React.Fragment key={index}>
+                                <SmallCard image={"https://popcon.store" + brand?.brand_logo} title={brand.brand_name} category={brand.brand_category} main={brand.brand_simple_intro} onClick={() => navigate(`/brand/${brand.id}`)}/>
+                            </React.Fragment>
+                        );
+                    }
+                } else
+                return null; // 다른 경우에는 아무것도 렌더링하지 않음
+            })}
+            {/* "독립 아티스트" 영역은 여기에 추가할 수 있습니다. */}
         </Wrapper>
-        <TitleText><Typo size="1.2rem" weight="400" color = "main">독립 아티스트</Typo></TitleText>
+        <TitleText><Typo size="1.2rem" weight="400" color="main">독립 아티스트</Typo></TitleText>
         <Wrapper>
-        <Card image= {Cardrose} title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
-        <Card image= {Cardrose} title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
-        <Card image= {Cardrose} title='Rose' category='뮤직 아티스트' main={"그녀만의 색깔을 담고\n 있는 목소리"}/>
+            {SearchData.brands && SearchData.brands.map((brand, index) => {
+             if (brand.type === 2) {
+                    return (
+                        <Card key={index} image={"https://popcon.store" + brand?.brand_logo} title={brand.brand_name} category={brand.brand_category} main={brand.brand_simple_intro} onClick={() => navigate(`/artist/${brand.id}`)}/>
+                    );
+                }
+                return null; // 다른 경우에는 아무것도 렌더링하지 않음
+            })}
         </Wrapper>
         <NavigationBar/>
         </>

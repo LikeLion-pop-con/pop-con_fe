@@ -8,6 +8,8 @@ import { getMypageMylikebrand } from "../../api";
 import LargeCard from "../../Components/Card/LargeCard";
 import NavigationBar from "../../Components/Navigate/Navigate";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 const Title = styled.div`
   margin: 5%;
 `;
@@ -16,29 +18,37 @@ const Wrapper = styled.div`
 `;
 
 const MypopLike = () => {
-    const storedName = localStorage.getItem("Name");
-    const navigate = useNavigate();
-  
-    if (storedName) {
-      getMypageMylikebrand(storedName)
-        .then((data) => {
-          console.log("API 데이터:", data);
-          // 여기서 데이터를 활용하는 코드를 작성할 수 있습니다.
-        })
-        .catch((error) => {
-          console.error("API 데이터를 가져오는 중 오류 발생:", error);
-        });
+  const [isYes, setIsYes] = useState(false);
+  const storedName = localStorage.getItem("Name");
+  const navigate = useNavigate();
+
+  if (storedName) {
+    getMypageMylikebrand(storedName)
+      .then((data) => {
+        console.log("API 데이터:", data);
+        // 여기서 데이터를 활용하는 코드를 작성할 수 있습니다.
+      })
+      .catch((error) => {
+        console.error("API 데이터를 가져오는 중 오류 발생:", error);
+      });
+  } else {
+    const shouldLogin = window.confirm(
+      "로그인이 필요합니다. 로그인하시겠습니까?"
+    );
+    if (shouldLogin) {
+      // 로그인 페이지로 이동하는 코드를 추가합니다.
+      navigate("/login");
     } else {
-      const shouldLogin = window.confirm(
-        "로그인이 필요합니다. 로그인하시겠습니까?"
-      );
-      if (shouldLogin) {
-        // 로그인 페이지로 이동하는 코드를 추가합니다.
-        navigate("/login");
-      } else {
-        console.log("로그인이 필요하며 사용자가 로그인을 거부했습니다.");
-      }
+      console.log("로그인이 필요하며 사용자가 로그인을 거부했습니다.");
     }
+  }
+  const yestoast = () =>
+    toast.error("로그인이 필요합니다.", {
+      duration: 6000,
+      style: {
+        marginTop: 50,
+      },
+    });
   return (
     <>
       <Header left="logo" right={["login", "search"]} bgColor="#EC7538" />
@@ -73,7 +83,7 @@ const MypopLike = () => {
         space={"하텍 해동 스룸G \n인하대학교"}
         date="2023.07.21~2023.08.19"
       />
-
+      <Toaster position="top-center" />
       <NavigationBar />
     </>
   );

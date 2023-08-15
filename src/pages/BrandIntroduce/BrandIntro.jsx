@@ -3,7 +3,9 @@ import LargeCard from "../../Components/Card/LargeCard";
 import styled from "styled-components";
 import PopupTitle from "../../Components/PopupTitle/PopupTitle";
 import Margin from "../../Components/Margin/Margin";
-
+import { useParams } from "react-router-dom";
+import { useState,useEffect } from "react";
+import * as api from "../../api";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -22,22 +24,29 @@ const AboutButton = styled.button`
   color: white;
   cursor: pointer;
 `;
+const Img = styled.div`
+  width: 80%;
+  height: 200px;
+`
 function BrandIntro() {
   const params = useOutletContext();
   console.log(params.cateId);
-
+  const { brandId } = useParams();
+  const [Data, setData] = useState([]);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    getBrandinfo();
+  }, []);
+  const getBrandinfo = async () => {
+    const BrandData = await api.getBrandinfo(brandId);
+    setData(BrandData);
+    console.log(BrandData);
+  };
   return (
     <Wrapper>
       <Margin height="20" />
       <PopupTitle text="브랜드 소개" />
-      <LargeCard image="img/cate1.png" />
-      <LargeCard image="img/cate1.png" />
-      <LargeCard image="img/cate1.png" />
-      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <AboutButton onClick={() => navigate("/")}>자세히 보기</AboutButton>
-      </div>
+      <LargeCard image={"https://popcon.store" + Data.brand_detail_image} />
       <Margin height="30" />
     </Wrapper>
   );

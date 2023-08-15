@@ -22,6 +22,8 @@ const Inputter = ({ onPasswordChange }) => {
   const [nums, setNums] = useState(nums_init);
   const [password, setPassword] = useState("");
   const [isYes, setIsYes] = useState(false);
+  const id = localStorage.getItem('Pk');
+  const [user_pk, setUserPk] = useState(id);
   const navigate = useNavigate();
   const handlePasswordChange = useCallback(
     (num) => {
@@ -33,7 +35,25 @@ const Inputter = ({ onPasswordChange }) => {
     },
     [password]
   );
-
+  const handleNextClick = async () => {
+    try {
+      const account_password = password;
+      const response = await api.postCard(
+        user_pk,
+        account_password,
+        null, // bank
+        null, // bank_account_number
+        null, // cardNumberInput
+        null, // maxDateInput
+        null, // cvcInput
+        null
+      );
+  
+      console.log("Card registration successful:", response);
+    } catch (error) {
+      console.error("Card registration error:", error);
+    }
+  };
   const erasePasswordOne = useCallback(() => {
     setPassword((prevPassword) =>
       prevPassword.slice(0, prevPassword.length === 0 ? 0 : prevPassword.length - 1)
@@ -54,7 +74,12 @@ const Inputter = ({ onPasswordChange }) => {
     [handlePasswordChange]
   );
   const checkPasswordMatch = () => {
-    if (password === pw) {
+    if (!pw) {
+      handleNextClick();
+      yestoast();
+      localStorage.setItem("account_password", password);
+      navigate("/CardList");
+    } else if (password === pw) {
       yestoast();
       navigate("/CardList");
     } else {
