@@ -6,6 +6,14 @@ const Logout = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('Token');
+    localStorage.removeItem('account_password');
+    localStorage.removeItem("Name");
+    localStorage.removeItem("Phone");
+    localStorage.removeItem("Gender");
+    localStorage.removeItem("Address");
+    localStorage.removeItem("UserType");
+    localStorage.removeItem("searchHistory");
+    localStorage.removeItem('Pk');
     navigate('/login');
   };
 

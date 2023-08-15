@@ -56,12 +56,36 @@ function Main() {
   const [scrollDir, setScrollDir] = useState("scrolling down");
   const [hotpopupdata, setHotpopupdata] = useState([]);
   const [newbrandData, setNewbrandData] = useState([]);
-
+  const [CardData, setCardData] = useState([]);
   useEffect(() => {
     getData();
     getNewbrand();
+    getCardinfo();
+    const token = localStorage.getItem("Token");
+
+    if (!token) {
+      localStorage.removeItem("Pk");
+      localStorage.removeItem("account_password");
+    }
   }, []);
 
+  const getCardinfo = async () => {
+    try {
+      const pk = localStorage.getItem("Pk");
+      const cardinfo = await api.getCardinfo(pk);
+      if (cardinfo && cardinfo.length > 0) {
+        setCardData(cardinfo);
+        console.log(cardinfo);
+        localStorage.setItem("account_password", cardinfo[0].account_password);
+      } else {
+        console.log("Card info is empty.");
+        localStorage.removeItem('account_password');
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+  
   const getData = async () => {
     const hotpopup = await api.getMainHotPopup();
     setHotpopupdata(hotpopup);

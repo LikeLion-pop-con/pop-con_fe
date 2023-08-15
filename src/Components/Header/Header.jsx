@@ -66,10 +66,6 @@ export default function Header({ left = "", right = [], bgColor }) {
   const navigate = useNavigate();
   const isLoggedIn = !!localStorage.getItem("Token");
 
-  const handleLogout = () => {
-    localStorage.removeItem("Token");
-  };
-
   return (
     <>
       <HeaderWrapper Color={bgColor}>

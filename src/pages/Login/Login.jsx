@@ -7,6 +7,8 @@ import { useState } from "react";
 import Typo from "../../assets/Typo";
 import { BiArrowBack } from "react-icons/bi";
 import Margin from "../../Components/Margin/Margin";
+import toast, { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 const LoginText = styled.p``;
 const Top = styled.div`
   display: flex;
@@ -63,6 +65,7 @@ const ButtonWapper = styled.div`
 
 const Login = () => {
   const navigate = useNavigate();
+  const [isYes, setIsYes] = useState(false);
   const {
     register,
     handleSubmit,
@@ -79,6 +82,7 @@ const Login = () => {
       .then((response) => {
         console.log(response);
         console.log(response.data.token);
+        localStorage.setItem("Pk", response.data.pk);
         localStorage.setItem("Token", response.data.token);
         localStorage.setItem("Name", response.data.이름);
         localStorage.setItem("Phone", response.data.전화번호);
@@ -94,13 +98,20 @@ const Login = () => {
       })
       .catch((err) => {
         setMessage(err.response.data.message);
-        alert("다시 로그인해주세요!");
+        yestoast();
         console.log(err);
       });
   };
   const handleGoBack = () => {
     navigate(-1);
   };
+  const yestoast = () =>
+    toast.error("아이디 혹은 비밀번호가 잘못되었습니다.", {
+      duration: 6000,
+      style: {
+        marginTop: 50,
+      },
+    });
   return (
     <>
       <Top onClick={handleGoBack}>
@@ -146,6 +157,7 @@ const Login = () => {
               </Typo>
             </ResisterButton>
           </ButtonWapper>
+          <Toaster position="top-center" />
         </LoginBox>
       </form>
     </>

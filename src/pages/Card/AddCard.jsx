@@ -7,9 +7,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import Margin from "../../Components/Margin/Margin";
 import { useMemo } from "react";
 import Button from "../../Components/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-
+import * as api from "../../api";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -318,6 +318,39 @@ const AddCard = () => {
   };
 
   const navigate = useNavigate();
+  const id = localStorage.getItem('Pk');
+  const pw = localStorage.getItem('account_password');
+  const [user_pk, setUserPk] = useState(id);
+  const [account_password, setAccountPassword] = useState(pw);
+  const { bankName } = useParams();
+  const [bank, setBank] = useState(bankName);
+  const [bank_account_number, setBankAccountNumber] = useState(null);
+
+
+  const handleNextClick = async () => {
+    try {
+      const cardNumberInput = inputRefs
+        .map((ref) => ref.current.value)
+        .join("-");
+      const maxDateInput = validref.current.value;
+      const cvcInput = cvcref.current.value;
+      const cardPasswordInput = pwdref.current.value;
+      const response = await api.postCard(
+        user_pk,
+        account_password,
+        bank,
+        bank_account_number,
+        cardNumberInput,
+        maxDateInput,
+        cvcInput,
+        cardPasswordInput
+      );
+
+      console.log("Card registration successful:", response);
+    } catch (error) {
+      console.error("Card registration error:", error);
+    }
+  };
 
   return (
     <>
@@ -429,7 +462,14 @@ const AddCard = () => {
             </InputContainer>
           </PwdText>
         )}
-        <NextButton onClick={() => navigate("/CardList/AddCard2")}>다음</NextButton>
+        <NextButton
+          onClick={async () => {
+            await handleNextClick();
+            navigate("/CardList/AddCard2");
+          }}
+        >
+          다음
+        </NextButton>
       </Wrapper>
     </>
   );

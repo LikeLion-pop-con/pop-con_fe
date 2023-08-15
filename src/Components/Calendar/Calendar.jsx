@@ -57,13 +57,13 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
           }
         }}
         minDate={new Date()}
-        maxDate={new Date("2023-08-11")}
+        maxDate={new Date("2023-08-19")}
         selected={currentDate}
         calendarClassName={styles.calenderWrapper}
         dayClassName={(d) => {
           if (selectedDate && d.getDate() === selectedDate.getDate()) {
             return `${styles.selectedDay} ${styles.withinRange}`;
-          } else if (d >= new Date() && d <= new Date("2023-08-09")) {
+          } else if (d >= new Date() && d <= new Date("2023-08-19")) {
             return styles.withinRange;
           }
           return "";

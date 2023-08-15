@@ -1,10 +1,9 @@
-import React, { useState, useCallback,useEffect } from "react";
+import React, { useState, useCallback ,useEffect  } from "react";
 import "./Inputter.css";
-import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { useNavigate} from "react-router-dom";
 import * as api from "../../api";
 const PASSWORD_MAX_LENGTH = 4; // 비밀번호 입력길이 제한 설정
-const pw = localStorage.getItem("account_password");
+
 const shuffle = (nums) => {
   // 배열 섞는 함수
   let num_length = nums.length;
@@ -17,11 +16,10 @@ const shuffle = (nums) => {
   return nums;
 };
 
-const Inputter = ({ onPasswordChange }) => {
+const Inputter2 = () => {
   let nums_init = Array.from({ length: 10 }, (v, k) => k);
   const [nums, setNums] = useState(nums_init);
   const [password, setPassword] = useState("");
-  const [isYes, setIsYes] = useState(false);
   const navigate = useNavigate();
   const handlePasswordChange = useCallback(
     (num) => {
@@ -29,7 +27,6 @@ const Inputter = ({ onPasswordChange }) => {
         return;
       }
       setPassword(password + num.toString());
-      onPasswordChange(password + num.toString());
     },
     [password]
   );
@@ -53,35 +50,44 @@ const Inputter = ({ onPasswordChange }) => {
     },
     [handlePasswordChange]
   );
-  const checkPasswordMatch = () => {
-    if (password === pw) {
-      yestoast();
-      navigate("/CardList");
-    } else {
-      yestoast1();
-    }
-  };
+
   const onClickSubmitButton = () => {
     // 비밀번호 제출
     if (password.length === 0) {
       alert("비밀번호를 입력 후 눌러주세요!");
     } else {
-      checkPasswordMatch();
+      alert(password + "을 입력하셨습니다.");
+    }
+    localStorage.setItem("account_password", password);
+    navigate("/CardList");
+    
+  };
+  const id = localStorage.getItem('Pk');
+  const [user_pk, setUserPk] = useState(id);
+  const [account_password, setAccountPassword] = useState(password);
+  const [bank, setBank] = useState(null);
+  const [bank_account_number, setBankAccountNumber] = useState(null);
+  const [cardNumberInput, setcardNumberInput] = useState(null);
+  const [maxDateInput, setmaxDateInput] = useState(null);
+  const [cvcInput, setvcInput] = useState(null);
+  const [cardPasswordInput, setcardPasswordInput] = useState(null);
+  const handleNextClick = async () => {
+    try {
+      const response = await api.postCard(
+        user_pk,
+        account_password,
+        bank,
+        bank_account_number,
+        cardNumberInput,
+        maxDateInput,
+        cvcInput,
+        cardPasswordInput
+      );
+      console.log("Card registration successful:", response);
+    } catch (error) {
+      console.error("Card registration error:", error);
     }
   };
-  const yestoast = () =>
-  toast.success("결제비밀번호가 일치합니다.", {
-    duration: 6000,
-    style: {
-      marginTop: 50,
-    },
-  }); const yestoast1 = () =>
-  toast.error("아이디 혹은 비밀번호가 잘못되었습니다.", {
-    duration: 6000,
-    style: {
-      marginTop: 50,
-    },
-  });
   return (
     <>
       <input className="password-container" type="password" value={password}></input>
@@ -122,10 +128,9 @@ const Inputter = ({ onPasswordChange }) => {
         <button type="submit" className="submit-button" onClick={onClickSubmitButton}>
           완료
         </button>
-        <Toaster position="top-center" />
       </div>
     </>
   );
 };
 
-export default Inputter;
+export default Inputter2;
