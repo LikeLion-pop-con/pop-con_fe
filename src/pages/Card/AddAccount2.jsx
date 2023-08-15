@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../Components/Header/Header";
 
+import * as api from "../../api";
 const Text = styled.div`
   font-size: 20px;
   font-weight: bold;
@@ -78,12 +79,39 @@ const NextButton = styled.button`
 const AddAccount2 = () => {
   const { bankName } = useParams();
   const [inputValue, setInputValue] = useState("");
-
+  const navigate = useNavigate();
   const onInputChange = (e) => {
     setInputValue(e.target.value);
   };
-  const navigate = useNavigate();
+  const id = localStorage.getItem("Pk");
+  const [user_pk, setUserPk] = useState(id);
+  const [account_password, setAccountPassword] = useState("1234");
+  const [bank, setBank] = useState(bankName);
+  const [bank_account_number, setBankAccountNumber] = useState("");
+  const [cardNumber, setCard_number] = useState(null);
+  const [cvc, setcvc] = useState(null);
+  const [maxDate, setmaxDate] = useState(null);
+  const [cardPasswordInput, setcardPasswordInput] = useState(null);
+  const handleNextClick = async () => {
+    try {
+      setBankAccountNumber(inputValue);
+      const response = await api.postCard(
+        user_pk,
+        account_password,
+        bank,
+        inputValue,
+        cardNumber,
+        maxDate,
+        cvc,
+        cardPasswordInput
+      );
 
+      console.log("Card registration successful:", response);
+      navigate("/CardList/AddCard2");
+    } catch (error) {
+      console.error("Card registration error:", error);
+    }
+  };
   return (
     <>
       <Header left="logo" right={["login", "search"]} />
@@ -110,9 +138,7 @@ const AddAccount2 = () => {
           <ErrorMessage>계좌번호가 너무 길어요!</ErrorMessage>
         ) : null}
       </InputContainer>
-      <NextButton onClick={() => navigate("/cardlist/addaccount3")}>
-        다음
-      </NextButton>
+      <NextButton onClick={handleNextClick}>다음</NextButton>
     </>
   );
 };

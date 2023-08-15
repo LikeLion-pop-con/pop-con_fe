@@ -2,7 +2,6 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import ChatBot, { triggerNextStep } from "react-simple-chatbot";
 import { AiOutlineClose } from "react-icons/ai";
-import CheckBox from "./Checkbox.js";
 import ChatbotModal from "react-modal";
 import { useRecoilState } from "recoil";
 import { isBotClicked } from "../../atom";
@@ -15,6 +14,7 @@ import Input2 from "./SpaceGive.jsx";
 import Input3 from "./Select.jsx";
 import Input4 from "./Slelect2.jsx";
 import Askbutton from "./Askbutton.jsx";
+import Input5 from "./Resister.jsx"
 const steps = [
   /////////////////////////////////////////////////////////////////// 질문 카테고리 선택
   {
@@ -36,13 +36,13 @@ const steps = [
   {
     id: "4",
     options: [
+      { value: "resister", label: "회원가입", trigger: "18" },
       { value: "spaceenroll", label: "공간 등록", trigger: "5" },
       { value: "spacegive", label: "공간 대관", trigger: "6" },
       { value: "cardenroll", label: "카드 등록", trigger: "7" },
       { value: "popup", label: "팝업", trigger: "17" },
     ],
   },
-  /////////////////////////////////////////////////////////////////// 넓은 범위 카테고리 선택 확인 메시지
   {
     id: "5",
     message: "공간 등록을 선택하셨습니다.",
@@ -58,7 +58,6 @@ const steps = [
     message: "카드 등록을 선택하셨습니다.",
     trigger: "10",
   },
-  /////////////////////////////////////////////////////////////////// 세부 질문 카테고리 안내 메시지
   {
     id: "8",
     message: "등록을 원하는 공간의 정보를 기입해주세요.",
@@ -85,7 +84,6 @@ const steps = [
       "PopCon에서 진행하는 팝업을 예매하고자 한다면 카드 등록이 필요합니다. 카드 등록을 한 후 간편 결제를 진행하시겠습니까?",
     trigger: "13",
   },
-  /////////////////////////////////////////////////////////////////// 세부 질문 카테고리 선택
   {
     id: "11",
     component: <Input triggerNext={triggerNextStep} />,
@@ -98,7 +96,6 @@ const steps = [
     waitAction: true,
     trigger: "14",
   },
-  /////////////////////////////////////////////////////////////////// 챌린지 답변
   {
     id: "13",
     message: "입력을 원하시면 눌러주세요",
@@ -127,9 +124,17 @@ const steps = [
     message: "팝업과 관련된 정보는 직접 문의주세요!",
     trigger: "23",
   },
-  /////////////////////////////////////////////////////////////////// 인바디 답변
-
-  /////////////////////////////////////////////////////////////////// 평가 체크리스트
+  {
+    id: "18",
+    message: "회원가입을 하시면 저희 서비스를 보다 더 확실하게 이용하실 수 있습니다! 아래버튼을 눌러주세요!",
+    trigger: "19",
+  },
+  {
+    id: "19",
+    component: <Input5 triggerNext={triggerNextStep}/>,
+    waitAction: true,
+    trigger:"23",
+  },
   {
     id: "23",
     message: "추가로 문의하실게 있다면 아래 버튼을 눌러주세요!",
@@ -143,17 +148,6 @@ const steps = [
   },
   {
     id: "25",
-    message: "마지막으로 저의 쳇봇 서비스를 평가 해주세요",
-    trigger: "26",
-  },
-  {
-    id: "26",
-    component: <CheckBox />,
-    waitAction: true,
-    trigger: "27",
-  },
-  {
-    id: "27",
     message: "감사합니다.",
     end: true,
   },
@@ -189,16 +183,6 @@ const Chatbot = ({ setModal }) => {
     userFontColor: "#4a4a4a",
   };
   const [isClicked, setIsClicked] = useRecoilState(isBotClicked);
-  // const botani = useAnimation();
-
-  // useEffect(() => {
-  //   if (isClicked) {
-  //     botani.start("visible");
-  //   } else {
-  //     botani.start("hidden");
-  //   }
-  // }, [isClicked]);
-
   return (
     <ChatbotModal
       isOpen={isClicked}

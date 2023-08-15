@@ -57,11 +57,44 @@ function Main() {
   const [scrollDir, setScrollDir] = useState("scrolling down");
   const [hotpopupdata, setHotpopupdata] = useState([]);
   const [newbrandData, setNewbrandData] = useState([]);
-
+  const [CardData, setCardData] = useState([]);
   useEffect(() => {
     getData();
     getNewbrand();
+    getCardinfo();
+    const token = localStorage.getItem("Token");
+
+    if (!token) {
+      localStorage.removeItem("Pk");
+      localStorage.removeItem("account_password");
+    }
   }, []);
+
+  const compareDate = (item) => {
+    const arr = item?.brand_borndate.split("-");
+    let sum;
+    for (let i = 0; i < arr.length; ++i) {
+      sum += parseInt(arr[i]);
+    }
+    return sum;
+  };
+
+  const getCardinfo = async () => {
+    try {
+      const pk = localStorage.getItem("Pk");
+      const cardinfo = await api.getCardinfo(pk);
+      if (cardinfo && cardinfo.length > 0) {
+        setCardData(cardinfo);
+        console.log(cardinfo);
+        localStorage.setItem("account_password", cardinfo[0].account_password);
+      } else {
+        console.log("Card info is empty.");
+        localStorage.removeItem("account_password");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
 
   const getData = async () => {
     const hotpopup = await api.getMainHotPopup();
@@ -168,14 +201,23 @@ function Main() {
         />
         <SliderXwrapper>
           <SliderXItems>
-            {newbrandData.map((item) => (
-              <SmallCard
-                image={"https://popcon.store/" + item?.popup_image}
-                title={item?.brand_name}
-                category="이쁘다"
-                main="진짜 이쁘다"
-              />
-            ))}
+            {newbrandData
+              ?.filter((item) => item?.type === 1)
+              ?.sort(function(a, b) {
+                if (compareDate(a) > compareDate(b)) {
+                  return -1;
+                } else {
+                  return 1;
+                }
+              })
+              ?.map((item) => (
+                <SmallCard
+                  image={"https://popcon.store" + item?.brand_logo}
+                  title={item?.brand_name}
+                  category={item?.brand_category}
+                  main={item?.brand_simple_intro}
+                />
+              ))}
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="35" />
@@ -188,42 +230,23 @@ function Main() {
         <ArtistCategory />
         <SliderXwrapper>
           <SliderXItems>
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="로제"
-              category="이쁘다"
-              main="진짜 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/iab_box.jpg"
-              title="iab"
-              category="이쁘다"
-              main="너무 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="블랙핑크"
-              category="진짜 이쁘네 ㅋㅋ"
-              main="제 이상형이에요 사귀자"
-            />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="로제"
-              category="이쁘다"
-              main="진짜 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/iab_box.jpg"
-              title="iab"
-              category="이쁘다"
-              main="너무 이쁘다"
-            />
-            <SmallCard
-              image="img/Artistimg/rose.jpg"
-              title="블랙핑크"
-              category="진짜 이쁘네 ㅋㅋ"
-              main="제 이상형이에요 사귀자"
-            />
+            {newbrandData
+              ?.filter((item) => item?.type === 2)
+              ?.sort(function(a, b) {
+                if (compareDate(a) > compareDate(b)) {
+                  return -1;
+                } else {
+                  return 1;
+                }
+              })
+              ?.map((item) => (
+                <SmallCard
+                  image={"https://popcon.store" + item?.brand_logo}
+                  title={item?.brand_name}
+                  category={item?.brand_category}
+                  main={item?.brand_simple_intro}
+                />
+              ))}
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="20" />

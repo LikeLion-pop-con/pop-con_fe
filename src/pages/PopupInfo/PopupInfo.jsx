@@ -108,35 +108,27 @@ const PopupInfo = () => {
   const navigate = useNavigate();
   const brandId = new URLSearchParams(params.search).get("id");
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const [isLiked, setIsLiked] = useState(false);
   const [btnclicked, setBtnclicked] = useState(false);
   const [requestbtnclikced, setRequestbtnclicked] = useState(false);
   const [isYes, setIsYes] = useState(false);
   const [popupinfo, setPopupinfo] = useState([]);
 
-  const userName = localStorage.getItem("Name");
-  const popupName = localStorage.getItem("Name");
+  console.log(localStorage.getItem("Pk"));
 
   const [imagePathsFromBackend, setImagePathsFromBackend] = useState([]);
-  const timeSlots = [
-    { start: 11, end: 14 },
-    { start: 14, end: 17 },
-    { start: 17, end: 20 },
-  ];
-  const [selectedTime, setSelectedTime] = useState(timeSlots[0]);
+
   const [isshared, setIsShared] = useState(false);
 
   const requestbtnani = useAnimation();
   // const isPopupinfoPage = useMatch(`/popupinfo/${brandId}`);
 
-  const handleTimeSlotChange = (timeSlot) => {
-    setSelectedTime(timeSlot);
-  };
   const getPopupinfo = async () => {
     const data = await getPopupById(brandId);
     console.log(data);
     setPopupinfo(data);
+
+    console.log(popupinfo?.id, localStorage.getItem("Pk"));
 
     const newImagePaths = [];
 
@@ -169,7 +161,7 @@ const PopupInfo = () => {
 
     return () => {
       // console.log(isPopupinfoPage);
-      postMylikepopup(popupName, userName)
+      postMylikepopup(popupinfo?.id, localStorage.getItem("Pk"))
         .then((data) => {
           console.log("Like successfully posted:", data);
           setIsYes(true);
@@ -193,6 +185,7 @@ const PopupInfo = () => {
       setTimeout(() => yestoast(), 1000);
     }
   }, [isYes]);
+
   return (
     <Wrapper transition={{ type: "tween" }}>
       <Header left="logo" right={["login", "search"]} />
@@ -259,19 +252,6 @@ const PopupInfo = () => {
         </RequestWrapper>
         <Margin height="20" />
       </AnimatePresence>
-
-      {/* <Choose />
-      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-      <CustomTimeSlot
-        label="시간 선택"
-        selectedTime={selectedTime}
-        onChange={handleTimeSlotChange}
-      /> */}
-
-      {/* <div>
-        <button onClick={notify}>Get Toast</button>
-        <Toaster position="bottom-center" />
-      </div> */}
 
       <PopupButton
         onClick={() => {

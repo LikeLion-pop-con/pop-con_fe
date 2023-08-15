@@ -119,6 +119,8 @@ const BookingOne = () => {
   const [data, setData] = useState([]);
   const [imagePathsFromBackend, setImagePathsFromBackend] = useState([]);
   const [isYes, setIsYes] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isshared, setIsShared] = useState(false);
 
   const requestbtnani = useAnimation();
 
