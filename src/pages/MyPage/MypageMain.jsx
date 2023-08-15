@@ -162,6 +162,15 @@ const Mypage = () => {
               구독 브랜드
             </Typo>
           </Text>
+          <Horizon width="340px" color="lightgray"></Horizon>
+        </TextLink>
+        
+        <TextLink to="/CardList">
+          <Text>
+            <Typo size="1rem" weight="400">
+              나의 결제수단
+            </Typo>
+          </Text>
           <Horizon width="340px" color="white"></Horizon>
         </TextLink>
         <TextLink>

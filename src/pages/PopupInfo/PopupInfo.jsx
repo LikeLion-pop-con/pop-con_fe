@@ -162,6 +162,7 @@ useEffect(() => {
       setTimeout(() => yestoast(), 1000);
     }
   }, [isYes]);
+
   return (
     <Wrapper transition={{ type: "tween" }}>
       <Header left="logo" right={["login", "search"]} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../../Components/Header/Header";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
@@ -15,7 +15,7 @@ import Toss from "../../assets/Icons/Bank/토스뱅크.svg";
 import Hana from "../../assets/Icons/Bank/하나.svg";
 import Ki from "../../assets/Icons/Bank/기업.svg";
 import NavigationBar from "../../Components/Navigate/Navigate";
-
+import * as api from "../../api";
 const Wrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
@@ -43,7 +43,8 @@ const CardNum = styled.div`
 const AddButton = styled.div`
   width: 100%;
   height: 80px;
-  background-color: ${props => (props.modalOpen ? "rgb(0, 0, 0)" : props.wrapperBgColor)};
+  background-color: ${(props) =>
+    props.modalOpen ? "rgb(0, 0, 0)" : props.wrapperBgColor};
   margin-top: 40px;
   text-align: center;
   cursor: pointer;
@@ -120,7 +121,27 @@ const CardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
-
+  const [CardData, setCardData] = useState([]);
+  useEffect(() => {
+    getCardinfo();
+  }, []);
+  const getCardinfo = async () => {
+    const id = localStorage.getItem("Pk");
+    const cardinfo = await api.getCardinfo(id);
+    setCardData(cardinfo);
+    console.log(cardinfo);
+  };
+  const logoMap = {
+    농협: Nong,
+    국민은행: Kook,
+    신한은행: Shin,
+    시티은행: City,
+    우리은행: Woori,
+    카카오뱅크: Kako,
+    토스뱅크: Toss,
+    하나은행: Hana,
+    기업은행: Ki,
+  };
   return (
     <Wrapper
       animate={{
@@ -138,32 +159,32 @@ const CardList = () => {
         <Text>계좌 / 카드 등록하기</Text>
       </AddButton>
       <MYCardList>
-        <Card>
-          <Img1 src={Kook} />
-          <Cardtext>
-            <CardCom>국민카드</CardCom>
-            <CardNum>0000-0000-0000-0000</CardNum>
-          </Cardtext>
-        </Card>
-        <Card>
-          <Img1 src={Nong} />
-          <Cardtext>
-            <CardCom>국민계좌</CardCom>
-            <CardNum>0000-0000-0000-0000</CardNum>
-          </Cardtext>
-        </Card>
+        {CardData.map((card, index) => (
+          <Card key={index}>
+            <Img1 src={logoMap[card.bank]} />
+            <Cardtext>
+              <CardCom>{card.bank}</CardCom>
+              {card.bank_account_number !== null && (
+                <div>계좌 {card.bank_account_number}</div>
+              )}
+              {card.card_number !== null && <div>카드 {card.card_number}</div>}
+            </Cardtext>
+          </Card>
+        ))}
       </MYCardList>
       <Margin height="40" />
       <AnimatePresence initial={false}>
         <Toast
-          animate={{ y: isModalOpen ? "5vh" : "100vh" }}
+          animate={{ y: isModalOpen ? "-5vh" : "100vh" }}
           transition={{ type: "tween" }}
         >
           <ButtonBox>
-            <AddButton1 onClick={() => navigate("addcard")}>
+            <AddButton1 onClick={() => navigate("addcard1")}>
               신용/체크카드
             </AddButton1>
-            <AddButton1>은행계좌</AddButton1>
+            <AddButton1 onClick={() => navigate("addaccount")}>
+              은행계좌
+            </AddButton1>
           </ButtonBox>
         </Toast>
         <NavigationBar />
