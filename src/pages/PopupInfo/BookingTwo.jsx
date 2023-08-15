@@ -1,8 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
 import Header from "../../Components/Header/Header";
-import Cardup from "../../Components/Brand, ArtistCard/Cardup";
-import Carddown2 from "../../Components/Brand, ArtistCard/Carddown2";
 import Popinfodetail from "../../Components/Brand, ArtistCard/Popinfodetail";
 import Typo from "../../assets/Typo";
 import Footer from "../../Components/Footer/Footer";
@@ -10,17 +8,9 @@ import { useEffect } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import Kakaomap2 from "../../Components/Kakaomap/Kakaomap2";
+import Kakaomap from "../../Components/Kakao/Kakaomap";
 import Margin from "../../Components/Margin/Margin";
-import RequestModal from "../../Components/Modal/PopRequestModal";
-import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
-import Calendar from "../../Components/Calendar/Calendar";
-import CustomTimeSlot from "../../Components/Calendar/CustomTimeSlot";
-import Choose from "../../Components/Calendar/Choose";
-import Modal from "react-modal";
-import toast, { Toaster } from "react-hot-toast";
-import RequestComplete from "./RequestComplete";
-import ss from "../../assets/Icons/Card/NewJeans.jpg";
+import * as api from "../../api";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -138,56 +128,32 @@ const BookingTwo = () => {
 
   const navigate = useNavigate();
 
-  const [btnclicked, setBtnclicked] = useState(false);
-  const [requestbtnclikced, setRequestbtnclicked] = useState(false);
-
+  const [data, setData] = useState([]);
   const [isYes, setIsYes] = useState(false);
 
-  const imagePathsFromBackend = [
-    "이미지1의_경로.jpg",
-    "이미지2의_경로.jpg",
-    // 추가적인 이미지들의 경로
-  ];
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const requestbtnani = useAnimation();
-  const handleTimeSlotChange = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
+
+  const getData = async () => {
+    const data = await api.getPopupById(brandId);
+    setData(data);
   };
-  useEffect(() => {
-    if (btnclicked) {
-      requestbtnani.start("visible");
-    } else {
-      requestbtnani.start("hidden");
-    }
-  }, [btnclicked]);
-
-  const yestoast = () =>
-    toast.success("팝업 신청이 완료되었습니다.", {
-      duration: 6000,
-      style: {
-        marginTop: 50,
-      },
-    });
 
   useEffect(() => {
-    if (isYes) {
-      setTimeout(() => yestoast(), 1000);
-    }
-  }, [isYes]);
+    getData();
+  }, []);
+
+  console.log(data?.popup_detailplace);
 
   return (
     <Wrapper>
       <Header left="logo" right={["login", "search"]} />
       <Popinfodetail // 팝업의 본문 내용 컴포넌트 (운영 기간, 시간, 기획/운영, 키워드)
-        firsttitle={null}
         bodytitle={null}
-        bodyText={
-          "샤넬의 모든 컬러는 코드로 정의됩니다.\n샤넬 코드 컬러 팝업 스토어에 방문하셔서 나만의 컬러와 코드를 찾아보세요\n\n샤넬 컬러 철학을 보여주는\n색채로 가득 찬 특별한 공간에서\n샤넬 컬러와 코드를 다양하게 경험해보세요.\n\n샤넬의 컬러로 표현되는\n메이크업 터치업 서비스와 특별한 기프트도 놓치지 마세요.\n\n본팝업을 위해 특별 제작된 샤넬 코드 컬러 리미티드 에디션도 만나 보실 수 있습니다.\n\n지금 바로 예약하세요."
-        }
         textstyle={"center"}
+        firsttitle={false}
+        firstimg={true}
         width={"60%"}
-        image={ss}
+        image={"https://popcon.store" + data.popup_main_image}
       />
       <Margin height="20" />
       {/* <Margin height="20" />
@@ -220,7 +186,8 @@ const BookingTwo = () => {
         >
           기간
         </Typo>
-        <Typo>2023년 7월 5일(수) ~ 2023년 7월 30일(일)</Typo>
+        <Typo>{data?.popup_date?.split("*")[0]}</Typo>
+        <Typo>{data?.popup_date?.split("*")[1]}</Typo>
       </Period>
       <OperateTime>
         <Typo
@@ -229,7 +196,7 @@ const BookingTwo = () => {
         >
           운영 시간
         </Typo>
-        <Typo>11:00 ~ 20:00</Typo>
+        <Typo>{data?.popup_time}</Typo>
       </OperateTime>
       <Space>
         <Typo
@@ -238,7 +205,8 @@ const BookingTwo = () => {
         >
           장소
         </Typo>
-        <Typo>서울 성동구 아차산로9길 41 레이어 41</Typo>
+        <Typo>{data?.popup_detailplace?.split("/")[0]}</Typo>
+        <Typo>{data?.popup_detailplace?.split("/")[1]}</Typo>
       </Space>
       <Map>
         <Typo
@@ -247,7 +215,7 @@ const BookingTwo = () => {
         >
           지도 보기
         </Typo>
-        <Kakaomap2 />
+        <Kakaomap isOne={false} isTwo={true} text={data?.popup_detailplace} />
       </Map>
 
       <Margin height="30" />
@@ -260,73 +228,6 @@ const BookingTwo = () => {
       </PopupButton>
       <Margin height="30" />
       <Footer />
-      <Modal
-        isOpen={requestbtnclikced && !isYes}
-        onRequestClose={false}
-        shouldCloseOnEsc={false}
-        // shouldCloseOnOverlayClick={false}
-        ariaHideApp={false}
-        // closeTimeoutMS={1000}
-        overlayElement={(props, overlayElement) => (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ type: "tween" }}
-            {...props}
-          >
-            {overlayElement}
-          </motion.div>
-        )}
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0,0,0,0.3)",
-            width: "100vw",
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          },
-          content: {
-            position: "fixed",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            margin: "auto auto",
-            width: "325px",
-            height: "200px",
-            borderRadius: "20px",
-          },
-        }}
-      >
-        <RequestModal setIsYes={setIsYes} />
-      </Modal>
-      <Modal
-        isOpen={isYes}
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0,0,0,0.3)",
-            width: "100vw",
-            height: "100vh",
-          },
-          content: {
-            position: "fixed",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: -40,
-            backgroundColor: "transparent",
-            border: "none",
-            margin: "auto auto",
-            width: "330px",
-            height: "500px",
-            borderRadius: "20px",
-          },
-        }}
-      >
-        <RequestComplete />
-      </Modal>
-      <Toaster position="top-center" />
     </Wrapper>
   );
 };

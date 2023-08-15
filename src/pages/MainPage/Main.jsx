@@ -26,11 +26,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  background-color: whitesmoke;
 `;
 const SliderXwrapper = styled.div`
   position: relative;
   overflow-x: scroll;
-  min-height: 250px;
+  min-height: 270px;
   width: 100%;
   scroll-snap-type: x mandatory;
 `;
@@ -131,7 +132,7 @@ function Main() {
           <SliderXItems>
             {hotpopupdata?.map((item) => (
               <LargeCard
-                onClick={() => navigate(`/popupInfo/${id}`)}
+                onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
                 image={"https://popcon.store" + item?.popup_image}
                 title="NewJeans의 HYPE맑음"
                 popcategory={item?.popup_category}

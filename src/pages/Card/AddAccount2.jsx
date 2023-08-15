@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../Components/Header/Header";
 
@@ -82,6 +82,7 @@ const AddAccount2 = () => {
   const onInputChange = (e) => {
     setInputValue(e.target.value);
   };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -98,18 +99,20 @@ const AddAccount2 = () => {
           value={inputValue}
           onChange={onInputChange}
           required
-          pattern="[0-9]*" 
+          pattern="[0-9]*"
           inputmode="numeric"
         />
         <StyledLabel>계좌번호</StyledLabel>
-        {inputValue!= 0 && inputValue.length < 10 ? (
+        {inputValue != 0 && inputValue.length < 10 ? (
           <ErrorMessage>계좌번호가 너무 짧아요!</ErrorMessage>
         ) : null}
         {inputValue.length > 14 ? (
           <ErrorMessage>계좌번호가 너무 길어요!</ErrorMessage>
         ) : null}
       </InputContainer>
-      <NextButton>다음</NextButton>
+      <NextButton onClick={() => navigate("/cardlist/addaccount3")}>
+        다음
+      </NextButton>
     </>
   );
 };

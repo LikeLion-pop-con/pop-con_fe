@@ -57,7 +57,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
           }
         }}
         minDate={new Date()}
-        maxDate={new Date("2023-08-11")}
+        maxDate={new Date("2023-08-25")}
         selected={currentDate}
         calendarClassName={styles.calenderWrapper}
         dayClassName={(d) => {

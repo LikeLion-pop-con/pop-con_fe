@@ -43,7 +43,8 @@ const CardNum = styled.div`
 const AddButton = styled.div`
   width: 100%;
   height: 80px;
-  background-color: ${props => (props.modalOpen ? "rgb(0, 0, 0)" : props.wrapperBgColor)};
+  background-color: ${(props) =>
+    props.modalOpen ? "rgb(0, 0, 0)" : props.wrapperBgColor};
   margin-top: 40px;
   text-align: center;
   cursor: pointer;
@@ -80,7 +81,7 @@ const ButtonBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: 20px;
   height: 60%;
 `;
 const Img1 = styled.img`
@@ -156,7 +157,7 @@ const CardList = () => {
       <Margin height="40" />
       <AnimatePresence initial={false}>
         <Toast
-          animate={{ y: isModalOpen ? "20vh" : "100vh" }}
+          animate={{ y: isModalOpen ? 0 : "50vh" }}
           transition={{ type: "tween" }}
         >
           <ButtonBox>

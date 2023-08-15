@@ -7,21 +7,18 @@ import Popinfodetail from "../../Components/Brand, ArtistCard/Popinfodetail";
 import Typo from "../../assets/Typo";
 import Footer from "../../Components/Footer/Footer";
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import Kakaomap2 from "../../Components/Kakaomap/Kakaomap2";
+import Kakaomap2 from "../../Components/Kakao/Kakaomap2";
 import Margin from "../../Components/Margin/Margin";
 import RequestModal from "../../Components/Modal/PopRequestModal";
-import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
-import Calendar from "../../Components/Calendar/Calendar";
-import CustomTimeSlot from "../../Components/Calendar/CustomTimeSlot";
-import Choose from "../../Components/Calendar/Choose";
 import Modal from "react-modal";
 import toast, { Toaster } from "react-hot-toast";
 import RequestComplete from "./RequestComplete";
 import ss from "../../assets/Icons/Card/NewJeans.jpg";
 import Horizon from "../../Components/Horizon/Horizon";
+import * as api from "../../api";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -69,18 +66,19 @@ const Form = styled.div`
 
 const Complete = styled(Form)``;
 const CompleteText = styled(Form)`
-  width: 60%;
+  width: 80%;
   p {
     color: red;
   }
 `;
 const CompleteDetail = styled(Form)`
   display: flex;
-  justify-content: space-evenly;
-  width: 50%;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
 `;
 const CompleteAlert = styled(Form)`
-  width: 50%;
+  width: 70%;
   p {
     text-align: start;
   }
@@ -90,6 +88,7 @@ const BookDate = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 10px;
   p {
     padding: 5px 0px;
   }
@@ -97,7 +96,7 @@ const BookDate = styled.div`
 const Time = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   p {
     padding: 5px 0px;
   }
@@ -113,8 +112,6 @@ const BookingComplete = () => {
   //백엔드에서 받아온 이미지 경로 배열 - 데이터 받아서 변수로 선언해야 할 듯
   const { brandId } = useParams();
 
-  console.log(brandId);
-
   const navigate = useNavigate();
 
   const [btnclicked, setBtnclicked] = useState(false);
@@ -122,17 +119,27 @@ const BookingComplete = () => {
 
   const [isYes, setIsYes] = useState(false);
 
-  const imagePathsFromBackend = [
-    "이미지1의_경로.jpg",
-    "이미지2의_경로.jpg",
-    // 추가적인 이미지들의 경로
-  ];
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const [data, setData] = useState([]);
+
+  const { state } = useLocation();
+
+  const {
+    time: { start, end },
+  } = state;
+  const { date } = state;
+
   const requestbtnani = useAnimation();
   const handleTimeSlotChange = (timeSlot) => {
     setSelectedTimeSlot(timeSlot);
   };
+
+  const postData = () => {
+    const time = `${start}:00~${end}:00`;
+    api.postPopupreservation(localStorage.getItem("pk"), data?.id, date, time);
+  };
+
   useEffect(() => {
     if (btnclicked) {
       requestbtnani.start("visible");
@@ -148,6 +155,14 @@ const BookingComplete = () => {
         marginTop: 50,
       },
     });
+  const getData = async () => {
+    const data = await api.getPopupById(brandId);
+    setData(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   useEffect(() => {
     if (isYes) {
@@ -160,12 +175,13 @@ const BookingComplete = () => {
       <Header left="logo" right={["login", "search"]} />
       <Popinfodetail // 팝업의 본문 내용 컴포넌트 (운영 기간, 시간, 기획/운영, 키워드)
         isTabed={false}
-        firsttitle={null}
-        bodytitle={null}
+        firsttitle={false}
+        firstimg={true}
+        bodytitle={true}
         bodyText={null}
         textstyle={"center"}
         width={"100%"}
-        image={ss}
+        image={"https://popcon.store" + data?.popup_main_image}
       />
       <Margin height="10" />
 
@@ -173,13 +189,15 @@ const BookingComplete = () => {
         <Typo fontType="title">예약 신청이 완료되었습니다.</Typo>
       </Complete>
       <CompleteText>
-        <Typo>
-          아래 예약 내역에 안내된
-          <br /> 예약 시간 3시간 이내에 언제든지 입장하시면 되며, 인원 집중이
-          예상되는 입장 시작 시간보다는 여유를 두고 방문하시기 바랍니다.
+        <Typo weight="600">
+          아래 예약 내역에 안내된 예약 시간 <br /> 3시간 이내에 언제든지
+          입장하시면 되며, <br /> 인원 집중이 예상되는 입장 시작 시간보다는{" "}
+          <br /> 여유를 두고 방문하시기 바랍니다.
         </Typo>
-        <Typo>
-          마지막 세션(오후 5시 ~ 오후 8시)의 입장은 오후 7시까지 가능합니다.
+        <Typo weight="600">
+          <br />
+          마지막 세션(오후 5시 ~ 오후 8시)의 입장은 <br /> 오후 7시까지
+          가능합니다.
         </Typo>
       </CompleteText>
       <CompleteDetail>
@@ -188,8 +206,10 @@ const BookingComplete = () => {
           <Typo weight="600">시간</Typo>
         </BookDate>
         <Time>
-          <Typo>2023년 07월 27일</Typo>
-          <Typo>14:00 ~ 17:00</Typo>
+          <Typo>{data?.popup_date?.split("*")[0]}</Typo>
+          <Typo style={{ textAlign: "center" }}>
+            {start}:00 ~ {end}:00
+          </Typo>
         </Time>
       </CompleteDetail>
       <CompleteAlert>
@@ -213,6 +233,7 @@ const BookingComplete = () => {
         onClick={() => {
           window.scrollTo(0, 0);
           setIsYes((prev) => !prev);
+          postData();
         }}
       >
         <Typo size="1.1rem" weight="600" color="white">
@@ -221,48 +242,7 @@ const BookingComplete = () => {
       </PopupButton>
       <Margin height="30" />
       <Footer />
-      
-      <Modal
-        isOpen={requestbtnclikced && !isYes}
-        onRequestClose={false}
-        shouldCloseOnEsc={false}
-        // shouldCloseOnOverlayClick={false}
-        ariaHideApp={false}
-        // closeTimeoutMS={1000}
-        overlayElement={(props, overlayElement) => (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ type: "tween" }}
-            {...props}
-          >
-            {overlayElement}
-          </motion.div>
-        )}
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0,0,0,0.3)",
-            width: "100vw",
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          },
-          content: {
-            position: "fixed",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            margin: "auto auto",
-            width: "325px",
-            height: "200px",
-            borderRadius: "20px",
-          },
-        }}
-      >
-        <RequestModal setIsYes={setIsYes} />
-      </Modal>
+
       <Modal
         isOpen={isYes}
         style={{
@@ -286,7 +266,10 @@ const BookingComplete = () => {
           },
         }}
       >
-        <RequestComplete />
+        <RequestComplete
+          image={"https://popcon.store" + data?.popup_main_image}
+          title={data?.popup_name + "\n예약이 완료되었습니다."}
+        />
       </Modal>
       <Toaster position="top-center" />
     </Wrapper>

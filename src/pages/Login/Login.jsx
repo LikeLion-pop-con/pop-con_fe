@@ -79,7 +79,9 @@ const Login = () => {
       .then((response) => {
         console.log(response);
         console.log(response.data.token);
+        console.log(response.data.pk);
         localStorage.setItem("Token", response.data.token);
+        localStorage.setItem("pk", response.data.pk);
         localStorage.setItem("Name", response.data.이름);
         localStorage.setItem("Phone", response.data.전화번호);
         localStorage.setItem("Gender", response.data.성별);

@@ -81,19 +81,20 @@ const steps = [
   },
   {
     id: "10",
-    message: "PopCon에서 진행하는 팝업을 예매하고자 한다면 카드 등록이 필요합니다. 카드 등록을 한 후 간편 결제를 진행하시겠습니까?",
+    message:
+      "PopCon에서 진행하는 팝업을 예매하고자 한다면 카드 등록이 필요합니다. 카드 등록을 한 후 간편 결제를 진행하시겠습니까?",
     trigger: "13",
   },
   /////////////////////////////////////////////////////////////////// 세부 질문 카테고리 선택
   {
     id: "11",
-    component:<Input triggerNext={triggerNextStep} />,
+    component: <Input triggerNext={triggerNextStep} />,
     waitAction: true,
     trigger: "14",
   },
   {
     id: "12",
-    component: <Input2 triggerNext={triggerNextStep}/>,
+    component: <Input2 triggerNext={triggerNextStep} />,
     waitAction: true,
     trigger: "14",
   },
@@ -105,18 +106,19 @@ const steps = [
   },
   {
     id: "14",
-    message: "공간의 상세 정보 (ex. 공간 사진, 특징 등) 및 문의 사항을 자유롭게 작성해 주세요! 담당자 확인 후 영업일 2일 이내 연락 드리겠습니다.",
+    message:
+      "공간의 상세 정보 (ex. 공간 사진, 특징 등) 및 문의 사항을 자유롭게 작성해 주세요! 담당자 확인 후 영업일 2일 이내 연락 드리겠습니다.",
     trigger: "15",
   },
   {
     id: "15",
-    component: <Input3 triggerNext={triggerNextStep}/>,
+    component: <Input3 triggerNext={triggerNextStep} />,
     waitAction: true,
     trigger: "23",
   },
   {
     id: "16",
-    component: <Input4 triggerNext={triggerNextStep}/>,
+    component: <Input4 triggerNext={triggerNextStep} />,
     waitAction: true,
     trigger: "23",
   },
@@ -135,7 +137,7 @@ const steps = [
   },
   {
     id: "24",
-    component: <Askbutton triggerNext={triggerNextStep} />, 
+    component: <Askbutton triggerNext={triggerNextStep} />,
     waitAction: true,
     trigger: "25",
   },
@@ -244,11 +246,12 @@ const Chatbot = ({ setModal }) => {
         <ChatBot
           steps={steps}
           hideHeader={false}
-        
           headerTitle="POP-CON ChatBot"
           placeholder={"채팅이 불가능한 채널입니다."}
           customComponents={{
-            input: (props) => <Input {...props} triggerNext={props.triggerNextStep} />,
+            input: (props) => (
+              <Input {...props} triggerNext={props.triggerNextStep} />
+            ),
           }}
         />
       </ThemeProvider>

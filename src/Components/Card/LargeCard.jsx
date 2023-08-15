@@ -17,7 +17,10 @@ const CardEach = styled.div`
   background-color: white;
   box-sizing: border-box;
   height: 300px;
-  min-width: 370px;
+  width: 400px;
+  @media (max-width: 768px) {
+    width: 370px;
+  }
   border-radius: 16px;
   cursor: pointer;
   margin: 9px;
@@ -50,6 +53,7 @@ const TextWrapper = styled.div`
   margin-left: 15px;
   margin-right: 15px;
   line-height: 18px;
+  width: 100%;
 `;
 const TitleWrapper = styled.div`
   display: flex;
@@ -65,6 +69,13 @@ const TextBox = styled.div`
   justify-content: space-between;
   margin-left: 30px;
   margin-right: 7px;
+  width: 90%;
+  div:first-child {
+    width: 30%;
+  }
+  div:nth-child(2) {
+    width: 80%;
+  }
 `;
 
 const LargeCard = ({

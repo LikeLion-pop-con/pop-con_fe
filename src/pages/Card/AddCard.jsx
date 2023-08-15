@@ -433,7 +433,9 @@ const AddCard = () => {
             </InputContainer>
           </PwdText>
         )}
-        <NextButton onClick={() => navigate()}>다음</NextButton>
+        <NextButton onClick={() => navigate("/cardlist/addaccount")}>
+          다음
+        </NextButton>
       </Wrapper>
     </>
   );
