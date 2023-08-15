@@ -58,15 +58,14 @@ function Main() {
   const [newbrandData, setNewbrandData] = useState([]);
   const [CardData, setCardData] = useState([]);
   useEffect(() => {
-    getData();
-    getNewbrand();
-    getCardinfo();
     const token = localStorage.getItem("Token");
-
     if (!token) {
       localStorage.removeItem("Pk");
       localStorage.removeItem("account_password");
     }
+    getData();
+    getNewbrand();
+    getCardinfo();
   }, []);
 
   const getCardinfo = async () => {

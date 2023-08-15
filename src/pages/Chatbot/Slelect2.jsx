@@ -33,15 +33,12 @@ const Input4 = ({ triggerNextStep }) => {
   const token = localStorage.getItem("Token");
   const account_pw = localStorage.getItem("account_password");
   
-  if (token && account_pw) {
-    navigate(`/cardlist`);
-    setIsClicked(false);
-  } else if (token) {
+  if (token) {
     navigate(`/Password`);
     setIsClicked(false);
   } else {
     yestoast();
-  }
+  } 
 };
 
 

@@ -159,19 +159,22 @@ const CardList = () => {
         <Text>계좌 / 카드 등록하기</Text>
       </AddButton>
       <MYCardList>
-        {CardData.map((card, index) => (
-          <Card key={index}>
-            <Img1 src={logoMap[card.bank]} />
-            <Cardtext>
-              <CardCom>{card.bank}</CardCom>
-              {card.bank_account_number !== null && (
-                <div>계좌 {card.bank_account_number}</div>
-              )}
-              {card.card_number !== null && <div>카드 {card.card_number}</div>}
-            </Cardtext>
-          </Card>
-        ))}
-      </MYCardList>
+  {CardData.map((card, index) => (
+    card.bank !== null && (
+      <Card key={index}>
+        <Img1 src={logoMap[card.bank]} />
+        <Cardtext>
+          <CardCom>{card.bank}</CardCom>
+          {card.bank_account_number !== null && (
+            <div>계좌 {card.bank_account_number}</div>
+          )}
+          {card.card_number !== null && <div>카드 {card.card_number}</div>}
+        </Cardtext>
+      </Card>
+    )
+  ))}
+</MYCardList>
+
       <Margin height="40" />
       <AnimatePresence initial={false}>
         <Toast
