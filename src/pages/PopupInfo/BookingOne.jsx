@@ -26,6 +26,7 @@ const Wrapper = styled(motion.div)`
   align-items: center;
   overflow-x: hidden;
   width: 100%;
+  white-space: pre-line;
 `;
 const PopupinfoImg = styled.div`
   display: flex;
@@ -50,47 +51,8 @@ const PopupButton = styled.button`
   justify-content: center;
   cursor: pointer;
 `;
-const RequestWrapper = styled(motion.div)`
-  width: 100%;
-  height: 400px;
-
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
-`;
-const requestvariants = {
-  hidden: { scaleY: 0 },
-  visible: { scaleY: 1 },
-  exit: { scaleY: 0 },
-};
-const GetMaptext = styled.p`
-  width: 50%;
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.3);
-  padding-bottom: 10px;
-  opacity: 0.8;
-  cursor: pointer;
-`;
-const Overlay = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-`;
 const PopupSpace = styled.div`
   width: 90%;
-`;
-const Detail = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 5px 0px;
 `;
 const DetailTime = styled.div`
   display: grid;
@@ -121,34 +83,11 @@ const BookingOne = () => {
   const [isYes, setIsYes] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isshared, setIsShared] = useState(false);
-
-  const requestbtnani = useAnimation();
+  const [isUserLiked, setIsUserLiked] = useState(false);
 
   const movetoLink = (link) => {
     window.location.href = link;
   };
-
-  useEffect(() => {
-    if (btnclicked) {
-      requestbtnani.start("visible");
-    } else {
-      requestbtnani.start("hidden");
-    }
-  }, [btnclicked]);
-
-  const yestoast = () =>
-    toast.success("팝업 신청이 완료되었습니다.", {
-      duration: 6000,
-      style: {
-        marginTop: 50,
-      },
-    });
-
-  useEffect(() => {
-    if (isYes) {
-      setTimeout(() => yestoast(), 1000);
-    }
-  }, [isYes]);
 
   const getData = async () => {
     const data = await api.getPopupById(brandId);
@@ -175,10 +114,6 @@ const BookingOne = () => {
 
   useEffect(() => {
     getData();
-
-    console.log(imagePathsFromBackend);
-
-    return () => setData(null);
   }, []);
 
   return (
@@ -190,8 +125,12 @@ const BookingOne = () => {
         CircleimageUrl={"https://popcon.store" + data?.popup_brand_logo}
       />
       <Carddown2
+        id={brandId}
         toptext={data?.popup_name}
         bodytext={data?.popup_simple_info}
+        isLiked={isLiked} // isLiked 상태 전달
+        setIsLiked={setIsLiked} // 좋아요 버튼 클릭 핸들러 전달
+        setIsShared={setIsShared}
       />
       <Popinfodetail // 팝업의 본문 내용 컴포넌트 (운영 기간, 시간, 기획/운영, 키워드)
         isTabed={true}

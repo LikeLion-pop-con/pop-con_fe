@@ -10,6 +10,7 @@ import Margin from "../../Components/Margin/Margin";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import { useEffect } from "react";
 import * as api from "../../api";
+import { useState } from "react";
 
 const Title = styled.div`
   margin: 5%;
@@ -18,13 +19,18 @@ const Wrapper = styled.div`
   margin: 20px;
 `;
 const Myreservation = () => {
-  const getData = async () => {
-    console.log(localStorage.getItem("pk"));
-    const response = await api.getMypopupreservation(
-      localStorage.getItem("pk")
-    );
+  const [data, setData] = useState([]);
+  const [popup, setPopup] = useState({});
 
-    console.log(response);
+  const getData = async () => {
+    console.log(localStorage.getItem("Pk"));
+    if (localStorage.getItem("Pk")) {
+      const response = await api.getMypopupreservation(
+        localStorage.getItem("Pk")
+      );
+      console.log(response);
+      setData(response);
+    }
   };
 
   useEffect(() => {
@@ -39,33 +45,9 @@ const Myreservation = () => {
           나의 예약
         </Typo>
       </Title>
-      <Horizon width="350px"></Horizon>
+      <Horizon width="350px">{data?.map((item) => {})}</Horizon>
       <Margin height="20" />
-      <LargeCard
-        image={NewJeans}
-        title="NewJeans의 HYPE맑음"
-        popcategory="팝업 스토어"
-        detail="창작 예술"
-        space={"하텍 해동 스룸G \n인하대학교"}
-        date="2023.07.21~2023.08.19"
-      />
-      <LargeCard
-        image="/Card/NewJeans.jpg"
-        title="NewJeans의 HYPE맑음"
-        popcategory="팝업 스토어"
-        detail="창작 예술"
-        space={"하텍 해동 스룸G \n인하대학교"}
-        date="2023.07.21~2023.08.19"
-      />
-      <LargeCard
-        image="/Card/NewJeans.jpg"
-        title="NewJeans의 HYPE맑음"
-        popcategory="팝업 스토어"
-        detail="창작 예술"
-        space={"하텍 해동 스룸G \n인하대학교"}
-        date="2023.07.21~2023.08.19"
-      />
-
+      {}
       <NavigationBar />
     </>
   );

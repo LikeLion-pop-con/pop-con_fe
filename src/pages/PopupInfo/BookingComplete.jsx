@@ -135,9 +135,14 @@ const BookingComplete = () => {
     setSelectedTimeSlot(timeSlot);
   };
 
-  const postData = () => {
+  const postData = async () => {
     const time = `${start}:00~${end}:00`;
-    api.postPopupreservation(localStorage.getItem("pk"), data?.id, date, time);
+    await api.postPopupreservation(
+      localStorage.getItem("Pk"),
+      data?.id,
+      date,
+      time
+    );
   };
 
   useEffect(() => {

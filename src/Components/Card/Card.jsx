@@ -34,6 +34,7 @@ const Thumbnail = styled.div`
   background-image: url(${(props) => props.image});
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center center;
   background-color: none;
   border-radius: 16px;
 
@@ -58,16 +59,29 @@ const Card = ({ image, title, category, main, onClick }) => {
     <CardEach onClick={onClick}>
       <Thumbnail image={image} />
       <TextWrapper>
-        <Typo size="1rem" weight='400'>{title}</Typo>
+        <Typo size="1rem" weight="600">
+          {title}
+        </Typo>
         <Margin height="6" />
         <Typo size="small" color="gray">
           {" "}
           {category}{" "}
         </Typo>
         <Margin height="6" />
-        <Typo size="small" color="gray">
-          {" "}
-          {main}{" "}
+        <Typo size="0.8rem" color="gray">
+          {main?.slice(0, 13)}
+        </Typo>
+        <Typo
+          style={{
+            width: "150px",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+          }}
+          size="small"
+          color="gray"
+        >
+          {main?.slice(13)}
         </Typo>
       </TextWrapper>
     </CardEach>

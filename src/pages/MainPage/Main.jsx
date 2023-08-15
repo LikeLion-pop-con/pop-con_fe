@@ -225,7 +225,7 @@ function Main() {
           isarrow={true}
           text="독립 아티스트"
           bottomgap="20"
-          onClick={() => navigate("/NewArtist")}
+          onClick={() => navigate("/newartist")}
         />
         <ArtistCategory />
         <SliderXwrapper>

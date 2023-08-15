@@ -18,6 +18,19 @@ export function getMypageMylikebrand(name) {
     .get(`${BASE_URL}/mylikebrand/?user_name=${name}`)
     .then((res) => res.data);
 }
+
+export function getMypageMylikepopup(user_id) {
+  return axios
+    .get(`${BASE_URL}/mylikepopup/?id=${user_id}`)
+    .then((res) => res.data);
+}
+export function getPopupIsLiked(user_id, popup_id) {
+  return axios
+    .get(
+      `${BASE_URL}/mylikepopup/check/?user_pk=${user_id}&popup_pk=${popup_id}`
+    )
+    .then((res) => res.data);
+}
 export function getNewbrand() {
   return axios.get(`${BASE_URL}/main/newbrand`).then((res) => res.data);
 }
@@ -38,8 +51,8 @@ export function getCardcheck(id, pw) {
 export function postMylikepopup(popup_id, user_id) {
   return axios
     .post(`${BASE_URL}/popuplike/`, {
-      popup_id,
-      user_id,
+      popup_pk: popup_id,
+      user_pk: user_id,
     })
     .then((res) => console(res.data));
 }

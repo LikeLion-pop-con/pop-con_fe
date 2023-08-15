@@ -128,8 +128,6 @@ const PopupInfo = () => {
     console.log(data);
     setPopupinfo(data);
 
-    console.log(popupinfo?.id, localStorage.getItem("Pk"));
-
     const newImagePaths = [];
 
     for (let i = 1; i <= 7; i++) {
@@ -157,6 +155,9 @@ const PopupInfo = () => {
 
   useEffect(() => {
     getPopupinfo();
+
+    console.log(popupinfo?.id, localStorage.getItem("Pk"));
+
     console.log(imagePathsFromBackend);
 
     return () => {
