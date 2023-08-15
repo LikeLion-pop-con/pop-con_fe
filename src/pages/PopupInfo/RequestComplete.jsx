@@ -25,7 +25,7 @@ const popupcardvariants = {
   },
 };
 
-function RequestComplete() {
+function RequestComplete({ image, title }) {
   const complete = () =>
     toast.success(
       (t) => (
@@ -55,10 +55,7 @@ function RequestComplete() {
   return (
     <>
       <motion.div variants={popupcardvariants} initial="hidden" animate="load">
-        <PopupCard
-          image={PopupCardimg1}
-          title={"IAB STUDIO 팝업 요청되었습니다."}
-        />
+        <PopupCard image={image} title={`${title}`} />
       </motion.div>
     </>
   );

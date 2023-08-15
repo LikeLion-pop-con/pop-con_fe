@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../Components/Header/Header";
-import { useNavigate } from "react-router-dom";
 
 import * as api from "../../api";
 const Text = styled.div`
@@ -84,15 +83,15 @@ const AddAccount2 = () => {
   const onInputChange = (e) => {
     setInputValue(e.target.value);
   };
-  const id = localStorage.getItem('Pk');
+  const id = localStorage.getItem("Pk");
   const [user_pk, setUserPk] = useState(id);
   const [account_password, setAccountPassword] = useState("1234");
   const [bank, setBank] = useState(bankName);
   const [bank_account_number, setBankAccountNumber] = useState("");
-  const [cardNumber,setCard_number] = useState(null);
-  const [cvc,setcvc] = useState(null);
-  const [maxDate,setmaxDate] = useState(null);
-  const [cardPasswordInput , setcardPasswordInput] =useState(null);
+  const [cardNumber, setCard_number] = useState(null);
+  const [cvc, setcvc] = useState(null);
+  const [maxDate, setmaxDate] = useState(null);
+  const [cardPasswordInput, setcardPasswordInput] = useState(null);
   const handleNextClick = async () => {
     try {
       setBankAccountNumber(inputValue);
@@ -128,11 +127,11 @@ const AddAccount2 = () => {
           value={inputValue}
           onChange={onInputChange}
           required
-          pattern="[0-9]*" 
+          pattern="[0-9]*"
           inputmode="numeric"
         />
         <StyledLabel>계좌번호</StyledLabel>
-        {inputValue!= 0 && inputValue.length < 10 ? (
+        {inputValue != 0 && inputValue.length < 10 ? (
           <ErrorMessage>계좌번호가 너무 짧아요!</ErrorMessage>
         ) : null}
         {inputValue.length > 14 ? (

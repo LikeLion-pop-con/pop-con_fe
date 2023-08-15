@@ -7,19 +7,17 @@ import Popinfodetail from "../../Components/Brand, ArtistCard/Popinfodetail";
 import Typo from "../../assets/Typo";
 import Footer from "../../Components/Footer/Footer";
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from "react-router-dom";
 import { useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import Kakaomap from "../../Components/Kakaomap/Kakaomap";
 import Margin from "../../Components/Margin/Margin";
-import RequestModal from "../../Components/Modal/PopRequestModal";
-import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
-import Calendar from "../../Components/Calendar/Calendar";
-import CustomTimeSlot from "../../Components/Calendar/CustomTimeSlot";
-import Choose from "../../Components/Calendar/Choose";
-import Modal from "react-modal";
 import toast, { Toaster } from "react-hot-toast";
-import RequestComplete from "./RequestComplete";
+import * as api from "../../api";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -101,37 +99,35 @@ const DetailTime = styled.div`
   margin-left: 3%;
   margin-top: 3%;
 `;
-
-const renderImages = (imagePaths) => {
-  return imagePaths.map((imagePath, index) => (
-    <Image key={index} src={imagePath} alt="팝업 이미지" />
-  ));
-};
+const DetailLink = styled.p`
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  padding-bottom: 5px;
+  font-size: 16px;
+`;
 
 const BookingOne = () => {
   //백엔드에서 받아온 이미지 경로 배열 - 데이터 받아서 변수로 선언해야 할 듯
-  const { brandId } = useParams();
 
+  const { brandId } = useParams();
   console.log(brandId);
 
   const navigate = useNavigate();
 
   const [btnclicked, setBtnclicked] = useState(false);
   const [requestbtnclikced, setRequestbtnclicked] = useState(false);
-
+  const [data, setData] = useState([]);
+  const [imagePathsFromBackend, setImagePathsFromBackend] = useState([]);
   const [isYes, setIsYes] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isshared, setIsShared] = useState(false);
 
-  const imagePathsFromBackend = [
-    "이미지1의_경로.jpg",
-    "이미지2의_경로.jpg",
-    // 추가적인 이미지들의 경로
-  ];
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const requestbtnani = useAnimation();
-  const handleTimeSlotChange = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
+
+  const movetoLink = (link) => {
+    window.location.href = link;
   };
+
   useEffect(() => {
     if (btnclicked) {
       requestbtnani.start("visible");
@@ -154,36 +150,73 @@ const BookingOne = () => {
     }
   }, [isYes]);
 
+  const getData = async () => {
+    const data = await api.getPopupById(brandId);
+    setData(data);
+
+    console.log(data);
+
+    const newImagePaths = [];
+
+    for (let i = 1; i <= 7; i++) {
+      const key = `popup_image${String(i).padStart(2, "0")}`;
+      const imagePath = data[key];
+
+      if (imagePath !== null && imagePath !== undefined) {
+        newImagePaths.push(imagePath);
+      }
+    }
+
+    setImagePathsFromBackend((prevImagePaths) => [
+      ...prevImagePaths,
+      ...newImagePaths,
+    ]);
+  };
+
+  useEffect(() => {
+    getData();
+
+    console.log(imagePathsFromBackend);
+
+    return () => setData(null);
+  }, []);
+
   return (
     <Wrapper>
       <Header left="logo" right={["login", "search"]} />
       <Cardup
-        name="IAB STUDIO"
-        backimageUrl={img1}
-        CircleimageUrl="img/Artistimg/iabCircleimg.png"
+        name={data?.brand_info}
+        backimageUrl={"https://popcon.store" + data?.popup_main_image}
+        CircleimageUrl={"https://popcon.store" + data?.popup_brand_logo}
       />
       <Carddown2
-        toptext="빈지노의 새로운 노비츠키 한정판 팝업 스토어"
-        bodytext="10년 만에 세상으로 모습을 들어낸 빈지노가 낸 음반 노비츠키를 한정판으로 판매할 예정이다. 앨범 발매기념 팝업 스토어는 3일 간 운영되고 집계된 의결을 바탕으로 지역을 선택하여 열릴 예정이다."
+        toptext={data?.popup_name}
+        bodytext={data?.popup_simple_info}
       />
       <Popinfodetail // 팝업의 본문 내용 컴포넌트 (운영 기간, 시간, 기획/운영, 키워드)
-        isTabed={false}
-        firsttitle={"팝업 소개"}
+        isTabed={true}
+        firsttitle={true}
+        firstimg={true}
         bodytitle={[
           "• 운영 기간: ",
           "• 운영 시간: ",
           "• 기획/운영: ",
           "• 소개: ",
-          "• 키워드: ",
-          "• 자료 출처: ",
         ]}
-        bodyText={
-          "2023.07.06(목) ~ 2023.07.12 (수)\n행사 종료\n아이앱 스튜디오, 더현대 서울IAB STUDIO POP-UP STORE at ‘THE HYUNDAI SEOUL' 아이앱 스튜디오가 여의도에 위치한 ‘더현대 서울’에서 팝업 스토어를 진행합니다. 오프라인으로 열리는 이번 팝업 스토어에서는 새롭게 선보이는 의류들과 아이웨어 라인이 공개되며, 팝업 품목 리스트와 구매 방식에 관련된 정보는 추후 공개될 예정입니다.\niabstudiopop-upstore, iabstudiopop-upstore, iabstudio, 아이앱스튜디오, 더현대서울, 아이앱스튜디오팝업,팝업, 팝업스토어, 더현대, 서울팝업, 서울가볼만한곳, 브랜드팝업, popup, popupstore\n아이앱 스튜디오 인스타그램 공식 계정"
-        }
+        image={"https://popcon.store" + data?.popup_main_image}
+        bodyText={`${data?.popup_date}\n${data?.popup_time}\n${data?.popup_operation}\n${data?.popup_info}`}
       />
       <Margin height="20" />
 
-      <PopupinfoImg>{renderImages(imagePathsFromBackend)}</PopupinfoImg>
+      <PopupinfoImg>
+        {imagePathsFromBackend.map((image, index) => (
+          <Image
+            key={index}
+            src={"https://popcon.store" + image}
+            alt="팝업 이미지"
+          />
+        ))}
+      </PopupinfoImg>
 
       <Margin height="30" />
       <PopupSpace>
@@ -191,37 +224,26 @@ const BookingOne = () => {
           팝업 장소
         </Typo>
         <Margin height="20" />
-        <Detail>
-          <Typo weight="600" style={{ paddingRight: 10 }}>
-            • 운영 시간:{" "}
-          </Typo>
-          <Typo weight="400">12:00 ~ 18:00</Typo>
-        </Detail>
-        <Detail>
-          <Typo weight="600" style={{ paddingRight: 10 }}>
-            • 기획/운영:{" "}
-          </Typo>
-          <Typo weight="400">아이앱 스튜디오, Vunque</Typo>
-        </Detail>
-        <Typo style={{ padding: "10px 0px", lineHeight: 1.2 }}>
+
+        <Typo style={{ padding: "10px 20px", lineHeight: 1.2 }}>
           많은 분들의 성원에 힘입어 이번 팝업 장소는 다음과 같이 선정되었습니다!
         </Typo>
 
         <DetailTime>
           <div>
-            <Typo>• 2023.07.06(목) ~ 2023.07.12(수)</Typo>
-            <Typo style={{ paddingLeft: 5 }}>
-              17,yeonmujang-gil, Seongdong-gu, Seoul
-            </Typo>
-          </div>
-          <div>
-            <Typo>• 2023.07.06(목) ~ 2023.07.12(수)</Typo>
-            <Typo style={{ paddingLeft: 5 }}>
-              17,yeonmujang-gil, Seongdong-gu, Seoul
+            <Typo weight="600">• {data?.popup_date?.split("*")[0]}</Typo>
+            <Margin height="3" />
+            <Typo size="24" color="main" style={{ paddingLeft: 5 }}>
+              {data?.popup_detailplace}
             </Typo>
           </div>
         </DetailTime>
       </PopupSpace>
+
+      <Margin height="30" />
+      <DetailLink onClick={() => movetoLink(data?.popup_add_info)}>
+        더 많은 정보를 알고 싶다면 ?
+      </DetailLink>
 
       {/* <Margin height="20" />
       <GetMaptext>팝업 요청 현황</GetMaptext>
@@ -253,76 +275,8 @@ const BookingOne = () => {
           예약하기
         </Typo>
       </PopupButton>
-
       <Margin height="30" />
-
       <Footer />
-      <Modal
-        isOpen={requestbtnclikced && !isYes}
-        onRequestClose={false}
-        shouldCloseOnEsc={false}
-        // shouldCloseOnOverlayClick={false}
-        ariaHideApp={false}
-        // closeTimeoutMS={1000}
-        overlayElement={(props, overlayElement) => (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ type: "tween" }}
-            {...props}
-          >
-            {overlayElement}
-          </motion.div>
-        )}
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0,0,0,0.3)",
-            width: "100vw",
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          },
-          content: {
-            position: "fixed",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            margin: "auto auto",
-            width: "325px",
-            height: "200px",
-            borderRadius: "20px",
-          },
-        }}
-      >
-        <RequestModal setIsYes={setIsYes} />
-      </Modal>
-      <Modal
-        isOpen={isYes}
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0,0,0,0.3)",
-            width: "100vw",
-            height: "100vh",
-          },
-          content: {
-            position: "fixed",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: -40,
-            backgroundColor: "transparent",
-            border: "none",
-            margin: "auto auto",
-            width: "330px",
-            height: "500px",
-            borderRadius: "20px",
-          },
-        }}
-      >
-        <RequestComplete />
-      </Modal>
       <Toaster position="top-center" />
     </Wrapper>
   );

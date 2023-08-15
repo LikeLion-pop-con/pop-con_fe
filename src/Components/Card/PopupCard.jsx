@@ -59,6 +59,9 @@ const TitleWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 15px;
+  p {
+    line-height: 1.2;
+  }
 `;
 const TextBox = styled.div`
   display: flex;
@@ -101,7 +104,7 @@ const PopupCard = ({ image, title, main, onClick }) => {
           alt="logo"
           onClick={() => navigate("/main")}
         />
-        <Typo fontType="medium" onClick={() => navigate(-1)}>
+        <Typo fontType="medium" onClick={() => navigate("/main")}>
           {" "}
           확인
         </Typo>

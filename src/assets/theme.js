@@ -6,7 +6,8 @@ const colors = {
   sub: "#B2A5FE",
   lightgray: "#e7e7e7",
   darkgray: "#dcdde1",
-  gray: "#8A8A8B"
+  gray: "#8A8A8B",
+  red: "#FF0000",
 };
 
 const font = {

@@ -47,7 +47,7 @@ import BrandIntro from "./pages/BrandIntroduce/BrandIntro";
 import BrandInfo from "./pages/BrandIntroduce/BrandInfo";
 import BrandPost from "./pages/BrandIntroduce/BrandPost";
 import ChatPage from "./pages/Chatbot/Chatpage";
-import Kakaomap2 from "./Components/Kakaomap/Kakaomap2";
+import Kakaomap2 from "./Components/Kakao/Kakaomap2";
 import RequestComplete from "./pages/PopupInfo/RequestComplete";
 import PopupBooking from "./pages/PopupInfo/PopupBooking";
 import BookingOne from "./pages/PopupInfo/BookingOne";
@@ -59,6 +59,7 @@ import AddCard from "./pages/Card/AddCard";
 import AddAccount from "./pages/Card/AddAccount";
 import AddAccount2 from "./pages/Card/AddAccount2";
 import AddAccount3 from "./pages/Card/AddAccount3";
+import PopupSpaceItemBooking from "./pages/PopupInfo/PopupSpaceItemBooking";
 import AddCard2 from "./pages/Card/AddCard2";
 import Password from "./pages/Password/PageMain";
 import AddCard1 from "./pages/Card/AddCard1";
@@ -78,6 +79,10 @@ function Router() {
               <Route path="" element={<SpaceItemIntro />}></Route>
               <Route path="info" element={<SpaceItemInfo />}></Route>
             </Route>
+            <Route
+              path="/popupspace/:spaceId/booking"
+              element={<PopupSpaceItemBooking />}
+            ></Route>
 
             <Route path="" element={<LogoWelcome />} />
 
@@ -121,7 +126,7 @@ function Router() {
 
             <Route path="/postList" element={<PostList />} />
             <Route path="/popupPost" element={<PopupPost />} />
-            <Route path="/popupinfo/:brandId" element={<PopupInfo />} />
+            <Route path="/popupinfo/" element={<PopupInfo />} />
 
             <Route
               path="/popupbooking/:brandId"
@@ -144,15 +149,24 @@ function Router() {
             <Route path="/popularpopup" element={<Popularpopup />} />
             <Route path="/popuphere" element={<PopupHere />} />
             <Route path="/maptest" element={<Kakaomap2 />}></Route>
-            
+
             <Route path="/Password" element={<Password />}></Route>
             <Route path="/CardList" element={<CardList />}></Route>
-            <Route path="/CardList/AddCard/:bankName" element={<AddCard />}></Route>
+            <Route
+              path="/CardList/AddCard/:bankName"
+              element={<AddCard />}
+            ></Route>
             <Route path="/CardList/AddCard1" element={<AddCard1 />}></Route>
             <Route path="/CardList/AddCard2" element={<AddCard2 />}></Route>
             <Route path="/CardList/AddAccount" element={<AddAccount />}></Route>
-            <Route path="/CardList/AddAccount2/:bankName" element={<AddAccount2 />}></Route>
-            <Route path="/CardList/AddAccount3" element={<AddAccount3 />}></Route>
+            <Route
+              path="/CardList/AddAccount2/:bankName"
+              element={<AddAccount2 />}
+            ></Route>
+            <Route
+              path="/CardList/AddAccount3"
+              element={<AddAccount3 />}
+            ></Route>
           </Route>
         </Routes>
       </SearchProvider>

@@ -46,16 +46,17 @@ const TextWrap = styled.span`
 `;
 
 const Popinfodetail = ({
+  firstimg, // 팝업 정보 밑에 첫 타이틀 여부
   firsttitle,
-  bodytitle,
-  bodyText,
-  textstyle,
-  width,
-  image,
-  isTabed,
+  bodytitle, // 운영 시간, 운영 기간 등의 내용 타이틀
+  bodyText, // 본문 내용 \n으로 구분
+  textstyle, // 본문 text 정렬 스타일
+  width, // 본문 width
+  image, // 본문 이미지
+  isTabed, // 팝업 정보 탭 유무
 }) => {
   useEffect(() => {
-    return () => console.log("it is over"); 
+    return () => console.log("it is over");
   }, []);
   const contentOrder = bodyText?.split("\n");
 
@@ -67,8 +68,6 @@ const Popinfodetail = ({
     "• 키워드: ",
     "• 자료 출처: ",
   ];
-
-  console.log(contentOrder);
 
   return (
     <>
@@ -83,21 +82,26 @@ const Popinfodetail = ({
         )}
 
         <TextWrapper>
-          {firsttitle ? (
-            <div>
-              <TitleText>
-                <Typo size="1.3rem" weight="600">
-                  팝업 소개
-                </Typo>
-              </TitleText>
-            </div>
-          ) : (
+          {firstimg && (
             <>
-              <Margin height="30" />
+              <Margin height="25" />
               <Image>
-                <img src={image} width="300" height="400"></img>
+                <img
+                  style={{ borderRadius: 20 }}
+                  alt="img"
+                  src={image}
+                  width="300"
+                  height="400"
+                ></img>
               </Image>
               <Margin height="30" />
+              {firsttitle && (
+                <TitleText>
+                  <Typo size="1.3rem" weight="600">
+                    팝업 소개
+                  </Typo>
+                </TitleText>
+              )}
             </>
           )}
 
