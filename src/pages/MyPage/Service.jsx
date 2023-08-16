@@ -17,13 +17,12 @@ const Title = styled.div`
 const Title1 = styled.div`
   margin: 5%;
   display: flex;
-  align-self: flex-start;
-  margin-left: 50px;
+  align-self: center;
 `;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center ;
   width: 80%;
 `;
 const Text = styled.p`
@@ -84,6 +83,7 @@ const BOX = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  align-self: center;
 `;
 const Icon = styled.img`
   margin-right: 10px;
@@ -92,6 +92,7 @@ const Service = () => {
   const [showText1, setShowText1] = useState(false);
   const [showText2, setShowText2] = useState(false);
   const [showText3, setShowText3] = useState(false);
+  const [showText4, setShowText4] = useState(false);
 
   const toggleTextVisibility = (boxNumber) => {
     switch (boxNumber) {
@@ -103,6 +104,9 @@ const Service = () => {
         break;
       case 3:
         setShowText3((prevShowText) => !prevShowText);
+        break;
+      case 4:
+        setShowText4((prevShowText) => !prevShowText);
         break;
       default:
         break;
@@ -137,7 +141,7 @@ const Service = () => {
       <Wrapper>
         <Text>
           <Icon src={Richat} />
-          꼭! 읽어주세요. 일부 정책이 변경됩니다.
+          팝콘 스토어에서 무엇을 할 수 있나요?
           <Button onClick={() => toggleTextVisibility(1)}>
             {showText1 ? (
               <IoIosArrowUp size={25} color="gray" />
@@ -151,22 +155,14 @@ const Service = () => {
         {showText1 && (
           <Body show={showText1}>
             <BodyText>
-              POPCON 사용자 여러분, 만우절에 센스업게 진지한 당부의 말씀을
-              드리게 되었습니다..
-              <br />
-              <br />
-              최근 여러 사례들을 보면 내 개인정보가 나만의 정보가 아니게 되어
-              버린 것 같습니다.
-              <br />
-              <br />
-              만약 다른 서비스와 동일한 비밀번호로 서비스를 이용하시고
-              있으시다면 변경해서 나의 정보를 지켜주세요!
+            팝콘 스토어에서는 다양한 팝업 스토어, 브랜드, 아티스트의 팝업을 만나볼 수 있습니다.
+            <br />
+              <br />의류, 액세서리, 디자인 제품부터 독특한 아트워크까지 다양한 상품을 만나보세요.
             </BodyText>
           </Body>
         )}
         <Text>
-          <Icon src={Richat} /> [주의] 계정과 비밀번호는 나만 알아야 하는 소중한
-          정보입니다.
+          <Icon src={Richat} /> 팝업 스토어란 무엇인가요?
           <Button onClick={() => toggleTextVisibility(2)}>
             {showText2 ? (
               <IoIosArrowUp size={25} color="gray" />
@@ -180,22 +176,13 @@ const Service = () => {
         {showText2 && (
           <Body show={showText2}>
             <BodyText>
-              POPCON 사용자 여러분, 만우절에 센스업게 진지한 당부의 말씀을
-              드리게 되었습니다..
-              <br />
-              <br />
-              최근 여러 사례들을 보면 내 개인정보가 나만의 정보가 아니게 되어
-              버린 것 같습니다.
-              <br />
-              <br />
-              만약 다른 서비스와 동일한 비밀번호로 서비스를 이용하시고
-              있으시다면 변경해서 나의 정보를 지켜주세요!
+              팝업 스토어는 일정 기간 동안 한정된 기간 동안만 운영되는 임시 매장을 의미합니다. <br />
+              <br />다양한 브랜드, 아티스트가 제품을 소개하고 판매하는 공간으로, 유니크하고 특별한 상품을 만나보실 수 있습니다.
             </BodyText>
           </Body>
         )}
-        <Text>
-          <Icon src={Richat} />
-          무더운 여름을 POPCON과 함께!!@@@
+         <Text>
+          <Icon src={Richat} /> 팝업 스토어 방문 시 어떤 혜택이 있나요?
           <Button onClick={() => toggleTextVisibility(3)}>
             {showText3 ? (
               <IoIosArrowUp size={25} color="gray" />
@@ -207,18 +194,35 @@ const Service = () => {
 
         <Horizon width="350px" color="#EBEBEB" />
         {showText3 && (
+          <Body show={showText2}>
+            <BodyText>
+            팝업 스토어 방문자들은 주로 한정된 기간 동안만 구매할 수 있는 독특한 상품들을 만나보실 수 있습니다. <br />
+              <br />또한 실제로 제작자나 브랜드와 대화하며 상품에 대한 이야기를 들을 수 있는 특별한 경험을 누릴 수 있습니다.
+            </BodyText>
+          </Body>
+        )}
+        <Text>
+          <Icon src={Richat} />
+          문의 사항이 있을 때 어떻게 문의하면 되나요?
+          <Button onClick={() => toggleTextVisibility(4)}>
+            {showText4 ? (
+              <IoIosArrowUp size={25} color="gray" />
+            ) : (
+              <IoIosArrowDown size={25} color="gray" />
+            )}
+          </Button>
+        </Text>
+
+        <Horizon width="350px" color="#EBEBEB" />
+        {showText4 && (
           <Body show={showText3}>
             <BodyText>
-              POPCON 사용자 여러분, 만우절에 센스업게 진지한 당부의 말씀을
-              드리게 되었습니다..
+            문의하고 싶은 내용이 있을 경우, "고객센터" 페이지에서 문의하기를 누르거나 이메일을 통해 문의하실 수 있습니다. <br />
+              <br />빠르고 정확한 답변을 드리기 위해 노력하겠습니다.
               <br />
               <br />
-              최근 여러 사례들을 보면 내 개인정보가 나만의 정보가 아니게 되어
-              버린 것 같습니다.
+더 많은 궁금한 사항이나 질문이 있으시면 언제든 팝콘 스토어 고객센터로 문의해주세요!
               <br />
-              <br />
-              만약 다른 서비스와 동일한 비밀번호로 서비스를 이용하시고
-              있으시다면 변경해서 나의 정보를 지켜주세요!
             </BodyText>
           </Body>
         )}

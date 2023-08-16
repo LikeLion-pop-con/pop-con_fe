@@ -19,6 +19,7 @@ const CardEach = styled.div`
   border-radius: 12px;
   cursor: pointer;
   margin: 0px 10px;
+  margin-bottom: 20px;
   box-shadow: 8px 8px 8px 5px rgba(67, 0, 209, 0.05);
   scroll-snap-align: center;
 `;
@@ -47,9 +48,21 @@ const TextWrapper = styled.div`
   margin-left: 5px;
   margin-right: 15px;
 `;
+const CategoryMapping = {
+  1: "푸드",
+  2: "패션 잡화",
+  3: "테크 가전",
+  4: "뷰티",
+  5: "클래스",
+  6: "그림",
+  7: "문학",
+  8: "영상",
+  9: "음악"
+};
 
 const SmallCard = ({ image, title, category, main, onClick }) => {
   const navigate = useNavigate();
+  const mappedCategory = CategoryMapping[category];
   return (
     <CardBlock>
       <CardEach onClick={onClick}>
@@ -60,7 +73,7 @@ const SmallCard = ({ image, title, category, main, onClick }) => {
           </Typo>
           <Margin height="6" />
           <Typo size="0.7rem" color="gray">
-            {category}
+            {mappedCategory}
           </Typo>
           <Margin height="4" />
           <Typo size="0.8rem">{main?.slice(0, 14)}</Typo>
