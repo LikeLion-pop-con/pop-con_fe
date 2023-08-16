@@ -18,6 +18,19 @@ export function getMypageMylikebrand(name) {
     .get(`${BASE_URL}/mylikebrand/?user_name=${name}`)
     .then((res) => res.data);
 }
+
+export function getMypageMylikepopup(user_id) {
+  return axios
+    .get(`${BASE_URL}/mylikepopup/?id=${user_id}`)
+    .then((res) => res.data);
+}
+export function getPopupIsLiked(user_id, popup_id) {
+  return axios
+    .get(
+      `${BASE_URL}/mylikepopup/check/?user_pk=${user_id}&popup_pk=${popup_id}`
+    )
+    .then((res) => res.data);
+}
 export function getNewbrand() {
   return axios.get(`${BASE_URL}/main/newbrand`).then((res) => res.data);
 }
@@ -35,22 +48,26 @@ export function getCardcheck(id, pw) {
     .then((res) => res.data);
 }
 export function getSearch(search) {
-  return axios
-    .get(`${BASE_URL}/search/${search}`)
-    .then((res) => res.data);
+  return axios.get(`${BASE_URL}/search/${search}`).then((res) => res.data);
 }
 export function getBrandinfo(id) {
+  return axios.get(`${BASE_URL}/brandinfo/?id=${id}`).then((res) => res.data);
+}
+export function getBrandinfoPopup(brandId) {
   return axios
-    .get(`${BASE_URL}/brandinfo/?id=${id}`)
+    .get(`${BASE_URL}/brandinfo/popup/?id=${brandId}`)
     .then((res) => res.data);
 }
-
-
+export function getMylikepopupRequest(user_id) {
+  return axios
+    .get(`${BASE_URL}/mylikepopup/request/?id=${user_id}`)
+    .then((res) => res.data);
+}
 export function postMylikepopup(popup_id, user_id) {
   return axios
     .post(`${BASE_URL}/popuplike/`, {
-      popup_id,
-      user_id,
+      popup_pk: popup_id,
+      user_pk: user_id,
     })
     .then((res) => console(res.data));
 }
@@ -82,6 +99,14 @@ export function postPopupreservation(
       popup_id,
       popup_reservation_date,
       popup_reservation_time,
+    })
+    .then((res) => res.data);
+}
+export function postPopuprequest(popup_pk, user_pk) {
+  return axios
+    .post(`${BASE_URL}/popuprequest/`, {
+      popup_pk,
+      user_pk,
     })
     .then((res) => res.data);
 }

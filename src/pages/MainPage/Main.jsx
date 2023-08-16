@@ -58,6 +58,7 @@ function Main() {
   const [hotpopupdata, setHotpopupdata] = useState([]);
   const [newbrandData, setNewbrandData] = useState([]);
   const [CardData, setCardData] = useState([]);
+
   useEffect(() => {
     const token = localStorage.getItem("Token");
     if (!token) {
@@ -211,6 +212,7 @@ function Main() {
               })
               ?.map((item) => (
                 <SmallCard
+                  onClick={() => navigate(`/brand/${item?.id}`)}
                   image={"https://popcon.store" + item?.brand_logo}
                   title={item?.brand_name}
                   category={item?.brand_category}
@@ -224,7 +226,7 @@ function Main() {
           isarrow={true}
           text="독립 아티스트"
           bottomgap="20"
-          onClick={() => navigate("/NewArtist")}
+          onClick={() => navigate("/newartist")}
         />
         <ArtistCategory />
         <SliderXwrapper>
@@ -240,6 +242,7 @@ function Main() {
               })
               ?.map((item) => (
                 <SmallCard
+                  onClick={() => navigate(`/brand/${item?.id}`)}
                   image={"https://popcon.store" + item?.brand_logo}
                   title={item?.brand_name}
                   category={item?.brand_category}

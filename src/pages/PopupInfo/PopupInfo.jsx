@@ -18,15 +18,13 @@ import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Kakaomap from "../../Components/Kakao/Kakaomap";
 import Margin from "../../Components/Margin/Margin";
 import RequestModal from "../../Components/Modal/PopRequestModal";
-import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
-import Calendar from "../../Components/Calendar/Calendar";
-import CustomTimeSlot from "../../Components/Calendar/CustomTimeSlot";
-import Choose from "../../Components/Calendar/Choose";
 import Modal from "react-modal";
 import toast, { Toaster } from "react-hot-toast";
 import RequestComplete from "./RequestComplete";
-import { postMylikepopup, getPopupById } from "../../api";
+import { postMylikepopup, getPopupById, postPopuprequest } from "../../api";
 import KakaoShare from "../../Components/Kakao/KakaoShare";
+import { AiFillPicture } from "react-icons/ai";
+
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
   display: flex;
@@ -112,7 +110,7 @@ const PopupInfo = () => {
   const [btnclicked, setBtnclicked] = useState(false);
   const [requestbtnclikced, setRequestbtnclicked] = useState(false);
   const [isYes, setIsYes] = useState(false);
-  const [popupinfo, setPopupinfo] = useState([]);
+  const [popupinfo, setPopupinfo] = useState({});
 
   console.log(localStorage.getItem("Pk"));
 
@@ -126,9 +124,7 @@ const PopupInfo = () => {
   const getPopupinfo = async () => {
     const data = await getPopupById(brandId);
     console.log(data);
-    setPopupinfo(data);
-
-    console.log(popupinfo?.id, localStorage.getItem("Pk"));
+    setPopupinfo(data?.popup);
 
     const newImagePaths = [];
 
@@ -157,20 +153,19 @@ const PopupInfo = () => {
 
   useEffect(() => {
     getPopupinfo();
-    console.log(imagePathsFromBackend);
 
-    return () => {
-      // console.log(isPopupinfoPage);
-      postMylikepopup(popupinfo?.id, localStorage.getItem("Pk"))
-        .then((data) => {
-          console.log("Like successfully posted:", data);
-          setIsYes(true);
-        })
-        .catch((error) => {
-          console.error("Error posting like:", error);
-        });
-    };
+    // console.log(popupinfo?.id, localStorage.getItem("Pk"));
+
+    console.log(imagePathsFromBackend);
   }, []);
+  const handleRequestClicked = () => {
+    window.scrollTo(0, 0);
+    if (localStorage.getItem("Pk")) {
+      setTimeout(() => setRequestbtnclicked((prev) => !prev), 500);
+    } else {
+      userconfirmtoast();
+    }
+  };
 
   const yestoast = () =>
     toast.success("팝업 신청이 완료되었습니다.", {
@@ -180,9 +175,50 @@ const PopupInfo = () => {
       },
     });
 
+  const userconfirmtoast = () => {
+    toast(
+      (t) => (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "6vh",
+          }}
+        >
+          <p>로그인이 필요한 서비스입니다.</p>
+          <button
+            onClick={() => navigate("/login")}
+            style={{
+              border: "none",
+              backgroundColor: "#ec7538",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "5px",
+              width: "50%",
+              height: "3vh",
+              cursor: "pointer",
+            }}
+          >
+            로그인 하러 가기
+          </button>
+        </div>
+      ),
+      {
+        icon: "👏",
+      }
+    );
+  };
+
   useEffect(() => {
     if (isYes) {
       setTimeout(() => yestoast(), 1000);
+    }
+    if (localStorage.getItem("Pk")) {
+      postPopuprequest(brandId, localStorage.getItem("Pk"));
+      console.log("is posted !!");
     }
   }, [isYes]);
 
@@ -195,6 +231,7 @@ const PopupInfo = () => {
         CircleimageUrl={"https://popcon.store" + popupinfo?.popup_brand_logo}
       />
       <Carddown2
+        id={brandId}
         toptext={popupinfo?.popup_name} // 팝업 이름
         bodytext={popupinfo?.popup_simple_info}
         // 간단 소개
@@ -211,6 +248,8 @@ const PopupInfo = () => {
       )}
       <Popinfodetail
         isTabed={true}
+        firstimg={true}
+        firsttitle={true}
         bodytitle={[
           "• 운영 기간: ",
           "• 운영 시간: ",
@@ -255,8 +294,7 @@ const PopupInfo = () => {
 
       <PopupButton
         onClick={() => {
-          window.scrollTo(0, 0);
-          setTimeout(() => setRequestbtnclicked((prev) => !prev), 500);
+          handleRequestClicked();
         }}
       >
         <Typo size="1.1rem" weight="600" color="white">
@@ -267,72 +305,79 @@ const PopupInfo = () => {
       <Margin height="30" />
 
       <Footer />
-      <Modal
-        isOpen={requestbtnclikced && !isYes}
-        onRequestClose={false}
-        shouldCloseOnEsc={false}
-        // shouldCloseOnOverlayClick={false}
-        ariaHideApp={false}
-        // closeTimeoutMS={1000}
-        overlayElement={(props, overlayElement) => (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ type: "tween" }}
-            {...props}
+      {localStorage.getItem("Pk") && (
+        <>
+          <Modal
+            isOpen={requestbtnclikced && !isYes}
+            onRequestClose={false}
+            shouldCloseOnEsc={false}
+            // shouldCloseOnOverlayClick={false}
+            ariaHideApp={false}
+            // closeTimeoutMS={1000}
+            overlayElement={(props, overlayElement) => (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ type: "tween" }}
+                {...props}
+              >
+                {overlayElement}
+              </motion.div>
+            )}
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0,0,0,0.3)",
+                width: "100vw",
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              },
+              content: {
+                position: "fixed",
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                margin: "auto auto",
+                width: "325px",
+                height: "200px",
+                borderRadius: "20px",
+              },
+            }}
           >
-            {overlayElement}
-          </motion.div>
-        )}
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0,0,0,0.3)",
-            width: "100vw",
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          },
-          content: {
-            position: "fixed",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            margin: "auto auto",
-            width: "325px",
-            height: "200px",
-            borderRadius: "20px",
-          },
-        }}
-      >
-        <RequestModal setIsYes={setIsYes} />
-      </Modal>
-      <Modal
-        isOpen={isYes}
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0,0,0,0.3)",
-            width: "100vw",
-            height: "100vh",
-          },
-          content: {
-            position: "fixed",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: -40,
-            backgroundColor: "transparent",
-            border: "none",
-            margin: "auto auto",
-            width: "330px",
-            height: "500px",
-            borderRadius: "20px",
-          },
-        }}
-      >
-        <RequestComplete />
-      </Modal>
+            <RequestModal setIsYes={setIsYes} />
+          </Modal>
+          <Modal
+            isOpen={isYes}
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0,0,0,0.3)",
+                width: "100vw",
+                height: "100vh",
+              },
+              content: {
+                position: "fixed",
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: -40,
+                backgroundColor: "transparent",
+                border: "none",
+                margin: "auto auto",
+                width: "330px",
+                height: "500px",
+                borderRadius: "20px",
+              },
+            }}
+          >
+            <RequestComplete
+              image={"https://popcon.store" + popupinfo?.popup_main_image}
+              title={popupinfo?.popup_name + " \n신청 완료되었습니다."}
+            />
+          </Modal>
+        </>
+      )}
       <Toaster position="top-center" />
     </Wrapper>
   );

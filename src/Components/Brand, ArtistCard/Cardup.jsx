@@ -13,8 +13,9 @@ const Imgbox = styled.div`
   width: 100%;
   height: 35vh;
   background-image: url(${(props) => props.backimageUrl});
-  background-size: cover;
+  background-size: 100% auto;
   background-position: center center;
+  background-repeat: no-repeat;
   /* 백그라운 이미지를 50px 위로 조정, 다른 이미지 넣으면 깨질까요?*/
   @media (max-width: 768px) {
     width: 100vw;
@@ -25,8 +26,10 @@ const Circle = styled.div`
   height: 90px;
   border-radius: 50%;
   background-image: url(${(props) => props.CircleimageUrl});
-  background-size: cover;
+
   background-position: center;
+  background-size: 100% 100%;
+  background-color: white;
   margin-top: -50px;
   box-shadow: 0 0 0 4px white;
 `;

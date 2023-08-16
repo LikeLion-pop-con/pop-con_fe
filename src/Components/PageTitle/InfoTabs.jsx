@@ -50,7 +50,7 @@ const StatusBar = styled(motion.div)`
   bottom: 0;
 `;
 
-function InfoTabs({ page1, page2, page3, brandId }) {
+function InfoTabs({ type, page1, page2, page3, brandId }) {
   const introMatch = useMatch(`/brand/${brandId}`);
   const infoMatch = useMatch(`/brand/${brandId}/info`);
   const postMatch = useMatch(`/brand/${brandId}/post`);

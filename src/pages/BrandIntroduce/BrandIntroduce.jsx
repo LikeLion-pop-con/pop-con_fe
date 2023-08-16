@@ -10,38 +10,38 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as api from "../../api";
 import Headerline from "../../Components/Headerline/Headerline";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { isBrandOrArtist } from "../../atom";
 const Box = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 100px;
   margin-bottom: 30px;
-`
-const StyledLink = styled.div`
-  width: 200px;
-  display: flex;
-  border: 1px solid lightgray;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  font-weight: lighter;
-`
+`;
+
 const BrandIntroduce = () => {
   const { brandId } = useParams();
   const [Data, setData] = useState([]);
+  const setIsBrandOrArtist = useSetRecoilState(isBrandOrArtist);
+
   const navigate = useNavigate();
   useEffect(() => {
     getBrandinfo();
   }, []);
   const getBrandinfo = async () => {
     const BrandData = await api.getBrandinfo(brandId);
+    if (BrandData?.type === 1) {
+      setIsBrandOrArtist(true); // 기업
+    } else {
+      setIsBrandOrArtist(false); // 아티스트
+    }
+
     setData(BrandData);
     console.log(BrandData);
   };
   const navigateToExternalLink = () => {
-    const externalLink = (Data.brand_about_link);
-    window.open(externalLink, '_blank');
+    const externalLink = Data.brand_about_link;
+    window.open(externalLink, "_blank");
   };
   return (
     <div>
@@ -62,8 +62,6 @@ const BrandIntroduce = () => {
         page2="팝업 정보"
         page3="포스트"
       />
-      <Headerline title={Data.brand_name} subtitle={Data.brand_borndate} content={Data.brand_intro}/>
-      <Box><StyledLink onClick={navigateToExternalLink}>ABOUT</StyledLink></Box>
     </div>
   );
 };

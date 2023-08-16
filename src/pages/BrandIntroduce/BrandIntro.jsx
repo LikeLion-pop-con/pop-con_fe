@@ -4,12 +4,17 @@ import styled from "styled-components";
 import PopupTitle from "../../Components/PopupTitle/PopupTitle";
 import Margin from "../../Components/Margin/Margin";
 import { useParams } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as api from "../../api";
+import { BsTextWrap } from "react-icons/bs";
+import Typo from "../../assets/Typo";
+import { useRecoilValue } from "recoil";
+import { isBrandOrArtist } from "../../atom";
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
 `;
 const AboutButton = styled.button`
   display: flex;
@@ -24,16 +29,26 @@ const AboutButton = styled.button`
   color: white;
   cursor: pointer;
 `;
-const Img = styled.div`
-  width: 80%;
-  height: 200px;
-`
+const Img = styled.img`
+  width: 90%;
+  height: 250px;
+  border-radius: 20px;
+`;
+const TextWrap = styled.div`
+  width: 90%;
+`;
 function BrandIntro() {
   const params = useOutletContext();
-  console.log(params.cateId);
-  const { brandId } = useParams();
-  const [Data, setData] = useState([]);
+  const { brandId } = params;
+  console.log(brandId);
+
+  const [data, setData] = useState([]);
+  const isBrand = useRecoilValue(isBrandOrArtist);
+
   const navigate = useNavigate();
+
+  const [title, setTitle] = useState("");
+
   useEffect(() => {
     getBrandinfo();
   }, []);
@@ -45,8 +60,15 @@ function BrandIntro() {
   return (
     <Wrapper>
       <Margin height="20" />
-      <PopupTitle text="브랜드 소개" />
-      <LargeCard image={"https://popcon.store" + Data.brand_detail_image} />
+      <Img src={"https://popcon.store" + data?.brand_detail_image}></Img>
+      <Margin height="30" />
+      <PopupTitle
+        text={isBrand ? "브랜드 소개" : "아티스트 소개"}
+        bottomgap="20"
+      />
+      <TextWrap>
+        <Typo style={{ lineHeight: 1.2 }}>{data?.brand_intro}</Typo>
+      </TextWrap>
       <Margin height="30" />
     </Wrapper>
   );
