@@ -29,34 +29,34 @@ const Tab = styled.div`
   }
 `;
 
-function ArtistCategory() {
+function ArtistCategory({ handleCategoryClick }) {
   const mainMatch = useMatch("/");
   const artMatch = useMatch("/art");
   const litMatch = useMatch("/lit");
   const videoMatch = useMatch("/video");
   const musicMatch = useMatch("/music");
-
   return (
     <Wrapper>
       <Tabs>
-        <Tab match={mainMatch?.pathname === "/"}>
-          <Link to={"/"}>전체</Link>
+        <Tab active={mainMatch?.pathname === "/"} onClick={() => handleCategoryClick("/")}>
+          <a>전체</a>
         </Tab>
-        <Tab match={artMatch?.pathname === "/art"}>
-          <Link to={"/art"}>그림</Link>
+        <Tab active={artMatch?.pathname === "/art"} onClick={() => handleCategoryClick("/art")}>
+          <a>그림</a>
         </Tab>
-        <Tab match={litMatch?.pathname === "/lit"}>
-          <Link to={"/lit"}>문학</Link>
+        <Tab active={litMatch?.pathname === "/lit"} onClick={() => handleCategoryClick("/lit")}>
+          <a>문학</a>
         </Tab>
-        <Tab match={videoMatch?.pathname === "/video"}>
-          <Link to={"/video"}>영상</Link>
+        <Tab active={videoMatch?.pathname === "/video"} onClick={() => handleCategoryClick("/video")}>
+          <a>영상</a>
         </Tab>
-        <Tab match={musicMatch?.pathname === "/music"}>
-          <Link to={"/music"}>음악</Link>
+        <Tab active={musicMatch?.pathname === "/music"} onClick={() => handleCategoryClick("/music")}>
+          <a>음악</a>
         </Tab>
       </Tabs>
       <Margin height="20" />
     </Wrapper>
   );
 }
+
 export default ArtistCategory;

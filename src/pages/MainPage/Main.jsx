@@ -58,11 +58,14 @@ function Main() {
   const [hotpopupdata, setHotpopupdata] = useState([]);
   const [newbrandData, setNewbrandData] = useState([]);
   const [CardData, setCardData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("/");
+  const [filteredBrandData, setFilteredBrandData] = useState([]);
+  
   useEffect(() => {
     const token = localStorage.getItem("Token");
     if (!token) {
       localStorage.removeItem("Pk");
-      localStorage.removeItem("account_password");
+      localStorage.removeItem("account_password");  
     }
     getData();
     getNewbrand();
@@ -107,7 +110,36 @@ function Main() {
   };
 
   const id = 1;
+  const handleCategoryClick = (categoryPath) => {
+    setSelectedCategory(categoryPath);
+    let filteredData = [];
+  if (categoryPath === "/art") {
+    filteredData = newbrandData?.filter((item) => item?.brand_category === 6);
+  } else if (categoryPath === "/lit") {
+    filteredData = newbrandData?.filter((item) => item?.brand_category === 7);
+  } else if (categoryPath === "/video") {
+    filteredData = newbrandData?.filter((item) => item?.brand_category === 8);
+  } else if (categoryPath === "/music") {
+    filteredData = newbrandData?.filter((item) => item?.brand_category === 9);
+  }
 
+  setFilteredBrandData(filteredData);
+  };
+  const getCategoryNumber = (categoryPath) => {
+    switch (categoryPath) {
+      case "/art":
+        return 6;
+      case "/lit":
+        return 7;
+      case "/video":
+        return 8;
+      case "/music":
+        return 9;
+      default:
+        return 0; // 전체 카테고리
+    }
+  };
+  
   return (
     <>
       <Wrapper>
@@ -226,11 +258,16 @@ function Main() {
           bottomgap="20"
           onClick={() => navigate("/NewArtist")}
         />
-        <ArtistCategory />
+        <ArtistCategory  handleCategoryClick={handleCategoryClick}/>
         <SliderXwrapper>
           <SliderXItems>
             {newbrandData
               ?.filter((item) => item?.type === 2)
+              ?.filter((item) =>
+                selectedCategory === "/"
+                  ? true 
+                  : item.brand_category === getCategoryNumber(selectedCategory)
+              )
               ?.sort(function(a, b) {
                 if (compareDate(a) > compareDate(b)) {
                   return -1;
