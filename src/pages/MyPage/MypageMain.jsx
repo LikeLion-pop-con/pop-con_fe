@@ -164,7 +164,14 @@ const Mypage = () => {
           </Text>
           <Horizon width="340px" color="lightgray"></Horizon>
         </TextLink>
-        
+        <TextLink to="/Mypage/MyArtistLike">
+          <Text>
+            <Typo size="1rem" weight="400">
+              구독 아티스트
+            </Typo>
+          </Text>
+          <Horizon width="340px" color="lightgray"></Horizon>
+        </TextLink>
         <TextLink to="/CardList">
           <Text>
             <Typo size="1rem" weight="400">

@@ -25,21 +25,13 @@ const BrandIntroduce = () => {
   const [Data, setData] = useState([]);
   const setIsBrandOrArtist = useSetRecoilState(isBrandOrArtist);
   const user_pk = localStorage.getItem("Pk");
-  const [isSubscribed, setIsSubscribed] = useState(false);
   const navigate = useNavigate();
   const [Checkbrand, setCheckbrand] = useState();
+  const [isLiked, setIsLiked] = useState(false);
+  const [isUserLiked, setIsUserLiked] = useState(false);
   useEffect(() => {
-    getCheckbrandsub();
     getBrandinfo();
   }, []);
-  useEffect(() => {
-    console.log(Checkbrand);
-  }, [Checkbrand]);
-
-  const getCheckbrandsub = async () => {
-    const checkbrand = await api.getCheckbrandsub(user_pk, brandId);
-    setCheckbrand(checkbrand);
-  };
 
   const getBrandinfo = async () => {
     const BrandData = await api.getBrandinfo(brandId);
@@ -53,19 +45,7 @@ const BrandIntroduce = () => {
     console.log(BrandData);
   };
 
-  const handleSubscribeChange = (newIsSubscribed) => {
-    console.log("구독 상태 변경:", newIsSubscribed);
-    setIsSubscribed(newIsSubscribed); // 구독 상태 업데이트
 
-    api
-      .postBrandsubscribe(brandId, user_pk)
-      .then((responseData) => {
-        console.log("응답 데이터:", responseData);
-      })
-      .catch((error) => {
-        console.error("오류:", error);
-      });
-  };
   return (
     <div>
       <Header left="logo" right={["login", "search"]} />
@@ -75,11 +55,12 @@ const BrandIntroduce = () => {
         CircleimageUrl={"https://popcon.store" + Data.brand_logo}
       ></Cardup>
       <Carddown1
+      id={brandId}
         subcribeNum={Data.brand_subcounts}
         popNum={Data.brand_like_people}
         introduceText={Data.brand_simple_intro}
-        subscribed={Checkbrand?.subscribe_state === 1} // 구독 중이면 true
-        onSubscribe={handleSubscribeChange}
+        isLiked={isLiked}
+        setIsLiked={setIsLiked} 
       ></Carddown1>
       <InfoTabs
         brandId={brandId} // cateId 변수명을 brandId로 수정
