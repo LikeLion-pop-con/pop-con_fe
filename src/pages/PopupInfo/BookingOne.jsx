@@ -18,6 +18,7 @@ import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Margin from "../../Components/Margin/Margin";
 import toast, { Toaster } from "react-hot-toast";
 import * as api from "../../api";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -66,6 +67,7 @@ const DetailLink = styled.p`
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   padding-bottom: 5px;
   font-size: 16px;
+  cursor: pointer;
 `;
 
 const BookingOne = () => {
@@ -91,7 +93,7 @@ const BookingOne = () => {
 
   const getData = async () => {
     const data = await api.getPopupById(brandId);
-    setData(data);
+    setData(data?.popup);
 
     console.log(data);
 
@@ -99,7 +101,7 @@ const BookingOne = () => {
 
     for (let i = 1; i <= 7; i++) {
       const key = `popup_image${String(i).padStart(2, "0")}`;
-      const imagePath = data[key];
+      const imagePath = data?.popup[key];
 
       if (imagePath !== null && imagePath !== undefined) {
         newImagePaths.push(imagePath);
@@ -112,9 +114,56 @@ const BookingOne = () => {
     ]);
   };
 
+  const userconfirmtoast = () => {
+    toast(
+      (t) => (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "6vh",
+          }}
+        >
+          <p>로그인이 필요한 서비스입니다.</p>
+          <button
+            onClick={() => navigate("/login")}
+            style={{
+              color: "black",
+              border: "none",
+              backgroundColor: "#ec7538",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "5px",
+              width: "50%",
+              height: "3vh",
+              cursor: "pointer",
+            }}
+          >
+            로그인 하러 가기
+          </button>
+        </div>
+      ),
+      {
+        icon: "👏",
+      }
+    );
+  };
+
   useEffect(() => {
     getData();
   }, []);
+
+  const userConfirm = () => {
+    if (localStorage.getItem("Pk")) {
+      navigate("bookingtwo");
+    } else {
+      window.scrollTo(0, 0);
+      userconfirmtoast();
+    }
+  };
 
   return (
     <Wrapper>
@@ -209,7 +258,7 @@ const BookingOne = () => {
       </div> */}
 
       <Margin height="30" />
-      <PopupButton onClick={() => navigate("bookingtwo")}>
+      <PopupButton onClick={() => userConfirm()}>
         <Typo size="1.1rem" weight="600" color="white">
           예약하기
         </Typo>
@@ -217,6 +266,7 @@ const BookingOne = () => {
       <Margin height="30" />
       <Footer />
       <Toaster position="top-center" />
+      <NavigationBar />
     </Wrapper>
   );
 };

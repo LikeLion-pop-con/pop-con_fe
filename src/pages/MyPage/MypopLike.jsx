@@ -37,15 +37,7 @@ const MypopLike = () => {
     if (user_id) {
       getUserLike();
     } else {
-      const shouldLogin = window.confirm(
-        "로그인이 필요합니다. 로그인하시겠습니까?"
-      );
-      if (shouldLogin) {
-        // 로그인 페이지로 이동하는 코드를 추가합니다.
-        navigate("/login");
-      } else {
-        console.log("로그인이 필요하며 사용자가 로그인을 거부했습니다.");
-      }
+      console.log("로그인이 필요하며 사용자가 로그인을 거부했습니다.");
     }
   }, []);
   return (

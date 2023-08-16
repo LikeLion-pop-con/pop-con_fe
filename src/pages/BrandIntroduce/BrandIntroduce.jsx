@@ -6,22 +6,55 @@ import InfoTabs from "../../Components/PageTitle/InfoTabs";
 import Header from "../../Components/Header/Header";
 import { useLocation, useParams } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import * as api from "../../api";
+import Headerline from "../../Components/Headerline/Headerline";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { isBrandOrArtist } from "../../atom";
+const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 30px;
+`;
 
 const BrandIntroduce = () => {
   const { brandId } = useParams();
+  const [Data, setData] = useState([]);
+  const setIsBrandOrArtist = useSetRecoilState(isBrandOrArtist);
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    getBrandinfo();
+  }, []);
+  const getBrandinfo = async () => {
+    const BrandData = await api.getBrandinfo(brandId);
+    if (BrandData?.type === 1) {
+      setIsBrandOrArtist(true); // 기업
+    } else {
+      setIsBrandOrArtist(false); // 아티스트
+    }
+
+    setData(BrandData);
+    console.log(BrandData);
+  };
+  const navigateToExternalLink = () => {
+    const externalLink = Data.brand_about_link;
+    window.open(externalLink, "_blank");
+  };
   return (
     <div>
       <Header left="logo" right={["login", "search"]} />
       <Cardup
-        name="IAB STUDIO"
-        backimageUrl="/img/Artistimg/iablogo.png" //이미지 크기가 안 맞아서
-        CircleimageUrl="/img/Artistimg/iabCircleimg.png"
+        name={Data.brand_name}
+        backimageUrl={"https://popcon.store" + Data.brand_main_image} //이미지 크기가 안 맞아서
+        CircleimageUrl={"https://popcon.store" + Data.brand_logo}
       ></Cardup>
       <Carddown1
-        subcribeNum="452"
-        popNum="23"
-        introduceText="[I've Always Been], '항상 그래왔듯, 앞으로 변함없이'"
+        subcribeNum={Data.brand_subcounts}
+        popNum={Data.brand_like_people}
+        introduceText={Data.brand_simple_intro}
       ></Carddown1>
       <InfoTabs
         brandId={brandId} // cateId 변수명을 brandId로 수정

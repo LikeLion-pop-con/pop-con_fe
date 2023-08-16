@@ -50,26 +50,26 @@ const StatusBar = styled(motion.div)`
   bottom: 0;
 `;
 
-function InfoTabs({ type, page1, page2, page3, brandId }) {
-  const introMatch = useMatch(`/brand/${brandId}`);
-  const infoMatch = useMatch(`/brand/${brandId}/info`);
-  const postMatch = useMatch(`/brand/${brandId}/post`);
+function InfoTabs({ page1, page2, page3, brandId }) {
+  const introMatch = useMatch(`/artist/${brandId}`);
+  const infoMatch = useMatch(`/artist/${brandId}/info`);
+  const postMatch = useMatch(`/artist/${brandId}/post`);
 
   return (
     <Wrapper>
       <TabsContainer>
         <Tabs>
           <Tab match={introMatch !== null}>
-            <Link to={`/brand/${brandId}`}>{page1}</Link>
+            <Link to={`/artist/${brandId}`}>{page1}</Link>
             {introMatch && <StatusBar layoutId="bar" />}
           </Tab>
           <Tab match={infoMatch !== null}>
-            <Link to={`/brand/${brandId}/info`}>{page2}</Link>
+            <Link to={`/artist/${brandId}/info`}>{page2}</Link>
             {infoMatch && <StatusBar layoutId="bar" />}
           </Tab>
 
           <Tab match={postMatch !== null}>
-            <Link to={`/brand/${brandId}/post`}>{page3}</Link>
+            <Link to={`/artist/${brandId}/post`}>{page3}</Link>
             {postMatch && <StatusBar layoutId="bar" />}
           </Tab>
         </Tabs>

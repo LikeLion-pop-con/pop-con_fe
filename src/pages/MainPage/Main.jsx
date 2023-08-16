@@ -58,16 +58,16 @@ function Main() {
   const [hotpopupdata, setHotpopupdata] = useState([]);
   const [newbrandData, setNewbrandData] = useState([]);
   const [CardData, setCardData] = useState([]);
-  useEffect(() => {
-    getData();
-    getNewbrand();
-    getCardinfo();
-    const token = localStorage.getItem("Token");
 
+  useEffect(() => {
+    const token = localStorage.getItem("Token");
     if (!token) {
       localStorage.removeItem("Pk");
       localStorage.removeItem("account_password");
     }
+    getData();
+    getNewbrand();
+    getCardinfo();
   }, []);
 
   const compareDate = (item) => {
@@ -212,6 +212,7 @@ function Main() {
               })
               ?.map((item) => (
                 <SmallCard
+                  onClick={() => navigate(`/brand/${item?.id}`)}
                   image={"https://popcon.store" + item?.brand_logo}
                   title={item?.brand_name}
                   category={item?.brand_category}
@@ -241,6 +242,7 @@ function Main() {
               })
               ?.map((item) => (
                 <SmallCard
+                  onClick={() => navigate(`/brand/${item?.id}`)}
                   image={"https://popcon.store" + item?.brand_logo}
                   title={item?.brand_name}
                   category={item?.brand_category}

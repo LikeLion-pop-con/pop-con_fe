@@ -59,6 +59,7 @@ const Snsbox = styled.div`
   margin: 10px;
   display: flex;
   gap: 20px;
+  cursor: pointer;
 `;
 
 const TextWrapper = styled.div`
@@ -101,13 +102,10 @@ function Footer() {
       </LogoTitlebox>
       <Typo size="0.9rem" weight="200">
         <Secondbox>
-          <Label>팝업 시작</Label>
+          <Label to="/Guide">팝업 시작 가이드</Label>
           <Label to="/Mypage/introduce">서비스 소개</Label>
           <Label to="/Mypage/KnowList">공지사항</Label>
           <Label to="/Mypage/Service">고객 센터</Label>
-          <Label to="/Guide">팝업 스토어 가이드</Label>
-          <Label>이용약관</Label>
-          <Label>개인정보 처리방침</Label>
           <Horizon width="100%" color="lightgrey" />
         </Secondbox>
       </Typo>

@@ -19,6 +19,7 @@ const Wrapper = styled(motion.div)`
   position: fixed;
   bottom: 0;
   width: 40vw;
+  z-index: 1000;
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -135,7 +136,6 @@ export default function NavigationBar({ setIsCateClicked }) {
   const navigate = useNavigate();
   const navani = useAnimation();
   const btnani = useAnimation();
-
   const setBot = useSetRecoilState(isBotClicked);
   const isClicked = useRecoilValue(isBotClicked);
 

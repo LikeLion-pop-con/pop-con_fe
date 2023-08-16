@@ -11,6 +11,7 @@ import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Kakaomap from "../../Components/Kakao/Kakaomap";
 import Margin from "../../Components/Margin/Margin";
 import * as api from "../../api";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -135,7 +136,7 @@ const BookingTwo = () => {
 
   const getData = async () => {
     const data = await api.getPopupById(brandId);
-    setData(data);
+    setData(data?.popup);
   };
 
   useEffect(() => {
@@ -153,7 +154,7 @@ const BookingTwo = () => {
         firsttitle={false}
         firstimg={true}
         width={"60%"}
-        image={"https://popcon.store" + data.popup_main_image}
+        image={"https://popcon.store" + data?.popup_main_image}
       />
       <Margin height="20" />
       {/* <Margin height="20" />
@@ -227,6 +228,7 @@ const BookingTwo = () => {
         </Typo>
       </PopupButton>
       <Margin height="30" />
+      <NavigationBar />
       <Footer />
     </Wrapper>
   );

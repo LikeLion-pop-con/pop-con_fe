@@ -16,9 +16,8 @@ import RequestModal from "../../Components/Modal/PopRequestModal";
 import Modal from "react-modal";
 import toast, { Toaster } from "react-hot-toast";
 import RequestComplete from "./RequestComplete";
-import ss from "../../assets/Icons/Card/NewJeans.jpg";
-import Horizon from "../../Components/Horizon/Horizon";
 import * as api from "../../api";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -75,7 +74,7 @@ const CompleteDetail = styled(Form)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 66%;
 `;
 const CompleteAlert = styled(Form)`
   width: 70%;
@@ -112,6 +111,8 @@ const BookingComplete = () => {
   //백엔드에서 받아온 이미지 경로 배열 - 데이터 받아서 변수로 선언해야 할 듯
   const { brandId } = useParams();
 
+  console.log(brandId);
+
   const navigate = useNavigate();
 
   const [btnclicked, setBtnclicked] = useState(false);
@@ -129,6 +130,15 @@ const BookingComplete = () => {
     time: { start, end },
   } = state;
   const { date } = state;
+  console.log(date);
+
+  const formeddate = date
+    ?.replace(" ", "")
+    ?.replace(" ", "")
+    ?.split(".");
+  const newdate = formeddate[0] + "-" + formeddate[1] + "-" + formeddate[2];
+
+  console.log(newdate);
 
   const requestbtnani = useAnimation();
   const handleTimeSlotChange = (timeSlot) => {
@@ -139,8 +149,8 @@ const BookingComplete = () => {
     const time = `${start}:00~${end}:00`;
     await api.postPopupreservation(
       localStorage.getItem("Pk"),
-      data?.id,
-      date,
+      brandId,
+      newdate,
       time
     );
   };
@@ -162,7 +172,7 @@ const BookingComplete = () => {
     });
   const getData = async () => {
     const data = await api.getPopupById(brandId);
-    setData(data);
+    setData(data?.popup);
   };
 
   useEffect(() => {
@@ -211,7 +221,7 @@ const BookingComplete = () => {
           <Typo weight="600">시간</Typo>
         </BookDate>
         <Time>
-          <Typo>{data?.popup_date?.split("*")[0]}</Typo>
+          <Typo>{date}</Typo>
           <Typo style={{ textAlign: "center" }}>
             {start}:00 ~ {end}:00
           </Typo>

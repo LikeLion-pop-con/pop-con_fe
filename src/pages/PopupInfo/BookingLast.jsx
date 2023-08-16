@@ -16,6 +16,7 @@ import toast, { Toaster } from "react-hot-toast";
 import * as api from "../../api";
 import Horizon from "../../Components/Horizon/Horizon";
 import { parse } from "date-fns";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -85,7 +86,7 @@ const BookingLast = () => {
 
   const getData = async () => {
     const data = await api.getPopupById(brandId);
-    setData(data);
+    setData(data?.popup);
   };
 
   console.log(localStorage.getItem("pk"));
@@ -139,7 +140,7 @@ const BookingLast = () => {
           navigate(`/popupbooking/${brandId}/bookingcomplete`, {
             state: {
               time: selectedTimeSlot,
-              date: selectedDate.toISOString()?.slice(0, 10),
+              date: selectedDate.toLocaleDateString(),
             },
           })
         }
@@ -149,6 +150,7 @@ const BookingLast = () => {
         </Typo>
       </PopupButton>
       <Margin height="30" />
+      <NavigationBar />
       <Footer />
       <Toaster position="top-center" />
     </Wrapper>

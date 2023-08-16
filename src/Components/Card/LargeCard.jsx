@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Typo from "../../assets/Typo";
 import Margin from "../Margin/Margin";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
+import { motion } from "framer-motion";
 
 const CardBlock = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const CardBlock = styled.div`
   justify-content: center;
 `; // page에서 사용
 
-const CardEach = styled.div`
+const CardEach = styled(motion.div)`
   display: flex;
   flex-direction: column;
   background-color: white;

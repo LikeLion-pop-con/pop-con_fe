@@ -76,7 +76,7 @@ const Carddown1 = ({ subcribeNum, popNum, introduceText }) => {
           </PopNum>
           <PopText>
             <Typo size="1.1rem" weight="400">
-              회 팝업
+              회 좋아요
             </Typo>
           </PopText>
         </FirstBox>
