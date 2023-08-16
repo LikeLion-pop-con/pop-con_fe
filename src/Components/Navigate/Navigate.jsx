@@ -138,7 +138,7 @@ export default function NavigationBar({ setIsCateClicked }) {
   const btnani = useAnimation();
   const setBot = useSetRecoilState(isBotClicked);
   const isClicked = useRecoilValue(isBotClicked);
-
+  const user = parseInt(localStorage.getItem("UserType"));
   const [scrollDir, setScrollDir] = useState("scrolling up");
 
   useEffect(() => {
@@ -227,7 +227,16 @@ export default function NavigationBar({ setIsCateClicked }) {
           <Icon onClick={() => navigate("/category")} img={category}>
             CATEGORY
           </Icon>
-          <Icon onClick={() => navigate("/main")} img={home}>
+          <Icon
+            onClick={() => {
+              if (user === 2) {
+                navigate("/Adminmain");
+              } else {
+                navigate("/main");
+              }
+            }}
+            img={home}
+          >
             HOME
           </Icon>
           <Icon onClick={() => navigate("/Mypage/MypopLike")} img={like}>

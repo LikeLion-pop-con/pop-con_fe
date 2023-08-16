@@ -12,7 +12,9 @@ import Main from "../MainPage/Main";
 import { MdOutlineElevator } from "react-icons/md";
 import { AiOutlineFullscreen } from "react-icons/ai";
 import { Navigate, useNavigate } from "react-router-dom";
-
+import * as api from "../../api";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -108,14 +110,29 @@ const Limit = styled.div`
 
 function SpaceItemIntro() {
   const navigate = useNavigate();
-
+  const [placepopup, setplacepopup] = useState([]);
+  const { spaceId } = useParams();
+  useEffect(() => {
+    getPopupplace();
+  }, []);
+  const getPopupplace = async () => {
+    const placepopup = await api.getPopplaceinfo(spaceId);
+    setplacepopup(placepopup);
+    console.log(placepopup);
+  };
   return (
     <Wrapper>
       <SliderXwrapper2>
         <SliderXItems>
-          <Img src={img1}></Img>
-          <Img src={img2}></Img>
-          <Img src={img3}></Img>
+          <Img
+            src={"https://popcon.store" + placepopup.popup_place_image01}
+          ></Img>
+          <Img
+            src={"https://popcon.store" + placepopup.popup_place_image02}
+          ></Img>
+          <Img
+            src={"https://popcon.store" + placepopup.popup_place_image03}
+          ></Img>
         </SliderXItems>
       </SliderXwrapper2>
       <Margin height="30" />
@@ -126,49 +143,73 @@ function SpaceItemIntro() {
         <Space>
           <MdOutlineElevator style={{ fontSize: 50 }} />
           <Typo style={{ marginLeft: 10 }} size="18px">
-            건물층: 지하 4층 ~ 지하 5층
+            건물층: {placepopup.popup_place_floor}
           </Typo>
         </Space>
         <Size>
           <AiOutlineFullscreen style={{ fontSize: 50 }} />
           <Typo style={{ marginLeft: 10 }} size="18px">
-            연면적: 8802 m2
+            연면적: {placepopup.popup_place_area}
           </Typo>
         </Size>
         <Margin height="25" />
         <Typo style={{ lineHeight: 1.2 }} size="1rem" weight="400">
-          압구성 사거리에 위치한 대형 건물로 가시성이 매우 좋고 접근성 또한
-          우수한 공간입니다. 또한 3호선 압구정역과 수인분당선 압구정
-          로데오역에서 도보 7분 거리에 위치합니다. 하이하이
+          {placepopup.popup_place_intro}
         </Typo>
       </BodyText>
       <Margin height="20" />
       <Spacedetail
-        bodyText={
-          "압구성 사거리에 위치한 대형 건물로 가시성이 매우 좋고 접근성 또한 우수한 공간입니다.\n 또한 3호선 압구정역과 수인분당선 압구정 로데오역에서 도보 7분 거리에 위치합니다ㅣ.\n하이하이"
-        }
-      >
-        hi
-      </Spacedetail>
+        mainPoint={placepopup.popup_place_point}
+        spaceRecommendation={placepopup.popup_place_recom}
+      ></Spacedetail>
       <Margin height="30" />
       <BodyText>
         <Typo fontType="large">제약 사항</Typo>
         <Limits>
           <Limit>
             <Typo>전기 사용</Typo>
-            <Typo style={{ paddingLeft: 20, color: "#0054D1" }}>가능</Typo>
+            <Typo
+              style={{
+                paddingLeft: 20,
+                color: placepopup.electricity === 1 ? "#0054D1" : "#FF0000",
+              }}
+            >
+              {placepopup.electricity === 1 ? "가능" : "불가능"}
+            </Typo>
           </Limit>
+
           <Limit>
             <Typo>창고 사용</Typo>
-            <Typo style={{ paddingLeft: 20, color: "#0054D1" }}>가능</Typo>
+            <Typo
+              style={{
+                paddingLeft: 20,
+                color: placepopup.warehouse === 1 ? "#0054D1" : "#FF0000",
+              }}
+            >
+              {placepopup.warehouse === 1 ? "가능" : "불가능"}
+            </Typo>
           </Limit>
           <Limit>
             <Typo>화물 E/V</Typo>
-            <Typo style={{ paddingLeft: 20, color: "#0054D1" }}>가능</Typo>
+            <Typo
+              style={{
+                paddingLeft: 20,
+                color: placepopup.freight === 1 ? "#0054D1" : "#FF0000",
+              }}
+            >
+              {placepopup.freight === 1 ? "가능" : "불가능"}
+            </Typo>
           </Limit>
           <Limit>
             <Typo>주차 지원</Typo>
-            <Typo style={{ paddingLeft: 20, color: "#0054D1" }}>가능</Typo>
+            <Typo
+              style={{
+                paddingLeft: 20,
+                color: placepopup.parking === 1 ? "#0054D1" : "#FF0000",
+              }}
+            >
+              {placepopup.parking === 1 ? "가능" : "불가능"}
+            </Typo>
           </Limit>
         </Limits>
       </BodyText>

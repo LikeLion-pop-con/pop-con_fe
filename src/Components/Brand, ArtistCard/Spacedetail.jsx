@@ -26,8 +26,8 @@ const TextWrap = styled.span`
   margin-right: 5px;
 `;
 
-const Spacedetail = ({ bodyText }) => {
-  const contentOrder = bodyText.split("\n");
+const Spacedetail = ({ mainPoint, spaceRecommendation }) => {
+  const contentOrder = [mainPoint, spaceRecommendation];
 
   const contentTitle = ["• 주요 포인트: ", "• 공간 활용 추천: "];
 
