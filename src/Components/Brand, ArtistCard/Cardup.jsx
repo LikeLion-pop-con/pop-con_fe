@@ -13,7 +13,7 @@ const Imgbox = styled.div`
   width: 100%;
   height: 35vh;
   background-image: url(${(props) => props.backimageUrl});
-  background-size: 100% auto;
+  background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
   /* 백그라운 이미지를 50px 위로 조정, 다른 이미지 넣으면 깨질까요?*/

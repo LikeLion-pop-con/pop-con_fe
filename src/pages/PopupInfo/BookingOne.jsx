@@ -19,6 +19,7 @@ import Margin from "../../Components/Margin/Margin";
 import toast, { Toaster } from "react-hot-toast";
 import * as api from "../../api";
 import NavigationBar from "../../Components/Navigate/Navigate";
+import logo from "../../assets/Icons/Header/logo.png";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -115,21 +116,34 @@ const BookingOne = () => {
   };
 
   const userconfirmtoast = () => {
-    toast(
-      (t) => (
+    toast((t) => (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "6vh",
+          width: "260px",
+        }}
+      >
+        <img
+          style={{ marginRight: 10 }}
+          width="30"
+          height="30"
+          src={logo}
+        ></img>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "space-between",
-            height: "6vh",
           }}
         >
           <p>로그인이 필요한 서비스입니다.</p>
           <button
             onClick={() => navigate("/login")}
             style={{
+              marginTop: 5,
               color: "black",
               border: "none",
               backgroundColor: "#ec7538",
@@ -145,11 +159,8 @@ const BookingOne = () => {
             로그인 하러 가기
           </button>
         </div>
-      ),
-      {
-        icon: "👏",
-      }
-    );
+      </div>
+    ));
   };
 
   useEffect(() => {
