@@ -55,7 +55,7 @@ const Form = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 10px;
-  justify: center;
+  justify-content: center;
   p {
     text-align: center;
   }

@@ -12,7 +12,9 @@ import AdminCard from "../../Components/Card/AdminCard";
 import AdminCardimg from "../../assets/Icons/Card/AdminCardimg.png";
 import Modal from "../../Components/Modal/Modal";
 import SpacePopup from "../../Components/Card/SpacePopup";
-
+import * as api from "../../api";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const Title = styled.div`
   width: 100%;
   padding-left: 1.5rem;
@@ -34,6 +36,16 @@ function PopupSpace() {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+    const [placepopup, setplacepopup] = useState([]);
+    const navigate = useNavigate();
+    useEffect(() => {
+      getPopupplace();
+    }, []);
+    const getPopupplace = async () => {
+      const placepopup = await api.getPopupplace();
+      setplacepopup(placepopup);
+      console.log(placepopup);
+    };
   return (
     <>
       
@@ -45,34 +57,15 @@ function PopupSpace() {
       <Margin height="20" />
       <CardBlock>
 
-        <AdminCard 
-            image={AdminCardimg} 
-            title='IAB studio & Lee 팝업 스토어 현장' 
-            space='서울 마포구 양화로' 
-            floor='지하 3 층 ~ 지상 15 층'
-            area='연면적 : 277.686㎡'/>
-
-        <AdminCard 
-            image={AdminCardimg} 
-            title='IAB studio & Lee 팝업 스토어 현장' 
-            space='서울 마포구 양화로' 
-            floor='지하 3 층 ~ 지상 15 층'
-            area='연면적 : 277.686㎡'/>
-
-        <AdminCard 
-            image={AdminCardimg} 
-            title='IAB studio & Lee 팝업 스토어 현장' 
-            space='서울 마포구 양화로' 
-            floor='지하 3 층 ~ 지상 15 층'
-            area='연면적 : 277.686㎡'/>
-
-        <AdminCard 
-            image={AdminCardimg} 
-            title='IAB studio & Lee 팝업 스토어 현장' 
-            space='서울 마포구 양화로' 
-            floor='지하 3 층 ~ 지상 15 층'
-            area='연면적 : 277.686㎡'/>   
-
+      {placepopup?.map((item) => (
+            <AdminCard 
+            onClick={() => navigate(`/popupspace/${item.id}`)}
+            image={"https://popcon.store" + item?.popup_place_image01}
+            title={item?.popup_place_title} 
+            space={item?.popup_place_location} 
+            floor={item?.popup_place_floor} 
+            area={"연면적 : " + item?.popup_place_area} />
+          ))}
       </CardBlock>
       <div>
       <Modal isOpen={isModalOpen} closeModal={closeModal} />
