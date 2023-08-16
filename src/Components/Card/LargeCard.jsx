@@ -65,18 +65,10 @@ const TitleWrapper = styled.div`
   margin-bottom: 5px;
 `;
 const TextBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-left: 30px;
-  margin-right: 7px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 40px;
   width: 90%;
-  div:first-child {
-    width: 30%;
-  }
-  div:nth-child(2) {
-    width: 80%;
-  }
 `;
 
 const LargeCard = ({
@@ -97,14 +89,16 @@ const LargeCard = ({
       </TitleWrapper>
       <TextBox>
         <TextWrapper>
-          <Margin height="12" />
+          <Margin height="6" />
           <Typo size="small">{popcategory}</Typo>
+          <Margin height="5" />
           <Typo size="small">{detail}</Typo>
         </TextWrapper>
 
         <TextWrapper>
           <Margin height="6" />
           <Typo size="small">{space}</Typo>
+          <Margin height="5" />
           <Typo size="small" color="darkgray">
             {" "}
             {date}
