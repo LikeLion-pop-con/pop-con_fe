@@ -24,6 +24,7 @@ import RequestComplete from "./RequestComplete";
 import { postMylikepopup, getPopupById, postPopuprequest } from "../../api";
 import KakaoShare from "../../Components/Kakao/KakaoShare";
 import { AiFillPicture } from "react-icons/ai";
+import logo from "../../assets/Icons/Header/logo.png";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -207,7 +208,7 @@ const PopupInfo = () => {
         </div>
       ),
       {
-        icon: "👏",
+        icon: logo,
       }
     );
   };

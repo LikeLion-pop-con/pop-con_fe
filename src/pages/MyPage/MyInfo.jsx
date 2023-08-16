@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 2fr;
   width: 100%;
   margin-left: 20%;
+
   align-items: center;
   @media (max-width: 768px) {
     margin-left: 20px;

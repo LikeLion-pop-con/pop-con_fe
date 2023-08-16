@@ -68,7 +68,8 @@ const TextBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   column-gap: 40px;
-  width: 90%;
+  width: 85%;
+  padding-left: 15px;
 `;
 
 const LargeCard = ({

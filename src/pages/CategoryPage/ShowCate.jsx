@@ -288,49 +288,110 @@ function ShowCate() {
                       </DetailItem>
                     </>
                   )}
-                  {id === "BRAND" && (
+                  {id === "BRAND" && ( // 1, 2, 3, 4, 5
                     <>
-                      <DetailItem>
+                      <DetailItem
+                        onClick={() =>
+                          navigate(`/category/${1}`, {
+                            state: {
+                              title: "푸드",
+                            },
+                          })
+                        }
+                      >
                         <Typo size="15px">푸드</Typo>
                       </DetailItem>
                       <DetailItem
                         onClick={() =>
-                          navigate(`/main/${1}`, { state: { type: id } })
+                          navigate(`/category/${2}`, {
+                            state: {
+                              title: "패션 잡화",
+                            },
+                          })
                         }
                       >
                         <Typo size="15px">패션 잡화</Typo>
                       </DetailItem>
-                      <DetailItem>
+                      <DetailItem
+                        onClick={() =>
+                          navigate(`/category/${3}`, {
+                            state: {
+                              title: "테크 가전",
+                            },
+                          })
+                        }
+                      >
                         <Typo size="15px">테크 가전</Typo>
                       </DetailItem>
-                      <DetailItem>
+                      <DetailItem
+                        onClick={() =>
+                          navigate(`/category/${4}`, {
+                            state: {
+                              title: "뷰티",
+                            },
+                          })
+                        }
+                      >
                         <Typo size="15px">뷰티</Typo>
                       </DetailItem>
-                      <DetailItem>
+                      <DetailItem
+                        onClick={() =>
+                          navigate(`/category/${5}`, {
+                            state: {
+                              title: "클래스",
+                            },
+                          })
+                        }
+                      >
                         <Typo size="15px">클래스</Typo>
                       </DetailItem>
                     </>
                   )}
-                  {id === "ARTIST" && (
+                  {id === "ARTIST" && ( // 6, 7, 8, 9
                     <>
-                      <DetailItem>
+                      <DetailItem
+                        onClick={() =>
+                          navigate(`/category/${6}`, {
+                            state: {
+                              title: "그림",
+                            },
+                          })
+                        }
+                      >
                         <Typo size="15px">그림</Typo>
                       </DetailItem>
                       <DetailItem
                         onClick={() =>
-                          navigate(`/main/${1}`, { state: { type: id } })
+                          navigate(`/category/${7}`, {
+                            state: {
+                              title: "문학",
+                            },
+                          })
                         }
                       >
                         <Typo size="15px">문학</Typo>
                       </DetailItem>
-                      <DetailItem>
+                      <DetailItem
+                        onClick={() =>
+                          navigate(`/category/${8}`, {
+                            state: {
+                              title: "영상",
+                            },
+                          })
+                        }
+                      >
                         <Typo size="15px">영상</Typo>
                       </DetailItem>
-                      <DetailItem>
+                      <DetailItem
+                        onClick={() =>
+                          navigate(`/category/${9}`, {
+                            state: {
+                              title: "음악",
+                            },
+                          })
+                        }
+                      >
                         <Typo size="15px">음악</Typo>
-                      </DetailItem>
-                      <DetailItem>
-                        <Typo size="15px">연극</Typo>
                       </DetailItem>
                     </>
                   )}
