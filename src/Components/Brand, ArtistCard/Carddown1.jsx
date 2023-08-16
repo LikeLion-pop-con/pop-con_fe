@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import Typo from "../../assets/Typo";
 import { TbPointFilled } from "react-icons/tb";
 import { BsFillShareFill } from "react-icons/bs";
-
+import { useState } from "react";
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -34,14 +34,17 @@ const IntroduceText = styled.div`
   line-height: 1.3;
 `;
 const Button1 = styled.button`
-  width: auto;
+  width: 80px;
   height: 45px;
   border: 1px solid lightgray;
   border-radius: 30px;
   padding: 15px;
-  background-color: transparent;
+  background-color: ${(props) =>
+    props.subscribed ? "#B2A5FE" : "transparent"};
+  color: ${(props) => (props.subscribed ? "white" : "black")};
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 const Button2 = styled.button`
   width: 45px;
@@ -51,7 +54,14 @@ const Button2 = styled.button`
   padding: 8px;
   background-color: transparent;
 `;
-const Carddown1 = ({ subcribeNum, popNum, introduceText }) => {
+const Carddown1 = ({ subcribeNum, popNum, introduceText, subscribed, onSubscribe }) => {
+  const [isSubscribed, setIsSubscribed] = useState(subscribed);
+
+  const handleSubscribe = () => {
+    const newIsSubscribed = !isSubscribed;
+    setIsSubscribed(newIsSubscribed);
+    onSubscribe(newIsSubscribed);
+  };
   return (
     <>
       <Wrapper>
@@ -86,7 +96,9 @@ const Carddown1 = ({ subcribeNum, popNum, introduceText }) => {
           </Typo>
         </IntroduceText>
         <SecondBox>
-          <Button1>+ 구독</Button1>
+        <Button1 onClick={handleSubscribe} subscribed={subscribed}>
+            {subscribed ? "구독 중" : "+ 구독"}
+          </Button1>
           <Button2>
             <BsFillShareFill />
           </Button2>

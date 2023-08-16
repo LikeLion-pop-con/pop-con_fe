@@ -3,14 +3,17 @@ import { styled } from "styled-components";
 import Typo from "../../assets/Typo";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { BsFillShareFill } from "react-icons/bs";
+import * as api from "../../api";
 import { useState } from "react";
 import Margin from "../Margin/Margin";
+import { useEffect } from "react";
 const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  white-space: pre-line;
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -47,7 +50,34 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Carddown2 = ({ toptext, bodytext, isLiked, setIsLiked, setIsShared }) => {
+const Carddown2 = ({
+  id,
+  toptext,
+  isLiked,
+  setIsLiked,
+  bodytext,
+  setIsShared,
+}) => {
+  const [isUserLiked, setIsUserLiked] = useState();
+
+  const getIsLiked = async () => {
+    if (localStorage.getItem("Pk")) {
+      const res = await api.getPopupIsLiked(localStorage.getItem("Pk"), id);
+
+      console.log(res);
+
+      if (res?.like_state === 1) {
+        setIsLiked(true);
+      } else {
+        setIsLiked(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getIsLiked();
+  }, []);
+
   return (
     <>
       <Wrapper>
@@ -62,7 +92,20 @@ const Carddown2 = ({ toptext, bodytext, isLiked, setIsLiked, setIsShared }) => {
           </Typo>
         </BodytextWrapper>
         <ButtonWrapper>
-          <Button onClick={() => setIsLiked((prev) => !prev)}>
+          <Button
+            onClick={() => {
+              setIsLiked((prev) => !prev);
+
+              api
+                .postMylikepopup(id, localStorage.getItem("Pk"))
+                .then((data) => {
+                  console.log("Like successfully posted:", data);
+                })
+                .catch((error) => {
+                  console.error("Error posting like:", error);
+                });
+            }}
+          >
             {isLiked ? (
               <BsHeartFill size={20} color="red" />
             ) : (

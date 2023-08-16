@@ -10,38 +10,61 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as api from "../../api";
 import Headerline from "../../Components/Headerline/Headerline";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { isBrandOrArtist } from "../../atom";
+
 const Box = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 100px;
   margin-bottom: 30px;
-`
-const StyledLink = styled.div`
-  width: 200px;
-  display: flex;
-  border: 1px solid lightgray;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  font-weight: lighter;
-`
+`;
+
 const BrandIntroduce = () => {
   const { brandId } = useParams();
   const [Data, setData] = useState([]);
+  const setIsBrandOrArtist = useSetRecoilState(isBrandOrArtist);
+  const user_pk = localStorage.getItem("Pk");
+  const [isSubscribed, setIsSubscribed] = useState(false);
   const navigate = useNavigate();
+  const [Checkbrand, setCheckbrand] = useState();
   useEffect(() => {
+    getCheckbrandsub();
     getBrandinfo();
   }, []);
+  useEffect(() => {
+    console.log(Checkbrand);
+  }, [Checkbrand]);
+
+  const getCheckbrandsub = async () => {
+    const checkbrand = await api.getCheckbrandsub(user_pk, brandId);
+    setCheckbrand(checkbrand);
+  };
+
   const getBrandinfo = async () => {
     const BrandData = await api.getBrandinfo(brandId);
+    if (BrandData?.type === 1) {
+      setIsBrandOrArtist(true); // 기업
+    } else {
+      setIsBrandOrArtist(false); // 아티스트
+    }
+
     setData(BrandData);
     console.log(BrandData);
   };
-  const navigateToExternalLink = () => {
-    const externalLink = (Data.brand_about_link);
-    window.open(externalLink, '_blank');
+
+  const handleSubscribeChange = (newIsSubscribed) => {
+    console.log("구독 상태 변경:", newIsSubscribed);
+    setIsSubscribed(newIsSubscribed); // 구독 상태 업데이트
+
+    api
+      .postBrandsubscribe(brandId, user_pk)
+      .then((responseData) => {
+        console.log("응답 데이터:", responseData);
+      })
+      .catch((error) => {
+        console.error("오류:", error);
+      });
   };
   return (
     <div>
@@ -55,6 +78,8 @@ const BrandIntroduce = () => {
         subcribeNum={Data.brand_subcounts}
         popNum={Data.brand_like_people}
         introduceText={Data.brand_simple_intro}
+        subscribed={Checkbrand?.subscribe_state === 1} // 구독 중이면 true
+        onSubscribe={handleSubscribeChange}
       ></Carddown1>
       <InfoTabs
         brandId={brandId} // cateId 변수명을 brandId로 수정
@@ -62,8 +87,6 @@ const BrandIntroduce = () => {
         page2="팝업 정보"
         page3="포스트"
       />
-      <Headerline title={Data.brand_name} subtitle={Data.brand_borndate} content={Data.brand_intro}/>
-      <Box><StyledLink onClick={navigateToExternalLink}>ABOUT</StyledLink></Box>
     </div>
   );
 };
