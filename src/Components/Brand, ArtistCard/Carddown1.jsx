@@ -3,7 +3,9 @@ import { styled } from "styled-components";
 import Typo from "../../assets/Typo";
 import { TbPointFilled } from "react-icons/tb";
 import { BsFillShareFill } from "react-icons/bs";
-
+import { useState } from "react";
+import * as api from "../../api";
+import { useEffect } from "react";
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -34,14 +36,14 @@ const IntroduceText = styled.div`
   line-height: 1.3;
 `;
 const Button1 = styled.button`
-  width: auto;
+  width: 80px;
   height: 45px;
   border: 1px solid lightgray;
   border-radius: 30px;
   padding: 15px;
-  background-color: transparent;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 const Button2 = styled.button`
   width: 45px;
@@ -51,7 +53,26 @@ const Button2 = styled.button`
   padding: 8px;
   background-color: transparent;
 `;
-const Carddown1 = ({ subcribeNum, popNum, introduceText }) => {
+const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,}) => {
+  const [isUserLiked, setIsUserLiked] = useState();
+  const getIsLiked = async () => {
+    if (localStorage.getItem("Pk")) {
+      const res = await api.getCheckbrandsub(localStorage.getItem("Pk"), id);
+
+      console.log(res);
+
+      if (res?.subscribe_state === 1) {
+        setIsLiked(true);
+      } else {
+        setIsLiked(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getIsLiked();
+  }, []);
+
   return (
     <>
       <Wrapper>
@@ -86,7 +107,26 @@ const Carddown1 = ({ subcribeNum, popNum, introduceText }) => {
           </Typo>
         </IntroduceText>
         <SecondBox>
-          <Button1>+ 구독</Button1>
+        <Button1
+            onClick={() => {
+              setIsLiked((prev) => !prev);
+
+              api
+                .postBrandsubscribe(id, localStorage.getItem("Pk"))
+                .then((data) => {
+                  console.log("Like successfully posted:", data);
+                })
+                .catch((error) => {
+                  console.error("Error posting like:", error);
+                });
+            }}
+            style={{
+              backgroundColor: isLiked ? "#B2A5FE" : "transparent",
+              color: isLiked ? "white" : "black"
+            }}
+          >
+            {isLiked ? "구독 중 ":"+ 구독" }
+          </Button1>
           <Button2>
             <BsFillShareFill />
           </Button2>

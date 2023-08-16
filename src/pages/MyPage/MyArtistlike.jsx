@@ -25,7 +25,7 @@ const CardBlock = styled.div`
     white-space: pre-line;// \n를 css에 적용시키려면 필요한 코드
 `   
 
-const MyBrandLike = () => {
+const MyArtistLike = () => {
   const user_pk = localStorage.getItem("Pk");
   const navigate = useNavigate();
   const [Data, setData] = useState([]);
@@ -37,11 +37,11 @@ const MyBrandLike = () => {
 useEffect(() => {
   getSubBrand();
 }, []);
-const filteredData = Data.filter(item => item.type === 1);
+const filteredData = Data.filter(item => item.type === 2);
     return (
         <>
           <Header left="logo" right={["login", "search"]} bgColor="#EC7538"/>
-          <Title><Typo size="1.3rem" weight="400">구독 브랜드</Typo></Title>
+          <Title><Typo size="1.3rem" weight="400">구독 아티스트</Typo></Title>
           <Horizon width="350px" ></Horizon>
           <Margin height='20'/>
 
@@ -62,4 +62,4 @@ const filteredData = Data.filter(item => item.type === 1);
     );
 };
 
-export default MyBrandLike;
+export default MyArtistLike;
