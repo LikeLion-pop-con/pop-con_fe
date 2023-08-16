@@ -1,4 +1,13 @@
 import { atom } from "recoil";
+import cate1 from "../src/assets/Icons/Cate/food.png";
+import cate2 from "../src/assets/Icons/Cate/fashion.png";
+import cate3 from "../src/assets/Icons/Cate/tech.png";
+import cate4 from "../src/assets/Icons/Cate/beauty.png";
+import cate5 from "../src/assets/Icons/Cate/class.png";
+import cate6 from "../src/assets/Icons/Cate/art.png";
+import cate7 from "../src/assets/Icons/Cate/novel.png";
+import cate8 from "../src/assets/Icons/Cate/video.png";
+import cate9 from "../src/assets/Icons/Cate/music.png";
 
 export const PopupCategory = atom({
   key: "PopupCategory",
@@ -119,5 +128,36 @@ export const isPopupRequestNo = atom({
 });
 export const isBrandOrArtist = atom({
   key: "isBrandOrArtist",
+  default: true,
+});
+export const brandCateImg = atom({
+  key: "brandCateImg",
+  default: [cate1, cate2, cate3, cate4, cate5, cate6, cate7, cate8, cate9],
+});
+export const tutorial = atom({
+  key: "tutorialTitle",
+  default: [
+    {
+      title: "시작하기",
+      video: "test.mp4",
+      text: "아래와 같이 시작하세요",
+      id: 1,
+    },
+    {
+      title: "팝업 요청하기",
+      video: "videosample.mp4",
+      text: "아래와 같이 시작하세요",
+      id: 2,
+    },
+    {
+      title: "팝업 예매하기",
+      video: "videosample.mp4",
+      text: "아래와 같이 시작하세요",
+      id: 3,
+    },
+  ],
+});
+export const istutorialOpend = atom({
+  key: "istutorialOpend",
   default: true,
 });

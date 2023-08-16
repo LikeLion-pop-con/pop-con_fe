@@ -18,6 +18,13 @@ import LargeCard from "../../Components/Card/LargeCard";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
 import * as api from "../../api";
+import Modal from "react-modal";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { istutorialOpend, tutorial } from "../../atom";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import { AiOutlineClose } from "react-icons/ai";
+import { motion } from "framer-motion";
+import Typo from "../../assets/Typo";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -51,6 +58,86 @@ const SliderXItems = styled.div`
   grid-template-columns: repeat(${(props) => props.cards}, 1fr);
   gap: 20px; */
 `;
+const TutorialContainer = styled(motion.div)`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+`;
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  margin-bottom: 10px;
+  position: absolute;
+  gap: 7px;
+`;
+const Box = styled(motion.div)`
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 70vh;
+`;
+const Title = styled.p`
+  font-size: 30px;
+  width: 100%;
+  text-align: center;
+`;
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
+  background: url(${(props) => props.url});
+  background-size: 100% auto;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto;
+`;
+const TextWrap = styled.div``;
+const VideoWrap = styled.div`
+  background-color: white;
+  box-shadow: 0px 5px 10px rgba(236, 117, 56, 0.3);
+  border-radius: 20px;
+  height: 400px;
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+const RightBtn = styled.div`
+  position: absolute;
+  right: -10px;
+  top: 0;
+  bottom: 0;
+  margin: auto auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+const CloseBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+`;
+const boxvariants = {
+  hidden: { x: 460 },
+  visible: { x: 0 },
+  exit: { x: -460 },
+};
 
 function Main() {
   const navigate = useNavigate();
@@ -58,6 +145,8 @@ function Main() {
   const [hotpopupdata, setHotpopupdata] = useState([]);
   const [newbrandData, setNewbrandData] = useState([]);
   const [CardData, setCardData] = useState([]);
+  const [index, setIndex] = useState(0);
+  const [isOpened, setIsOpened] = useRecoilState(istutorialOpend);
 
   useEffect(() => {
     const token = localStorage.getItem("Token");
@@ -106,8 +195,11 @@ function Main() {
     setNewbrandData(newbrand);
     console.log(newbrand);
   };
+  const handleNext = () => {
+    setIndex((prev) => (prev + 1) % 3);
+  };
 
-  const id = 1;
+  const tutorialdata = useRecoilValue(tutorial);
 
   return (
     <>
@@ -127,7 +219,6 @@ function Main() {
         <SliderXwrapper2>
           <SliderXItems>
             <LargeCard
-              onClick={() => navigate(`/PopupInfo/${id}`)}
               image={NewJeans}
               title="NewJeans의 HYPE맑음"
               popcategory="팝업 스토어"
@@ -252,6 +343,66 @@ function Main() {
           </SliderXItems>
         </SliderXwrapper>
         <Margin height="20" />
+        <Modal
+          isOpen={isOpened}
+          style={{
+            overlay: {
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: "rgba(0,0,0,0.1)",
+              margin: "0px 3%",
+            },
+            content: {
+              position: "fixed",
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              margin: "auto auto",
+              backgroundColor: "whitesmoke",
+              width: "350px",
+              height: "70vh",
+              borderRadius: "30px",
+              boxShadow: "0px 5px 10px rgba(0,0,0,0.3)",
+            },
+          }}
+        >
+          <TutorialContainer>
+            <Row key={index}>
+              {tutorialdata?.slice(index, index + 1).map((item) => (
+                <Box
+                  variants={boxvariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  key={item.id}
+                >
+                  <Title>{item?.title}</Title>
+                  <TextWrap>
+                    <Typo>튜토리얼 설명 텍스트 칸입니다.</Typo>
+                  </TextWrap>
+                  <VideoWrap>
+                    <Video
+                      url={item?.video}
+                      playsinline
+                      autoPlay
+                      muted
+                      loop={true}
+                    >
+                      <source src={item?.video} type="video/mp4"></source>
+                    </Video>
+                  </VideoWrap>
+                </Box>
+              ))}
+            </Row>
+            <CloseBtn onClick={() => setIsOpened(false)}>
+              <AiOutlineClose style={{ fontSize: 22 }} />
+            </CloseBtn>
+            <RightBtn onClick={() => handleNext()}>
+              <MdOutlineKeyboardDoubleArrowRight style={{ fontSize: 30 }} />
+            </RightBtn>
+          </TutorialContainer>
+        </Modal>
         <NavigationBar />
         <Footer />
       </Wrapper>

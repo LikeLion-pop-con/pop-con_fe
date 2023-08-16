@@ -119,7 +119,15 @@ const Myreservation = () => {
       <Horizon width="350px"></Horizon>
       <Margin height="15" />
       {data.map((item, index) => (
-        <motion.div layoutId={item?.id + ""}>
+        <motion.div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            
+          }}
+          layoutId={item?.id + ""}
+        >
           <LargeCard
             title={item?.popup?.popup_name}
             image={"https://popcon.store" + item?.popup?.popup_main_image}
@@ -132,6 +140,8 @@ const Myreservation = () => {
               setPopup(item);
             }}
           />
+
+          <Margin height="10" />
         </motion.div>
       ))}
       {isClicked && (

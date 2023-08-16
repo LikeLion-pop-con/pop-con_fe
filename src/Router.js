@@ -63,6 +63,7 @@ import PopupSpaceItemBooking from "./pages/PopupInfo/PopupSpaceItemBooking";
 import AddCard2 from "./pages/Card/AddCard2";
 import Password from "./pages/Password/PageMain";
 import AddCard1 from "./pages/Card/AddCard1";
+import ShowEachCate from "./pages/CategoryPage/ShowEachCate";
 
 function Router() {
   return (
@@ -98,6 +99,7 @@ function Router() {
             </Route>
 
             <Route path="/category" element={<ShowCate />}></Route>
+            <Route path="/category/:brandId" element={<ShowEachCate />}></Route>
             <Route path="/newbrand" element={<NewBrand />}></Route>
             <Route path="/newartist" element={<NewArtist />}></Route>
             <Route path="/weekly" element={<Weekly />}></Route>
@@ -122,8 +124,8 @@ function Router() {
             <Route path="/Login" element={<Login />} />
             <Route path="/Resister" element={<Resister />} />
 
-            <Route path="/artist/:brandId" element={<ArtistIntroduce />} >
-            <Route path="" element={<BrandIntro />}></Route>
+            <Route path="/artist/:brandId" element={<ArtistIntroduce />}>
+              <Route path="" element={<BrandIntro />}></Route>
               <Route path="info" element={<BrandInfo />}></Route>
               <Route path="post" element={<BrandPost />}></Route>
             </Route>
