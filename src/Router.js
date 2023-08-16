@@ -63,6 +63,7 @@ import PopupSpaceItemBooking from "./pages/PopupInfo/PopupSpaceItemBooking";
 import AddCard2 from "./pages/Card/AddCard2";
 import Password from "./pages/Password/PageMain";
 import AddCard1 from "./pages/Card/AddCard1";
+import MyArtistLike from "./pages/MyPage/MyArtistlike";
 
 function Router() {
   return (
@@ -115,6 +116,7 @@ function Router() {
             <Route path="/Mypage/MypopLike" element={<MypopLike />} />
             <Route path="/Mypage/Mypoprequest" element={<Mypoprequest />} />
             <Route path="/Mypage/MyBrandLike" element={<MyBrandLike />} />
+            <Route path="/Mypage/MyArtistLike" element={<MyArtistLike />} />
             <Route path="/Mypage/Knowlist" element={<KnowList />} />
             <Route path="/Mypage/introduce" element={<Introduce />} />
             <Route path="/Mypage/Service" element={<Service />} />

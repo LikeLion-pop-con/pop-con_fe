@@ -1,7 +1,5 @@
-import { useMatch } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Margin from "../Margin/Margin";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -11,6 +9,7 @@ const Tabs = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin: 0px 20px;
+  margin-bottom: 30px;
 `;
 const Tab = styled.div`
   width: 6rem;
@@ -21,42 +20,44 @@ const Tab = styled.div`
   border-radius: 18px;
   margin: 0px 14px;
   background-color: ${(props) =>
-    props.match ? props.theme.colors.sub : props.theme.colors.white};
-  border: ${(props) => (props.match ? "none" : "1px solid rgba(0,0,0,0.15)")};
+    props.active ? props.theme.colors.sub : props.theme.colors.white};
+  border: ${(props) => (props.active ? "none" : "1px solid rgba(0,0,0,0.15)")};
   a {
     color: ${(props) =>
-      props.match ? props.theme.colors.white : props.theme.colors.black};
+      props.active ? props.theme.colors.white : props.theme.colors.black};
   }
+  cursor: pointer;
 `;
 
-function ArtistCategory() {
-  const mainMatch = useMatch("/");
-  const artMatch = useMatch("/art");
-  const litMatch = useMatch("/lit");
-  const videoMatch = useMatch("/video");
-  const musicMatch = useMatch("/music");
+function ArtistCategory({ handleCategoryClick }) {
+  const [activeTab, setActiveTab] = useState("/"); // 기본 선택 탭을 지정
+
+  const handleClick = (path) => {
+    setActiveTab(path);
+    handleCategoryClick(path); // 다른 작업 수행
+  };
 
   return (
     <Wrapper>
       <Tabs>
-        <Tab match={mainMatch?.pathname === "/"}>
-          <Link to={"/"}>전체</Link>
+        <Tab active={activeTab === "/"} onClick={() => handleClick("/")}>
+          <a>전체</a>
         </Tab>
-        <Tab match={artMatch?.pathname === "/art"}>
-          <Link to={"/art"}>그림</Link>
+        <Tab active={activeTab === "/art"} onClick={() => handleClick("/art")}>
+          <a>그림</a>
         </Tab>
-        <Tab match={litMatch?.pathname === "/lit"}>
-          <Link to={"/lit"}>문학</Link>
+        <Tab active={activeTab === "/lit"} onClick={() => handleClick("/lit")}>
+          <a>문학</a>
         </Tab>
-        <Tab match={videoMatch?.pathname === "/video"}>
-          <Link to={"/video"}>영상</Link>
+        <Tab active={activeTab === "/video"} onClick={() => handleClick("/video")}>
+          <a>영상</a>
         </Tab>
-        <Tab match={musicMatch?.pathname === "/music"}>
-          <Link to={"/music"}>음악</Link>
+        <Tab active={activeTab === "/music"} onClick={() => handleClick("/music")}>
+          <a>음악</a>
         </Tab>
       </Tabs>
-      <Margin height="20" />
     </Wrapper>
   );
 }
+
 export default ArtistCategory;
