@@ -108,6 +108,11 @@ export function getbrandpost(brand_id) {
     .get(`${BASE_URL}/brandinfo/post/?id=${brand_id}`)
     .then((res) => res.data);
 }
+export function getbrandpostall() {
+  return axios
+    .get(`${BASE_URL}/brandinfo/post/all/`)
+    .then((res) => res.data);
+}
 export function getPopupwill() {
   return axios.get(`${BASE_URL}/popuplist/willopen`).then((res) => res.data);
 }
