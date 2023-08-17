@@ -46,6 +46,7 @@ const Searchresult = () => {
     setSearchData(search);
     console.log(search);
   };
+
   console.log(SearchData);
     return (
         <>
