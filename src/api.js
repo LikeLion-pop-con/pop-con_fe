@@ -45,12 +45,20 @@ export function getPopupIsLiked(user_id, popup_id) {
 export function getNewbrand() {
   return axios.get(`${BASE_URL}/main/newbrand`).then((res) => res.data);
 }
+export function getpoplist() {
+  return axios.get(`${BASE_URL}/popuplist/opened`).then((res) => res.data);
+}
 export function getPopupplace() {
   return axios.get(`${BASE_URL}/popupplace/all`).then((res) => res.data);
 }
 export function getMypopupreservation(user_id) {
   return axios
     .get(`${BASE_URL}/mypopupreservation/?id=${user_id}`)
+    .then((res) => res.data);
+}
+export function getMypoppaceupreservation(user_id) {
+  return axios
+    .get(`${BASE_URL}/mypopupplacereservations/?id=${user_id}`)
     .then((res) => res.data);
 }
 export function getCardinfo(id) {
@@ -93,6 +101,11 @@ export function getCheckbrandsub(user_id, brand_id) {
 export function getSubBrand(user_pk) {
   return axios
     .get(`${BASE_URL}/brand/subscribe/my/?id=${user_pk}`)
+    .then((res) => res.data);
+}
+export function getbrandpost(brand_id) {
+  return axios
+    .get(`${BASE_URL}/brandinfo/post/?id=${brand_id}`)
     .then((res) => res.data);
 }
 export function getPopupwill() {

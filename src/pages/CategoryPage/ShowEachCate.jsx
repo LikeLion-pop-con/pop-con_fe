@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import Header from "../../Components/Header/Header";
 import * as api from "../../api";
 import Card from "../../Components/Card/Card";
-
+import { useNavigate } from "react-router-dom";
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -38,7 +38,7 @@ const CardWrap = styled.div`
 function ShowEachCate() {
   const { brandId } = useParams(); // 1 2 3 4
   console.log(brandId);
-
+  const navigate = useNavigate();
   const { state } = useLocation();
   const { title } = state;
   console.log(state);
@@ -74,6 +74,7 @@ function ShowEachCate() {
       <CardWrap>
         {data?.map((item) => (
           <Card
+            onClick={() => navigate(`/brand/${item?.id}`)}
             image={"https://popcon.store" + item?.brand_logo}
             title={item?.brand_name}
             category={item?.brand_category}

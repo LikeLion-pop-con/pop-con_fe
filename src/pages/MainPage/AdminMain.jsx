@@ -207,7 +207,7 @@ function AdminMain() {
         </SliderXwrapper2>
         <Margin height="30" />
 
-        <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" />
+        <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" onClick={() => navigate("/popuphere")}/>
         <SliderXwrapper2>
           <SliderXItems>
             {Popwill?.map((item) => (
