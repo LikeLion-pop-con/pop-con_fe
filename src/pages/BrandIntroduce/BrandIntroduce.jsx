@@ -12,7 +12,7 @@ import * as api from "../../api";
 import Headerline from "../../Components/Headerline/Headerline";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { isBrandOrArtist } from "../../atom";
-
+import KakaoShare from "../../Components/Kakao/KakaoShare";
 const Box = styled.div`
   display: flex;
   justify-content: center;
@@ -29,8 +29,12 @@ const BrandIntroduce = () => {
   const [Checkbrand, setCheckbrand] = useState();
   const [isLiked, setIsLiked] = useState(false);
   const [isUserLiked, setIsUserLiked] = useState(false);
+  const [Brandpop, setBrandpop] = useState([]);
+  const [isshared, setIsShared] = useState(false);
+  
   useEffect(() => {
     getBrandinfo();
+    getBrandPopup();
   }, []);
 
   const getBrandinfo = async () => {
@@ -45,7 +49,12 @@ const BrandIntroduce = () => {
     console.log(BrandData);
   };
 
+  const getBrandPopup = async () => {
+    const list = await api.getBrandinfoPopup(brandId);
 
+    console.log(list);
+    setBrandpop(list);
+  };
   return (
     <div>
       <Header left="logo" right={["login", "search"]} />
@@ -57,11 +66,19 @@ const BrandIntroduce = () => {
       <Carddown1
       id={brandId}
         subcribeNum={Data.brand_subcounts}
-        popNum={Data.brand_like_people}
+        popNum={Brandpop.length} 
         introduceText={Data.brand_simple_intro}
         isLiked={isLiked}
-        setIsLiked={setIsLiked} 
+        setIsLiked={setIsLiked}
+        setIsShared={setIsShared} 
       ></Carddown1>
+      {isshared && (
+        <KakaoShare
+          title={Data.brand_name}
+          info={Data.brand_simple_intro}
+          image={"https://popcon.store" + Data.brand_main_image}
+        />
+      )}
       <InfoTabs
         brandId={brandId} // cateId 변수명을 brandId로 수정
         page1="소개"

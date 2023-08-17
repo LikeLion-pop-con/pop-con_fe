@@ -174,6 +174,7 @@ const Search = () => {
         </POPbox>
     </Wrapper>
     )} 
+    
     <NavigationBar/>
     </>
   );

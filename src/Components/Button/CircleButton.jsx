@@ -30,13 +30,13 @@ function CircleButton({ img, title, shape }) {
 
   const handlePage = (title) => {
     if (title === "팝업 스토어") {
-      navigate(`${1}`);
+      navigate(`/main/${1}`);
     } else if (title === "팝업 갤러리") {
-      navigate(`${2}`);
+      navigate(`/main/${2}`);
     } else if (title === "팝업 스테이지") {
-      navigate(`${3}`);
+      navigate(`/main/${3}`);
     } else if (title === "팝업 클래스") {
-      navigate(`${4}`);
+      navigate(`/main/${4}`);
     }
   };
 
