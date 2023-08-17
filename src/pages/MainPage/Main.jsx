@@ -79,7 +79,7 @@ const Box = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 70vh;
+  height: 68vh;
 `;
 const Title = styled.p`
   font-size: 30px;
@@ -87,11 +87,9 @@ const Title = styled.p`
   text-align: center;
   margin-top: 30px;
 `;
-const Video = styled.video`
+const Img = styled.img`
   width: 100%;
   height: 100%;
-  background: url(${(props) => props.url});
-  background-size: 100% auto;
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -100,12 +98,23 @@ const Video = styled.video`
   bottom: 0;
   margin: auto auto;
 `;
-const TextWrap = styled.div``;
+const TextWrap = styled(motion.div)`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.3;
+  p {
+    position: absolute;
+    top: -20px;
+    width: 250px;
+  }
+`;
 const VideoWrap = styled.div`
   background-color: white;
   box-shadow: 0px 5px 10px rgba(236, 117, 56, 0.3);
   border-radius: 20px;
-  height: 400px;
+  height: 48vh;
   width: 300px;
   position: relative;
   overflow: hidden;
@@ -124,6 +133,7 @@ const RightBtn = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  height: 20px;
 `;
 const CloseBtn = styled.div`
   display: flex;
@@ -139,6 +149,13 @@ const boxvariants = {
   visible: { x: 0 },
   exit: { x: -460 },
 };
+const StepIndicate = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 5px;
+  position: absolute;
+  top: 0;
+`;
 
 function Main() {
   const navigate = useNavigate();
@@ -148,6 +165,7 @@ function Main() {
   const [CardData, setCardData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("/");
   const [filteredBrandData, setFilteredBrandData] = useState([]);
+  const [textidx, setTextidx] = useState(0);
 
   const [index, setIndex] = useState(0);
   const [isOpened, setIsOpened] = useRecoilState(istutorialOpend);
@@ -162,6 +180,12 @@ function Main() {
     getNewbrand();
     getCardinfo();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTextidx((prev) => (prev + 1) % 4);
+    }, 5000);
+  }, [index, textidx]);
 
   const compareDate = (item) => {
     const arr = item?.brand_borndate.split("-");
@@ -407,6 +431,50 @@ function Main() {
           }}
         >
           <TutorialContainer>
+            <StepIndicate>
+              <motion.div
+                animate={{
+                  backgroundColor:
+                    index === 0
+                      ? "rgba(236, 117, 56, 1)"
+                      : "rgba(255,255,255,1)",
+                }}
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(0,0,0,0.1)",
+                }}
+              ></motion.div>
+              <motion.div
+                animate={{
+                  backgroundColor:
+                    index === 1
+                      ? "rgba(236, 117, 56, 1)"
+                      : "rgba(255,255,255,1)",
+                }}
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(0,0,0,0.1)",
+                }}
+              ></motion.div>
+              <motion.div
+                animate={{
+                  backgroundColor:
+                    index === 2
+                      ? "rgba(236, 117, 56, 1)"
+                      : "rgba(255,255,255,1)",
+                }}
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(0,0,0,0.1)",
+                }}
+              ></motion.div>
+            </StepIndicate>
             <Row key={index}>
               {tutorialdata?.slice(index, index + 1).map((item) => (
                 <Box
@@ -418,18 +486,19 @@ function Main() {
                 >
                   <Title>{item?.title}</Title>
                   <TextWrap>
-                    <Typo>튜토리얼 설명 텍스트 칸입니다.</Typo>
+                    {item?.text?.slice(textidx, textidx + 1).map((p) => (
+                      <motion.p
+                        key={p.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ type: "tween", duration: 0.5 }}
+                      >
+                        {p.word}
+                      </motion.p>
+                    ))}
                   </TextWrap>
                   <VideoWrap>
-                    <Video
-                      url={item?.video}
-                      playsinline
-                      autoPlay
-                      muted
-                      loop={true}
-                    >
-                      <source src={item?.video} type="video/mp4"></source>
-                    </Video>
+                    <Img src={item?.video}></Img>
                   </VideoWrap>
                 </Box>
               ))}

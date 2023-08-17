@@ -172,7 +172,7 @@ const BookingComplete = () => {
     });
   const getData = async () => {
     const data = await api.getPopupById(brandId);
-    setData(data?.popup);
+    setData(data);
   };
 
   useEffect(() => {
@@ -196,7 +196,7 @@ const BookingComplete = () => {
         bodyText={null}
         textstyle={"center"}
         width={"100%"}
-        image={"https://popcon.store" + data?.popup_main_image}
+        image={"https://popcon.store" + data?.popup?.popup_image01}
       />
       <Margin height="10" />
 
@@ -282,8 +282,8 @@ const BookingComplete = () => {
         }}
       >
         <RequestComplete
-          image={"https://popcon.store" + data?.popup_main_image}
-          title={data?.popup_name + "\n예약이 완료되었습니다."}
+          image={"https://popcon.store" + data?.popup?.popup_image01}
+          title={data?.popup?.popup_name + "\n예약이 완료되었습니다."}
         />
       </Modal>
       <Toaster position="top-center" />

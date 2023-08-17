@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import AdminCardimg from "../../assets/Icons/Card/NewJeans.jpg";
 import Margin from "../../Components/Margin/Margin";
-
+import * as api from "../../api";
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
   display: flex;
@@ -59,25 +59,33 @@ const StatusBar = styled(motion.div)`
 
 const BrandIntroduce = () => {
   const { spaceId } = useParams();
-
+  const [placepopup, setplacepopup] = useState([]);
   const isMatch = useMatch(`/popupspace/${spaceId}`);
   const isInfoMatch = useMatch(`/popupspace/${spaceId}/info`);
 
   console.log(spaceId);
+  const getData = async () => {
+    const placepopup = await api.getPopplaceinfo(spaceId);
+    setplacepopup(placepopup);
+    console.log(placepopup);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
 
   return (
     <Wrapper>
       <Header left="logo" right={["login", "search"]} />
       <Margin height="20" />
       <Cardup
-        name="IAB STUDIO"
-        backimageUrl={AdminCardimg} //이미지 크기가 안 맞아서
+        name={placepopup.popup_place_title}
+        backimageUrl={"https://popcon.store" + placepopup.popup_place_image01} //이미지 크기가 안 맞아서
         isSpace={true}
       ></Cardup>
       <Carddown1
-        subcribeNum="452"
-        popNum="23"
-        introduceText="[I've Always Been], '항상 그래왔듯, 앞으로 변함없이'"
+        subcribeNum={placepopup.popup_place_like}
+        popNum={placepopup.popup_place_like_people}
       ></Carddown1>
       <TabsContainer>
         <Tabs>

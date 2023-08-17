@@ -33,7 +33,7 @@ const Thumbnail = styled.div`
     align-items: center;
     //background-image: url('/Cardrose.jpg');
     background-image: url(' ${(props) => props.image} ');
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-color: none;
     border-radius: 16px;

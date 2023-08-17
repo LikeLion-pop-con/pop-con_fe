@@ -76,7 +76,7 @@ const slideUp = keyframes`
 `;
 const BOX = styled.div`
   background-color: #f8f8f8;
-  width: 85%;
+  width: 110%;
   height: 200px;
   margin-top: 20px;
   display: flex;
@@ -243,7 +243,7 @@ const Service = () => {
           />
           <Margin height="10" />
           <a href="tel:010-8869-2796">
-            <img alt="button" src={Button2} width="90%" />
+            <img alt="button" src={Button2} width="100%" />
           </a>
           <Margin height="10" />
         </BOX>

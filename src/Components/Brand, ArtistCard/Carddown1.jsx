@@ -56,7 +56,8 @@ const Button2 = styled.button`
 const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,}) => {
   const [isUserLiked, setIsUserLiked] = useState();
   const getIsLiked = async () => {
-    if (localStorage.getItem("Pk")) {
+    const userType = localStorage.getItem("UserType");
+    if (userType === "1" && localStorage.getItem("Pk")) {
       const res = await api.getCheckbrandsub(localStorage.getItem("Pk"), id);
 
       console.log(res);

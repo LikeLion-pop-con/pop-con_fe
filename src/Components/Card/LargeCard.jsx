@@ -16,6 +16,7 @@ const CardEach = styled(motion.div)`
   display: flex;
   flex-direction: column;
   background-color: white;
+  align-items: center;
   box-sizing: border-box;
   height: 300px;
   width: 400px;
@@ -63,6 +64,7 @@ const TitleWrapper = styled.div`
   align-items: center;
   margin-top: 15px;
   margin-bottom: 5px;
+  width: 80%;
 `;
 const TextBox = styled.div`
   display: grid;
