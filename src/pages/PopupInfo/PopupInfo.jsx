@@ -107,6 +107,8 @@ const PopupInfo = () => {
   const navigate = useNavigate();
   const brandId = new URLSearchParams(params.search).get("id");
 
+  console.log(brandId);
+
   const [isLiked, setIsLiked] = useState(false);
   const [btnclicked, setBtnclicked] = useState(false);
   const [requestbtnclikced, setRequestbtnclicked] = useState(false);
@@ -175,23 +177,39 @@ const PopupInfo = () => {
         marginTop: 50,
       },
     });
-
+  const handletoast = () => {
+    window.location = "/login";
+  };
   const userconfirmtoast = () => {
-    toast(
-      (t) => (
+    toast((t) => (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "6vh",
+          width: "260px",
+        }}
+      >
+        <img
+          style={{ marginRight: 10 }}
+          width="30"
+          height="30"
+          src={logo}
+        ></img>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "space-between",
-            height: "6vh",
           }}
         >
           <p>로그인이 필요한 서비스입니다.</p>
           <button
-            onClick={() => navigate("/login")}
+            onClick={() => handletoast()}
             style={{
+              marginTop: 5,
+              color: "black",
               border: "none",
               backgroundColor: "#ec7538",
               display: "flex",
@@ -206,11 +224,8 @@ const PopupInfo = () => {
             로그인 하러 가기
           </button>
         </div>
-      ),
-      {
-        icon: logo,
-      }
-    );
+      </div>
+    ));
   };
 
   useEffect(() => {
@@ -272,25 +287,26 @@ const PopupInfo = () => {
         <RequestWrapper>
           <Kakaomap
             isOne={true}
-            Seoul={popupinfo?.Seoul}
-            Busan={popupinfo?.Busan}
-            Chungcheongbuk_Province={popupinfo?.Chungcheongbuk_Province}
-            Chungcheongnam_Province={popupinfo?.Chungcheongnam_Province}
-            Daegu={popupinfo?.Daegu}
-            Daejeon={popupinfo?.Daejeon}
-            Gangwon_Province={popupinfo?.Gangwon_Province}
-            Gwangju={popupinfo?.Gwangju}
-            Gyeonggi_Province={popupinfo?.Gyeonggi_Province}
-            Gyeongsangbuk_Province={popupinfo?.Gyeongsangbuk_Province}
-            Gyeongsangnam_Province={popupinfo?.Gyeongsangnam_Province}
-            Incheon={popupinfo?.Incheon}
+            isTwo={false}
+            Seoul={popupinfo?.popup?.Seoul}
+            Busan={popupinfo?.popup?.Busan}
+            Chungcheongbuk_Province={popupinfo?.popup?.Chungcheongbuk_Province}
+            Chungcheongnam_Province={popupinfo?.popup?.Chungcheongnam_Province}
+            Daegu={popupinfo?.popup?.Daegu}
+            Daejeon={popupinfo?.popup?.Daejeon}
+            Gangwon_Province={popupinfo?.popup?.Gangwon_Province}
+            Gwangju={popupinfo?.popup?.Gwangju}
+            Gyeonggi_Province={popupinfo?.popup?.Gyeonggi_Province}
+            Gyeongsangbuk_Province={popupinfo?.popup?.Gyeongsangbuk_Province}
+            Gyeongsangnam_Province={popupinfo?.popup?.Gyeongsangnam_Province}
+            Incheon={popupinfo?.popup?.Incheon}
             Jeju_Special_Self_Governing_Province={
-              popupinfo?.Jeju_Special_Self_Governing_Province
+              popupinfo?.popup?.Jeju_Special_Self_Governing_Province
             }
-            Jeollabuk_Province={popupinfo?.Jeollabuk_Province}
-            Jeollanam_Province={popupinfo?.Jeollanam_Province}
-            Sejong={popupinfo?.Sejong}
-            Ulsan={popupinfo?.Ulsan}
+            Jeollabuk_Province={popupinfo?.popup?.Jeollabuk_Province}
+            Jeollanam_Province={popupinfo?.popup?.Jeollanam_Province}
+            Sejong={popupinfo?.popup?.Sejong}
+            Ulsan={popupinfo?.popup?.Ulsan}
           />
         </RequestWrapper>
         <Margin height="20" />

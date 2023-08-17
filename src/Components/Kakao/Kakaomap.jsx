@@ -93,7 +93,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(36.664013, 128.434296),
           })
         );
       }
@@ -101,7 +101,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(35.8714354, 128.601445),
           })
         );
       }
@@ -109,7 +109,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(36.3504119, 127.3845475),
           })
         );
       }
@@ -117,7 +117,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(37.555837, 128.209315),
           })
         );
       }
@@ -125,7 +125,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(35.1595454, 126.8526012),
           })
         );
       }
@@ -133,7 +133,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(37.567167, 127.190292),
           })
         );
       }
@@ -141,7 +141,10 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(
+              36.988094179528,
+              127.92606617289
+            ),
           })
         );
       }
@@ -149,7 +152,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(35.160337, 126.824799),
           })
         );
       }
@@ -157,7 +160,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(35.7175, 127.153),
           })
         );
       }
@@ -165,7 +168,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(36.820279, 127.10495),
           })
         );
       }
@@ -173,7 +176,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(33.4996213, 126.5311884),
           })
         );
       }
@@ -181,7 +184,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(37.456255, 126.7052062),
           })
         );
       }
@@ -189,7 +192,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(36.5040736, 127.249485),
           })
         );
       }
@@ -197,7 +200,7 @@ function Kakaomap({
         markers.push(
           new window.kakao.maps.Marker({
             map: map,
-            position: new window.kakao.maps.LatLng(35.4606, 128.2132),
+            position: new window.kakao.maps.LatLng(35.5383773, 129.3113596),
           })
         );
       }

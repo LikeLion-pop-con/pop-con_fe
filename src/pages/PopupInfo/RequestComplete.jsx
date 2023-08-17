@@ -25,35 +25,17 @@ const popupcardvariants = {
   },
 };
 
-function RequestComplete({ image, title, userId, placeKey, basementFloor, groundFloor, formattedDate, reservedDate }) {
-  const complete = () =>
-    toast.success(
-      (t) => (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <p>팝업 신청이 완료되었습니다 !!</p>
-          <p>User ID: {userId}</p>
-          <p>Place Key: {placeKey}</p>
-          <p>Basement Floor: {basementFloor}</p>
-          <p>Ground Floor: {groundFloor}</p>
-          <p>Formatted Date: {formattedDate}</p>
-          <p>Reserved Date: {reservedDate}</p>
-        </div>
-      ),
-      {
-        duration: 3000,
-        style: {
-          marginTop: 50,
-          width: "20%",
-        },
-      }
-    );
-
+function RequestComplete({
+  image,
+  title,
+  userId,
+  placeKey,
+  basementFloor,
+  groundFloor,
+  formattedDate,
+  reservedDate,
+  isSpace,
+}) {
   useEffect(() => {
     // setTimeout(() => complete(), 1000);
   }, []);
