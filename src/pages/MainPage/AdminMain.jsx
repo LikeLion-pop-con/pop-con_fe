@@ -15,11 +15,13 @@ import NavigationBar from "../../Components/Navigate/Navigate";
 import Footer from "../../Components/Footer/Footer";
 import { MdArrowForwardIos } from "react-icons/md";
 import LargeCard from "../../Components/Card/LargeCard";
-import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import PostCardimg1 from "../../assets/Icons/Card/PostCardimg1.png";
 import AdminCard from "../../Components/Card/AdminCard";
-import AdminCardimg from "../../assets/Icons/Card/AdminCardimg.png";
 import * as api from "../../api";
+import AdminCardHeart from "../../assets/Icons/Card/AdminCardHeart.svg";
+import { useRecoilState } from "recoil";
+import { isClicked } from "../../atom";
+import logo from "../../assets/Icons/Header/logo.png";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -51,6 +53,19 @@ const SliderXItems = styled.div`
   grid-template-columns: repeat(${(props) => props.cards}, 1fr);
   gap: 20px; */
 `;
+const Icon = styled.img`
+  position: absolute;
+  cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다
+  z-index: 10;
+  right: 25px;
+  bottom: 25px;
+  width: 35px;
+  height: 35px;
+  filter: ${(props) =>
+    props.clicked
+      ? "invert(0.5) sepia(1) saturate(1000%) hue-rotate(0deg)"
+      : "none"};
+`;
 
 function AdminMain() {
   const navigate = useNavigate();
@@ -63,6 +78,9 @@ function AdminMain() {
   const [filteredBrandData, setFilteredBrandData] = useState([]);
   const [isCardLiked, setIsCardLiked] = useState(false);
   const [Popwill, setPopwill] = useState([]);
+
+  const [isLiked, setIsLiked] = useRecoilState(isClicked);
+
   useEffect(() => {
     const token = localStorage.getItem("Token");
     if (!token) {
@@ -170,16 +188,20 @@ function AdminMain() {
         />
         <SliderXwrapper2>
           <SliderXItems>
-            {placepopup?.map((item) => (
-              <AdminCard
-                id={item.id}
-                onClick={() => navigate(`/popupspace/${item.id}`)}
-                image={"https://popcon.store" + item?.popup_place_image01}
-                title={item?.popup_place_title}
-                space={item?.popup_place_location}
-                floor={item?.popup_place_floor}
-                area={"연면적 : " + item?.popup_place_area}
-              />
+            {placepopup?.map((item, index) => (
+              <div style={{ position: "relative" }}>
+                <AdminCard
+                  style={{ position: "relative" }}
+                  id={item.id}
+                  onClick={() => navigate(`/popupspace/${item.id}`)}
+                  image={"https://popcon.store" + item?.popup_place_image01}
+                  title={item?.popup_place_title}
+                  space={item?.popup_place_location}
+                  floor={item?.popup_place_floor}
+                  area={"연면적 : " + item?.popup_place_area}
+                ></AdminCard>
+                <Icon src={logo} alt="logo" clicked={isClicked[item.id]} />
+              </div>
             ))}
           </SliderXItems>
         </SliderXwrapper2>
@@ -188,7 +210,7 @@ function AdminMain() {
         <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" onClick={() => navigate("/popuphere")}/>
         <SliderXwrapper2>
           <SliderXItems>
-          {Popwill?.map((item) => (
+            {Popwill?.map((item) => (
               <LargeCard
                 onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
                 image={"https://popcon.store" + item?.popup_image01}
