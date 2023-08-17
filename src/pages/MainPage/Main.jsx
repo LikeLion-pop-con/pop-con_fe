@@ -52,7 +52,7 @@ const SliderXwrapper2 = styled.div`
 const SliderXwrapper3 = styled.div`
   position: relative;
   overflow-x: scroll;
-  min-height: 485px;
+  min-height: 450px;
   width: 100%;
   scroll-snap-type: x mandatory;
 `;
@@ -351,8 +351,8 @@ function Main() {
                 type="추천 포스트"
                 main={
                   item?.brandpost_intro.length > 50
-                    ? item.brandpost_intro.substring(0, 50) + "..."
-                    : item.brandpost_intro
+                  ? item.brandpost_intro.substring(0, 30) + "..."
+                  : item.brandpost_intro
                 }
               />
             ))}
