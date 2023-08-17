@@ -51,9 +51,19 @@ const TextWrapper = styled.div`
   margin-left: 15px;
   margin-right: 15px;
 `;
-
+const CategoryMapping = {
+  1: "푸드",
+  2: "패션 잡화",
+  3: "테크 가전",
+  4: "뷰티",
+  5: "클래스",
+  6: "그림",
+  7: "문학",
+  8: "영상",
+  9: "음악"
+};
 const Card = ({ image, title, category, main, onClick }) => {
-  // image, title, category, main을 props로 받습니다.
+  const mappedCategory = CategoryMapping[category];
   const navigate = useNavigate();
   return (
     <CardEach onClick={onClick}>
@@ -65,7 +75,7 @@ const Card = ({ image, title, category, main, onClick }) => {
         <Margin height="6" />
         <Typo size="small" color="gray">
           {" "}
-          {category}{" "}
+          {mappedCategory}{" "}
         </Typo>
         <Margin height="6" />
         <Typo size="0.8rem" color="gray">

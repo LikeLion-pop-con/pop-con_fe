@@ -166,8 +166,8 @@ function Main() {
   const [CardData, setCardData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("/");
   const [filteredBrandData, setFilteredBrandData] = useState([]);
+  const [Hotppop, setHotppop] = useState([]);
   const [textidx, setTextidx] = useState(0);
-
   const [index, setIndex] = useState(0);
   const [isOpened, setIsOpened] = useRecoilState(istutorialOpend);
 
@@ -313,15 +313,15 @@ function Main() {
         />
         <SliderXwrapper2>
           <SliderXItems>
-            {hotpopupdata?.map((item) => (
+          {hotpopupdata?.map((item) => (
               <LargeCard
                 onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
-                image={"https://popcon.store" + item?.popup_image}
-                title="NewJeans의 HYPE맑음"
+                image={"https://popcon.store" + item?.popup_image01}
+                title={item?.popup_name}
                 popcategory={item?.popup_category}
-                detail="창작 예술"
-                space={"하텍 해동 스룸G \n인하대학교"}
-                date="2023.07.21~2023.08.19"
+                detail={"주최 - " + item?.brand_info}
+                space={item?.popup_detailplace}
+                date={`${item?.popup_date}~${item?.popup_closedate}`}
               />
             ))}
           </SliderXItems>

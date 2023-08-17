@@ -225,12 +225,12 @@ function AdminMain() {
             {hotpopupdata?.map((item) => (
               <LargeCard
                 onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
-                image={"https://popcon.store" + item?.popup_image}
-                title="NewJeans의 HYPE맑음"
+                image={"https://popcon.store" + item?.popup_image01}
+                title={item?.popup_name}
                 popcategory={item?.popup_category}
-                detail="창작 예술"
-                space={"하텍 해동 스룸G \n인하대학교"}
-                date="2023.07.21~2023.08.19"
+                detail={item?.brand_info}
+                space={item?.popup_detailplace}
+                date={`${item?.popup_date}~${item?.popup_closedate}`}
               />
             ))}
           </SliderXItems>
