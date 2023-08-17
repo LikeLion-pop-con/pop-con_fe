@@ -172,7 +172,6 @@ function Main() {
   const [Hotppop, setHotppop] = useState([]);
   const [textidx, setTextidx] = useState(0);
 
-
   useEffect(() => {
     const token = localStorage.getItem("Token");
     if (!token) {
@@ -285,7 +284,7 @@ function Main() {
         />
         <SliderXwrapper2>
           <SliderXItems>
-          {Popwill?.map((item) => (
+            {Popwill?.map((item) => (
               <LargeCard
                 onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
                 image={"https://popcon.store" + item?.popup_image01}
@@ -308,7 +307,7 @@ function Main() {
         />
         <SliderXwrapper2>
           <SliderXItems>
-          {hotpopupdata?.map((item) => (
+            {hotpopupdata?.map((item) => (
               <LargeCard
                 onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
                 image={"https://popcon.store" + item?.popup_image01}
@@ -319,7 +318,7 @@ function Main() {
                 date={item?.popup_date}
               />
             ))}
-          </SliderXItems> 
+          </SliderXItems>
         </SliderXwrapper2>
         <Margin height="50" />
         <PopupTitle
