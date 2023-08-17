@@ -53,12 +53,23 @@ const Button2 = styled.button`
   padding: 8px;
   background-color: transparent;
 `;
-const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,showButton1  = true ,setIsShared}) => {
+const Carddown1 = ({
+  id,
+  subcribeNum,
+  popNum,
+  introduceText,
+  isLiked,
+  setIsLiked,
+  showButton1 = true,
+  setIsShared,
+}) => {
   const [isUserLiked, setIsUserLiked] = useState();
-const [isclicked, setIsclicked] = useState(false);
+  const [subpeople, setsubpeople] = useState();
+  const [isclicked, setIsclicked] = useState(false);
+  const [getbrands,setgetbrandsubcount] = useState();
   const getIsLiked = async () => {
     const userType = localStorage.getItem("UserType");
-    if (userType === "1" && localStorage.getItem("Pk")) {
+    if (localStorage.getItem("Pk")) {
       const res = await api.getCheckbrandsub(localStorage.getItem("Pk"), id);
 
       console.log(res);
@@ -70,25 +81,34 @@ const [isclicked, setIsclicked] = useState(false);
       }
     }
   };
-
+  const getbrandsubcount = async () => {
+    const subpeople = await api.getbrandsubcount(id);
+    setsubpeople(subpeople);
+    console.log(subpeople);
+  };
   useEffect(() => {
     getIsLiked();
+    getbrandsubcount();
   }, []);
 
   return (
     <>
       <Wrapper>
         <FirstBox>
-          <SubcribeNum>
-            <Typo size="1.1rem" weight="400" color="main">
-              {subcribeNum}
-            </Typo>
-          </SubcribeNum>
-          <SubcribeText>
-            <Typo size="1.1rem" weight="400">
-            구독
-            </Typo>
-          </SubcribeText>
+          {subpeople && (
+            <>
+              <SubcribeNum>
+                <Typo size="1.1rem" weight="400" color="main">
+                  {subpeople.brandsubcounts}
+                </Typo>
+              </SubcribeNum>
+              <SubcribeText>
+                <Typo size="1.1rem" weight="400">
+                  구독
+                </Typo>
+              </SubcribeText>
+            </>
+          )}
           <IconContainer>
             <TbPointFilled />
           </IconContainer>
@@ -109,25 +129,28 @@ const [isclicked, setIsclicked] = useState(false);
           </Typo>
         </IntroduceText>
         <SecondBox>
-        {showButton1 && (<Button1
-            onClick={() => {
-              setIsLiked((prev) => !prev);
-              api
-                .postBrandsubscribe(id, localStorage.getItem("Pk"))
-                .then((data) => {
-                  console.log("Like successfully posted:", data);
-                })
-                .catch((error) => {
-                  console.error("Error posting like:", error);
-                });
-            }}
-            style={{
-              backgroundColor: isLiked ? "#B2A5FE" : "transparent",
-              color: isLiked ? "white" : "black"
-            }}
-          >
-            {isLiked ? "구독 중 ":"+ 구독" }
-          </Button1>)}
+          {showButton1 && (
+            <Button1
+              onClick={() => {
+                setIsLiked((prev) => !prev);
+                api
+                  .postBrandsubscribe(id, localStorage.getItem("Pk"))
+                  .then((data) => {
+                    console.log("Like successfully posted:", data);
+                  })
+                  .catch((error) => {
+                    console.error("Error posting like:", error);
+                  });
+                getbrandsubcount();
+              }}
+              style={{
+                backgroundColor: isLiked ? "#B2A5FE" : "transparent",
+                color: isLiked ? "white" : "black",
+              }}
+            >
+              {isLiked ? "구독 중 " : "+ 구독"}
+            </Button1>
+          )}
           <Button2 onClick={() => setIsShared((prev) => !prev)}>
             <BsFillShareFill />
           </Button2>
