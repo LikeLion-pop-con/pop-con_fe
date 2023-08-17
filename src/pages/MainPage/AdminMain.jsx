@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 const SliderXwrapper = styled.div`
   position: relative;
   overflow-x: scroll;
-  min-height: 250px;
+  min-height: 265px;
   width: 100%;
   scroll-snap-type: x mandatory;
 `;
@@ -120,7 +120,7 @@ function AdminMain() {
     const PopwillData = await api.getPopupwill();
     setPopwill(PopwillData);
     console.log(PopwillData);
-  };  
+  };
   const id = 1;
   const handleCategoryClick = (categoryPath) => {
     setSelectedCategory(categoryPath);
@@ -179,8 +179,6 @@ function AdminMain() {
                 space={item?.popup_place_location}
                 floor={item?.popup_place_floor}
                 area={"연면적 : " + item?.popup_place_area}
-                isCardLiked={isCardLiked}
-                setIsCardLiked={setIsCardLiked}
               />
             ))}
           </SliderXItems>

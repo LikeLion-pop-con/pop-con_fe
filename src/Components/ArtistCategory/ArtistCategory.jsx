@@ -8,7 +8,7 @@ const Tabs = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 0px 20px;
+  margin: 0px 5%;
   margin-bottom: 30px;
 `;
 const Tab = styled.div`
@@ -18,7 +18,7 @@ const Tab = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 18px;
-  margin: 0px 14px;
+  margin: 0px 10px;
   background-color: ${(props) =>
     props.active ? props.theme.colors.sub : props.theme.colors.white};
   border: ${(props) => (props.active ? "none" : "1px solid rgba(0,0,0,0.15)")};
@@ -49,10 +49,16 @@ function ArtistCategory({ handleCategoryClick }) {
         <Tab active={activeTab === "/lit"} onClick={() => handleClick("/lit")}>
           <a>문학</a>
         </Tab>
-        <Tab active={activeTab === "/video"} onClick={() => handleClick("/video")}>
+        <Tab
+          active={activeTab === "/video"}
+          onClick={() => handleClick("/video")}
+        >
           <a>영상</a>
         </Tab>
-        <Tab active={activeTab === "/music"} onClick={() => handleClick("/music")}>
+        <Tab
+          active={activeTab === "/music"}
+          onClick={() => handleClick("/music")}
+        >
           <a>음악</a>
         </Tab>
       </Tabs>

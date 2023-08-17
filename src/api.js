@@ -25,7 +25,11 @@ export function getIsPopupplacelike(user_pk, place_pk) {
     )
     .then((res) => res.data);
 }
-
+export function getTotalLikecount(id) {
+  return axios
+    .get(`${BASE_URL}/popupplace/likecounts/?id=${id}`)
+    .then((res) => res.data);
+}
 export function getMypageMylikepopup(user_id) {
   return axios
     .get(`${BASE_URL}/mylikepopup/?id=${user_id}`)
@@ -92,23 +96,16 @@ export function getSubBrand(user_pk) {
     .then((res) => res.data);
 }
 export function getPopupwill() {
-  return axios
-    .get(`${BASE_URL}/popuplist/willopen`)
-    .then((res) => res.data);
-
+  return axios.get(`${BASE_URL}/popuplist/willopen`).then((res) => res.data);
 }
 
 export function gethotbrand() {
-  return axios
-    .get(`${BASE_URL}/main/hotbrand`)
-    .then((res) => res.data);
-
+  return axios.get(`${BASE_URL}/main/hotbrand`).then((res) => res.data);
 }
 export function getbrandsubcount(id) {
   return axios
     .get(`${BASE_URL}/brand/subcounts?id=${id}`)
     .then((res) => res.data);
-
 }
 
 export function postMylikepopup(popup_id, user_id) {
@@ -122,7 +119,7 @@ export function postMylikepopup(popup_id, user_id) {
 export function postplacelike(popup_place_pkey, user_pk) {
   return axios
     .post(`${BASE_URL}/popupplacelike`, {
-      popup_place_pkey: popup_place_pkey,
+      popup_place_pk: popup_place_pkey,
       user_pk: user_pk,
     })
     .then((res) => res.data);

@@ -25,32 +25,31 @@ const PopupWrap = styled.div`
   row-gap: 1rem;
 `;
 const CardBlock = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    white-space: pre-line;// \n를 css에 적용시키려면 필요한 코드
-`   
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-line; // \n를 css에 적용시키려면 필요한 코드
+`;
 
 function PopupSpace() {
-    const [isModalOpen, setIsModalOpen] = useState(true);
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
-    const [placepopup, setplacepopup] = useState([]);
-    const [isCardLiked, setIsCardLiked] = useState(false);
-    const navigate = useNavigate();
-    useEffect(() => {
-      getPopupplace();
-    }, []);
-    const getPopupplace = async () => {
-      const placepopup = await api.getPopupplace();
-      setplacepopup(placepopup);
-      console.log(placepopup);
-    };
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const [placepopup, setplacepopup] = useState([]);
+  const [isCardLiked, setIsCardLiked] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    getPopupplace();
+  }, []);
+  const getPopupplace = async () => {
+    const placepopup = await api.getPopupplace();
+    setplacepopup(placepopup);
+    console.log(placepopup);
+  };
 
   return (
     <>
-      
       <Header left="logo" right={["login", "search"]} />
       <Margin height="40" />
       <Title>
@@ -58,25 +57,24 @@ function PopupSpace() {
       </Title>
       <Margin height="20" />
       <CardBlock>
-
-      {placepopup?.map((item) => (
-            <AdminCard 
+        {placepopup?.map((item) => (
+          <AdminCard
+            id={item?.id}
             onClick={() => navigate(`/popupspace/${item.id}`)}
             image={"https://popcon.store" + item?.popup_place_image01}
-            title={item?.popup_place_title} 
-            space={item?.popup_place_location} 
-            floor={item?.popup_place_floor} 
+            title={item?.popup_place_title}
+            space={item?.popup_place_location}
+            floor={item?.popup_place_floor}
             area={"연면적 : " + item?.popup_place_area}
-            isLiked={isCardLiked}
-            setIsLiked={setIsCardLiked} />
-          ))}
+          />
+        ))}
       </CardBlock>
       <div>
-      <Modal isOpen={isModalOpen} closeModal={closeModal} />
+        <Modal isOpen={isModalOpen} closeModal={closeModal} />
       </div>
-      
-      <NavigationBar/>
-      <Footer/>
+
+      <NavigationBar />
+      <Footer />
     </>
   );
 }

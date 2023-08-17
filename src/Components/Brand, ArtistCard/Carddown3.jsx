@@ -7,6 +7,7 @@ import { useState } from "react";
 import * as api from "../../api";
 import { useEffect } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { useRef } from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -62,9 +63,10 @@ const Carddown3 = ({
   isLiked,
   setIsLiked,
   showButton1 = true,
+  num,
 }) => {
-  const [isUserLiked, setIsUserLiked] = useState();
-  const [likenum, setLikenum] = useState(0);
+  const [isUserLiked, setIsUserLiked] = useState(0);
+
   const getIsLiked = async () => {
     const userType = localStorage.getItem("UserType");
     if (userType === "2" && localStorage.getItem("Pk")) {
@@ -90,7 +92,7 @@ const Carddown3 = ({
         <FirstBox>
           <PopNum>
             <Typo size="1.1rem" weight="400" color="main">
-              {likenum}
+              {num}
             </Typo>
           </PopNum>
           <PopText>
@@ -114,7 +116,6 @@ const Carddown3 = ({
                   .postplacelike(id, localStorage.getItem("Pk"))
                   .then((data) => {
                     console.log("Like successfully posted:", data);
-                    setLikenum(data?.popupplace_like);
                   })
                   .catch((error) => {
                     console.error("Error posting like:", error);
