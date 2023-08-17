@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import * as api from "../../api";
 const PASSWORD_MAX_LENGTH = 4; // 비밀번호 입력길이 제한 설정
-const pw = localStorage.getItem("account_password");
+
 const shuffle = (nums) => {
   // 배열 섞는 함수
   let num_length = nums.length;
@@ -21,6 +21,7 @@ const Inputter = ({ onPasswordChange }) => {
   let nums_init = Array.from({ length: 10 }, (v, k) => k);
   const [nums, setNums] = useState(nums_init);
   const [password, setPassword] = useState("");
+  const pw = localStorage.getItem("account_password");
   const [isYes, setIsYes] = useState(false);
   const id = localStorage.getItem('Pk');
   const [user_pk, setUserPk] = useState(id);
@@ -79,7 +80,7 @@ const Inputter = ({ onPasswordChange }) => {
       yestoast();
       localStorage.setItem("account_password", password);
       navigate("/CardList");
-    } else if (password === pw) {
+    } else if ((localStorage.getItem("account_password")) === password) {
       yestoast();
       navigate("/CardList");
     } else {

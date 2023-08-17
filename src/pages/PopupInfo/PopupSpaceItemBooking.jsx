@@ -129,11 +129,12 @@ const PopupSpaceItemBooking = () => {
     user_id = localStorage.getItem("Pk");
     popup_place_pkey = placepopup.pkey;
     reserved_basement_floor = selectedBasementTimeSlot?.start
-      .toString()
-      .replace("층", ""); // 예약된 층 정보
-    reserved_ground_floor = selectedGroundTimeSlot?.start
-      .toString()
-      .replace("층", ""); // 예약된 층 정보
+    ? selectedBasementTimeSlot.start.toString().replace("층", "")
+    : null; // 예약된 층 정보
+  
+  reserved_ground_floor = selectedGroundTimeSlot?.start
+    ? selectedGroundTimeSlot.start.toString().replace("층", "")
+    : null; // 예약된 층 정보
     formattedDate = selectedDate.toISOString()?.split("T")[0];
     reserved_date = formattedDate; // 선택한 날짜 정보
     console.log(user_id);
@@ -195,19 +196,23 @@ const PopupSpaceItemBooking = () => {
         }}
         maxDate={new Date("2023-09-10")}
       />
-      <CustomFloor
-        label="지하 층수 선택"
-        selectedTime={selectedBasementTimeSlot}
-        floorCount={placepopup.popup_place_basement_floor}
-        onChange={(timeSlot) => handleTimeSlotChange(timeSlot, "basement")}
-      />
+      {placepopup.popup_place_basement_floor && (
+  <CustomFloor
+    label="지하 층수 선택"
+    selectedTime={selectedBasementTimeSlot}
+    floorCount={placepopup.popup_place_basement_floor}
+    onChange={(timeSlot) => handleTimeSlotChange(timeSlot, "basement")}
+  />
+)}
 
-      <CustomFloor
-        label="지상 층수 선택"
-        selectedTime={selectedGroundTimeSlot}
-        floorCount={placepopup.popup_place_ground_floor}
-        onChange={(timeSlot) => handleTimeSlotChange(timeSlot, "ground")}
-      />
+{placepopup.popup_place_ground_floor && (
+  <CustomFloor
+    label="지상 층수 선택"
+    selectedTime={selectedGroundTimeSlot}
+    floorCount={placepopup.popup_place_ground_floor}
+    onChange={(timeSlot) => handleTimeSlotChange(timeSlot, "ground")}
+  />
+)}
       <Margin height="20" />
       <Detail>
         <Typo size="14px" color="red" weight="600" style={{ lineHeight: 1.5 }}>
@@ -267,6 +272,7 @@ const PopupSpaceItemBooking = () => {
           <RequestComplete
             image={"https://popcon.store" + placepopup.popup_place_image02}
             title="팝업 신청이 완료되었습니다 !!"
+            date={selectedDate.toISOString()?.split("T")[0]}
           />
         </Modal>
       )}

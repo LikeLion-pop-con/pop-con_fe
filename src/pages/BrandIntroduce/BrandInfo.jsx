@@ -6,7 +6,7 @@ import Margin from "../../Components/Margin/Margin";
 import * as api from "../../api";
 import { useEffect } from "react";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -18,7 +18,7 @@ function BrandInfo() {
   const { brandId } = params;
   const [data, setData] = useState([]);
   console.log(brandId);
-
+  const navigate = useNavigate();
   const getBrandPopup = async () => {
     const list = await api.getBrandinfoPopup(brandId);
 
@@ -47,6 +47,7 @@ function BrandInfo() {
       <PopupTitle text="팝업 정보" />
       {data?.map((item) => (
         <LargeCard
+          onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
           image={"https://popcon.store" + item?.popup_main_image}
           title={item?.popup_name}
           space={item?.popup_detailplace}
