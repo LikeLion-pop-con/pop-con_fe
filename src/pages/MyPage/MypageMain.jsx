@@ -139,6 +139,14 @@ const Mypage = () => {
           </Text>
           <Horizon width="340px" color="lightgray"></Horizon>
         </TextLink>
+        {(localStorage.getItem("UserType")==="2")&&(<TextLink to="/Mypage/Myplacereservation">
+          <Text>
+            <Typo size="1rem" weight="400">
+              나의 공간 예약
+            </Typo>
+          </Text>
+          <Horizon width="340px" color="lightgray"></Horizon>
+        </TextLink>)}
         <TextLink to="/Mypage/MypopLike">
           {" "}
           <Text>
@@ -172,7 +180,7 @@ const Mypage = () => {
           </Text>
           <Horizon width="340px" color="lightgray"></Horizon>
         </TextLink>
-        <TextLink to="/CardList">
+        <TextLink to="/Password">
           <Text>
             <Typo size="1rem" weight="400">
               나의 결제수단

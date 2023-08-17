@@ -80,7 +80,7 @@ const Icon = styled.img`
   cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다
 `;
 
-const PopupCard = ({ image, title, main, onClick }) => {
+const PopupCard = ({ image, title, main, onClick,date}) => {
   const navigate = useNavigate();
 
   return (
@@ -93,6 +93,7 @@ const PopupCard = ({ image, title, main, onClick }) => {
         <TextWrapper>
           <Typo weight="300" size="0.9rem" lineheight="18px">
             {main}
+            예약 날짜 : {date}
           </Typo>
         </TextWrapper>
       </TextBox>
