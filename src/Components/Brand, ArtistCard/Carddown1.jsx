@@ -53,8 +53,9 @@ const Button2 = styled.button`
   padding: 8px;
   background-color: transparent;
 `;
-const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,showButton1 = true}) => {
+const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,showButton1  = true ,setIsShared}) => {
   const [isUserLiked, setIsUserLiked] = useState();
+const [isclicked, setIsclicked] = useState(false);
   const getIsLiked = async () => {
     const userType = localStorage.getItem("UserType");
     if (userType === "1" && localStorage.getItem("Pk")) {
@@ -85,7 +86,7 @@ const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,sh
           </SubcribeNum>
           <SubcribeText>
             <Typo size="1.1rem" weight="400">
-              구독
+            구독
             </Typo>
           </SubcribeText>
           <IconContainer>
@@ -98,7 +99,7 @@ const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,sh
           </PopNum>
           <PopText>
             <Typo size="1.1rem" weight="400">
-              회 좋아요
+              회 팝업
             </Typo>
           </PopText>
         </FirstBox>
@@ -111,7 +112,6 @@ const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,sh
         {showButton1 && (<Button1
             onClick={() => {
               setIsLiked((prev) => !prev);
-
               api
                 .postBrandsubscribe(id, localStorage.getItem("Pk"))
                 .then((data) => {
@@ -128,7 +128,7 @@ const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,sh
           >
             {isLiked ? "구독 중 ":"+ 구독" }
           </Button1>)}
-          <Button2>
+          <Button2 onClick={() => setIsShared((prev) => !prev)}>
             <BsFillShareFill />
           </Button2>
         </SecondBox>

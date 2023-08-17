@@ -91,7 +91,12 @@ export function getSubBrand(user_pk) {
     .get(`${BASE_URL}/brand/subscribe/my/?id=${user_pk}`)
     .then((res) => res.data);
 }
+export function getPopupwill() {
+  return axios
+    .get(`${BASE_URL}/popuplist/willopen`)
+    .then((res) => res.data);
 
+}
 export function postMylikepopup(popup_id, user_id) {
   return axios
     .post(`${BASE_URL}/popuplike/`, {

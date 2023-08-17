@@ -51,13 +51,15 @@ const Searchresult = () => {
     return (
         <>
         <SearchBar onSearchTextChange={(text) => addToHistory(text)} searchText={searchText} searchHistory={searchHistory}></SearchBar>
-        <TitleText><Typo size="1.2rem" weight="400" color = "main">팝업 스토어</Typo></TitleText>
+        {SearchData.brands &&
+        <TitleText><Typo size="1.2rem" weight="400" color = "main">팝업 스토어</Typo></TitleText>}
         <Wrapper>
         {SearchData.popups && SearchData.popups.map((popup, index) => ( 
         <LargeCard key={index} image={"https://popcon.store" + popup?.popup_image01} title={popup.popup_name} popcategory={popup.category} detail={popup.simple_info} space={popup.popup_detailplace} date={popup.popup_opendate} onClick={() => navigate(`/Popupbooking/${popup.id}`)}/>
         ))}
         </Wrapper>
-        <TitleText><Typo size="1.2rem" weight="400" color = "main">팝업 브랜드</Typo></TitleText>
+        {SearchData.brands && SearchData.brands.some(brand => brand.type === 1) && (
+        <TitleText><Typo size="1.2rem" weight="400" color = "main">팝업 브랜드</Typo></TitleText>)}
         <Wrapper>
             {SearchData.brands && SearchData.brands.map((brand, index) => {
                 if (brand.type === 1) {
@@ -74,7 +76,8 @@ const Searchresult = () => {
             })}
             {/* "독립 아티스트" 영역은 여기에 추가할 수 있습니다. */}
         </Wrapper>
-        <TitleText><Typo size="1.2rem" weight="400" color="main">독립 아티스트</Typo></TitleText>
+        {SearchData.brands && SearchData.brands.some(brand => brand.type === 2) && (
+        <TitleText><Typo size="1.2rem" weight="400" color="main">독립 아티스트</Typo></TitleText>)}
         <Wrapper>
             {SearchData.brands && SearchData.brands.map((brand, index) => {
              if (brand.type === 2) {

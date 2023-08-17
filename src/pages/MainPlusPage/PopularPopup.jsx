@@ -4,7 +4,9 @@ import Typo from "../../assets/Typo";
 import Margin from "../../Components/Margin/Margin";
 import LargeCard from "../../Components/Card/LargeCard";
 import Footer from "../../Components/Footer/Footer";
-
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import * as api from "../../api";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 
 const Wrapper = styled.div`
@@ -34,6 +36,16 @@ const CardBlock = styled.div`
 `;
 
 function PopularPopup() {
+  const [hotpopupdata, setHotpopupdata] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    const hotpopup = await api.getMainHotPopup();
+    setHotpopupdata(hotpopup);
+    console.log(hotpopup);
+  };
   return (
     <Wrapper>
       <Header left="logo" right={["login", "search"]} />
@@ -45,10 +57,17 @@ function PopularPopup() {
       </Title>
       <Margin height="20" />
       <CardBlock>
-        <LargeCard image={NewJeans} title='NewJeans의 HYPE맑음' popcategory='팝업 스토어' detail='창작 예술' space={'하텍 해동 스룸G \n인하대학교'} date='2023.07.21~2023.08.19'/>  
-        <LargeCard image={NewJeans} title='NewJeans의 HYPE맑음' popcategory='팝업 스토어' detail='창작 예술' space={'하텍 해동 스룸G \n인하대학교'} date='2023.07.21~2023.08.19'/>
-        <LargeCard image={NewJeans} title='NewJeans의 HYPE맑음' popcategory='팝업 스토어' detail='창작 예술' space={'하텍 해동 스룸G \n인하대학교'} date='2023.07.21~2023.08.19'/>  
-        <LargeCard image={NewJeans} title='NewJeans의 HYPE맑음' popcategory='팝업 스토어' detail='창작 예술' space={'하텍 해동 스룸G \n인하대학교'} date='2023.07.21~2023.08.19'/>  
+      {hotpopupdata?.map((item) => (
+              <LargeCard
+                onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
+                image={"https://popcon.store" + item?.popup_image01}
+                title={item?.popup_name}
+                popcategory={item?.popup_category}
+                detail={item?.brand_info}
+                space={item?.popup_detailplace}
+                date={`${item?.popup_date}~${item?.popup_closedate}`}
+              />
+            ))}
       </CardBlock>
       <Footer/>
     </Wrapper>
