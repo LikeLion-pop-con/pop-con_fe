@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Typo from "../../assets/Typo";
 import Margin from "../Margin/Margin";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
-import AdminCardHeart from "../../assets/Icons/Card/AdminCardHeart.svg"
+import AdminCardHeart from "../../assets/Icons/Card/AdminCardHeart.svg";
 import { useState } from "react";
 
 const CardBlock = styled.div`
@@ -18,7 +18,7 @@ const CardEach = styled.div`
   flex-direction: column;
   background-color: white;
   height: 300px;
-  min-width:370px;
+  min-width: 370px;
   border-radius: 16px;
   cursor: pointer;
   margin: 9px;
@@ -53,13 +53,12 @@ const TextWrapper = styled.div`
   line-height: 18px;
 `;
 const TitleWrapper = styled.div`
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    margin-bottom: 5px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
 `;
 const TextBox = styled.div`
   display: flex;
@@ -71,17 +70,19 @@ const TextBox = styled.div`
 `;
 
 const Icon = styled.img`
-  cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 
+  cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다
   z-index: 5px;
-  filter: ${(props) => (props.liked ? 'invert(0.5) sepia(1) saturate(1000%) hue-rotate(0deg)' : 'none')};
+  filter: ${(props) =>
+    props.liked
+      ? "invert(0.5) sepia(1) saturate(1000%) hue-rotate(0deg)"
+      : "none"};
 `;
 
-
-const AdminCard = ({ image, title, space, floor, area, onClick}) => {
+const AdminCard = ({ image, title, space, floor, area, onClick }) => {
   const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
   const handleHeartClick = (event) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     setIsLiked(!isLiked);
     console.log("isLiked value:", isLiked);
   };
@@ -89,27 +90,33 @@ const AdminCard = ({ image, title, space, floor, area, onClick}) => {
     <CardEach onClick={onClick}>
       <Thumbnail image={image} />
       <TitleWrapper>
-        <Typo weight='600'>{title}</Typo>
+        <Typo weight="600">{title}</Typo>
       </TitleWrapper>
       <TextBox>
         <TextWrapper>
           <Margin height="6" />
-          <Typo size="small" color="gray">{space}</Typo>
-          <Margin height='5'/>
-          <Typo size="small" color="gray">{floor}</Typo>
-          <Margin height='5'/>
-          <Typo size="small" color="gray">{area}</Typo>
+          <Typo size="small" color="gray">
+            {space}
+          </Typo>
+          <Margin height="5" />
+          <Typo size="small" color="gray">
+            {floor}
+          </Typo>
+          <Margin height="5" />
+          <Typo size="small" color="gray">
+            {area}
+          </Typo>
         </TextWrapper>
         <TextWrapper>
-        <Icon
+          <Icon
             src={AdminCardHeart}
-            alt='logo'
+            alt="logo"
             onClick={handleHeartClick}
-            liked={isLiked} 
+            liked={isLiked}
           />
         </TextWrapper>
       </TextBox>
-      <Margin height='10'/>
+      <Margin height="10" />
     </CardEach>
   );
 };

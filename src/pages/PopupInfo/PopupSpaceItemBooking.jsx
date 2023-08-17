@@ -89,7 +89,12 @@ const PopupSpaceItemBooking = () => {
   console.log(spaceId);
 
   const navigate = useNavigate();
-  let user_id, popup_place_pkey, reserved_basement_floor, reserved_ground_floor, formattedDate, reserved_date;
+  let user_id,
+    popup_place_pkey,
+    reserved_basement_floor,
+    reserved_ground_floor,
+    formattedDate,
+    reserved_date;
 
   const imagePathsFromBackend = [
     "이미지1의_경로.jpg",
@@ -123,13 +128,13 @@ const PopupSpaceItemBooking = () => {
     // 사용자 아이디 및 팝업 공간 정보를 변수에 저장
     user_id = localStorage.getItem("Pk");
     popup_place_pkey = placepopup.pkey;
-    reserved_basement_floor = selectedBasementTimeSlot.start
+    reserved_basement_floor = selectedBasementTimeSlot?.start
       .toString()
       .replace("층", ""); // 예약된 층 정보
-    reserved_ground_floor = selectedGroundTimeSlot.start
+    reserved_ground_floor = selectedGroundTimeSlot?.start
       .toString()
       .replace("층", ""); // 예약된 층 정보
-    formattedDate = selectedDate.toISOString().split("T")[0];
+    formattedDate = selectedDate.toISOString()?.split("T")[0];
     reserved_date = formattedDate; // 선택한 날짜 정보
     console.log(user_id);
     console.log(popup_place_pkey);

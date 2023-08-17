@@ -139,20 +139,35 @@ export const tutorial = atom({
   default: [
     {
       title: "시작하기",
-      video: "test.mp4",
-      text: "아래와 같이 시작하세요",
+      video: "intro.gif",
+      text: [
+        { word: "팝업 스토어에 들어가볼까요", id: 1 },
+        { word: "예매하고 싶은 팝업을 선택합니다.", id: 2 },
+        { word: "예약하기 버튼을 눌러 장소 및 시간을 확인합니다.", id: 3 },
+        { word: "최종 확인 버튼을 누르면 예약 완료 !", id: 4 },
+      ],
       id: 1,
     },
     {
       title: "팝업 요청하기",
       video: "videosample.mp4",
-      text: "아래와 같이 시작하세요",
+      text: [
+        { word: "팝업 스토어에 들어가볼까요", id: 1 },
+        { word: "예매하고 싶은 팝업을 선택합니다.", id: 2 },
+        { word: "예약하기 버튼을 눌러 장소 및 시간을 확인합니다.", id: 3 },
+        { word: "최종 확인 버튼을 누르면 예약 완료 !", id: 4 },
+      ],
       id: 2,
     },
     {
       title: "팝업 예매하기",
       video: "videosample.mp4",
-      text: "아래와 같이 시작하세요",
+      text: [
+        { word: "팝업 스토어에 들어가볼까요", id: 1 },
+        { word: "예매하고 싶은 팝업을 선택합니다.", id: 2 },
+        { word: "예약하기 버튼을 눌러 장소 및 시간을 확인합니다.", id: 3 },
+        { word: "최종 확인 버튼을 누르면 예약 완료 !", id: 4 },
+      ],
       id: 3,
     },
   ],

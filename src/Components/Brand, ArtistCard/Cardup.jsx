@@ -26,11 +26,10 @@ const Circle = styled.div`
   height: 90px;
   border-radius: 50%;
   background-image: url(${(props) => props.CircleimageUrl});
-
   background-position: center;
   background-size: 100% 100%;
   background-color: white;
-  margin-top: -50px;
+  margin-top: -30px;
   box-shadow: 0 0 0 4px white;
 `;
 const Name = styled.p`

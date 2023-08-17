@@ -14,7 +14,6 @@ const Wrapper = styled.div`
   align-items: center;
   text-align: center;
   white-space: pre-line;
-
   @media (max-width: 600px) {
     flex-direction: column;
   }

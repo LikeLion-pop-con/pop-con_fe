@@ -270,20 +270,16 @@ function ShowCate() {
                       <DetailItem>
                         <Typo size="15px">All</Typo>
                       </DetailItem>
-                      <DetailItem
-                        onClick={() =>
-                          navigate(`/main/${1}`, { state: { type: id } })
-                        }
-                      >
+                      <DetailItem onClick={() => navigate("/main/1")}>
                         <Typo size="15px">스토어</Typo>
                       </DetailItem>
-                      <DetailItem>
+                      <DetailItem onClick={() => navigate("/main/2")}>
                         <Typo size="15px">갤러리</Typo>
                       </DetailItem>
-                      <DetailItem>
+                      <DetailItem onClick={() => navigate("/main/3")}>
                         <Typo size="15px">스테이지</Typo>
                       </DetailItem>
-                      <DetailItem>
+                      <DetailItem onClick={() => navigate("/main/4")}>
                         <Typo size="15px">클래스</Typo>
                       </DetailItem>
                     </>
