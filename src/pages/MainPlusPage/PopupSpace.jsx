@@ -37,6 +37,7 @@ function PopupSpace() {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
     const [placepopup, setplacepopup] = useState([]);
+    const [isCardLiked, setIsCardLiked] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
       getPopupplace();
@@ -46,6 +47,7 @@ function PopupSpace() {
       setplacepopup(placepopup);
       console.log(placepopup);
     };
+
   return (
     <>
       
@@ -64,7 +66,9 @@ function PopupSpace() {
             title={item?.popup_place_title} 
             space={item?.popup_place_location} 
             floor={item?.popup_place_floor} 
-            area={"연면적 : " + item?.popup_place_area} />
+            area={"연면적 : " + item?.popup_place_area}
+            isLiked={isCardLiked}
+            setIsLiked={setIsCardLiked} />
           ))}
       </CardBlock>
       <div>

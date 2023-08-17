@@ -15,6 +15,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import * as api from "../../api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import NavigationBar from "../../Components/Navigate/Navigate";
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -231,6 +232,7 @@ function SpaceItemIntro() {
       </PopupButton>
       <Margin height="40" />
       <Footer />
+      <NavigationBar/>
     </Wrapper>
   );
 }

@@ -26,7 +26,7 @@ const MONTHS = [
   "12월",
 ];
 
-const Calendar = ({ selectedDate, setSelectedDate }) => {
+const Calendar = ({ selectedDate, setSelectedDate,maxDate }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState({
     start: 11,
@@ -57,7 +57,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
           }
         }}
         minDate={new Date()}
-        maxDate={new Date("2023-08-19")}
+        maxDate={maxDate}
         selected={currentDate}
         calendarClassName={styles.calenderWrapper}
         dayClassName={(d) => {

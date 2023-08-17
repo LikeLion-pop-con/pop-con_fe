@@ -86,6 +86,7 @@ const BrandIntroduce = () => {
       <Carddown1
         subcribeNum={placepopup.popup_place_like}
         popNum={placepopup.popup_place_like_people}
+        showButton1 = {false}
       ></Carddown1>
       <TabsContainer>
         <Tabs>
