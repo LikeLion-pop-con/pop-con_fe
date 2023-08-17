@@ -64,7 +64,7 @@ const Carddown3 = ({
   showButton1 = true,
 }) => {
   const [isUserLiked, setIsUserLiked] = useState();
-  const [likenum, setLikenum] = useState(0);
+
   const getIsLiked = async () => {
     const userType = localStorage.getItem("UserType");
     if (userType === "2" && localStorage.getItem("Pk")) {
@@ -90,7 +90,7 @@ const Carddown3 = ({
         <FirstBox>
           <PopNum>
             <Typo size="1.1rem" weight="400" color="main">
-              {likenum}
+              {popNum}
             </Typo>
           </PopNum>
           <PopText>
@@ -114,7 +114,6 @@ const Carddown3 = ({
                   .postplacelike(id, localStorage.getItem("Pk"))
                   .then((data) => {
                     console.log("Like successfully posted:", data);
-                    setLikenum(data?.popupplace_like);
                   })
                   .catch((error) => {
                     console.error("Error posting like:", error);
