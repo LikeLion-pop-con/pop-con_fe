@@ -15,7 +15,7 @@ const CardEach = styled.div`
   flex-direction: column;
   background-color: white;
   //height: 470px;
-  width: 370px;
+  width: ${(props) => (props.width ? props.width : "370px")};
   border-radius: 16px;
   border: 1px solid lightgray;
   cursor: pointer;
@@ -31,6 +31,7 @@ const Thumbnail = styled.div`
     background-image: url(' ${(props) => props.image} ');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
     background-color: none;
     border-radius: 16px;
     height: 230px;
@@ -39,14 +40,13 @@ const Thumbnail = styled.div`
 `;
 
 const TextWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    margin-bottom: 10px;
-    margin-left: 20px;
-    margin-right: 15px;
-    line-height: 18px;
-    
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 15px;
+  line-height: 18px;
 `;
 const TitleWrapper = styled.div`
   display: flex;
@@ -77,10 +77,10 @@ const Horizon = styled.div`
   background-color: green;
 `;
 
-const PostCard = ({ image, type, title, color, main, onClick}) => {
+const PostCard = ({ width, image, type, title, color, main, onClick }) => {
   const navigate = useNavigate();
   return (
-    <CardEach onClick={onClick}>
+    <CardEach width={width} onClick={onClick}>
       <ThumbnailWrapper>
         <Thumbnail image={image} />
       </ThumbnailWrapper>
@@ -91,7 +91,9 @@ const PostCard = ({ image, type, title, color, main, onClick}) => {
         </Typo>
       </TextWrapper>
       <TitleWrapper>
-        <Typo size='1.2rem' lineheight='26px'>{title}</Typo>
+        <Typo size="1.2rem" lineheight="26px">
+          {title}
+        </Typo>
       </TitleWrapper>
       <Margin height="8" />
       <Horizon color={color} />

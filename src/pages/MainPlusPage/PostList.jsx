@@ -20,12 +20,12 @@ const PopupWrap = styled.div`
   row-gap: 1rem;
 `;
 const CardBlock = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    white-space: pre-line;// \n를 css에 적용시키려면 필요한 코드
-`   
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-line; // \n를 css에 적용시키려면 필요한 코드
+`;
 
 function PostList() {
   const [PostData, setPostData] = useState([]);
@@ -47,22 +47,22 @@ function PostList() {
       </Title>
       <Margin height="20" />
       <CardBlock>
-      {PostData?.map((item) => (
-              <PostCard
-                onClick={() => navigate(`/popuppost/?id=${item?.brand}`)}
-                image={"https://popcon.store" + item?.brandpost_image}
-                title={item?.brandpost_name}
-                type="추천 포스트"
-                main={
-                  item?.brandpost_intro.length > 50
-                    ? item.brandpost_intro.substring(0, 50) + "..."
-                    : item.brandpost_intro
-                }
-              />
-            ))}
+        {PostData?.map((item) => (
+          <PostCard
+            onClick={() => navigate(`/popuppost/?id=${item?.brand}`)}
+            image={"https://popcon.store" + item?.brandpost_image}
+            title={item?.brandpost_name}
+            type="추천 포스트"
+            main={
+              item?.brandpost_intro.length > 50
+                ? item.brandpost_intro.substring(0, 50) + "..."
+                : item.brandpost_intro
+            }
+          />
+        ))}
       </CardBlock>
-      <NavigationBar/>
-      <Footer/>
+      <NavigationBar />
+      <Footer />
     </>
   );
 }

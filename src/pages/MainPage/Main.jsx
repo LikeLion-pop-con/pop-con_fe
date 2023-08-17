@@ -179,6 +179,7 @@ function Main() {
   const [Hotppop, setHotppop] = useState([]);
   const [textidx, setTextidx] = useState(0);
   const [PostData, setPostData] = useState([]);
+  const [gif, setGif] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("Token");
@@ -191,6 +192,7 @@ function Main() {
     getCardinfo();
     getPopupwill();
     getPostall();
+    getGif();
   }, []);
 
   useEffect(() => {
@@ -247,6 +249,12 @@ function Main() {
   };
   const handleNext = () => {
     setIndex((prev) => (prev + 1) % 3);
+  };
+  const getGif = async () => {
+    const data = await api.getGif();
+    setGif(data);
+
+    console.log(data);
   };
 
   const tutorialdata = useRecoilValue(tutorial);
@@ -351,8 +359,8 @@ function Main() {
                 type="추천 포스트"
                 main={
                   item?.brandpost_intro.length > 50
-                  ? item.brandpost_intro.substring(0, 30) + "..."
-                  : item.brandpost_intro
+                    ? item.brandpost_intro.substring(0, 30) + "..."
+                    : item.brandpost_intro
                 }
               />
             ))}
@@ -516,7 +524,7 @@ function Main() {
                     ))}
                   </TextWrap>
                   <VideoWrap>
-                    <Img src={item?.video}></Img>
+                    <Img src={"https://popcon.store" + gif[0]?.gif}></Img>
                   </VideoWrap>
                 </Box>
               ))}
