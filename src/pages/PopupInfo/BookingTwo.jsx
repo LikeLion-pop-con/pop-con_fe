@@ -136,7 +136,7 @@ const BookingTwo = () => {
 
   const getData = async () => {
     const data = await api.getPopupById(brandId);
-    setData(data?.popup);
+    setData(data);
   };
 
   useEffect(() => {
@@ -154,7 +154,7 @@ const BookingTwo = () => {
         firsttitle={false}
         firstimg={true}
         width={"60%"}
-        image={"https://popcon.store" + data?.popup_main_image}
+        image={"https://popcon.store" + data?.popup?.popup_image01}
       />
       <Margin height="20" />
       {/* <Margin height="20" />
@@ -187,8 +187,8 @@ const BookingTwo = () => {
         >
           기간
         </Typo>
-        <Typo>{data?.popup_date?.split("*")[0]}</Typo>
-        <Typo>{data?.popup_date?.split("*")[1]}</Typo>
+        <Typo>{data?.popup?.popup_date?.split("*")[0]}</Typo>
+        <Typo>{data?.popup?.popup_date?.split("*")[1]}</Typo>
       </Period>
       <OperateTime>
         <Typo
@@ -197,7 +197,7 @@ const BookingTwo = () => {
         >
           운영 시간
         </Typo>
-        <Typo>{data?.popup_time}</Typo>
+        <Typo>{data?.popup?.popup_time}</Typo>
       </OperateTime>
       <Space>
         <Typo
@@ -206,8 +206,8 @@ const BookingTwo = () => {
         >
           장소
         </Typo>
-        <Typo>{data?.popup_detailplace?.split("/")[0]}</Typo>
-        <Typo>{data?.popup_detailplace?.split("/")[1]}</Typo>
+        <Typo>{data?.popup?.popup_detailplace?.split("/")[0]}</Typo>
+        <Typo>{data?.popup?.popup_detailplace?.split("/")[1]}</Typo>
       </Space>
       <Map>
         <Typo
@@ -216,7 +216,11 @@ const BookingTwo = () => {
         >
           지도 보기
         </Typo>
-        <Kakaomap isOne={false} isTwo={true} text={data?.popup_detailplace} />
+        <Kakaomap
+          isOne={false}
+          isTwo={true}
+          text={data?.popup?.popup_detailplace}
+        />
       </Map>
 
       <Margin height="30" />

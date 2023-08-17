@@ -16,7 +16,7 @@ const CardEach = styled.div`
   background-color: white;
   height: 240px;
   min-width: 10rem;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
   margin: 0px 10px;
   margin-bottom: 20px;
@@ -57,7 +57,7 @@ const CategoryMapping = {
   6: "그림",
   7: "문학",
   8: "영상",
-  9: "음악"
+  9: "음악",
 };
 
 const SmallCard = ({ image, title, category, main, onClick }) => {

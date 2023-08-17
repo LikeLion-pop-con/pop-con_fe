@@ -69,20 +69,20 @@ export function getMylikepopupRequest(user_id) {
     .get(`${BASE_URL}/mylikepopup/request/?id=${user_id}`)
     .then((res) => res.data);
 }
-
 export function getBrandCategory(id) {
   return axios.get(`${BASE_URL}/main/brand/${id}`).then((res) => res.data);
 }
-export function getCheckbrandsub(user_id,brand_id) {
+export function getCheckbrandsub(user_id, brand_id) {
   return axios
-    .get(`${BASE_URL}/brand/subscribe/check/?user_pk=${user_id}&brand_pk=${brand_id}`)
+    .get(
+      `${BASE_URL}/brand/subscribe/check/?user_pk=${user_id}&brand_pk=${brand_id}`
+    )
     .then((res) => res.data);
 }
 export function getSubBrand(user_pk) {
   return axios
     .get(`${BASE_URL}/brand/subscribe/my/?id=${user_pk}`)
     .then((res) => res.data);
-
 }
 
 export function postMylikepopup(popup_id, user_id) {
@@ -115,7 +115,9 @@ export function postBrandsubscribe(brand_pk, user_pk) {
     user_pk: user_pk,
   };
   console.log(data);
-  return axios.post(`${BASE_URL}/brand/subscribe/`, data).then((res) => res.data);
+  return axios
+    .post(`${BASE_URL}/brand/subscribe/`, data)
+    .then((res) => res.data);
 }
 export function postPopupplace(brand_name, user_name) {
   const data = {
