@@ -42,7 +42,7 @@ function RequestComplete({
 
   return (
     <>
-      <motion.div variants={popupcardvariants} initial="hidden" animate="load">
+      <motion.div style={{zIndex: 1000}} variants={popupcardvariants} initial="hidden" animate="load">
         <PopupCard image={image} title={`${title}`} />
       </motion.div>
     </>

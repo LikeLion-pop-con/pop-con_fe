@@ -59,26 +59,41 @@ const ManySearch = styled.p`
   label{
     color:#EC7538;
   }
+  justify-self: center;
 `
 const POPbox = styled.div`
     display: flex;
     flex-direction: row;
     height: 200px;
+    
 
 `
 const POPbox1 = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 200px;
-    margin: 40px;
+    margin: 50px;
+    margin-top: 10px;
+    margin-left: 20px;
 `
 const PoPRANK = styled.div`
+  width: 80%;
   padding: 10px;
   padding-right: 30px;
+`
+const PoPRANK1 = styled.div`
+  width:120%;
+  padding: 10px;
+`
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 const Search = () => {
   const { searchHistory, setSearchHistory } = useSearchContext();
   const [Hotppop, setHotppop] = useState([]);
+  const [gethotbrand, setgethotbrand] = useState([]);
   const addToHistory = (text) => {
     setSearchHistory((prevHistory) => [...prevHistory, text]);
   };
@@ -94,6 +109,7 @@ const Search = () => {
   
   useEffect(() => {
     getMainHotPopup();
+    getMainHotBrand();
   }, []);
 
   const getMainHotPopup = async () => {
@@ -101,9 +117,14 @@ const Search = () => {
     setHotppop(Hotppop);
     console.log(Hotppop);
   };
+  const getMainHotBrand = async () => {
+    const gethotbrand = await api.gethotbrand();
+    setgethotbrand(gethotbrand);
+    console.log(gethotbrand);
+  };
   return (
     <>
-    {Hotppop.length > 0 && (
+      {Hotppop.length > 0 && gethotbrand.length > 0 && (
     <Wrapper>
       <SearchBar onSearchTextChange={(text) => addToHistory(text)}
           searchHistory={searchHistory}/>
@@ -121,59 +142,61 @@ const Search = () => {
       </Reset>
         <ManySearch><Typo color="black" size="1.1rem">지금 많이 찾는 <label>팝업스토어</label></Typo></ManySearch>
         <Margin height="20"/>
+        <Box>
         <PoPRANK>
            <Link to={`/popupInfo/?id=${Hotppop[0].id}`}><Typo color="black" size="1.2rem">1. {Hotppop[0].popup_name}</Typo>
           <Margin height="10"/>
-          <Horizon width="350px" color="#EBEBEB" />
+          <Horizon width="330px" color="#EBEBEB" /  >
           </Link>
         </PoPRANK>
         <PoPRANK>
         <Link to={`/popupInfo/?id=${Hotppop[1].id}`}>
           <Typo color="black" size="1.2rem">2. {Hotppop[1].popup_name}</Typo>
           <Margin height="10"/>
-          <Horizon width="350px" color="#EBEBEB" />
+          <Horizon width="330px" color="#EBEBEB" />
           </Link>
         </PoPRANK>
         <PoPRANK>
         <Link to={`/popupInfo/?id=${Hotppop[2].id}`}>
           <Typo color="black" size="1.2rem">3. {Hotppop[2].popup_name}</Typo>
           <Margin height="10"/>
-          <Horizon width="350px" color="#EBEBEB" />
+          <Horizon width="330px" color="#EBEBEB" />
           </Link>
         </PoPRANK>
         <PoPRANK>
         <Link to={`/popupInfo/?id=${Hotppop[3].id}`}>
           <Typo color="black" size="1.2rem">4. {Hotppop[3].popup_name}</Typo>
           <Margin height="10"/>
-          <Horizon width="350px" color="#EBEBEB" />
+          <Horizon width="330px" color="#EBEBEB" />
           </Link>
         </PoPRANK>
         <PoPRANK>
         <Link to={`/popupInfo/?id=${Hotppop[4].id}`}>
           <Typo color="black" size="1.2rem">5. {Hotppop[4].popup_name}</Typo>
           <Margin height="10"/>
-          <Horizon width="350px" color="#EBEBEB" />
+          <Horizon width="330px" color="#EBEBEB" />
           </Link>
         </PoPRANK>
+        </Box>
         <ManySearch><Typo color="black" size="1.1rem">지금 많이 찾는 <label>팝업브랜드</label></Typo></ManySearch>
         <POPbox>
           <POPbox1>
-          <PoPRANK><Typo color="black" size="1.2rem">1. 뉴발란스</Typo></PoPRANK>
-          <PoPRANK><Typo color="black" size="1.2rem">2. 뉴발란스</Typo></PoPRANK>
-          <PoPRANK><Typo color="black" size="1.2rem">3. 뉴발란스</Typo></PoPRANK>
-          <PoPRANK><Typo color="black" size="1.2rem">4. 뉴발란스</Typo></PoPRANK>
-          <PoPRANK><Typo color="black" size="1.2rem">5. 뉴발란스</Typo></PoPRANK>
+          <PoPRANK1><Typo color="black" size="1.2rem">1. {gethotbrand[0].brand_name}</Typo></PoPRANK1>
+          <PoPRANK1><Typo color="black" size="1.2rem">2. {gethotbrand[1].brand_name}</Typo></PoPRANK1>
+          <PoPRANK1><Typo color="black" size="1.2rem">3. {gethotbrand[2].brand_name}</Typo></PoPRANK1>
+          <PoPRANK1><Typo color="black" size="1.2rem">4. {gethotbrand[3].brand_name}</Typo></PoPRANK1>
+          <PoPRANK1><Typo color="black" size="1.2rem">5. {gethotbrand[4].brand_name}</Typo></PoPRANK1>
           </POPbox1>
           <POPbox1>
-          <PoPRANK><Typo color="black" size="1.2rem">6. 뉴발란스</Typo></PoPRANK>
-          <PoPRANK><Typo color="black" size="1.2rem">7. 뉴발란스</Typo></PoPRANK>
-          <PoPRANK><Typo color="black" size="1.2rem">8. 뉴발란스</Typo></PoPRANK>
-          <PoPRANK><Typo color="black" size="1.2rem">9. 뉴발란스</Typo></PoPRANK>
-          <PoPRANK><Typo color="black" size="1.2rem">10. 뉴발란스</Typo></PoPRANK>
+          <PoPRANK1><Typo color="black" size="1.2rem">6. {gethotbrand[5].brand_name}</Typo></PoPRANK1>
+          <PoPRANK1><Typo color="black" size="1.2rem">7. {gethotbrand[6].brand_name}</Typo></PoPRANK1>
+          <PoPRANK1><Typo color="black" size="1.2rem">8. {gethotbrand[7].brand_name}</Typo></PoPRANK1>
+          <PoPRANK1><Typo color="black" size="1.2rem">9. {gethotbrand[8].brand_name}</Typo></PoPRANK1>
+          <PoPRANK1><Typo color="black" size="1.2rem">10. {gethotbrand[9].brand_name}</Typo></PoPRANK1>
           </POPbox1>
         </POPbox>
     </Wrapper>
-    )} 
+            )}
     
     <NavigationBar/>
     </>
