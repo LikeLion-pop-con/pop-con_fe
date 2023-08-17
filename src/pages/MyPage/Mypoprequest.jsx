@@ -18,6 +18,17 @@ const Title = styled.div`
 const Wrapper = styled.div`
   margin: 20px;
 `;
+const CategoryMapping = {
+  1: "푸드",
+  2: "패션 잡화",
+  3: "테크 가전",
+  4: "뷰티",
+  5: "클래스",
+  6: "그림",
+  7: "문학",
+  8: "영상",
+  9: "음악",
+};
 const Mypoprequest = () => {
   const [data, setData] = useState([]);
 
@@ -27,11 +38,12 @@ const Mypoprequest = () => {
       const list = await api.getMylikepopupRequest(user);
 
       setData(list);
-      console.log(list);
     }
   };
   useEffect(() => {
     getRequest();
+
+    console.log(data);
   }, []);
 
   return (
@@ -46,12 +58,12 @@ const Mypoprequest = () => {
       <Margin height="20" />
       {data?.map((item) => (
         <LargeCard
-          image={"https://popcon.store" + item?.popup_main_image}
-          title="NewJeans의 HYPE맑음"
-          popcategory="팝업 스토어"
-          detail="창작 예술"
-          space={"하텍 해동 스룸G \n인하대학교"}
-          date="2023.07.21~2023.08.19"
+          image={"https://popcon.store" + item?.popup_image01}
+          title={item?.popup_name}
+          popcategory={item?.popup_category}
+          space={item?.popup_detailplace}
+          date={item?.popup_date}
+          detail={item?.brand_info}
         />
       ))}
 

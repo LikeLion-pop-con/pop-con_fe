@@ -94,13 +94,13 @@ const BookingOne = () => {
 
   const getData = async () => {
     const data = await api.getPopupById(brandId);
-    setData(data?.popup);
+    setData(data);
 
     console.log(data);
 
     const newImagePaths = [];
 
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 2; i <= 7; i++) {
       const key = `popup_image${String(i).padStart(2, "0")}`;
       const imagePath = data?.popup[key];
 
@@ -113,6 +113,9 @@ const BookingOne = () => {
       ...prevImagePaths,
       ...newImagePaths,
     ]);
+  };
+  const handletoast = () => {
+    window.location = "/login";
   };
 
   const userconfirmtoast = () => {
@@ -141,7 +144,7 @@ const BookingOne = () => {
         >
           <p>로그인이 필요한 서비스입니다.</p>
           <button
-            onClick={() => navigate("/login")}
+            onClick={() => handletoast()}
             style={{
               marginTop: 5,
               color: "black",
@@ -181,13 +184,13 @@ const BookingOne = () => {
       <Header left="logo" right={["login", "search"]} />
       <Cardup
         name={data?.brand_info}
-        backimageUrl={"https://popcon.store" + data?.popup_main_image}
-        CircleimageUrl={"https://popcon.store" + data?.popup_brand_logo}
+        backimageUrl={"https://popcon.store" + data?.brand?.brand_main_image}
+        CircleimageUrl={"https://popcon.store" + data?.brand?.brand_logo}
       />
       <Carddown2
         id={brandId}
-        toptext={data?.popup_name}
-        bodytext={data?.popup_simple_info}
+        toptext={data?.popup?.popup_name}
+        bodytext={data?.popup?.popup_simple_info}
         isLiked={isLiked} // isLiked 상태 전달
         setIsLiked={setIsLiked} // 좋아요 버튼 클릭 핸들러 전달
         setIsShared={setIsShared}
@@ -202,8 +205,8 @@ const BookingOne = () => {
           "• 기획/운영: ",
           "• 소개: ",
         ]}
-        image={"https://popcon.store" + data?.popup_main_image}
-        bodyText={`${data?.popup_date}\n${data?.popup_time}\n${data?.popup_operation}\n${data?.popup_info}`}
+        image={"https://popcon.store" + data?.popup?.popup_image01}
+        bodyText={`${data?.popup?.popup_date}\n${data?.popup?.popup_time}\n${data?.popup?.popup_operation}\n${data?.popup?.popup_info}`}
       />
       <Margin height="20" />
 
@@ -230,17 +233,17 @@ const BookingOne = () => {
 
         <DetailTime>
           <div>
-            <Typo weight="600">• {data?.popup_date?.split("*")[0]}</Typo>
+            <Typo weight="600">• {data?.popup?.popup_date?.split("*")[0]}</Typo>
             <Margin height="3" />
             <Typo size="24" color="main" style={{ paddingLeft: 5 }}>
-              {data?.popup_detailplace}
+              {data?.popup?.popup_detailplace}
             </Typo>
           </div>
         </DetailTime>
       </PopupSpace>
 
       <Margin height="30" />
-      <DetailLink onClick={() => movetoLink(data?.popup_add_info)}>
+      <DetailLink onClick={() => movetoLink(data?.popup?.popup_add_info)}>
         더 많은 정보를 알고 싶다면 ?
       </DetailLink>
 

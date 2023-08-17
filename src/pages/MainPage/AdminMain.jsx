@@ -33,15 +33,14 @@ const SliderXwrapper = styled.div`
   overflow-x: scroll;
   min-height: 250px;
   width: 100%;
-  scroll-snap-type: x mandatory ;
-
+  scroll-snap-type: x mandatory;
 `;
 const SliderXwrapper2 = styled.div`
   position: relative;
   overflow-x: scroll;
   min-height: 330px;
   width: 100%;
-  scroll-snap-type: x mandatory ;
+  scroll-snap-type: x mandatory;
 `;
 const SliderXItems = styled.div`
   position: absolute;
@@ -52,7 +51,6 @@ const SliderXItems = styled.div`
   grid-template-columns: repeat(${(props) => props.cards}, 1fr);
   gap: 20px; */
 `;
-
 
 function AdminMain() {
   const navigate = useNavigate();
@@ -69,7 +67,7 @@ function AdminMain() {
     const token = localStorage.getItem("Token");
     if (!token) {
       localStorage.removeItem("Pk");
-      localStorage.removeItem("account_password");  
+      localStorage.removeItem("account_password");
     }
     getData();
     getNewbrand();
@@ -127,17 +125,17 @@ function AdminMain() {
   const handleCategoryClick = (categoryPath) => {
     setSelectedCategory(categoryPath);
     let filteredData = [];
-  if (categoryPath === "/art") {
-    filteredData = newbrandData?.filter((item) => item?.brand_category === 6);
-  } else if (categoryPath === "/lit") {
-    filteredData = newbrandData?.filter((item) => item?.brand_category === 7);
-  } else if (categoryPath === "/video") {
-    filteredData = newbrandData?.filter((item) => item?.brand_category === 8);
-  } else if (categoryPath === "/music") {
-    filteredData = newbrandData?.filter((item) => item?.brand_category === 9);
-  }
+    if (categoryPath === "/art") {
+      filteredData = newbrandData?.filter((item) => item?.brand_category === 6);
+    } else if (categoryPath === "/lit") {
+      filteredData = newbrandData?.filter((item) => item?.brand_category === 7);
+    } else if (categoryPath === "/video") {
+      filteredData = newbrandData?.filter((item) => item?.brand_category === 8);
+    } else if (categoryPath === "/music") {
+      filteredData = newbrandData?.filter((item) => item?.brand_category === 9);
+    }
 
-  setFilteredBrandData(filteredData);
+    setFilteredBrandData(filteredData);
   };
   const getCategoryNumber = (categoryPath) => {
     switch (categoryPath) {
@@ -153,9 +151,8 @@ function AdminMain() {
         return 0; // 전체 카테고리
     }
   };
-  
+
   return (
-    
     <>
       <Wrapper>
         <Header left="logo" right={["login", "search"]} />
@@ -164,26 +161,28 @@ function AdminMain() {
         <PopupTitle text="팝업 카테고리" bottomgap="20" />
         <Category listid="main" />
         <Margin height="30" />
-       
+
         <PopupTitle
           isarrow={true}
           text="추천 팝업 공간"
           bottomgap="15"
-          onClick={() => navigate('/PopupSpace')}
+          onClick={() => navigate("/PopupSpace")}
         />
         <SliderXwrapper2>
           <SliderXItems>
-          {placepopup?.map((item) => (
-            <AdminCard 
-            onClick={() => navigate(`/popupspace/${item.id}`)}
-            image={"https://popcon.store" + item?.popup_place_image01}
-            title={item?.popup_place_title} 
-            space={item?.popup_place_location} 
-            floor={item?.popup_place_floor} 
-            area={"연면적 : " + item?.popup_place_area}
-            isLiked={isCardLiked}
-            setIsLiked={setIsCardLiked} />
-          ))}
+            {placepopup?.map((item) => (
+              <AdminCard
+                id={item.id}
+                onClick={() => navigate(`/popupspace/${item.id}`)}
+                image={"https://popcon.store" + item?.popup_place_image01}
+                title={item?.popup_place_title}
+                space={item?.popup_place_location}
+                floor={item?.popup_place_floor}
+                area={"연면적 : " + item?.popup_place_area}
+                isCardLiked={isCardLiked}
+                setIsCardLiked={setIsCardLiked}
+              />
+            ))}
           </SliderXItems>
         </SliderXwrapper2>
         <Margin height="30" />
@@ -191,30 +190,30 @@ function AdminMain() {
         <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" />
         <SliderXwrapper2>
           <SliderXItems>
-            <LargeCard 
-              onClick={() => navigate('/PopupInfo')}
+            <LargeCard
+              onClick={() => navigate("/PopupInfo")}
               image={NewJeans}
-              title='NewJeans의 HYPE맑음' 
-              popcategory='팝업 스토어' 
-              detail='창작 예술' 
-              space={'하텍 해동 스룸G \n인하대학교'} 
-              date='2023.07.21~2023.08.19'
+              title="NewJeans의 HYPE맑음"
+              popcategory="팝업 스토어"
+              detail="창작 예술"
+              space={"하텍 해동 스룸G \n인하대학교"}
+              date="2023.07.21~2023.08.19"
             />
-            <LargeCard 
+            <LargeCard
               image={NewJeans}
-              title='NewJeans의 HYPE맑음' 
-              popcategory='팝업 스토어' 
-              detail='창작 예술' 
-              space={'하텍 해동 스룸G \n인하대학교'} 
-              date='2023.07.21~2023.08.19'
+              title="NewJeans의 HYPE맑음"
+              popcategory="팝업 스토어"
+              detail="창작 예술"
+              space={"하텍 해동 스룸G \n인하대학교"}
+              date="2023.07.21~2023.08.19"
             />
-            <LargeCard 
+            <LargeCard
               image={NewJeans}
-              title='NewJeans의 HYPE맑음' 
-              popcategory='팝업 스토어' 
-              detail='창작 예술' 
-              space={'하텍 해동 스룸G \n인하대학교'} 
-              date='2023.07.21~2023.08.19'
+              title="NewJeans의 HYPE맑음"
+              popcategory="팝업 스토어"
+              detail="창작 예술"
+              space={"하텍 해동 스룸G \n인하대학교"}
+              date="2023.07.21~2023.08.19"
             />
           </SliderXItems>
         </SliderXwrapper2>
@@ -293,14 +292,14 @@ function AdminMain() {
           bottomgap="20"
           onClick={() => navigate("/newartist")}
         />
-        <ArtistCategory  handleCategoryClick={handleCategoryClick}/>
+        <ArtistCategory handleCategoryClick={handleCategoryClick} />
         <SliderXwrapper>
           <SliderXItems>
             {newbrandData
               ?.filter((item) => item?.type === 2)
               ?.filter((item) =>
                 selectedCategory === "/"
-                  ? true 
+                  ? true
                   : item.brand_category === getCategoryNumber(selectedCategory)
               )
               ?.sort(function(a, b) {

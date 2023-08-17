@@ -124,7 +124,6 @@ const Myreservation = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            
           }}
           layoutId={item?.id + ""}
         >

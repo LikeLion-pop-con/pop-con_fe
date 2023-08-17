@@ -86,7 +86,7 @@ const BookingLast = () => {
 
   const getData = async () => {
     const data = await api.getPopupById(brandId);
-    setData(data?.popup);
+    setData(data);
   };
 
   console.log(localStorage.getItem("pk"));
@@ -97,8 +97,8 @@ const BookingLast = () => {
     console.log(data);
   }, []);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState({
-    start: parseInt(data?.popup_opentime?.slice(0, 2)),
-    end: parseInt(data?.popup_opentime?.slice(0, 2)) + 3,
+    start: parseInt(data?.popup?.popup_opentime?.slice(0, 2)),
+    end: parseInt(data?.popup?.popup_opentime?.slice(0, 2)) + 3,
   });
 
   const handleTimeSlotChange = (timeSlot) => {
@@ -117,7 +117,7 @@ const BookingLast = () => {
         bodyText={null}
         textstyle={"center"}
         width={"100%"}
-        image={"https://popcon.store" + data?.popup_main_image}
+        image={"https://popcon.store" + data?.popup?.popup_image01}
       />
       <Margin height="20" />
 
@@ -130,8 +130,8 @@ const BookingLast = () => {
         label="시간 선택"
         selectedTime={selectedTimeSlot}
         onChange={handleTimeSlotChange}
-        opentime={data?.popup_opentime?.slice(0, 5)}
-        closetime={data?.popup_closetime?.slice(0, 5)}
+        opentime={data?.popup?.popup_opentime?.slice(0, 5)}
+        closetime={data?.popup?.popup_closetime?.slice(0, 5)}
       />
 
       <Margin height="50" />

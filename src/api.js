@@ -18,6 +18,13 @@ export function getMypageMylikebrand(name) {
     .get(`${BASE_URL}/mylikebrand/?user_name=${name}`)
     .then((res) => res.data);
 }
+export function getIsPopupplacelike(user_pk, place_pk) {
+  return axios
+    .get(
+      `${BASE_URL}/popupplace/check/?user_pk=${user_pk}&place_pk=${place_pk}`
+    )
+    .then((res) => res.data);
+}
 
 export function getMypageMylikepopup(user_id) {
   return axios
@@ -69,20 +76,20 @@ export function getMylikepopupRequest(user_id) {
     .get(`${BASE_URL}/mylikepopup/request/?id=${user_id}`)
     .then((res) => res.data);
 }
-
 export function getBrandCategory(id) {
   return axios.get(`${BASE_URL}/main/brand/${id}`).then((res) => res.data);
 }
-export function getCheckbrandsub(user_id,brand_id) {
+export function getCheckbrandsub(user_id, brand_id) {
   return axios
-    .get(`${BASE_URL}/brand/subscribe/check/?user_pk=${user_id}&brand_pk=${brand_id}`)
+    .get(
+      `${BASE_URL}/brand/subscribe/check/?user_pk=${user_id}&brand_pk=${brand_id}`
+    )
     .then((res) => res.data);
 }
 export function getSubBrand(user_pk) {
   return axios
     .get(`${BASE_URL}/brand/subscribe/my/?id=${user_pk}`)
     .then((res) => res.data);
-
 }
 export function getPopupwill() {
   return axios
@@ -104,7 +111,7 @@ export function postplacelike(popup_place_pkey, user_pk) {
       popup_place_pkey: popup_place_pkey,
       user_pk: user_pk,
     })
-    .then((res) => console(res.data));
+    .then((res) => res.data);
 }
 export function postMylikebrand(brand_name, user_name) {
   const data = {
@@ -120,7 +127,9 @@ export function postBrandsubscribe(brand_pk, user_pk) {
     user_pk: user_pk,
   };
   console.log(data);
-  return axios.post(`${BASE_URL}/brand/subscribe/`, data).then((res) => res.data);
+  return axios
+    .post(`${BASE_URL}/brand/subscribe/`, data)
+    .then((res) => res.data);
 }
 export function postPopupplace(brand_name, user_name) {
   const data = {
@@ -153,14 +162,20 @@ export function postPopuprequest(popup_pk, user_pk) {
     })
     .then((res) => res.data);
 }
-export function postPlacereservation(user_id, popup_place_pkey,reserved_basement_floor,reserved_ground_floor,reserved_date) {
+export function postPlacereservation(
+  user_id,
+  popup_place_pkey,
+  reserved_basement_floor,
+  reserved_ground_floor,
+  reserved_date
+) {
   return axios
     .post(`${BASE_URL}/popupplacereservation/`, {
       user_id,
       popup_place_pkey,
       reserved_basement_floor,
       reserved_ground_floor,
-      reserved_date
+      reserved_date,
     })
     .then((res) => res.data);
 }

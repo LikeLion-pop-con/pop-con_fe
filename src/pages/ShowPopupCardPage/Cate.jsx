@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 `;
 
 const CateHead = styled.div`
@@ -41,11 +42,8 @@ function Cate() {
   const { cateId } = useParams(); // 1 2 3 4
 
   const state = useLocation();
-  console.log(state);
 
   const popupcate = useRecoilValue(PopupCategory);
-
-  console.log(cateId);
 
   function getCateImg(cateId) {
     if (parseInt(cateId) === 1) {

@@ -43,15 +43,15 @@ const Space = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 60%;
-  padding-left: 20%;
+  width: 80%;
+  padding-left: 14%;
 `;
 const Size = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 60%;
-  padding-left: 20%;
+  width: 80%;
+  padding-left: 14%;
 `;
 const GetMaptext = styled.p`
   width: 50%;
@@ -74,19 +74,21 @@ const SliderXItems = styled.div`
   top: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 20px;
 `;
 const Img = styled.img`
+  flex-shrink: 0;
   height: 300px;
-  width: 370px;
+  border-radius: 15px;
+  width: 400px;
+  margin: 0px 10px;
   @media (max-width: 768px) {
-    width: 100%;
+    width: 370px;
   }
+  scroll-snap-align: center;
 `;
 const BodyText = styled.p`
   width: 90%;
   margin: 0 5%;
-
   line-height: 1.6;
 `;
 const SpaceText = styled.p`
@@ -232,7 +234,7 @@ function SpaceItemIntro() {
       </PopupButton>
       <Margin height="40" />
       <Footer />
-      <NavigationBar/>
+      <NavigationBar />
     </Wrapper>
   );
 }

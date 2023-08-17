@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import AdminCardimg from "../../assets/Icons/Card/NewJeans.jpg";
 import Margin from "../../Components/Margin/Margin";
 import * as api from "../../api";
+import Carddown3 from "../../Components/Brand, ArtistCard/Carddown3";
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
   display: flex;
@@ -60,6 +61,7 @@ const StatusBar = styled(motion.div)`
 const BrandIntroduce = () => {
   const { spaceId } = useParams();
   const [placepopup, setplacepopup] = useState([]);
+  const [isLiked, setIsLiked] = useState(false);
   const isMatch = useMatch(`/popupspace/${spaceId}`);
   const isInfoMatch = useMatch(`/popupspace/${spaceId}/info`);
 
@@ -73,7 +75,6 @@ const BrandIntroduce = () => {
     getData();
   }, []);
 
-
   return (
     <Wrapper>
       <Header left="logo" right={["login", "search"]} />
@@ -83,11 +84,14 @@ const BrandIntroduce = () => {
         backimageUrl={"https://popcon.store" + placepopup.popup_place_image01} //이미지 크기가 안 맞아서
         isSpace={true}
       ></Cardup>
-      <Carddown1
+      <Carddown3
+        id={spaceId}
         subcribeNum={placepopup.popup_place_like}
         popNum={placepopup.popup_place_like_people}
-        showButton1 = {false}
-      ></Carddown1>
+        isLiked={isLiked}
+        setIsLiked={setIsLiked}
+        showButton1={true}
+      ></Carddown3>
       <TabsContainer>
         <Tabs>
           <Tab match={isMatch !== null}>

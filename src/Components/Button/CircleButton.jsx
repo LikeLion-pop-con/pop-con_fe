@@ -43,7 +43,7 @@ function CircleButton({ img, title, shape }) {
   return (
     <Wrapper>
       <Img shape={shape} onClick={() => handlePage(title)}>
-        <img alt={title} src={img}></img>
+        <img src={img}></img>
       </Img>
       <Margin height="10" />
       <Typo

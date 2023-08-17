@@ -66,7 +66,6 @@ import AddCard1 from "./pages/Card/AddCard1";
 import ShowEachCate from "./pages/CategoryPage/ShowEachCate";
 import MyArtistLike from "./pages/MyPage/MyArtistlike";
 
-
 function Router() {
   return (
     <BrowserRouter>
