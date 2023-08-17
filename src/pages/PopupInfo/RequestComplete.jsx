@@ -26,11 +26,14 @@ const popupcardvariants = {
 };
 
 function RequestComplete({
+  isSpace,
   image,
   title,
   topfloor,
   groundfloor,
-  date
+  date,
+  bf,
+  f,
 }) {
   useEffect(() => {
     // setTimeout(() => complete(), 1000);
@@ -38,8 +41,20 @@ function RequestComplete({
 
   return (
     <>
-      <motion.div style={{zIndex: 1000}} variants={popupcardvariants} initial="hidden" animate="load">
-        <PopupCard image={image} title={`${title}`} date={`${date}`}/>
+      <motion.div
+        style={{ zIndex: 1000 }}
+        variants={popupcardvariants}
+        initial="hidden"
+        animate="load"
+      >
+        <PopupCard
+          isSpace={isSpace}
+          bf={bf}
+          f={f}
+          image={image}
+          title={`${title}`}
+          date={`${date}`}
+        />
       </motion.div>
     </>
   );
