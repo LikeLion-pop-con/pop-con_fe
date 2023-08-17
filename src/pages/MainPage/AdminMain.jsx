@@ -64,7 +64,7 @@ function AdminMain() {
   const [selectedCategory, setSelectedCategory] = useState("/");
   const [filteredBrandData, setFilteredBrandData] = useState([]);
   const [isCardLiked, setIsCardLiked] = useState(false);
-
+  const [Popwill, setPopwill] = useState([]);
   useEffect(() => {
     const token = localStorage.getItem("Token");
     if (!token) {
@@ -75,6 +75,7 @@ function AdminMain() {
     getNewbrand();
     getCardinfo();
     getPopupplace();
+    getPopupwill();
   }, []);
   const compareDate = (item) => {
     const arr = item?.brand_borndate.split("-");
@@ -117,6 +118,11 @@ function AdminMain() {
     setplacepopup(placepopup);
     console.log(placepopup);
   };
+  const getPopupwill = async () => {
+    const PopwillData = await api.getPopupwill();
+    setPopwill(PopwillData);
+    console.log(PopwillData);
+  };  
   const id = 1;
   const handleCategoryClick = (categoryPath) => {
     setSelectedCategory(categoryPath);

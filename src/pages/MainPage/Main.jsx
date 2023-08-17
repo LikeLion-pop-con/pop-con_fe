@@ -146,7 +146,7 @@ function Main() {
   const [hotpopupdata, setHotpopupdata] = useState([]);
   const [newbrandData, setNewbrandData] = useState([]);
   const [CardData, setCardData] = useState([]);
-
+  const [Popwill, setPopwill] = useState([]);
   const [index, setIndex] = useState(0);
   const [isOpened, setIsOpened] = useRecoilState(istutorialOpend);
 
@@ -164,6 +164,7 @@ function Main() {
     getData();
     getNewbrand();
     getCardinfo();
+    getPopupwill();
   }, []);
 
   const compareDate = (item) => {
@@ -201,6 +202,11 @@ function Main() {
     const newbrand = await api.getNewbrand();
     setNewbrandData(newbrand);
     console.log(newbrand);
+  };
+  const getPopupwill = async () => {
+    const PopwillData = await api.getPopupwill();
+    setPopwill(PopwillData);
+    console.log(PopwillData);
   };
   const handleNext = () => {
     setIndex((prev) => (prev + 1) % 3);
@@ -299,12 +305,12 @@ function Main() {
                 image={"https://popcon.store" + item?.popup_image01}
                 title={item?.popup_name}
                 popcategory={item?.popup_category}
-                detail={"주최 - " + item?.brand_info}
+                detail={item?.brand_info}
                 space={item?.popup_detailplace}
-                date={`${item?.popup_date}~${item?.popup_closedate}`}
+                date={item?.popup_date}
               />
             ))}
-          </SliderXItems>
+          </SliderXItems> 
         </SliderXwrapper2>
         <Margin height="50" />
         <PopupTitle

@@ -122,35 +122,35 @@ const Search = () => {
         <ManySearch><Typo color="black" size="1.1rem">지금 많이 찾는 <label>팝업스토어</label></Typo></ManySearch>
         <Margin height="20"/>
         <PoPRANK>
-           <Link to={`/popupInfo/?id=${Hotppop[0].id}`}><Typo color="black" size="1.2rem">1. {Hotppop[0].popup_name}</Typo>
+           <Link to={`/popupInfo/?id=`}><Typo color="black" size="1.2rem">1. {Hotppop[0].popup_name}</Typo>
           <Margin height="10"/>
           <Horizon width="350px" color="#EBEBEB" />
           </Link>
         </PoPRANK>
         <PoPRANK>
-        <Link to={`/popupInfo/?id=${Hotppop[1].id}`}>
+        <Link to={`/popupInfo/?id=`}>
           <Typo color="black" size="1.2rem">2. {Hotppop[1].popup_name}</Typo>
           <Margin height="10"/>
           <Horizon width="350px" color="#EBEBEB" />
           </Link>
         </PoPRANK>
         <PoPRANK>
-        <Link to={`/popupInfo/?id=${Hotppop[2].id}`}>
+        <Link to={`/popupInfo/?id=`}>
           <Typo color="black" size="1.2rem">3. {Hotppop[2].popup_name}</Typo>
           <Margin height="10"/>
           <Horizon width="350px" color="#EBEBEB" />
           </Link>
         </PoPRANK>
         <PoPRANK>
-        <Link to={`/popupInfo/?id=${Hotppop[3].id}`}>
+        <Link to={`/popupInfo/?id=`}>
           <Typo color="black" size="1.2rem">4. {Hotppop[3].popup_name}</Typo>
           <Margin height="10"/>
           <Horizon width="350px" color="#EBEBEB" />
           </Link>
         </PoPRANK>
         <PoPRANK>
-        <Link to={`/popupInfo/?id=${Hotppop[4].id}`}>
-          <Typo color="black" size="1.2rem">5. {Hotppop[4].popup_name}</Typo>
+        <Link to={`/popupInfo/?id=`}>
+          <Typo color="black" size="1.2rem">5. </Typo>
           <Margin height="10"/>
           <Horizon width="350px" color="#EBEBEB" />
           </Link>
@@ -174,6 +174,7 @@ const Search = () => {
         </POPbox>
     </Wrapper>
     )} 
+    
     <NavigationBar/>
     </>
   );
