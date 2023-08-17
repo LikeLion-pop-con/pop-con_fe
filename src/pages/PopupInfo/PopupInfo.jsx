@@ -225,7 +225,7 @@ const PopupInfo = () => {
   };
 
   useEffect(() => {
-    if (isYes) {
+    if (isYes && requestbtnclikced) {
       setTimeout(() => yestoast(), 1000);
     }
     const user = localStorage.getItem("Pk");

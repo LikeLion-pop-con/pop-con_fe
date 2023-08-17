@@ -49,6 +49,13 @@ const SliderXwrapper2 = styled.div`
   width: 100%;
   scroll-snap-type: x mandatory;
 `;
+const SliderXwrapper3 = styled.div`
+  position: relative;
+  overflow-x: scroll;
+  min-height: 450px;
+  width: 100%;
+  scroll-snap-type: x mandatory;
+`;
 const SliderXItems = styled.div`
   position: absolute;
   left: 0;
@@ -171,6 +178,8 @@ function Main() {
   const [filteredBrandData, setFilteredBrandData] = useState([]);
   const [Hotppop, setHotppop] = useState([]);
   const [textidx, setTextidx] = useState(0);
+  const [PostData, setPostData] = useState([]);
+  const [gif, setGif] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("Token");
@@ -182,6 +191,8 @@ function Main() {
     getNewbrand();
     getCardinfo();
     getPopupwill();
+    getPostall();
+    getGif();
   }, []);
 
   useEffect(() => {
@@ -231,8 +242,19 @@ function Main() {
     setPopwill(PopwillData);
     console.log(PopwillData);
   };
+  const getPostall = async () => {
+    const PostData = await api.getbrandpostall();
+    setPostData(PostData);
+    console.log(PostData);
+  };
   const handleNext = () => {
     setIndex((prev) => (prev + 1) % 3);
+  };
+  const getGif = async () => {
+    const data = await api.getGif();
+    setGif(data);
+
+    console.log(data);
   };
 
   const tutorialdata = useRecoilValue(tutorial);
@@ -327,15 +349,23 @@ function Main() {
           bottomgap="10"
           onClick={() => navigate("/postList")}
         />
-        <PostCard
-          onClick={() => navigate("/popUpPost")}
-          image={PostCardimg1}
-          title="프랑스 밤잼 크렘드 마롱 팝업 스토어 현장"
-          type="추천 포스트"
-          main="크렘드마롱(Crème de Marrons)은 클레망포지에사의 140년 전통 프랑스산 밤잼 브랜드 입니다.
-          크렘드마롱은 프랑스 남부 리옹 지역에서 수확하는
-          야생밤을 원료로 깊은 밤의 풍미를 선사합니다."
-        />
+        <SliderXwrapper3>
+          <SliderXItems>
+            {PostData?.map((item) => (
+              <PostCard
+                onClick={() => navigate(`/popuppost/?id=${item?.brand}`)}
+                image={"https://popcon.store" + item?.brandpost_image}
+                title={item?.brandpost_name}
+                type="추천 포스트"
+                main={
+                  item?.brandpost_intro.length > 50
+                    ? item.brandpost_intro.substring(0, 30) + "..."
+                    : item.brandpost_intro
+                }
+              />
+            ))}
+          </SliderXItems>
+        </SliderXwrapper3>
         <Margin height="60" />
         <PopupTitle
           onClick={() => navigate("/newbrand")}
@@ -343,6 +373,7 @@ function Main() {
           text="새로운 팝업 브랜드를 만나보세요!"
           bottomgap="30"
         />
+
         <SliderXwrapper>
           <SliderXItems>
             {newbrandData
@@ -493,7 +524,7 @@ function Main() {
                     ))}
                   </TextWrap>
                   <VideoWrap>
-                    <Img src={item?.video}></Img>
+                    <Img src={"https://popcon.store" + gif[0]?.gif}></Img>
                   </VideoWrap>
                 </Box>
               ))}

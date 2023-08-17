@@ -219,7 +219,7 @@ const BookingTwo = () => {
         <Kakaomap
           isOne={false}
           isTwo={true}
-          text={data?.popup?.popup_detailplace}
+          text={data?.popup?.popup_map_place}
         />
       </Map>
 

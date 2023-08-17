@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Spacedetail from "../../Components/Brand, ArtistCard/Spacedetail";
 import Margin from "../../Components/Margin/Margin";
-import Kakaomap from "../../Components/Kakao/Kakaomap2";
+import Kakaomap from "../../Components/Kakao/Kakaomap";
 import Typo from "../../assets/Typo";
 import { motion } from "framer-motion";
 import img1 from "../../assets/Icons/Card/PopupCardimg1.png";
@@ -224,7 +224,11 @@ function SpaceItemIntro() {
       <GetMaptext>지도 보기</GetMaptext>
       <Margin height="15" />
       <RequestWrapper>
-        <Kakaomap />
+        <Kakaomap
+          isOne={false}
+          isTwo={true}
+          text={placepopup?.popup_place_location}
+        />
       </RequestWrapper>
       <Margin height="40" />
       <PopupButton onClick={() => navigate("booking")}>
