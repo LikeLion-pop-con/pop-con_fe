@@ -213,7 +213,7 @@ const Mypage = () => {
           <Horizon width="340px" color="white"></Horizon>
         </TextLink>
       </Detailbox>
-      <Margin height="100" />
+      <Margin height="200" />
       <NavigationBar />
     </>
   );

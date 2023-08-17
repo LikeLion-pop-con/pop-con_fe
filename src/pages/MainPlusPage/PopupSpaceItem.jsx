@@ -61,6 +61,7 @@ const StatusBar = styled(motion.div)`
 const BrandIntroduce = () => {
   const { spaceId } = useParams();
   const [placepopup, setplacepopup] = useState([]);
+  const [isLiked, setIsLiked] = useState(false);
   const isMatch = useMatch(`/popupspace/${spaceId}`);
   const isInfoMatch = useMatch(`/popupspace/${spaceId}/info`);
 
@@ -84,8 +85,11 @@ const BrandIntroduce = () => {
         isSpace={true}
       ></Cardup>
       <Carddown3
+        id={spaceId}
         subcribeNum={placepopup.popup_place_like}
         popNum={placepopup.popup_place_like_people}
+        isLiked={isLiked}
+        setIsLiked={setIsLiked}
         showButton1={true}
       ></Carddown3>
       <TabsContainer>

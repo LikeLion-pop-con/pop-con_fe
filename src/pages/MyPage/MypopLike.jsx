@@ -52,7 +52,7 @@ const MypopLike = () => {
       <Margin height="20" />
       {data?.map((item) => (
         <LargeCard
-          image={"https://popcon.store" + item?.popup_main_image}
+          image={"https://popcon.store" + item?.popup_image01}
           title={item?.popup_name}
           popcategory={item?.popup_category}
           detail="창작 예술"

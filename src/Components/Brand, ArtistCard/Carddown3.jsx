@@ -64,14 +64,15 @@ const Carddown3 = ({
   showButton1 = true,
 }) => {
   const [isUserLiked, setIsUserLiked] = useState();
+  const [likenum, setLikenum] = useState(0);
   const getIsLiked = async () => {
     const userType = localStorage.getItem("UserType");
-    if (userType === "1" && localStorage.getItem("Pk")) {
-      const res = await api.getCheckbrandsub(localStorage.getItem("Pk"), id);
+    if (userType === "2" && localStorage.getItem("Pk")) {
+      const res = await api.getIsPopupplacelike(localStorage.getItem("Pk"), id);
 
       console.log(res);
 
-      if (res?.subscribe_state === 1) {
+      if (res?.like_state === 1) {
         setIsLiked(true);
       } else {
         setIsLiked(false);
@@ -89,7 +90,7 @@ const Carddown3 = ({
         <FirstBox>
           <PopNum>
             <Typo size="1.1rem" weight="400" color="main">
-              {popNum}
+              {likenum}
             </Typo>
           </PopNum>
           <PopText>
@@ -110,9 +111,10 @@ const Carddown3 = ({
                 setIsLiked((prev) => !prev);
 
                 api
-                  .postMylikepopup(id, localStorage.getItem("Pk"))
+                  .postplacelike(id, localStorage.getItem("Pk"))
                   .then((data) => {
                     console.log("Like successfully posted:", data);
+                    setLikenum(data?.popupplace_like);
                   })
                   .catch((error) => {
                     console.error("Error posting like:", error);

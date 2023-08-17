@@ -30,9 +30,16 @@ const BodyText = styled.p`
   align-items: ${(props) =>
     props.textstyle === "center" ? "center" : "flex-start"};
 `;
-const Image = styled.div`
-  width: 100%;
-  text-align: center;
+const Image = styled.img`
+  width: 85%;
+  height: 400px;
+  background-image: url(${(props) => props.src})
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  place-self: center;
+  border-radius: 15px;
 `;
 
 const TextWrapper = styled.div`
@@ -85,15 +92,7 @@ const Popinfodetail = ({
           {firstimg && (
             <>
               <Margin height="25" />
-              <Image>
-                <img
-                  style={{ borderRadius: 20 }}
-                  alt="img"
-                  src={image}
-                  width="300"
-                  height="400"
-                ></img>
-              </Image>
+              <Image src={image}></Image>
               <Margin height="30" />
               {firsttitle && (
                 <TitleText>

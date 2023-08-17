@@ -6,6 +6,8 @@ import Margin from "../Margin/Margin";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import AdminCardHeart from "../../assets/Icons/Card/AdminCardHeart.svg";
 import { useState } from "react";
+import * as api from "../../api";
+import { useEffect } from "react";
 
 const CardBlock = styled.div`
   display: flex;
@@ -78,14 +80,41 @@ const Icon = styled.img`
       : "none"};
 `;
 
-const AdminCard = ({ image, title, space, floor, area, onClick }) => {
+const AdminCard = ({
+  setIsCardLiked,
+  isCardLiked,
+  id,
+  image,
+  title,
+  space,
+  floor,
+  area,
+  onClick,
+}) => {
   const navigate = useNavigate();
-  const [isLiked, setIsLiked] = useState(false);
-  const handleHeartClick = (event) => {
-    event.stopPropagation();
-    setIsLiked(!isLiked);
-    console.log("isLiked value:", isLiked);
+  const [iconfilled, setIconfilled] = useState(false);
+
+  const getIsLiked = async () => {
+    const userType = localStorage.getItem("UserType");
+    if (userType === "2" && localStorage.getItem("Pk")) {
+      const res = await api.getIsPopupplacelike(localStorage.getItem("Pk"), id);
+
+      console.log(res);
+
+      if (res?.like_state === 1) {
+        setIconfilled(true);
+      } else {
+        setIconfilled(false);
+      }
+    }
   };
+
+  useEffect(() => {
+    getIsLiked();
+  }, []);
+
+  const handleHeartClick = (event) => {};
+
   return (
     <CardEach onClick={onClick}>
       <Thumbnail image={image} />
@@ -109,10 +138,23 @@ const AdminCard = ({ image, title, space, floor, area, onClick }) => {
         </TextWrapper>
         <TextWrapper>
           <Icon
+            onClick={(event) => {
+              event.stopPropagation();
+              setIsCardLiked((prev) => !prev);
+              console.log("isLiked value:", isCardLiked);
+
+              api
+                .postplacelike(id, localStorage.getItem("Pk"))
+                .then((data) => {
+                  console.log("Like successfully posted:", data);
+                })
+                .catch((error) => {
+                  console.error("Error posting like:", error);
+                });
+            }}
             src={AdminCardHeart}
             alt="logo"
-            onClick={handleHeartClick}
-            liked={isLiked}
+            liked={iconfilled}
           />
         </TextWrapper>
       </TextBox>

@@ -100,7 +100,7 @@ const BookingOne = () => {
 
     const newImagePaths = [];
 
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 2; i <= 7; i++) {
       const key = `popup_image${String(i).padStart(2, "0")}`;
       const imagePath = data?.popup[key];
 
