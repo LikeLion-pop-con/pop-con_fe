@@ -18,6 +18,13 @@ export function getMypageMylikebrand(name) {
     .get(`${BASE_URL}/mylikebrand/?user_name=${name}`)
     .then((res) => res.data);
 }
+export function getIsPopupplacelike(user_pk, place_pk) {
+  return axios
+    .get(
+      `${BASE_URL}/popupplace/check/?user_pk=${user_pk}&place_pk=${place_pk}`
+    )
+    .then((res) => res.data);
+}
 
 export function getMypageMylikepopup(user_id) {
   return axios
@@ -99,7 +106,7 @@ export function postplacelike(popup_place_pkey, user_pk) {
       popup_place_pkey: popup_place_pkey,
       user_pk: user_pk,
     })
-    .then((res) => console(res.data));
+    .then((res) => res.data);
 }
 export function postMylikebrand(brand_name, user_name) {
   const data = {
@@ -150,14 +157,20 @@ export function postPopuprequest(popup_pk, user_pk) {
     })
     .then((res) => res.data);
 }
-export function postPlacereservation(user_id, popup_place_pkey,reserved_basement_floor,reserved_ground_floor,reserved_date) {
+export function postPlacereservation(
+  user_id,
+  popup_place_pkey,
+  reserved_basement_floor,
+  reserved_ground_floor,
+  reserved_date
+) {
   return axios
     .post(`${BASE_URL}/popupplacereservation/`, {
       user_id,
       popup_place_pkey,
       reserved_basement_floor,
       reserved_ground_floor,
-      reserved_date
+      reserved_date,
     })
     .then((res) => res.data);
 }

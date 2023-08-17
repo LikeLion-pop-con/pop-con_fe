@@ -125,7 +125,7 @@ const PopupInfo = () => {
   const getPopupinfo = async () => {
     const data = await getPopupById(brandId);
     console.log(data);
-    setPopupinfo(data?.popup);
+    setPopupinfo(data);
 
     const newImagePaths = [];
 
@@ -217,8 +217,9 @@ const PopupInfo = () => {
     if (isYes) {
       setTimeout(() => yestoast(), 1000);
     }
-    if (localStorage.getItem("Pk")) {
-      postPopuprequest(brandId, localStorage.getItem("Pk"));
+    const user = localStorage.getItem("Pk");
+    if (user) {
+      postPopuprequest(brandId, user);
       console.log("is posted !!");
     }
   }, [isYes]);
@@ -227,14 +228,16 @@ const PopupInfo = () => {
     <Wrapper transition={{ type: "tween" }}>
       <Header left="logo" right={["login", "search"]} />
       <Cardup
-        name={popupinfo?.brand_info} // 브랜드이름
-        backimageUrl={"https://popcon.store" + popupinfo?.popup_image01}
-        CircleimageUrl={"https://popcon.store" + popupinfo?.popup_brand_logo}
+        name={popupinfo?.brand?.brand_info} // 브랜드이름
+        backimageUrl={
+          "https://popcon.store" + popupinfo?.brand?.brand_main_image
+        }
+        CircleimageUrl={"https://popcon.store" + popupinfo?.brand?.brand_logo}
       />
       <Carddown2
         id={brandId}
-        toptext={popupinfo?.popup_name} // 팝업 이름
-        bodytext={popupinfo?.popup_simple_info}
+        toptext={popupinfo?.popup?.popup_name} // 팝업 이름
+        bodytext={popupinfo?.popup?.popup_simple_info}
         // 간단 소개
         isLiked={isLiked} // isLiked 상태 전달
         setIsLiked={setIsLiked} // 좋아요 버튼 클릭 핸들러 전달
@@ -242,9 +245,9 @@ const PopupInfo = () => {
       />
       {isshared && (
         <KakaoShare
-          title={popupinfo?.popup_name}
-          info={popupinfo?.popup_simple_info}
-          image={"https://popcon.store" + popupinfo?.popup_main_image}
+          title={popupinfo?.popup?.popup_name}
+          info={popupinfo?.popup?.popup_simple_info}
+          image={"https://popcon.store" + popupinfo?.popup?.popup_image01}
         />
       )}
       <Popinfodetail
@@ -257,8 +260,8 @@ const PopupInfo = () => {
           "• 기획/운영: ",
           "• 소개: ",
         ]}
-        image={"https://popcon.store" + popupinfo?.popup_main_image}
-        bodyText={`${popupinfo?.popup_opendate} ~ ${popupinfo?.popup_closedate}\n${popupinfo?.popup_opentime} ~ ${popupinfo?.popup_closetime}\n${popupinfo?.popup_operation}\n${popupinfo?.popup_info}`}
+        image={"https://popcon.store" + popupinfo?.popup?.popup_image01}
+        bodyText={`${popupinfo?.popup?.popup_opendate} ~ ${popupinfo?.popup?.popup_closedate}\n${popupinfo?.popup?.popup_opentime} ~ ${popupinfo?.popup?.popup_closetime}\n${popupinfo?.popup?.popup_operation}\n${popupinfo?.popup?.popup_info}`}
       />
       <PopupinfoImg>{renderImages(imagePathsFromBackend)}</PopupinfoImg>
       <Margin height="20" />
@@ -373,8 +376,8 @@ const PopupInfo = () => {
             }}
           >
             <RequestComplete
-              image={"https://popcon.store" + popupinfo?.popup_main_image}
-              title={popupinfo?.popup_name + " \n신청 완료되었습니다."}
+              image={"https://popcon.store" + popupinfo?.popup?.popup_image01}
+              title={popupinfo?.popup?.popup_name + " \n신청 완료되었습니다."}
             />
           </Modal>
         </>

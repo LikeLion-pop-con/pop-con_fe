@@ -66,12 +66,12 @@ const Carddown3 = ({
   const [isUserLiked, setIsUserLiked] = useState();
   const getIsLiked = async () => {
     const userType = localStorage.getItem("UserType");
-    if (userType === "1" && localStorage.getItem("Pk")) {
-      const res = await api.getCheckbrandsub(localStorage.getItem("Pk"), id);
+    if (userType === "2" && localStorage.getItem("Pk")) {
+      const res = await api.getIsPopupplacelike(localStorage.getItem("Pk"), id);
 
       console.log(res);
 
-      if (res?.subscribe_state === 1) {
+      if (res?.like_state === 1) {
         setIsLiked(true);
       } else {
         setIsLiked(false);
@@ -110,7 +110,7 @@ const Carddown3 = ({
                 setIsLiked((prev) => !prev);
 
                 api
-                  .postMylikepopup(id, localStorage.getItem("Pk"))
+                  .postplacelike(id, localStorage.getItem("Pk"))
                   .then((data) => {
                     console.log("Like successfully posted:", data);
                   })
