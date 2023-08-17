@@ -234,6 +234,7 @@ const PopupInfo = () => {
     }
     const user = localStorage.getItem("Pk");
     if (user) {
+      console.log(brandId, user);
       postPopuprequest(brandId, user);
       console.log("is posted !!");
     }

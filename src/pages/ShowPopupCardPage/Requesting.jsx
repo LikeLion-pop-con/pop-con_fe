@@ -45,14 +45,14 @@ function Requesting() {
       <PopupTitle text="지금 팝업을 예매해보세요!" />
       {data?.map((item) => (
         <LargeCard
-        onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
-        image={"https://popcon.store" + item?.popup_image01}
-        title={item?.popup_name}
-        popcategory={item?.popup_category}
-        detail={"주최 - " + item?.brand_info}
-        space={item?.popup_detailplace}
-        date={item?.popup_date}
-      />
+          onClick={() => navigate(`/popupbooking/${item.id}`)}
+          image={"https://popcon.store" + item?.popup_image01}
+          title={item?.popup_name}
+          popcategory={item?.popup_category}
+          detail={"주최 - " + item?.brand_info}
+          space={item?.popup_detailplace}
+          date={item?.popup_date}
+        />
       ))}
     </Wrapper>
   );
