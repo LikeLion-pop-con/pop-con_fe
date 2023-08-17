@@ -80,32 +80,17 @@ const Icon = styled.img`
       : "none"};
 `;
 
-const AdminCard = ({
-  setIsCardLiked,
-  isCardLiked,
-  id,
-  image,
-  title,
-  space,
-  floor,
-  area,
-  onClick,
-}) => {
+const AdminCard = ({ id, image, title, space, floor, area, onClick }) => {
   const navigate = useNavigate();
-  const [iconfilled, setIconfilled] = useState(false);
+  const [isLiked, setIsLiked] = useState({});
 
   const getIsLiked = async () => {
     const userType = localStorage.getItem("UserType");
     if (userType === "2" && localStorage.getItem("Pk")) {
       const res = await api.getIsPopupplacelike(localStorage.getItem("Pk"), id);
 
+      setIsLiked(res);
       console.log(res);
-
-      if (res?.like_state === 1) {
-        setIconfilled(true);
-      } else {
-        setIconfilled(false);
-      }
     }
   };
 
@@ -140,8 +125,8 @@ const AdminCard = ({
           <Icon
             onClick={(event) => {
               event.stopPropagation();
-              setIsCardLiked((prev) => !prev);
-              console.log("isLiked value:", isCardLiked);
+              // setIsCardLiked((prev) => !prev);
+              // console.log("isLiked value:", isCardLiked);
 
               api
                 .postplacelike(id, localStorage.getItem("Pk"))
@@ -154,7 +139,7 @@ const AdminCard = ({
             }}
             src={AdminCardHeart}
             alt="logo"
-            liked={iconfilled}
+            liked={isLiked?.like_state === 1}
           />
         </TextWrapper>
       </TextBox>

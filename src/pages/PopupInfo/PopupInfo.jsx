@@ -107,15 +107,11 @@ const PopupInfo = () => {
   const navigate = useNavigate();
   const brandId = new URLSearchParams(params.search).get("id");
 
-  console.log(brandId);
-
   const [isLiked, setIsLiked] = useState(false);
   const [btnclicked, setBtnclicked] = useState(false);
   const [requestbtnclikced, setRequestbtnclicked] = useState(false);
   const [isYes, setIsYes] = useState(false);
   const [popupinfo, setPopupinfo] = useState({});
-
-  console.log(localStorage.getItem("Pk"));
 
   const [imagePathsFromBackend, setImagePathsFromBackend] = useState([]);
 
@@ -233,7 +229,7 @@ const PopupInfo = () => {
       setTimeout(() => yestoast(), 1000);
     }
     const user = localStorage.getItem("Pk");
-    if (user) {
+    if (user && isYes) {
       console.log(brandId, user);
       postPopuprequest(brandId, user);
       console.log("is posted !!");

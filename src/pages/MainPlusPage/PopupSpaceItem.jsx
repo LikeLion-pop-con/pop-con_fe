@@ -64,6 +64,7 @@ const BrandIntroduce = () => {
   const [isLiked, setIsLiked] = useState(false);
   const isMatch = useMatch(`/popupspace/${spaceId}`);
   const isInfoMatch = useMatch(`/popupspace/${spaceId}/info`);
+  const [num, setNum] = useState(0);
 
   console.log(spaceId);
   const getData = async () => {
@@ -71,9 +72,17 @@ const BrandIntroduce = () => {
     setplacepopup(placepopup);
     console.log(placepopup);
   };
+  const getCounts = async () => {
+    const counts = await api.getTotalLikecount(spaceId);
+    setNum(counts?.popup_place_like);
+    console.log(counts);
+  };
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    getCounts();
+  }, [num, isLiked]);
 
   return (
     <Wrapper>
@@ -85,6 +94,7 @@ const BrandIntroduce = () => {
         isSpace={true}
       ></Cardup>
       <Carddown3
+        num={num}
         id={spaceId}
         subcribeNum={placepopup.popup_place_like}
         popNum={placepopup.popup_place_like_people}
