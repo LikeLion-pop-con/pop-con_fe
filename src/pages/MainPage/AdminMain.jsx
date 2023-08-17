@@ -188,31 +188,17 @@ function AdminMain() {
         <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" />
         <SliderXwrapper2>
           <SliderXItems>
-            <LargeCard
-              onClick={() => navigate("/PopupInfo")}
-              image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
-            />
-            <LargeCard
-              image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
-            />
-            <LargeCard
-              image={NewJeans}
-              title="NewJeans의 HYPE맑음"
-              popcategory="팝업 스토어"
-              detail="창작 예술"
-              space={"하텍 해동 스룸G \n인하대학교"}
-              date="2023.07.21~2023.08.19"
-            />
+          {Popwill?.map((item) => (
+              <LargeCard
+                onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
+                image={"https://popcon.store" + item?.popup_image01}
+                title={item?.popup_name}
+                popcategory={item?.popup_category}
+                detail={item?.brand_info}
+                space={item?.popup_detailplace}
+                date={item?.popup_date}
+              />
+            ))}
           </SliderXItems>
         </SliderXwrapper2>
 

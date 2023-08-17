@@ -13,6 +13,7 @@ import Headerline from "../../Components/Headerline/Headerline";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { isBrandOrArtist } from "../../atom";
 import KakaoShare from "../../Components/Kakao/KakaoShare";
+import NavigationBar from "../../Components/Navigate/Navigate";
 const Box = styled.div`
   display: flex;
   justify-content: center;
@@ -65,7 +66,6 @@ const BrandIntroduce = () => {
       ></Cardup>
       <Carddown1
       id={brandId}
-        subcribeNum={Data.brand_subcounts}
         popNum={Brandpop.length} 
         introduceText={Data.brand_simple_intro}
         isLiked={isLiked}
@@ -85,6 +85,7 @@ const BrandIntroduce = () => {
         page2="팝업 정보"
         page3="포스트"
       />
+      <NavigationBar/>
     </div>
   );
 };

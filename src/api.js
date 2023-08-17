@@ -98,6 +98,20 @@ export function getSubBrand(user_pk) {
 export function getPopupwill() {
   return axios.get(`${BASE_URL}/popuplist/willopen`).then((res) => res.data);
 }
+
+export function gethotbrand() {
+  return axios
+    .get(`${BASE_URL}/main/hotbrand`)
+    .then((res) => res.data);
+
+}
+export function getbrandsubcount(id) {
+  return axios
+    .get(`${BASE_URL}/brand/subcounts?id=${id}`)
+    .then((res) => res.data);
+
+}
+
 export function postMylikepopup(popup_id, user_id) {
   return axios
     .post(`${BASE_URL}/popuplike/`, {
