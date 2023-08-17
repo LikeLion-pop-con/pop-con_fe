@@ -90,6 +90,7 @@ const AdminCard = ({ id, image, title, space, floor, area, onClick }) => {
       const res = await api.getIsPopupplacelike(localStorage.getItem("Pk"), id);
 
       setIsLiked(res);
+      console.log(id);
       console.log(res);
     }
   };
@@ -121,27 +122,7 @@ const AdminCard = ({ id, image, title, space, floor, area, onClick }) => {
             {area}
           </Typo>
         </TextWrapper>
-        <TextWrapper>
-          <Icon
-            onClick={(event) => {
-              event.stopPropagation();
-              // setIsCardLiked((prev) => !prev);
-              // console.log("isLiked value:", isCardLiked);
-
-              api
-                .postplacelike(id, localStorage.getItem("Pk"))
-                .then((data) => {
-                  console.log("Like successfully posted:", data);
-                })
-                .catch((error) => {
-                  console.error("Error posting like:", error);
-                });
-            }}
-            src={AdminCardHeart}
-            alt="logo"
-            liked={isLiked?.like_state === 1}
-          />
-        </TextWrapper>
+        <TextWrapper></TextWrapper>
       </TextBox>
       <Margin height="10" />
     </CardEach>

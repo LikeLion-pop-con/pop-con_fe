@@ -176,3 +176,8 @@ export const istutorialOpend = atom({
   key: "istutorialOpend",
   default: true,
 });
+
+export const isClicked = atom({
+  key: "isClicked",
+  default: [0, 0, 0, 0, 0, 0],
+});
