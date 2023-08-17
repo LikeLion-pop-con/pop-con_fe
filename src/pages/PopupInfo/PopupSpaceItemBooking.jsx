@@ -17,7 +17,8 @@ import ss from "../../assets/Icons/Card/NewJeans.jpg";
 import Horizon from "../../Components/Horizon/Horizon";
 import CustomFloor from "../../Components/Calendar/CustomFloor";
 import RequestComplete from "./RequestComplete";
-
+import * as api from "../../api";
+import { useEffect } from "react";
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
   display: flex;
@@ -64,7 +65,12 @@ const Form = styled.div`
 const Detail = styled.div`
   width: 90%;
 `;
-
+const IMG = styled.div`
+  width: 90%;
+  height: 400px;
+  background-image: ${(props) => `url(${props.imageUrl})`};
+  background-size: cover;
+`;
 const Period = styled(Form)``;
 const OperateTime = styled(Form)``;
 const Space = styled(Form)``;
@@ -78,11 +84,12 @@ const renderImages = (imagePaths) => {
 
 const PopupSpaceItemBooking = () => {
   //백엔드에서 받아온 이미지 경로 배열 - 데이터 받아서 변수로 선언해야 할 듯
-  const { brandId } = useParams();
+  const { spaceId } = useParams();
 
-  console.log(brandId);
+  console.log(spaceId);
 
   const navigate = useNavigate();
+  let user_id, popup_place_pkey, reserved_basement_floor, reserved_ground_floor, formattedDate, reserved_date;
 
   const imagePathsFromBackend = [
     "이미지1의_경로.jpg",
@@ -90,13 +97,63 @@ const PopupSpaceItemBooking = () => {
     // 추가적인 이미지들의 경로
   ];
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const [selectedBasementTimeSlot, setSelectedBasementTimeSlot] = useState(
+    null
+  );
+  const [selectedGroundTimeSlot, setSelectedGroundTimeSlot] = useState(null);
   const [isclicked, setIsclicked] = useState(false);
-
-  const handleTimeSlotChange = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
+  const [placepopup, setplacepopup] = useState([]);
+  const handleTimeSlotChange = (timeSlot, floorType) => {
+    if (floorType === "basement") {
+      setSelectedBasementTimeSlot(timeSlot);
+    } else if (floorType === "ground") {
+      setSelectedGroundTimeSlot(timeSlot);
+    }
+    console.log("Selected Floor:", timeSlot);
   };
-
+  const getPopupplace = async () => {
+    const placepopup = await api.getPopplaceinfo(spaceId);
+    setplacepopup(placepopup);
+    console.log(placepopup);
+  };
+  useEffect(() => {
+    getPopupplace();
+  }, []);
+  const handleReservation = () => {
+    // 사용자 아이디 및 팝업 공간 정보를 변수에 저장
+    user_id = localStorage.getItem("Pk");
+    popup_place_pkey = placepopup.pkey;
+    reserved_basement_floor = selectedBasementTimeSlot.start
+      .toString()
+      .replace("층", ""); // 예약된 층 정보
+    reserved_ground_floor = selectedGroundTimeSlot.start
+      .toString()
+      .replace("층", ""); // 예약된 층 정보
+    formattedDate = selectedDate.toISOString().split("T")[0];
+    reserved_date = formattedDate; // 선택한 날짜 정보
+    console.log(user_id);
+    console.log(popup_place_pkey);
+    console.log(reserved_basement_floor);
+    console.log(reserved_ground_floor);
+    console.log(formattedDate);
+    console.log(reserved_date);
+    api
+      .postPlacereservation(
+        user_id,
+        popup_place_pkey,
+        reserved_basement_floor,
+        reserved_ground_floor,
+        reserved_date
+      )
+      .then((response) => {
+        console.log("Reservation Successful:", response);
+        // 예약 성공에 대한 처리 (예: 알림 메시지)
+      })
+      .catch((error) => {
+        console.error("Reservation Error:", error);
+        // 예약 실패에 대한 처리 (예: 에러 메시지)
+      });
+  };
   const yestoast = () =>
     toast.success("팝업 신청이 완료되었습니다.", {
       duration: 6000,
@@ -118,7 +175,8 @@ const PopupSpaceItemBooking = () => {
         image={ss}
       />
       <Margin height="20" />
-
+      <IMG imageUrl={`https://popcon.store${placepopup.popup_place_image03}`} />
+      <Margin height="20" />
       <Horizon width="80%" color="black" />
       <Margin height="20" />
 
@@ -126,12 +184,24 @@ const PopupSpaceItemBooking = () => {
       <Calendar
         style={{ touchAction: isclicked && "none" }}
         selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
+        setSelectedDate={(date) => {
+          console.log("Selected Date:", date); // 선택한 날짜 콘솔에 출력
+          setSelectedDate(date);
+        }}
+        maxDate={new Date("2023-09-10")}
       />
       <CustomFloor
-        label="층수 선택"
-        selectedTime={selectedTimeSlot}
-        onChange={handleTimeSlotChange}
+        label="지하 층수 선택"
+        selectedTime={selectedBasementTimeSlot}
+        floorCount={placepopup.popup_place_basement_floor}
+        onChange={(timeSlot) => handleTimeSlotChange(timeSlot, "basement")}
+      />
+
+      <CustomFloor
+        label="지상 층수 선택"
+        selectedTime={selectedGroundTimeSlot}
+        floorCount={placepopup.popup_place_ground_floor}
+        onChange={(timeSlot) => handleTimeSlotChange(timeSlot, "ground")}
       />
       <Margin height="20" />
       <Detail>
@@ -145,6 +215,7 @@ const PopupSpaceItemBooking = () => {
       <PopupButton
         onClick={() => {
           window.scrollTo(0, 0);
+          handleReservation();
           setIsclicked(true);
         }}
       >
@@ -188,7 +259,10 @@ const PopupSpaceItemBooking = () => {
             },
           }}
         >
-          <RequestComplete style={{ zIndex: 1000 }} />
+          <RequestComplete
+            image={"https://popcon.store" + placepopup.popup_place_image02}
+            title="팝업 신청이 완료되었습니다 !!"
+          />
         </Modal>
       )}
       <Margin height="30" />

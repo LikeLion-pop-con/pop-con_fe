@@ -93,7 +93,14 @@ export function postMylikepopup(popup_id, user_id) {
     })
     .then((res) => console(res.data));
 }
-
+export function postplacelike(popup_place_pkey, user_pk) {
+  return axios
+    .post(`${BASE_URL}/popupplacelike`, {
+      popup_place_pkey: popup_place_pkey,
+      user_pk: user_pk,
+    })
+    .then((res) => console(res.data));
+}
 export function postMylikebrand(brand_name, user_name) {
   const data = {
     brand_name: brand_name,
@@ -140,6 +147,17 @@ export function postPopuprequest(popup_pk, user_pk) {
     .post(`${BASE_URL}/popuprequest/`, {
       popup_pk,
       user_pk,
+    })
+    .then((res) => res.data);
+}
+export function postPlacereservation(user_id, popup_place_pkey,reserved_basement_floor,reserved_ground_floor,reserved_date) {
+  return axios
+    .post(`${BASE_URL}/popupplacereservation/`, {
+      user_id,
+      popup_place_pkey,
+      reserved_basement_floor,
+      reserved_ground_floor,
+      reserved_date
     })
     .then((res) => res.data);
 }

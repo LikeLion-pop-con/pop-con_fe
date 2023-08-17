@@ -63,6 +63,8 @@ function AdminMain() {
   const [CardData, setCardData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("/");
   const [filteredBrandData, setFilteredBrandData] = useState([]);
+  const [isCardLiked, setIsCardLiked] = useState(false);
+
   useEffect(() => {
     const token = localStorage.getItem("Token");
     if (!token) {
@@ -172,7 +174,9 @@ function AdminMain() {
             title={item?.popup_place_title} 
             space={item?.popup_place_location} 
             floor={item?.popup_place_floor} 
-            area={"연면적 : " + item?.popup_place_area} />
+            area={"연면적 : " + item?.popup_place_area}
+            isLiked={isCardLiked}
+            setIsLiked={setIsCardLiked} />
           ))}
           </SliderXItems>
         </SliderXwrapper2>

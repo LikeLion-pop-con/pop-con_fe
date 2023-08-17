@@ -5,7 +5,7 @@ import Typo from "../../assets/Typo";
 import Margin from "../Margin/Margin";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import AdminCardHeart from "../../assets/Icons/Card/AdminCardHeart.svg"
-
+import { useState } from "react";
 
 const CardBlock = styled.div`
   display: flex;
@@ -72,11 +72,19 @@ const TextBox = styled.div`
 
 const Icon = styled.img`
   cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다 
+  z-index: 5px;
+  filter: ${(props) => (props.liked ? 'invert(0.5) sepia(1) saturate(1000%) hue-rotate(0deg)' : 'none')};
 `;
 
 
 const AdminCard = ({ image, title, space, floor, area, onClick}) => {
   const navigate = useNavigate();
+  const [isLiked, setIsLiked] = useState(false);
+  const handleHeartClick = (event) => {
+    event.stopPropagation(); 
+    setIsLiked(!isLiked);
+    console.log("isLiked value:", isLiked);
+  };
   return (
     <CardEach onClick={onClick}>
       <Thumbnail image={image} />
@@ -93,7 +101,12 @@ const AdminCard = ({ image, title, space, floor, area, onClick}) => {
           <Typo size="small" color="gray">{area}</Typo>
         </TextWrapper>
         <TextWrapper>
-          <Icon src={AdminCardHeart} alt='logo' onClick={() => navigate('/main')} />
+        <Icon
+            src={AdminCardHeart}
+            alt='logo'
+            onClick={handleHeartClick}
+            liked={isLiked} 
+          />
         </TextWrapper>
       </TextBox>
       <Margin height='10'/>

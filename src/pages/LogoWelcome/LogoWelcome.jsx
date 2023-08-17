@@ -30,9 +30,13 @@ export default function LogoWelcome() {
   useEffect(() => {
     const timer = setTimeout(() => {
       // 페이지 전환코드
-      navigate("/main");
-    }, 3000); //(1000 밀리초 = 1초)
-
+      const usertype = localStorage.getItem("UserType");
+      if (usertype === "2") {
+        navigate("/adminmain"); // usertype이 2일 경우 adminmain으로 이동
+      } else {
+        navigate("/main"); // usertype이 2가 아닐 경우 main으로 이동
+      }
+    }, 3000);
     backani.start("visible");
 
     return () => {

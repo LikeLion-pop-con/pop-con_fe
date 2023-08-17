@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import styles from "./custom.TimeSlot.module.scss";
 import { AiOutlineClockCircle } from "react-icons/ai";
 
-const CustomFloor = ({ label, selectedTime, onChange }) => {
-  const timeSlots = [{ start: "1층" }, { start: "2층" }, { start: "3층" }];
-
+const CustomFloor = ({ label, selectedTime, onChange,floorCount }) => {
+  const timeSlots = Array.from({ length: floorCount }, (_, index) => ({
+    start: `${index + 1}층`,
+  }));
   return (
     <div className={styles.timeSlot}>
       <div className={styles.timeSlotLabel}>

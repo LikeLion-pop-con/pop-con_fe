@@ -102,9 +102,9 @@ const PopupCard = ({ image, title, main, onClick }) => {
           width="10%"
           height="10%"
           alt="logo"
-          onClick={() => navigate("/main")}
+          onClick={() => navigate("/Adminmain")}
         />
-        <Typo fontType="medium" onClick={() => navigate("/main")}>
+        <Typo fontType="medium" onClick={() => navigate("/Adminmain")}>
           {" "}
           확인
         </Typo>

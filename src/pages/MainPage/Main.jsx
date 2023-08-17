@@ -125,6 +125,7 @@ const VideoWrap = styled.div`
 `;
 const RightBtn = styled.div`
   position: absolute;
+  height: 20px;
   right: -10px;
   top: 0;
   bottom: 0;

@@ -53,7 +53,7 @@ const Button2 = styled.button`
   padding: 8px;
   background-color: transparent;
 `;
-const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,}) => {
+const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,showButton1 = true}) => {
   const [isUserLiked, setIsUserLiked] = useState();
   const getIsLiked = async () => {
     const userType = localStorage.getItem("UserType");
@@ -108,7 +108,7 @@ const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,})
           </Typo>
         </IntroduceText>
         <SecondBox>
-        <Button1
+        {showButton1 && (<Button1
             onClick={() => {
               setIsLiked((prev) => !prev);
 
@@ -127,7 +127,7 @@ const Carddown1 = ({ id,subcribeNum, popNum, introduceText,isLiked,setIsLiked,})
             }}
           >
             {isLiked ? "구독 중 ":"+ 구독" }
-          </Button1>
+          </Button1>)}
           <Button2>
             <BsFillShareFill />
           </Button2>
