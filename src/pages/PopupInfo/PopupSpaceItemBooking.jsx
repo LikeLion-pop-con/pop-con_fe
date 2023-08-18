@@ -19,6 +19,7 @@ import CustomFloor from "../../Components/Calendar/CustomFloor";
 import RequestComplete from "./RequestComplete";
 import * as api from "../../api";
 import { useEffect } from "react";
+import NavigationBar from "../../Components/Navigate/Navigate";
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
   display: flex;
@@ -169,6 +170,11 @@ const PopupSpaceItemBooking = () => {
         marginTop: 50,
       },
     });
+  useEffect(() => {
+    if (isclicked) {
+      setTimeout(() => yestoast(), 1000);
+    }
+  }, [isclicked]);
 
   return (
     <Wrapper>
@@ -291,6 +297,7 @@ const PopupSpaceItemBooking = () => {
       <Margin height="30" />
       <Footer />
       <Toaster position="top-center" />
+      <NavigationBar />
     </Wrapper>
   );
 };

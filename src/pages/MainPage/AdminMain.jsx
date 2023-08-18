@@ -29,6 +29,7 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  background-color: whitesmoke;
 `;
 const SliderXwrapper = styled.div`
   position: relative;
@@ -219,7 +220,12 @@ function AdminMain() {
         </SliderXwrapper2>
         <Margin height="30" />
 
-        <PopupTitle isarrow={true} text="여기에 열어주세요" bottomgap="15" onClick={() => navigate("/popuphere")}/>
+        <PopupTitle
+          isarrow={true}
+          text="여기에 열어주세요"
+          bottomgap="15"
+          onClick={() => navigate("/popuphere")}
+        />
         <SliderXwrapper2>
           <SliderXItems>
             {Popwill?.map((item) => (

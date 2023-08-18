@@ -83,7 +83,6 @@ function Layout() {
         </motion.div>
         {/* </Overlay> */}
         <Outlet />
-        
       </Background>
     </>
   );
