@@ -51,6 +51,9 @@ export function getpoplist() {
 export function getPopupplace() {
   return axios.get(`${BASE_URL}/popupplace/all`).then((res) => res.data);
 }
+export function getPopupplaceid(id) {
+  return axios.get(`${BASE_URL}/popupplace/${id}`).then((res) => res.data);
+}
 export function getMypopupreservation(user_id) {
   return axios
     .get(`${BASE_URL}/mypopupreservation/?id=${user_id}`)
