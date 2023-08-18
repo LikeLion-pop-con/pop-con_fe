@@ -130,22 +130,16 @@ const PopupSpaceItemBooking = () => {
   const handleReservation = () => {
     // 사용자 아이디 및 팝업 공간 정보를 변수에 저장
     user_id = localStorage.getItem("Pk");
-    popup_place_pkey = placepopup.pkey;
+    popup_place_pkey = placepopup.id;
     reserved_basement_floor = selectedBasementTimeSlot?.start
       ? selectedBasementTimeSlot.start.toString().replace("층", "")
-      : null; // 예약된 층 정보
+      : 0; // 예약된 층 정보
 
     reserved_ground_floor = selectedGroundTimeSlot?.start
       ? selectedGroundTimeSlot.start.toString().replace("층", "")
-      : null; // 예약된 층 정보
+      : 0; // 예약된 층 정보
     formattedDate = selectedDate.toISOString()?.split("T")[0];
     reserved_date = formattedDate; // 선택한 날짜 정보
-    console.log(user_id);
-    console.log(popup_place_pkey);
-    console.log(reserved_basement_floor);
-    console.log(reserved_ground_floor);
-    console.log(formattedDate);
-    console.log(reserved_date);
     api
       .postPlacereservation(
         user_id,
@@ -163,6 +157,12 @@ const PopupSpaceItemBooking = () => {
         // 예약 실패에 대한 처리 (예: 에러 메시지)
       });
   };
+  console.log(user_id);
+  console.log(popup_place_pkey);
+  console.log(reserved_basement_floor);
+  console.log(reserved_ground_floor);
+  console.log(formattedDate);
+  console.log(reserved_date);
   const yestoast = () =>
     toast.success("팝업 신청이 완료되었습니다.", {
       duration: 6000,
