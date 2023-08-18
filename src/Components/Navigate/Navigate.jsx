@@ -230,8 +230,10 @@ export default function NavigationBar({ setIsCateClicked }) {
           <Icon
             onClick={() => {
               if (user === 2) {
+                window.scrollTo(0, 0);
                 navigate("/Adminmain");
               } else {
+                window.scrollTo(0, 0);
                 navigate("/main");
               }
             }}

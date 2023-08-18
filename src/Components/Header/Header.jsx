@@ -15,7 +15,19 @@ const Icon = styled.img`
 const iconType = (navigate, type) => {
   const icon = {
     logo: (
-      <Icon src={logo} alt="logo" width="20%" onClick={() => navigate("/main")} />
+      <Icon
+        src={logo}
+        alt="logo"
+        width="20%"
+        onClick={() => {
+          console.log(localStorage.getItem("UserType"));
+          if (parseInt(localStorage.getItem("UserType")) === 2) {
+            navigate("/Adminmain");
+          } else {
+            navigate("/main");
+          }
+        }}
+      />
     ),
     login: <Icon src={login} alt="login" onClick={() => navigate("/login")} />,
     search: (
@@ -34,7 +46,6 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${({ Color }) => Color || "white"};
-  
 `;
 
 const IconsContainer = styled.div`
@@ -43,8 +54,8 @@ const IconsContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-left: 10px;
-  margin-top:2px;
-  margin-bottom:2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 `;
 
 const IconWrapper = styled.div`

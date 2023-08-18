@@ -5,6 +5,7 @@ import PopupTitle from "../../Components/PopupTitle/PopupTitle";
 import Margin from "../../Components/Margin/Margin";
 import { useEffect, useState } from "react";
 import * as api from "../../api";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 const Wrapper = styled.div`
   display: grid;
@@ -44,6 +45,8 @@ function Ing() {
           popcategory={item?.popup_category}
         />
       ))}
+      <Margin height="30" />
+      <NavigationBar />
     </Wrapper>
   );
 }
