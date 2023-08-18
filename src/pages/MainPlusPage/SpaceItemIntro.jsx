@@ -128,13 +128,13 @@ function SpaceItemIntro() {
       <SliderXwrapper2>
         <SliderXItems>
           <Img
-            src={"https://popcon.store" + placepopup.popup_place_image01}
-          ></Img>
-          <Img
             src={"https://popcon.store" + placepopup.popup_place_image02}
           ></Img>
           <Img
             src={"https://popcon.store" + placepopup.popup_place_image03}
+          ></Img>
+          <Img
+            src={"https://popcon.store" + placepopup.popup_place_image04}
           ></Img>
         </SliderXItems>
       </SliderXwrapper2>
