@@ -64,6 +64,7 @@ const Carddown3 = ({
   setIsLiked,
   showButton1 = true,
   num,
+  setIsShared,
 }) => {
   const [isUserLiked, setIsUserLiked] = useState(0);
 
@@ -129,7 +130,7 @@ const Carddown3 = ({
               )}
             </Button>
           )}
-          <Button2>
+          <Button2 onClick={() => setIsShared((prev) => !prev)}>
             <BsFillShareFill />
           </Button2>
         </SecondBox>
