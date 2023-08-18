@@ -6,7 +6,7 @@ import Card from "../../Components/Card/Card";
 import * as api from "../../api";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,6 +26,7 @@ const PopupWrap = styled.div`
 
 function NewBrand() {
   const [newbrandData, setNewbrandData] = useState([]);
+  const navigate = useNavigate();
   const getNewbrand = async () => {
     const newbrand = await api.getNewbrand();
     setNewbrandData(newbrand);
@@ -63,6 +64,7 @@ function NewBrand() {
           })
           ?.map((item) => (
             <Card
+              onClick={() => navigate(`/brand/${item?.id}`)}
               image={"https://popcon.store" + item?.brand_logo}
               title={item?.brand_name}
               category={item?.brand_category}
