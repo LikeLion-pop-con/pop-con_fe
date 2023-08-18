@@ -14,7 +14,7 @@ import Input2 from "./SpaceGive.jsx";
 import Input3 from "./Select.jsx";
 import Input4 from "./Slelect2.jsx";
 import Askbutton from "./Askbutton.jsx";
-import Input5 from "./Resister.jsx"
+import Input5 from "./Resister.jsx";
 const steps = [
   /////////////////////////////////////////////////////////////////// 질문 카테고리 선택
   {
@@ -126,14 +126,15 @@ const steps = [
   },
   {
     id: "18",
-    message: "회원가입을 하시면 저희 서비스를 보다 더 확실하게 이용하실 수 있습니다! 아래버튼을 눌러주세요!",
+    message:
+      "회원가입을 하시면 저희 서비스를 보다 더 확실하게 이용하실 수 있습니다! 아래버튼을 눌러주세요!",
     trigger: "19",
   },
   {
     id: "19",
-    component: <Input5 triggerNext={triggerNextStep}/>,
+    component: <Input5 triggerNext={triggerNextStep} />,
     waitAction: true,
-    trigger:"23",
+    trigger: "23",
   },
   {
     id: "23",
@@ -220,6 +221,7 @@ const Chatbot = ({ setModal }) => {
           alignContent: "center",
           borderRadius: "20px",
           backgroundColor: "transparent",
+          zIndex: 100,
         },
       }}
     >

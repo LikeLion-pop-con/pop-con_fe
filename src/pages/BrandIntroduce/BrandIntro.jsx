@@ -69,7 +69,7 @@ function BrandIntro() {
       <TextWrap>
         <Typo style={{ lineHeight: 1.2 }}>{data?.brand_intro}</Typo>
       </TextWrap>
-      <Margin height="30" />
+      <Margin height="60" />
     </Wrapper>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Main.css";
 import Inputter from "./Inputter";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import * as api from "../../api";
 import { Navigate, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
@@ -15,16 +15,16 @@ function Password() {
     setPassword(newPassword);
   };
   const getCardcheck = async () => {
-    const getCardcheck = await api.getCardcheck(id,pw);
+    const getCardcheck = await api.getCardcheck(id, pw);
     setCardcheck(getCardcheck);
     console.log(getCardcheck);
   };
   const Button1 = styled.div`
     cursor: pointer;
     position: relative;
-    right: -45%;
-    
-  `
+    right: -40%;
+    top: -15px;
+  `;
   useEffect(() => {
     if (pw) {
       getCardcheck();
@@ -34,15 +34,15 @@ function Password() {
     navigate(-1);
   };
   return (
-    <div className='main'>
+    <div className="main">
       <Button1 onClick={handleNavigateBack}>X</Button1>
       <h1>결제 비밀번호</h1>
-      <br/>
-      
+      <br />
+
       {pw ? (
         <>
           <p>비밀번호를 입력해주세요</p>
-          <br/>
+          <br />
           <Inputter onPasswordChange={handlePasswordChange} />
         </>
       ) : (
