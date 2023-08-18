@@ -115,7 +115,7 @@ export function getbrandpostall() {
   return axios.get(`${BASE_URL}/brandinfo/post/all/`).then((res) => res.data);
 }
 export function getGif() {
-  return axios.get(`${BASE_URL}/gif/?id=${1}`).then((res) => res.data);
+  return axios.get(`${BASE_URL}/gif/all`).then((res) => res.data);
 }
 export function getPopupwill() {
   return axios.get(`${BASE_URL}/popuplist/willopen`).then((res) => res.data);

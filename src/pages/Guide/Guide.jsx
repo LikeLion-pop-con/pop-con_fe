@@ -4,7 +4,7 @@ import Header from "../../Components/Header/Header";
 import Margin from "../../Components/Margin/Margin";
 import NavigationBar from "../../Components/Navigate/Navigate";
 import consumerGuide from "./consumerGuide.svg";
-import GuidePageimg from "./GuidePage2.svg";
+import GuidePageimg from "./GuidePageNew.svg";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
