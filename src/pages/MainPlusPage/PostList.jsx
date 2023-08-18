@@ -39,7 +39,7 @@ function PostList() {
     getPostall();
   }, []);
   return (
-    <>
+    <div style={{ overflow: "hidden" }}>
       <Header left="logo" right={["login", "search"]} />
       <Margin height="40" />
       <Title>
@@ -63,7 +63,7 @@ function PostList() {
       </CardBlock>
       <NavigationBar />
       <Footer />
-    </>
+    </div>
   );
 }
 export default PostList;

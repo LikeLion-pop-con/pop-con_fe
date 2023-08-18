@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 `;
 const CateHead = styled.div`
   display: flex;
