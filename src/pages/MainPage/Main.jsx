@@ -161,7 +161,7 @@ const boxvariants = {
 };
 const StepIndicate = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   column-gap: 5px;
   position: absolute;
   top: 0;
@@ -200,8 +200,48 @@ function Main() {
   useEffect(() => {
     if (index === 0) {
       setTimeout(() => {
-        setTextidx((prev) => (prev + 1) % 4);
-      }, 5000);
+        if (textidx !== 3) {
+          setTextidx((prev) => prev + 1);
+        } else {
+          setTextidx(0);
+        }
+      }, 4000);
+    }
+    if (index === 1) {
+      setTimeout(() => {
+        if (textidx !== 3) {
+          setTextidx((prev) => prev + 1);
+        } else {
+          setTextidx(0);
+        }
+      }, 4000);
+    }
+    if (index === 2) {
+      setTimeout(() => {
+        if (textidx !== 3) {
+          setTextidx((prev) => prev + 1);
+        } else {
+          setTextidx(0);
+        }
+      }, 4000);
+    }
+    if (index === 3) {
+      setTimeout(() => {
+        if (textidx !== 3) {
+          setTextidx((prev) => prev + 1);
+        } else {
+          setTextidx(0);
+        }
+      }, 4000);
+    }
+    if (index === 4) {
+      setTimeout(() => {
+        if (textidx !== 3) {
+          setTextidx((prev) => prev + 1);
+        } else {
+          setTextidx(0);
+        }
+      }, 4000);
     }
   }, [index, textidx]);
 
@@ -252,7 +292,7 @@ function Main() {
     console.log(PostData);
   };
   const handleNext = () => {
-    setIndex((prev) => (prev + 1) % 3);
+    setIndex((prev) => (prev + 1) % 5);
   };
   const getGif = async () => {
     const data = await api.getGif();
@@ -504,6 +544,34 @@ function Main() {
                   border: "1px solid rgba(0,0,0,0.1)",
                 }}
               ></motion.div>
+              <motion.div
+                animate={{
+                  backgroundColor:
+                    index === 3
+                      ? "rgba(236, 117, 56, 1)"
+                      : "rgba(255,255,255,1)",
+                }}
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(0,0,0,0.1)",
+                }}
+              ></motion.div>
+              <motion.div
+                animate={{
+                  backgroundColor:
+                    index === 4
+                      ? "rgba(236, 117, 56, 1)"
+                      : "rgba(255,255,255,1)",
+                }}
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(0,0,0,0.1)",
+                }}
+              ></motion.div>
             </StepIndicate>
             <Row key={index}>
               {tutorialdata?.slice(index, index + 1).map((item) => (
@@ -528,7 +596,7 @@ function Main() {
                     ))}
                   </TextWrap>
                   <VideoWrap>
-                    <Img src={"https://popcon.store" + gif[0]?.gif}></Img>
+                    <Img src={"https://popcon.store" + gif[index]?.gif}></Img>
                   </VideoWrap>
                 </Box>
               ))}
