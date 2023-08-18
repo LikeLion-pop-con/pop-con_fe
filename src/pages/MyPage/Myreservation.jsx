@@ -77,6 +77,7 @@ const Myreservation = () => {
   const [data, setData] = useState([]);
   const [popup, setPopup] = useState({});
   const [isClicked, setIsClicked] = useState(false);
+  const [id, setId] = useState(0);
 
   const user_id = localStorage.getItem("Pk");
 
@@ -102,10 +103,12 @@ const Myreservation = () => {
       },
     });
   };
-  const handleCancel = () => {
+  const handleCancel = (user_id, id) => {
     canceltoast();
-
+    api.deleteReservation(user_id, id);
     // data axios delete
+
+    getData();
   };
 
   return (
@@ -137,6 +140,8 @@ const Myreservation = () => {
             onClick={() => {
               setIsClicked(true);
               setPopup(item);
+              console.log(item);
+              setId(item?.id);
             }}
           />
 
@@ -147,7 +152,9 @@ const Myreservation = () => {
         <AnimatePresence>
           <Overlay
             transition={{ type: "tween" }}
-            onClick={() => setIsClicked(false)}
+            onClick={() => {
+              setIsClicked(false);
+            }}
           >
             <ReservationCancelForm layoutId={popup?.id + ""}>
               <ImgBox
@@ -179,7 +186,14 @@ const Myreservation = () => {
                 <Typo style={{ width: "100%" }}>
                   {popup?.popup?.popup_detailplace}
                 </Typo>
-                <CancelBtn onClick={() => handleCancel()}>예약 취소</CancelBtn>
+                <CancelBtn
+                  onClick={() => {
+                    handleCancel(user_id, id);
+                    console.log(user_id, id);
+                  }}
+                >
+                  예약 취소
+                </CancelBtn>
                 <Margin height="20" />
               </Form>
             </ReservationCancelForm>
