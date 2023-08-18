@@ -90,6 +90,7 @@ const Box = styled(motion.div)`
 `;
 const Title = styled.p`
   font-size: 30px;
+  font-weight: 600;
   width: 100%;
   text-align: center;
   margin-top: 30px;
@@ -114,7 +115,8 @@ const TextWrap = styled(motion.div)`
   p {
     position: absolute;
     top: -20px;
-    width: 250px;
+    width: 300px;
+    font-size: 18px;
   }
 `;
 const VideoWrap = styled.div`
@@ -196,9 +198,11 @@ function Main() {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setTextidx((prev) => (prev + 1) % 4);
-    }, 5000);
+    if (index === 0) {
+      setTimeout(() => {
+        setTextidx((prev) => (prev + 1) % 4);
+      }, 5000);
+    }
   }, [index, textidx]);
 
   const compareDate = (item) => {
@@ -331,7 +335,7 @@ function Main() {
           <SliderXItems>
             {hotpopupdata?.map((item) => (
               <LargeCard
-                onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
+                onClick={() => navigate(`/popupbooking/${item.id}`)}
                 image={"https://popcon.store" + item?.popup_image01}
                 title={item?.popup_name}
                 popcategory={item?.popup_category}

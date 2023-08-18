@@ -64,7 +64,7 @@ const SliderXItems = styled.div`
 const Icon = styled.img`
   position: absolute;
   cursor: pointer; //마우스를 갖다대면 손바닥 모양이 뜬다
-  z-index: 10;
+
   right: 25px;
   bottom: 25px;
   width: 35px;
@@ -253,7 +253,7 @@ function AdminMain() {
           <SliderXItems>
             {hotpopupdata?.map((item) => (
               <LargeCard
-                onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
+                onClick={() => navigate(`/popupbooking/${item.id}`)}
                 image={"https://popcon.store" + item?.popup_image01}
                 title={item?.popup_name}
                 popcategory={item?.popup_category}

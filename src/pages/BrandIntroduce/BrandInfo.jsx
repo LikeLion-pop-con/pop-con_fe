@@ -43,7 +43,6 @@ function BrandInfo() {
 
   return (
     <Wrapper>
-      <Margin height="20" />
       <PopupTitle text="팝업 정보" />
       {data?.map((item) => (
         <LargeCard
@@ -56,6 +55,7 @@ function BrandInfo() {
           detail={"뷰티"}
         />
       ))}
+      <Margin height="20" />
     </Wrapper>
   );
 }

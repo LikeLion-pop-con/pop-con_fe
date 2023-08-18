@@ -6,7 +6,7 @@ import category from "../../assets/Icons/NavigationBar/category.svg";
 import back from "../../assets/Icons/NavigationBar/back.svg";
 import like from "../../assets/Icons/NavigationBar/like.svg";
 import my from "../../assets/Icons/NavigationBar/my.svg";
-import { useNavigate } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
@@ -186,6 +186,9 @@ export default function NavigationBar({ setIsCateClicked }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollDir]);
 
+  const mainMatch = useMatch("/main");
+  const adminMatch = useMatch("/Adminmain");
+
   return (
     <Wrapper>
       <ScrollToTopBtn
@@ -230,11 +233,17 @@ export default function NavigationBar({ setIsCateClicked }) {
           <Icon
             onClick={() => {
               if (user === 2) {
-                window.scrollTo(0, 0);
-                navigate("/Adminmain");
+                if (adminMatch !== null) {
+                  window.scrollTo(0, 0);
+                } else {
+                  navigate("/Adminmain");
+                }
               } else {
-                window.scrollTo(0, 0);
-                navigate("/main");
+                if (mainMatch !== null) {
+                  window.scrollTo(0, 0);
+                } else {
+                  navigate("/main");
+                }
               }
             }}
             img={home}
