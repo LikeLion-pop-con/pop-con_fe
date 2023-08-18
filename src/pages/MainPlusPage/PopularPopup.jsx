@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  overflow: hidden;
 `;
 
 const Title = styled.div`
@@ -28,11 +29,11 @@ const CustomTypo = styled(Typo)`
 `;
 
 const CardBlock = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    white-space: pre-line;// \n를 css에 적용시키려면 필요한 코드
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-line; // \n를 css에 적용시키려면 필요한 코드
 `;
 
 function PopularPopup() {
@@ -57,19 +58,19 @@ function PopularPopup() {
       </Title>
       <Margin height="20" />
       <CardBlock>
-      {hotpopupdata?.map((item) => (
-              <LargeCard
-                onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
-                image={"https://popcon.store" + item?.popup_image01}
-                title={item?.popup_name}
-                popcategory={item?.popup_category}
-                detail={item?.brand_info}
-                space={item?.popup_detailplace}
-                date={`${item?.popup_date}~${item?.popup_closedate}`}
-              />
-            ))}
+        {hotpopupdata?.map((item) => (
+          <LargeCard
+            onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
+            image={"https://popcon.store" + item?.popup_image01}
+            title={item?.popup_name}
+            popcategory={item?.popup_category}
+            detail={item?.brand_info}
+            space={item?.popup_detailplace}
+            date={`${item?.popup_date}~${item?.popup_closedate}`}
+          />
+        ))}
       </CardBlock>
-      <Footer/>
+      <Footer />
     </Wrapper>
   );
 }

@@ -4,7 +4,7 @@ import Typo from "../../assets/Typo";
 import Margin from "../../Components/Margin/Margin";
 import LargeCard from "../../Components/Card/LargeCard";
 import Footer from "../../Components/Footer/Footer";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import NewJeans from "../../assets/Icons/Card/NewJeans.jpg";
 import * as api from "../../api";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  overflow: hidden;
 `;
 const Title = styled.div`
   width: 100%;
@@ -21,11 +22,11 @@ const Title = styled.div`
 `;
 
 const CardBlock = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    white-space: pre-line;// \n를 css에 적용시키려면 필요한 코드
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-line; // \n를 css에 적용시키려면 필요한 코드
 `;
 
 function PopupHere() {
@@ -49,17 +50,17 @@ function PopupHere() {
       </Title>
       <Margin height="20" />
       <CardBlock>
-      {newbrandData?.map((item) => (
-              <LargeCard
-                onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
-                image={"https://popcon.store" + item?.popup_image01}
-                title={item?.popup_name}
-                popcategory={item?.popup_category}
-                detail={item?.brand_info}
-                space={item?.popup_detailplace}
-                date={item?.popup_date}
-              />
-            ))}
+        {newbrandData?.map((item) => (
+          <LargeCard
+            onClick={() => navigate(`/popupInfo/?id=${item.id}`)}
+            image={"https://popcon.store" + item?.popup_image01}
+            title={item?.popup_name}
+            popcategory={item?.popup_category}
+            detail={item?.brand_info}
+            space={item?.popup_detailplace}
+            date={item?.popup_date}
+          />
+        ))}
       </CardBlock>
       <Footer />
     </Wrapper>

@@ -22,7 +22,7 @@ const { Kakao } = window;
 
 function KakaoShare({ isSpace, title, info, image }) {
   // 배포한 웹 사이트 주소 나중에 넣을 것
-  const realUrl = `https://tkfkdtkfkdgoyo.github.io/hiMakeum/`;
+  const realUrl = `https://popcon.likelion.app`;
   const resultUrl = "http://localhost:3000/";
 
   useEffect(() => {

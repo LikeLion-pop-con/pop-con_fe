@@ -49,7 +49,7 @@ function PopupSpace() {
   };
 
   return (
-    <>
+    <div style={{ overflow: "hidden" }}>
       <Header left="logo" right={["login", "search"]} />
       <Margin height="40" />
       <Title>
@@ -75,7 +75,7 @@ function PopupSpace() {
 
       <NavigationBar />
       <Footer />
-    </>
+    </div>
   );
 }
 export default PopupSpace;
