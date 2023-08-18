@@ -34,18 +34,17 @@ const Mypoppplacerequest = () => {
 
   const getRequest = async () => {
     const user = localStorage.getItem("Pk");
+    console.log(user);
     if (user) {
       const list = await api.getMypoppaceupreservation(user);
-
       setData(list);
+      console.log(data);
     }
   };
   useEffect(() => {
     getRequest();
-
-    console.log(data);
   }, []);
-
+  
   return (
     <>
       <Header left="logo" right={["login", "search"]} bgColor="#EC7538" />
@@ -58,12 +57,12 @@ const Mypoppplacerequest = () => {
       <Margin height="20" />
       {data?.map((item) => (
         <LargeCard
-          image={"https://popcon.store" + item?.popup_image01}
-          title={item?.popup_name}
-          popcategory={item?.popup_category}
-          space={item?.popup_detailplace}
-          date={item?.popup_date}
-          detail={item?.brand_info}
+          image={"https://popcon.store" + item?.popupplace.popup_place_image01}
+          title={"예약 장소 : " + item?.popupplace.popup_place_title}
+          popcategory={"지하 : " + item?.popupplace_reserved_basement_floor + "층\n 지상 : " + item?.popupplace_reserved_ground_floor + "층"}
+          space={"예약 날짜 : " + item?.popupplace_reserved_date}
+          date={item?.popupplace.popup_place_location
+          }
         />
       ))}
 
