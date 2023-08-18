@@ -6,6 +6,7 @@ import Margin from "../../Components/Margin/Margin";
 import { useEffect } from "react";
 import * as api from "../../api";
 import { useState } from "react";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 const Wrapper = styled.div`
   display: grid;
@@ -54,6 +55,8 @@ function Requesting() {
           date={item?.popup_date}
         />
       ))}
+      <Margin height="30" />
+      <NavigationBar />
     </Wrapper>
   );
 }

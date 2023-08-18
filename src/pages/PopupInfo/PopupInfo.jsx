@@ -25,6 +25,7 @@ import { postMylikepopup, getPopupById, postPopuprequest } from "../../api";
 import KakaoShare from "../../Components/Kakao/KakaoShare";
 import { AiFillPicture } from "react-icons/ai";
 import logo from "../../assets/Icons/Header/logo.png";
+import NavigationBar from "../../Components/Navigate/Navigate";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -396,6 +397,7 @@ const PopupInfo = () => {
         </>
       )}
       <Toaster position="top-center" />
+      <NavigationBar />
     </Wrapper>
   );
 };

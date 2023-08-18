@@ -12,6 +12,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { AnimatePresence, motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Title = styled.div`
   margin: 5%;
@@ -110,6 +111,7 @@ const Myreservation = () => {
 
     getData();
   };
+  const navigate = useNavigate();
 
   return (
     <Wrapper>
@@ -189,6 +191,7 @@ const Myreservation = () => {
                 <CancelBtn
                   onClick={() => {
                     handleCancel(user_id, id);
+                    navigate("/Mypage");
                     console.log(user_id, id);
                   }}
                 >
