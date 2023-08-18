@@ -20,21 +20,21 @@ const Container = styled.div`
 `;
 const { Kakao } = window;
 
-function KakaoShare({ title, info, image }) {
+function KakaoShare({ isSpace, title, info, image }) {
   // 배포한 웹 사이트 주소 나중에 넣을 것
   const realUrl = `https://tkfkdtkfkdgoyo.github.io/hiMakeum/`;
   const resultUrl = "http://localhost:3000/";
 
   useEffect(() => {
-    Kakao.cleanup();
-    Kakao.init("bf0729e846bbbe9f4260cc5aa868e5f2");
+    Kakao?.cleanup();
+    Kakao?.init("bf0729e846bbbe9f4260cc5aa868e5f2");
     console.log(Kakao.isInitialized());
 
     shareKakao();
   }, []);
 
   const shareKakao = () => {
-    Kakao.Share.sendDefault({
+    Kakao.Share?.sendDefault({
       objectType: "feed",
       content: {
         title: `${title}`,
@@ -46,7 +46,7 @@ function KakaoShare({ title, info, image }) {
       },
       buttons: [
         {
-          title: "팝업 보러가기",
+          title: `${isSpace ? "공간" : "팝업"} 보러가기`,
           link: {
             mobileWebUrl: realUrl,
           },

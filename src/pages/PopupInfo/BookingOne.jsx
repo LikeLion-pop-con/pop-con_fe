@@ -20,6 +20,7 @@ import toast, { Toaster } from "react-hot-toast";
 import * as api from "../../api";
 import NavigationBar from "../../Components/Navigate/Navigate";
 import logo from "../../assets/Icons/Header/logo.png";
+import KakaoShare from "../../Components/Kakao/KakaoShare";
 
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -195,6 +196,13 @@ const BookingOne = () => {
         setIsLiked={setIsLiked} // 좋아요 버튼 클릭 핸들러 전달
         setIsShared={setIsShared}
       />
+      {isshared && (
+        <KakaoShare
+          image={"https://popcon.store" + data?.popup?.popup_image01}
+          title={data?.popup?.popup_name}
+          info={data?.popup?.popup_simple_info}
+        />
+      )}
       <Popinfodetail // 팝업의 본문 내용 컴포넌트 (운영 기간, 시간, 기획/운영, 키워드)
         isTabed={true}
         firsttitle={true}

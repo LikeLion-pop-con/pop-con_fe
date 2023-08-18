@@ -70,6 +70,15 @@ function Kakaomap({
           })
         );
       }
+      console.log(
+        new window.kakao.maps.Marker({
+          map: map,
+          position: new window.kakao.maps.LatLng(
+            37.56813164258915,
+            126.98514913782823
+          ),
+        })
+      );
       for (let i = 0; i < Busan; ++i) {
         markers.push(
           new window.kakao.maps.Marker({

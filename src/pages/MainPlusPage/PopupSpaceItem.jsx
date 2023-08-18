@@ -14,6 +14,7 @@ import AdminCardimg from "../../assets/Icons/Card/NewJeans.jpg";
 import Margin from "../../Components/Margin/Margin";
 import * as api from "../../api";
 import Carddown3 from "../../Components/Brand, ArtistCard/Carddown3";
+import KakaoShare from "../../Components/Kakao/KakaoShare";
 const Wrapper = styled(motion.div)`
   box-sizing: border-box;
   display: flex;
@@ -62,6 +63,8 @@ const BrandIntroduce = () => {
   const { spaceId } = useParams();
   const [placepopup, setplacepopup] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
+  const [isShared, setIsShared] = useState(false);
+
   const isMatch = useMatch(`/popupspace/${spaceId}`);
   const isInfoMatch = useMatch(`/popupspace/${spaceId}/info`);
   const [num, setNum] = useState(0);
@@ -101,7 +104,16 @@ const BrandIntroduce = () => {
         isLiked={isLiked}
         setIsLiked={setIsLiked}
         showButton1={true}
+        setIsShared={setIsShared}
       ></Carddown3>
+      {isShared && (
+        <KakaoShare
+          isSpace={true}
+          title={placepopup.popup_place_title}
+          image={"https://popcon.store" + placepopup?.popup_place_image01}
+          info={placepopup?.popup_place_point}
+        />
+      )}
       <TabsContainer>
         <Tabs>
           <Tab match={isMatch !== null}>
