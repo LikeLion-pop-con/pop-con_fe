@@ -236,3 +236,8 @@ export function postCard(
   console.log(data);
   return axios.post(`${BASE_URL}/card/signup/`, data).then((res) => res.data);
 }
+export function deleteReservation(user_id, popupreservation_id) {
+  return axios.delete(
+    `${BASE_URL}/deletepopupreservation/?user_id=${user_id}&popupreservation_id=${popupreservation_id}`
+  );
+}

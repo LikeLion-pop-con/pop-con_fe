@@ -3,11 +3,14 @@ import "./Main.css";
 import Inputter from "./Inputter";
 import { useState, useEffect} from "react";
 import * as api from "../../api";
+import { Navigate, useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
 function Password() {
   const [password, setPassword] = useState("");
   const pw = localStorage.getItem("account_password");
   const id = localStorage.getItem("Pk");
   const [Cardcheck, setCardcheck] = useState([]);
+  const navigate = useNavigate();
   const handlePasswordChange = (newPassword) => {
     setPassword(newPassword);
   };
@@ -16,13 +19,23 @@ function Password() {
     setCardcheck(getCardcheck);
     console.log(getCardcheck);
   };
+  const Button1 = styled.div`
+    cursor: pointer;
+    position: relative;
+    right: -45%;
+    
+  `
   useEffect(() => {
     if (pw) {
       getCardcheck();
     }
   }, [pw]);
+  const handleNavigateBack = () => {
+    navigate(-1);
+  };
   return (
     <div className='main'>
+      <Button1 onClick={handleNavigateBack}>X</Button1>
       <h1>결제 비밀번호</h1>
       <br/>
       

@@ -13,13 +13,18 @@ import Hana from '../../assets/Icons/Bank/하나.svg'
 import Ki from '../../assets/Icons/Bank/기업.svg'
 import Margin from "../../Components/Margin/Margin";
 
-const Wrapper = styled.div`
+const Box1 = styled.div`
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+`
+const Wrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
+
 `
 const Text = styled.div`
     font-size: 20px;
@@ -52,6 +57,7 @@ const AddCard1 = () => {
         <>
         <Header left="logo" right={["login", "search"]} />
         <Text>등록할 은행을 선택해주세요.</Text>
+        <Box1>
         <Wrapper>
             <Box onClick={() => handleBoxClick('농협')}><img src={Nong}/><Margin height="5" />농협</Box>
             <Box onClick={() => handleBoxClick('우리은행')}><img src={Woori}/><Margin height="5" />우리은행</Box>
@@ -63,6 +69,7 @@ const AddCard1 = () => {
             <Box onClick={() => handleBoxClick('토스뱅크')}><img src={Toss}/><Margin height="5" />토스뱅크</Box>
             <Box onClick={() => handleBoxClick('카카오뱅크')}><img src={Kako}/><Margin height="5" />카카오뱅크</Box>
         </Wrapper>
+        </Box1>
         </>
     );
 };

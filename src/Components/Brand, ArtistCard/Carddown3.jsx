@@ -54,6 +54,7 @@ const Button2 = styled.button`
   border-radius: 50%;
   padding: 8px;
   background-color: transparent;
+  cursor: pointer;
 `;
 const Carddown3 = ({
   id,
@@ -63,8 +64,8 @@ const Carddown3 = ({
   isLiked,
   setIsLiked,
   showButton1 = true,
-  num,
   setIsShared,
+  num,
 }) => {
   const [isUserLiked, setIsUserLiked] = useState(0);
 
@@ -130,7 +131,7 @@ const Carddown3 = ({
               )}
             </Button>
           )}
-          <Button2 onClick={() => setIsShared((prev) => !prev)}>
+          <Button2 onClick={() => setIsShared(true)}>
             <BsFillShareFill />
           </Button2>
         </SecondBox>

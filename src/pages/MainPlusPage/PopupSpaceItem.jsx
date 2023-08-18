@@ -63,10 +63,11 @@ const BrandIntroduce = () => {
   const { spaceId } = useParams();
   const [placepopup, setplacepopup] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
+  const [isShared, setIsShared] = useState(false);
+
   const isMatch = useMatch(`/popupspace/${spaceId}`);
   const isInfoMatch = useMatch(`/popupspace/${spaceId}/info`);
   const [num, setNum] = useState(0);
-  const [isshared, setIsShared] = useState(false);
 
   console.log(spaceId);
   const getData = async () => {
@@ -105,11 +106,12 @@ const BrandIntroduce = () => {
         showButton1={true}
         setIsShared={setIsShared}
       ></Carddown3>
-      {isshared && placepopup.popup_place_image01 && (
+      {isShared && (
         <KakaoShare
+          isSpace={true}
           title={placepopup.popup_place_title}
-          info={placepopup.popup_place_recom}
-          image={"https://popcon.store" + placepopup.popup_place_image01}
+          image={"https://popcon.store" + placepopup?.popup_place_image01}
+          info={placepopup?.popup_place_point}
         />
       )}
       <TabsContainer>
